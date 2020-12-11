@@ -24,7 +24,7 @@
 <meta name="author" content="Fan Wang" />
 
 
-<meta name="date" content="2020-12-10" />
+<meta name="date" content="2020-12-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -551,7 +551,7 @@ conda install -c anaconda boto3 -y</code></pre>
 <pre><code>## {&#39;ResponseMetadata&#39;: &#39;&#39;,
 ##  &#39;computeEnvironments&#39;: [{&#39;computeEnvironmentArn&#39;: &#39;arn:aws:batch:us-east-1:710673677961:compute-environment/SpotEnv2560&#39;,
 ##                           &#39;computeEnvironmentName&#39;: &#39;SpotEnv2560&#39;,
-##                           &#39;computeResources&#39;: {&#39;desiredvCpus&#39;: 4,
+##                           &#39;computeResources&#39;: {&#39;desiredvCpus&#39;: 0,
 ##                                                &#39;ec2KeyPair&#39;: &#39;fan_wang-key-pair-us_east_nv&#39;,
 ##                                                &#39;instanceRole&#39;: &#39;&#39;,
 ##                                                &#39;instanceTypes&#39;: [&#39;optimal&#39;],
@@ -686,17 +686,17 @@ conda install -c anaconda boto3 -y</code></pre>
 ##                                               &#39;11 &#39;
 ##                                               &#39;Dec &#39;
 ##                                               &#39;2020 &#39;
-##                                               &#39;05:30:22 &#39;
+##                                               &#39;16:08:56 &#39;
 ##                                               &#39;GMT&#39;,
-##                                       &#39;x-amz-apigw-id&#39;: &#39;XX2NNHRdIAMF7TA=&#39;,
-##                                       &#39;x-amzn-requestid&#39;: &#39;ae21d029-e05e-47ba-a512-81684c9511e7&#39;,
-##                                       &#39;x-amzn-trace-id&#39;: &#39;Root=1-5fd303ee-25f2d5513de3d31f2bc57e78;Sampled=0&#39;},
+##                                       &#39;x-amz-apigw-id&#39;: &#39;XZTv5H0iIAMF7TA=&#39;,
+##                                       &#39;x-amzn-requestid&#39;: &#39;ef0fabda-1673-4417-bd0c-c1faa5c2bda1&#39;,
+##                                       &#39;x-amzn-trace-id&#39;: &#39;Root=1-5fd39998-51d927024c8573c553dbcf4a;Sampled=0&#39;},
 ##                       &#39;HTTPStatusCode&#39;: 200,
-##                       &#39;RequestId&#39;: &#39;ae21d029-e05e-47ba-a512-81684c9511e7&#39;,
+##                       &#39;RequestId&#39;: &#39;ef0fabda-1673-4417-bd0c-c1faa5c2bda1&#39;,
 ##                       &#39;RetryAttempts&#39;: 0},
-##  &#39;jobDefinitionArn&#39;: &#39;arn:aws:batch:us-east-1:710673677961:job-definition/pyfan-scatterline3-test-rmd:63&#39;,
+##  &#39;jobDefinitionArn&#39;: &#39;arn:aws:batch:us-east-1:710673677961:job-definition/pyfan-scatterline3-test-rmd:65&#39;,
 ##  &#39;jobDefinitionName&#39;: &#39;pyfan-scatterline3-test-rmd&#39;,
-##  &#39;revision&#39;: 63}</code></pre>
+##  &#39;revision&#39;: 65}</code></pre>
 </div>
 <div id="submit-a-batch-array" class="section level4" number="6.3.1.3">
 <h4><span class="header-section-number">6.3.1.3</span> Submit a Batch Array</h4>
@@ -753,17 +753,17 @@ conda install -c anaconda boto3 -y</code></pre>
 ##                                               &#39;11 &#39;
 ##                                               &#39;Dec &#39;
 ##                                               &#39;2020 &#39;
-##                                               &#39;05:30:22 &#39;
+##                                               &#39;16:08:58 &#39;
 ##                                               &#39;GMT&#39;,
-##                                       &#39;x-amz-apigw-id&#39;: &#39;XX2NRFVxoAMF0zA=&#39;,
-##                                       &#39;x-amzn-requestid&#39;: &#39;e307e7b6-bc67-4334-954a-62fd776d58df&#39;,
-##                                       &#39;x-amzn-trace-id&#39;: &#39;Root=1-5fd303ee-164678b2131e4c7f12bd1cb6;Sampled=0&#39;},
+##                                       &#39;x-amz-apigw-id&#39;: &#39;XZTwEF0hoAMF1-w=&#39;,
+##                                       &#39;x-amzn-requestid&#39;: &#39;94c80e00-f0cf-45e3-b4c6-16a2b1dd925e&#39;,
+##                                       &#39;x-amzn-trace-id&#39;: &#39;Root=1-5fd39999-4b14102d78e8205400b1dfb6;Sampled=0&#39;},
 ##                       &#39;HTTPStatusCode&#39;: 200,
-##                       &#39;RequestId&#39;: &#39;e307e7b6-bc67-4334-954a-62fd776d58df&#39;,
+##                       &#39;RequestId&#39;: &#39;94c80e00-f0cf-45e3-b4c6-16a2b1dd925e&#39;,
 ##                       &#39;RetryAttempts&#39;: 0},
-##  &#39;jobArn&#39;: &#39;arn:aws:batch:us-east-1:710673677961:job/2bead1be-943f-4253-9aee-f690c4564551&#39;,
-##  &#39;jobId&#39;: &#39;2bead1be-943f-4253-9aee-f690c4564551&#39;,
-##  &#39;jobName&#39;: &#39;pyfan-scatterline3-test-rmd_20201210233021511038&#39;}</code></pre>
+##  &#39;jobArn&#39;: &#39;arn:aws:batch:us-east-1:710673677961:job/342e0e25-d809-42f6-bcfe-a49624448d7d&#39;,
+##  &#39;jobId&#39;: &#39;342e0e25-d809-42f6-bcfe-a49624448d7d&#39;,
+##  &#39;jobName&#39;: &#39;pyfan-scatterline3-test-rmd_20201211100856369153&#39;}</code></pre>
 
 </div>
 </div>

@@ -7,5 +7,6 @@
 *.m linguist-vendored
 *.sh linguist-vendored
 *.r linguist-vendored
+*.R linguist-vendored
 *.Rmd linguist-vendored
 *.tex linguist-vendored
