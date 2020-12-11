@@ -1,0 +1,116 @@
+---
+title: "Python Numpy Combine Arrays to Matrix"
+titleshort: "Numpy Combine Arrays to Matrix"
+description: |
+  Arrays to matrix.
+core:
+  - package: numpy
+    code: |
+      column_stack()
+      random.choice()
+      reshape()
+date: 2020-10-18
+date_start: 2020-10-18
+output:
+  pdf_document:
+    pandoc_args: '../../_output_kniti_pdf.yaml'
+    includes:
+      in_header: '../../preamble.tex'
+  html_document:
+    pandoc_args: '../../_output_kniti_html.yaml'
+    includes:
+      in_header: "../../hdga.html"
+always_allow_html: true
+urlcolor: blue
+---
+
+### Generate Matrix from Arrays
+
+```{r global_options, include = FALSE}
+try(source("../../.Rprofile"))
+```
+
+`r text_shared_preamble_one`
+`r text_shared_preamble_two`
+`r text_shared_preamble_thr`
+
+```{python}
+import numpy as np
+```
+
+#### Generate a Random Matrix
+
+Generate a matrix with random numbers and arbitrary number of rows and columns. Several types of matrix below:
+
+1. uniform random
+2. integer random
+3. integer random resorted (shuffled)
+4. integer random redrawn (with replacements)
+
+Set size:
+
+```{python}
+it_rows = 2;
+it_cols = 3;
+np.random.seed(123)
+```
+
+uniform random:
+
+```{python}
+# A random matrix of uniform draws
+mt_rand_unif = np.random.rand(it_rows, it_cols)
+print(mt_rand_unif)
+```
+
+integer random:
+
+```{python}
+# A random matrix of integers
+it_max_int = 10
+mt_rand_integer = np.random.randint(it_max_int, size=(it_rows, it_cols))
+print(mt_rand_integer)
+```
+
+integer random resorted (shuffled):
+
+```{python}
+# A sequence of numbers, 1 to matrix size, resorted, unique
+it_mat_size = it_rows*it_cols
+ar_seq = np.arange(it_mat_size)
+ar_idx_resort = np.random.choice(np.arange(it_mat_size), it_mat_size, replace = False)
+ar_seq_rand_sorted = ar_seq[ar_idx_resort]
+mt_seq_rand_sorted = ar_seq_rand_sorted.reshape((it_rows, it_cols))
+print(mt_seq_rand_sorted)
+# achieve the same objective with a shuffle
+np.random.shuffle(ar_seq)
+mt_seq_rand_shuffle = ar_seq.reshape((it_rows, it_cols))
+print(mt_seq_rand_shuffle)
+```
+
+integer random redrawn (with replacements):
+
+```{python}
+# A sequence of numbers, 1 to matrix size, resorted, nonunique, REPLACE = TRUE
+it_mat_size = it_rows*it_cols
+ar_seq = np.arange(it_mat_size)
+ar_idx_resort_withreplacement = np.random.choice(np.arange(it_mat_size), it_mat_size, replace = True)
+ar_seq_rand_sorted_withreplacement = ar_seq[ar_idx_resort_withreplacement]
+mt_seq_rand_sorted_withreplacement = ar_seq_rand_sorted_withreplacement.reshape((it_rows, it_cols))
+print(mt_seq_rand_sorted_withreplacement)
+```
+
+#### Stack Arrays to Matrix
+
+Given various arrays, generate a matrix by stacking equi-length arrays as columns
+
+```{python}
+# three arrays
+ar_a = [1,2,3]
+ar_b = [3,4,5]
+ar_c = [11,4,1]
+
+# Concatenate to matrix
+mt_abc = np.column_stack([ar_a, ar_b, ar_c])
+print(mt_abc)
+```

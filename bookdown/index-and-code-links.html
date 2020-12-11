@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>A Index and Code Links | Data Structures and Cloud Services with Python</title>
+  <meta name="description" content="Numpy documentation examples." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="A Index and Code Links | Data Structures and Cloud Services with Python" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Numpy documentation examples." />
+  <meta name="github-repo" content="fanwangecon/R4Econ" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="A Index and Code Links | Data Structures and Cloud Services with Python" />
+  
+  <meta name="twitter:description" content="Numpy documentation examples." />
+  
+
+<meta name="author" content="Fan Wang" />
+
+
+<meta name="date" content="2020-12-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="system-and-support.html"/>
+
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-92953468-11"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-92953468-11');
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Structures and Cloud Services with Python</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>1</b> Data Structures</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="data-structures.html"><a href="data-structures.html#strings-lists-and-tuples"><i class="fa fa-check"></i><b>1.1</b> Strings, Lists and Tuples</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="data-structures.html"><a href="data-structures.html#strings"><i class="fa fa-check"></i><b>1.1.1</b> Strings</a></li>
+<li class="chapter" data-level="1.1.2" data-path="data-structures.html"><a href="data-structures.html#fstring-format-floating-point-values"><i class="fa fa-check"></i><b>1.1.2</b> Fstring Format Floating Point Values</a></li>
+<li class="chapter" data-level="1.1.3" data-path="data-structures.html"><a href="data-structures.html#list"><i class="fa fa-check"></i><b>1.1.3</b> List</a></li>
+<li class="chapter" data-level="1.1.4" data-path="data-structures.html"><a href="data-structures.html#tuple"><i class="fa fa-check"></i><b>1.1.4</b> Tuple</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="data-structures.html"><a href="data-structures.html#dictionary"><i class="fa fa-check"></i><b>1.2</b> Dictionary</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="data-structures.html"><a href="data-structures.html#dictionary-1"><i class="fa fa-check"></i><b>1.2.1</b> Dictionary</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="data-structures.html"><a href="data-structures.html#numpy-arrays"><i class="fa fa-check"></i><b>1.3</b> Numpy Arrays</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="data-structures.html"><a href="data-structures.html#generate-matrix-from-arrays"><i class="fa fa-check"></i><b>1.3.1</b> Generate Matrix from Arrays</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="pandas.html"><a href="pandas.html"><i class="fa fa-check"></i><b>2</b> Pandas</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="pandas.html"><a href="pandas.html#panda-basics"><i class="fa fa-check"></i><b>2.1</b> Panda Basics</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="pandas.html"><a href="pandas.html#generate-matrix-from-arrays-1"><i class="fa fa-check"></i><b>2.1.1</b> Generate Matrix from Arrays</a></li>
+<li class="chapter" data-level="2.1.2" data-path="pandas.html"><a href="pandas.html#select-rows-and-columns-from-dataframe"><i class="fa fa-check"></i><b>2.1.2</b> Select Rows and Columns from Dataframe</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>3</b> Functions</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="functions.html"><a href="functions.html#function-arguments-and-returns"><i class="fa fa-check"></i><b>3.1</b> Function Arguments and Returns</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="functions.html"><a href="functions.html#data-types"><i class="fa fa-check"></i><b>3.1.1</b> Data Types</a></li>
+<li class="chapter" data-level="3.1.2" data-path="functions.html"><a href="functions.html#function-returns"><i class="fa fa-check"></i><b>3.1.2</b> Function Returns</a></li>
+<li class="chapter" data-level="3.1.3" data-path="functions.html"><a href="functions.html#function-arguments"><i class="fa fa-check"></i><b>3.1.3</b> Function Arguments</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="functions.html"><a href="functions.html#exceptions"><i class="fa fa-check"></i><b>3.2</b> Exceptions</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="functions.html"><a href="functions.html#exception-handling"><i class="fa fa-check"></i><b>3.2.1</b> Exception Handling</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>4</b> Statistics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="statistics.html"><a href="statistics.html#markov-process"><i class="fa fa-check"></i><b>4.1</b> Markov Process</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="statistics.html"><a href="statistics.html#close-value-comparison"><i class="fa fa-check"></i><b>4.1.1</b> Close Value Comparison</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tables-and-graphs.html"><a href="tables-and-graphs.html"><i class="fa fa-check"></i><b>5</b> Tables and Graphs</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tables-and-graphs.html"><a href="tables-and-graphs.html#matplotlib-base-plots"><i class="fa fa-check"></i><b>5.1</b> Matplotlib Base Plots</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="tables-and-graphs.html"><a href="tables-and-graphs.html#line-and-scatter-plots"><i class="fa fa-check"></i><b>5.1.1</b> Line and Scatter Plots</a></li>
+<li class="chapter" data-level="5.1.2" data-path="tables-and-graphs.html"><a href="tables-and-graphs.html#text-plot"><i class="fa fa-check"></i><b>5.1.2</b> Text Plot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="amazon-web-services.html"><a href="amazon-web-services.html"><i class="fa fa-check"></i><b>6</b> Amazon Web Services</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="amazon-web-services.html"><a href="amazon-web-services.html#aws-setup"><i class="fa fa-check"></i><b>6.1</b> AWS Setup</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="amazon-web-services.html"><a href="amazon-web-services.html#aws-setup-1"><i class="fa fa-check"></i><b>6.1.1</b> AWS Setup</a></li>
+<li class="chapter" data-level="6.1.2" data-path="amazon-web-services.html"><a href="amazon-web-services.html#aws-boto3"><i class="fa fa-check"></i><b>6.1.2</b> AWS Boto3</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="amazon-web-services.html"><a href="amazon-web-services.html#s3"><i class="fa fa-check"></i><b>6.2</b> S3</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="amazon-web-services.html"><a href="amazon-web-services.html#s3-usages"><i class="fa fa-check"></i><b>6.2.1</b> S3 Usages</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="amazon-web-services.html"><a href="amazon-web-services.html#batch"><i class="fa fa-check"></i><b>6.3</b> Batch</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="amazon-web-services.html"><a href="amazon-web-services.html#aws-batch-run"><i class="fa fa-check"></i><b>6.3.1</b> AWS Batch Run</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="docker-container.html"><a href="docker-container.html"><i class="fa fa-check"></i><b>7</b> Docker Container</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="docker-container.html"><a href="docker-container.html#docker-setup"><i class="fa fa-check"></i><b>7.1</b> Docker Setup</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="docker-container.html"><a href="docker-container.html#docker-setup-1"><i class="fa fa-check"></i><b>7.1.1</b> Docker Setup</a></li>
+<li class="chapter" data-level="7.1.2" data-path="docker-container.html"><a href="docker-container.html#ecr-setup"><i class="fa fa-check"></i><b>7.1.2</b> ECR Setup</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="get-data.html"><a href="get-data.html"><i class="fa fa-check"></i><b>8</b> Get Data</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="get-data.html"><a href="get-data.html#environmental-data"><i class="fa fa-check"></i><b>8.1</b> Environmental Data</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="get-data.html"><a href="get-data.html#ecmwf-era5-data"><i class="fa fa-check"></i><b>8.1.1</b> ECMWF ERA5 Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="system-and-support.html"><a href="system-and-support.html"><i class="fa fa-check"></i><b>9</b> System and Support</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="system-and-support.html"><a href="system-and-support.html#command-line"><i class="fa fa-check"></i><b>9.1</b> Command Line</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="system-and-support.html"><a href="system-and-support.html#python-command-line"><i class="fa fa-check"></i><b>9.1.1</b> Python Command Line</a></li>
+<li class="chapter" data-level="9.1.2" data-path="system-and-support.html"><a href="system-and-support.html#run-matlab-functions"><i class="fa fa-check"></i><b>9.1.2</b> Run Matlab Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="system-and-support.html"><a href="system-and-support.html#file-in-and-out"><i class="fa fa-check"></i><b>9.2</b> File In and Out</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="system-and-support.html"><a href="system-and-support.html#read-and-write-and-convert"><i class="fa fa-check"></i><b>9.2.1</b> Read and Write and Convert</a></li>
+<li class="chapter" data-level="9.2.2" data-path="system-and-support.html"><a href="system-and-support.html#folder-operations"><i class="fa fa-check"></i><b>9.2.2</b> Folder Operations</a></li>
+<li class="chapter" data-level="9.2.3" data-path="system-and-support.html"><a href="system-and-support.html#parse-yaml"><i class="fa fa-check"></i><b>9.2.3</b> Parse Yaml</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="system-and-support.html"><a href="system-and-support.html#install-python"><i class="fa fa-check"></i><b>9.3</b> Install Python</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="system-and-support.html"><a href="system-and-support.html#core-installations"><i class="fa fa-check"></i><b>9.3.1</b> Core Installations</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="system-and-support.html"><a href="system-and-support.html#documentation"><i class="fa fa-check"></i><b>9.4</b> Documentation</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="system-and-support.html"><a href="system-and-support.html#numpy-doc-documentation-guide"><i class="fa fa-check"></i><b>9.4.1</b> Numpy Doc Documentation Guide</a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="index-and-code-links.html"><a href="index-and-code-links.html"><i class="fa fa-check"></i><b>A</b> Index and Code Links</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="index-and-code-links.html"><a href="index-and-code-links.html#data-structures-links"><i class="fa fa-check"></i><b>A.1</b> Data Structures links</a>
+<ul>
+<li class="chapter" data-level="A.1.1" data-path="index-and-code-links.html"><a href="index-and-code-links.html#section-1.1-strings-lists-and-tuplesstrings-lists-and-tuples-links"><i class="fa fa-check"></i><b>A.1.1</b> <span>Section 1.1 Strings, Lists and Tuples</span> links</a></li>
+<li class="chapter" data-level="A.1.2" data-path="index-and-code-links.html"><a href="index-and-code-links.html#section-1.2-dictionarydictionary-links"><i class="fa fa-check"></i><b>A.1.2</b> <span>Section 1.2 Dictionary</span> links</a></li>
+<li class="chapter" data-level="A.1.3" data-path="index-and-code-links.html"><a href="index-and-code-links.html#section-1.3-numpy-arraysnumpy-arrays-links"><i class="fa fa-check"></i><b>A.1.3</b> <span>Section 1.3 Numpy Arrays</span> links</a></li>
+</ul></li>
+<li class="chapter" data-level="A.2" data-path="index-and-code-links.html"><a href="index-and-code-links.html#pandas-links"><i class="fa fa-check"></i><b>A.2</b> Pandas links</a>
+<ul>
+<li class="chapter" data-level="A.2.1" data-path="index-and-code-links.html"><a href="index-and-code-links.html#section-2.1-panda-basicspanda-basics-links"><i class="fa fa-check"></i><b>A.2.1</b> <span>Section 2.1 Panda Basics</span> links</a></li>
+</ul></li>
+<li class="chapter" data-level="A.3" data-path="index-and-code-links.html"><a href="index-and-code-links.html#functions-links"><i class="fa fa-check"></i><b>A.3</b> Functions links</a>
+<ul>
+<li class="chapter" data-level="A.3.1" data-path="index-and-code-links.html"><a href="index-and-code-links.html#section-3.1-function-arguments-and-returnsfunction-arguments-and-returns-links"><i class="fa fa-check"></i><b>A.3.1</b> <span>Section 3.1 Function Arguments and Returns</span> links</a></li>
+<li class="chapter" data-level="A.3.2" data-path="index-and-code-links.html"><a href="index-and-code-links.html#section-3.2-exceptionsexceptions-links"><i class="fa fa-check"></i><b>A.3.2</b> <span>Section 3.2 Exceptions</span> links</a></li>
+</ul></li>
+<li class="chapter" data-level="A.4" data-path="index-and-code-links.html"><a href="index-and-code-links.html#statistics-links"><i class="fa fa-check"></i><b>A.4</b> Statistics links</a>
+<ul>
+<li class="chapter" data-level="A.4.1" data-path="index-and-code-links.html"><a href="index-and-code-links.html#section-4.1-markov-processmarkov-process-links"><i class="fa fa-check"></i><b>A.4.1</b> <span>Section 4.1 Markov Process</span> links</a></li>
+</ul></li>
+<li class="chapter" data-level="A.5" data-path="index-and-code-links.html"><a href="index-and-code-links.html#tables-and-graphs-links"><i class="fa fa-check"></i><b>A.5</b> Tables and Graphs links</a>
+<ul>
+<li class="chapter" data-level="A.5.1" data-path="index-and-code-links.html"><a href="index-and-code-links.html#section-5.1-matplotlib-base-plotsmatplotlib-base-plots-links"><i class="fa fa-check"></i><b>A.5.1</b> <span>Section 5.1 Matplotlib Base Plots</span> links</a></li>
+</ul></li>
+<li class="chapter" data-level="A.6" data-path="index-and-code-links.html"><a href="index-and-code-links.html#amazon-web-services-links"><i class="fa fa-check"></i><b>A.6</b> Amazon Web Services links</a>
+<ul>
+<li class="chapter" data-level="A.6.1" data-path="index-and-code-links.html"><a href="index-and-code-links.html#section-6.1-aws-setupaws-setup-links"><i class="fa fa-check"></i><b>A.6.1</b> <span>Section 6.1 AWS Setup</span> links</a></li>
+<li class="chapter" data-level="A.6.2" data-path="index-and-code-links.html"><a href="index-and-code-links.html#section-6.2-s3s3-links"><i class="fa fa-check"></i><b>A.6.2</b> <span>Section 6.2 S3</span> links</a></li>
+<li class="chapter" data-level="A.6.3" data-path="index-and-code-links.html"><a href="index-and-code-links.html#section-6.3-batchbatch-links"><i class="fa fa-check"></i><b>A.6.3</b> <span>Section 6.3 Batch</span> links</a></li>
+</ul></li>
+<li class="chapter" data-level="A.7" data-path="index-and-code-links.html"><a href="index-and-code-links.html#docker-container-links"><i class="fa fa-check"></i><b>A.7</b> Docker Container links</a>
+<ul>
+<li class="chapter" data-level="A.7.1" data-path="index-and-code-links.html"><a href="index-and-code-links.html#section-7.1-docker-setupdocker-setup-links"><i class="fa fa-check"></i><b>A.7.1</b> <span>Section 7.1 Docker Setup</span> links</a></li>
+</ul></li>
+<li class="chapter" data-level="A.8" data-path="index-and-code-links.html"><a href="index-and-code-links.html#get-data-links"><i class="fa fa-check"></i><b>A.8</b> Get Data links</a>
+<ul>
+<li class="chapter" data-level="A.8.1" data-path="index-and-code-links.html"><a href="index-and-code-links.html#section-8.1-environmental-dataenvironmental-data-links"><i class="fa fa-check"></i><b>A.8.1</b> <span>Section 8.1 Environmental Data</span> links</a></li>
+</ul></li>
+<li class="chapter" data-level="A.9" data-path="index-and-code-links.html"><a href="index-and-code-links.html#system-and-support-links"><i class="fa fa-check"></i><b>A.9</b> System and Support links</a>
+<ul>
+<li class="chapter" data-level="A.9.1" data-path="index-and-code-links.html"><a href="index-and-code-links.html#section-9.1-command-linecommand-line-links"><i class="fa fa-check"></i><b>A.9.1</b> <span>Section 9.1 Command Line</span> links</a></li>
+<li class="chapter" data-level="A.9.2" data-path="index-and-code-links.html"><a href="index-and-code-links.html#section-9.2-file-in-and-outfile-in-and-out-links"><i class="fa fa-check"></i><b>A.9.2</b> <span>Section 9.2 File In and Out</span> links</a></li>
+<li class="chapter" data-level="A.9.3" data-path="index-and-code-links.html"><a href="index-and-code-links.html#section-9.3-install-pythoninstall-python-links"><i class="fa fa-check"></i><b>A.9.3</b> <span>Section 9.3 Install Python</span> links</a></li>
+<li class="chapter" data-level="A.9.4" data-path="index-and-code-links.html"><a href="index-and-code-links.html#section-9.4-documentationdocumentation-links"><i class="fa fa-check"></i><b>A.9.4</b> <span>Section 9.4 Documentation</span> links</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://fanwangecon.github.io/Py4Econ/bookdown/index.html" target="blank">Py4Econ Bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Structures and Cloud Services with Python</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="index-and-code-links" class="section level1" number="10">
+<h1><span class="header-section-number">A</span> Index and Code Links</h1>
+<div id="data-structures-links" class="section level2" number="10.1">
+<h2><span class="header-section-number">A.1</span> Data Structures links</h2>
+<div id="section-1.1-strings-lists-and-tuplesstrings-lists-and-tuples-links" class="section level3" number="10.1.1">
+<h3><span class="header-section-number">A.1.1</span> <a href="data-structures.html#strings-lists-and-tuples">Section 1.1 Strings, Lists and Tuples</a> links</h3>
+<ol style="list-style-type: decimal">
+<li><a href="https://fanwangecon.github.io/py4econ/amto/array/htmlpdfr/fp_ary_string.html">Python String Manipulation Examples</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/amto/array//fp_ary_string.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/amto/array/htmlpdfr/fp_ary_string.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/amto/array/htmlpdfr/fp_ary_string.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/amto/array/htmlpdfr/fp_ary_string.html"><strong>html</strong></a>
+<ul>
+<li>Search for substring, replace string, wrap string.</li>
+<li>Display and format numeric string with fstring.</li>
+<li>Change the decimal rounding given a list of estimates and standard error string arrays.</li>
+<li><strong>py</strong>: <em>zip + upper + join + round + float + split + replace + ascii_lowercase</em></li>
+<li><strong>textwrap</strong>: <em>fill(st, width = 20)</em></li>
+<li><strong>fstring</strong>: <em>f + f’{fl_esti_rounded:.{it_round_decimal}f}’</em></li>
+<li><strong>random</strong>: <em>choice</em></li>
+</ul></li>
+<li><a href="https://fanwangecon.github.io/py4econ/amto/array/htmlpdfr/fs_list.html">List Manipulations and Defaults</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/amto/array//fs_list.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/amto/array/htmlpdfr/fs_list.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/amto/array/htmlpdfr/fs_list.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/amto/array/htmlpdfr/fs_list.html"><strong>html</strong></a>
+<ul>
+<li>Conditional statements based on list length and element value.</li>
+<li>Provide default for element of a list when list does not have that element.</li>
+<li><strong>py</strong>: <em>lambda + join + append() + if len(X) &gt;= 3 and X[2] is not None + if elif else</em></li>
+</ul></li>
+<li><a href="https://fanwangecon.github.io/py4econ/amto/array/htmlpdfr/fs_tuple.html">Define and Unpack Tuple</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/amto/array//fs_tuple.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/amto/array/htmlpdfr/fs_tuple.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/amto/array/htmlpdfr/fs_tuple.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/amto/array/htmlpdfr/fs_tuple.html"><strong>html</strong></a>
+<ul>
+<li>Define tuple in python with and without parenthesis, unpack tuple, get subset of elements.</li>
+<li>Access tuple element and fail to mutate tuple element.</li>
+<li><strong>py</strong>: <em>isinstance(tp_abc, tuple)</em></li>
+</ul></li>
+</ol>
+</div>
+<div id="section-1.2-dictionarydictionary-links" class="section level3" number="10.1.2">
+<h3><span class="header-section-number">A.1.2</span> <a href="data-structures.html#dictionary-1">Section 1.2 Dictionary</a> links</h3>
+<ol style="list-style-type: decimal">
+<li><a href="https://fanwangecon.github.io/py4econ/amto/dict/htmlpdfr/fp_dict.html">Python Dictionary Examples and Usages</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/amto/dict//fp_dict.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/amto/dict/htmlpdfr/fp_dict.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/amto/dict/htmlpdfr/fp_dict.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/amto/dict/htmlpdfr/fp_dict.html"><strong>html</strong></a>
+<ul>
+<li>Generate a dictionary, loop through a dictionary.</li>
+<li>List comprehension with dictionary.</li>
+<li><strong>py</strong>: <em>dc = {‘key’: “name,” ‘val’: 1}</em></li>
+<li><strong>copy</strong>: <em>deepcopy</em></li>
+</ul></li>
+</ol>
+</div>
+<div id="section-1.3-numpy-arraysnumpy-arrays-links" class="section level3" number="10.1.3">
+<h3><span class="header-section-number">A.1.3</span> <a href="data-structures.html#numpy-arrays">Section 1.3 Numpy Arrays</a> links</h3>
+<ol style="list-style-type: decimal">
+<li><a href="https://fanwangecon.github.io/py4econ/amto/matrix/htmlpdfr/fs_array2mat.html">Numpy Combine Arrays to Matrix</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/amto/matrix//fs_array2mat.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/amto/matrix/htmlpdfr/fs_array2mat.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/amto/matrix/htmlpdfr/fs_array2mat.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/amto/matrix/htmlpdfr/fs_array2mat.html"><strong>html</strong></a>
+<ul>
+<li>Arrays to matrix.</li>
+<li><strong>numpy</strong>: <em>column_stack() + random.choice() + reshape()</em></li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="pandas-links" class="section level2" number="10.2">
+<h2><span class="header-section-number">A.2</span> Pandas links</h2>
+<div id="section-2.1-panda-basicspanda-basics-links" class="section level3" number="10.2.1">
+<h3><span class="header-section-number">A.2.1</span> <a href="pandas.html#panda-basics">Section 2.1 Panda Basics</a> links</h3>
+<ol style="list-style-type: decimal">
+<li><a href="https://fanwangecon.github.io/py4econ/panda/basics/htmlpdfr/fs_matrix2dataframe.html">Pandas Generate Dataframes with Random Numeric and String Data</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/panda/basics//fs_matrix2dataframe.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/panda/basics/htmlpdfr/fs_matrix2dataframe.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/panda/basics/htmlpdfr/fs_matrix2dataframe.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/panda/basics/htmlpdfr/fs_matrix2dataframe.html"><strong>html</strong></a>
+<ul>
+<li>Generate a dataframe from arrays.</li>
+<li>Generate a dataframe with random integers as well as random string variables.</li>
+<li><strong>np</strong>: <em>random.randint() + reshape() + column_stack()</em></li>
+<li><strong>pandas</strong>: <em>DataFrame()</em></li>
+</ul></li>
+<li><a href="https://fanwangecon.github.io/py4econ/panda/basics/htmlpdfr/fs_select.html">Python Pandas Conditional Selection of Selectiotn Rows and Columns</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/panda/basics//fs_select.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/panda/basics/htmlpdfr/fs_select.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/panda/basics/htmlpdfr/fs_select.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/panda/basics/htmlpdfr/fs_select.html"><strong>html</strong></a>
+<ul>
+<li>Select subset of rows or columns based on cell value conditions.</li>
+<li><strong>pandas</strong>: <em>pd.DataFrame() + replace([‘Zvcss,’ ‘Dugei’], ‘Zqovt’) + df.loc[df[‘c5’] == ‘Zqovt’]</em></li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="functions-links" class="section level2" number="10.3">
+<h2><span class="header-section-number">A.3</span> Functions links</h2>
+<div id="section-3.1-function-arguments-and-returnsfunction-arguments-and-returns-links" class="section level3" number="10.3.1">
+<h3><span class="header-section-number">A.3.1</span> <a href="functions.html#function-arguments-and-returns">Section 3.1 Function Arguments and Returns</a> links</h3>
+<ol style="list-style-type: decimal">
+<li><a href="https://fanwangecon.github.io/py4econ/function/args/htmlpdfr/fs_datatypes.html">Python Function Data Type Handling</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/function/args//fs_datatypes.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/function/args/htmlpdfr/fs_datatypes.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/function/args/htmlpdfr/fs_datatypes.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/function/args/htmlpdfr/fs_datatypes.html"><strong>html</strong></a>
+<ul>
+<li>Check if parameter is string or integer, conditional execution and exception handling.</li>
+<li>Check if parameter is string or an integer between some values.</li>
+<li><strong>py</strong>: <em>type + isinstance(abc, str) + isinstance(abc, int) + raise + try except</em></li>
+</ul></li>
+<li><a href="https://fanwangecon.github.io/py4econ/function/args/htmlpdfr/fs_func_args.html">Function value returns</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/function/args//fs_func_args.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/function/args/htmlpdfr/fs_func_args.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/function/args/htmlpdfr/fs_func_args.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/function/args/htmlpdfr/fs_func_args.html"><strong>html</strong></a>
+<ul>
+<li>Return one or multiple values from function.</li>
+<li><strong>python</strong>: <em>return a, b, c</em></li>
+</ul></li>
+<li><a href="https://fanwangecon.github.io/py4econ/function/args/htmlpdfr/fs_func_returns.html">Tuple and Dictionary as Arguments with args and kwargs</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/function/args//fs_func_returns.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/function/args/htmlpdfr/fs_func_returns.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/function/args/htmlpdfr/fs_func_returns.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/function/args/htmlpdfr/fs_func_returns.html"><strong>html</strong></a>
+<ul>
+<li>Update default parameters with dictionary that replaces and appends additional key-value paris using kwargs.</li>
+<li>Pass a dictionary for named arguments to a function.</li>
+<li><strong>python</strong>: <em>dict3 = {dict1, dict2} + dict1.update(dict2) + func(par1=‘val1,’ kwargs)</em></li>
+</ul></li>
+</ol>
+</div>
+<div id="section-3.2-exceptionsexceptions-links" class="section level3" number="10.3.2">
+<h3><span class="header-section-number">A.3.2</span> <a href="functions.html#exceptions">Section 3.2 Exceptions</a> links</h3>
+<ol style="list-style-type: decimal">
+<li><a href="https://fanwangecon.github.io/py4econ/function/errors/htmlpdfr/fs_python_exceptions.html">Python Raise, Try and Catch Exceptions</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/function/errors//fs_python_exceptions.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/function/errors/htmlpdfr/fs_python_exceptions.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/function/errors/htmlpdfr/fs_python_exceptions.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/function/errors/htmlpdfr/fs_python_exceptions.html"><strong>html</strong></a>
+<ul>
+<li>Raise an Exception in a python function, try and catch and print to string.</li>
+<li><strong>python</strong>: <em>raise + try except + ValueError + TypeError </em></li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="statistics-links" class="section level2" number="10.4">
+<h2><span class="header-section-number">A.4</span> Statistics links</h2>
+<div id="section-4.1-markov-processmarkov-process-links" class="section level3" number="10.4.1">
+<h3><span class="header-section-number">A.4.1</span> <a href="statistics.html#markov-process">Section 4.1 Markov Process</a> links</h3>
+<ol style="list-style-type: decimal">
+<li><a href="https://fanwangecon.github.io/py4econ/stats/markov/htmlpdfr/fs_trans_mat_prob_check.html">Markov Transition Conditional Probability Check Sum to 1</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/stats/markov//fs_trans_mat_prob_check.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/stats/markov/htmlpdfr/fs_trans_mat_prob_check.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/stats/markov/htmlpdfr/fs_trans_mat_prob_check.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/stats/markov/htmlpdfr/fs_trans_mat_prob_check.html"><strong>html</strong></a>
+<ul>
+<li>Generate a sample 50 by 50 markov transition matrix.</li>
+<li>Check row sums for approximate equality to 1.</li>
+<li><strong>numpy</strong>: <em>allclose + reshape + sum</em></li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="tables-and-graphs-links" class="section level2" number="10.5">
+<h2><span class="header-section-number">A.5</span> Tables and Graphs links</h2>
+<div id="section-5.1-matplotlib-base-plotsmatplotlib-base-plots-links" class="section level3" number="10.5.1">
+<h3><span class="header-section-number">A.5.1</span> <a href="tables-and-graphs.html#matplotlib-base-plots">Section 5.1 Matplotlib Base Plots</a> links</h3>
+<ol style="list-style-type: decimal">
+<li><a href="https://fanwangecon.github.io/py4econ/tabgraph/baseplot/htmlpdfr/fp_plot_base.html">Mabplotlib Scatter and Line Plots</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/tabgraph/baseplot//fp_plot_base.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/tabgraph/baseplot/htmlpdfr/fp_plot_base.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/tabgraph/baseplot/htmlpdfr/fp_plot_base.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/tabgraph/baseplot/htmlpdfr/fp_plot_base.html"><strong>html</strong></a>
+<ul>
+<li>Plot several arrays of data, grid, figure title, and line and point patterns and colors.</li>
+<li>Plot out random walk and white noise first-order autoregressive processes.</li>
+<li><strong>matplotlib</strong>: <em>subplots() + ax.plot() + ax.legend() + ylabel() + xlabel() + title() + grid() + show()</em></li>
+<li><strong>numpy</strong>: <em>random.normal() + random.seed() + cumsum() + arange()</em></li>
+</ul></li>
+<li><a href="https://fanwangecon.github.io/py4econ/tabgraph/baseplot/htmlpdfr/fp_plot_text.html">Mabplotlib Text Plots</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/tabgraph/baseplot//fp_plot_text.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/tabgraph/baseplot/htmlpdfr/fp_plot_text.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/tabgraph/baseplot/htmlpdfr/fp_plot_text.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/tabgraph/baseplot/htmlpdfr/fp_plot_text.html"><strong>html</strong></a>
+<ul>
+<li>Print text as figure.</li>
+<li><strong>matplotlib</strong>: <em>ax.text()</em></li>
+<li><strong>textwrap</strong>: <em>fill()</em></li>
+<li><strong>json</strong>: <em>dump()</em></li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="amazon-web-services-links" class="section level2" number="10.6">
+<h2><span class="header-section-number">A.6</span> Amazon Web Services links</h2>
+<div id="section-6.1-aws-setupaws-setup-links" class="section level3" number="10.6.1">
+<h3><span class="header-section-number">A.6.1</span> <a href="amazon-web-services.html#aws-setup-1">Section 6.1 AWS Setup</a> links</h3>
+<ol style="list-style-type: decimal">
+<li><a href="https://fanwangecon.github.io/py4econ/aws/setup/htmlpdfr/fs_aws_setup.html">AWS Account Set-up and Start Instance</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/aws/setup//fs_aws_setup.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/aws/setup/htmlpdfr/fs_aws_setup.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/aws/setup/htmlpdfr/fs_aws_setup.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/aws/setup/htmlpdfr/fs_aws_setup.html"><strong>html</strong></a>
+<ul>
+<li>Generate keypair on AWS, launch instance, launch security, ssh access, and AWSCLI.</li>
+<li><strong>ssh</strong>: <em>ssh-agent + ssh-keygen + ssh <a href="mailto:ec2-user@ec2-52-23-218-117.compute-1.amazonaws.com" class="email">ec2-user@ec2-52-23-218-117.compute-1.amazonaws.com</a></em></li>
+<li><strong>aws</strong>: <em>aws ec2 start-instances + aws ec2 stop-instances + systemctl start amazon-ssm-agent</em></li>
+</ul></li>
+<li><a href="https://fanwangecon.github.io/py4econ/aws/setup/htmlpdfr/fs_boto3.html">Boto3 Client Service Communications</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/aws/setup//fs_boto3.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/aws/setup/htmlpdfr/fs_boto3.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/aws/setup/htmlpdfr/fs_boto3.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/aws/setup/htmlpdfr/fs_boto3.html"><strong>html</strong></a>
+<ul>
+<li>Start AWS services, send requests etc via boto3.</li>
+<li><strong>boto3</strong>: <em>boto3.client(service, aws_access_key_id, aws_secret_access_key, region_name)</em></li>
+</ul></li>
+</ol>
+</div>
+<div id="section-6.2-s3s3-links" class="section level3" number="10.6.2">
+<h3><span class="header-section-number">A.6.2</span> <a href="amazon-web-services.html#s3">Section 6.2 S3</a> links</h3>
+<ol style="list-style-type: decimal">
+<li><a href="https://fanwangecon.github.io/py4econ/aws/s3/htmlpdfr/fs_aws_s3.html">AWS S3 Uploading Downloading and Syncing</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/aws/s3//fs_aws_s3.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/aws/s3/htmlpdfr/fs_aws_s3.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/aws/s3/htmlpdfr/fs_aws_s3.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/aws/s3/htmlpdfr/fs_aws_s3.html"><strong>html</strong></a>
+<ul>
+<li>From EC2 or local computer upload files to S3 folders.</li>
+<li>Download sync folders with exclusions between local and S3 folders.</li>
+<li><strong>py</strong>: <em>platform.release()</em></li>
+<li><strong>boto3</strong>: <em>boto3.client(‘s3’) + s3.upload_file</em></li>
+</ul></li>
+</ol>
+</div>
+<div id="section-6.3-batchbatch-links" class="section level3" number="10.6.3">
+<h3><span class="header-section-number">A.6.3</span> <a href="amazon-web-services.html#batch">Section 6.3 Batch</a> links</h3>
+<ol style="list-style-type: decimal">
+<li><a href="https://fanwangecon.github.io/py4econ/aws/batch/htmlpdfr/fs_aws_batch.html">AWS Batch, Batch Array</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/aws/batch//fs_aws_batch.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/aws/batch/htmlpdfr/fs_aws_batch.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/aws/batch/htmlpdfr/fs_aws_batch.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/aws/batch/htmlpdfr/fs_aws_batch.html"><strong>html</strong></a>
+<ul>
+<li>Set up python function that uses AWS_BATCH_JOB_ARRAY_INDEX.</li>
+<li>Register batch task and submit batch array tasks using ECR image, and save results to S3.</li>
+<li><strong>yaml</strong>: <em>load()</em></li>
+<li><strong>boto3</strong>: <em>client() + register_job_definition(jobDefinitionName, type, containerProperties, retryStrategy) + aws_batch.submit_job(jobName, jobQueue, arrayProperties={‘size’:10}, jobDefinition)</em></li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="docker-container-links" class="section level2" number="10.7">
+<h2><span class="header-section-number">A.7</span> Docker Container links</h2>
+<div id="section-7.1-docker-setupdocker-setup-links" class="section level3" number="10.7.1">
+<h3><span class="header-section-number">A.7.1</span> <a href="docker-container.html#docker-setup-1">Section 7.1 Docker Setup</a> links</h3>
+<ol style="list-style-type: decimal">
+<li><a href="https://fanwangecon.github.io/py4econ/docker/setup/htmlpdfr/fs_docker_setup.html">Docker Container Set-Up and Run on AWS</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/docker/setup//fs_docker_setup.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/docker/setup/htmlpdfr/fs_docker_setup.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/docker/setup/htmlpdfr/fs_docker_setup.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/docker/setup/htmlpdfr/fs_docker_setup.html"><strong>html</strong></a>
+<ul>
+<li>Install Docker on AWS and build Docker image.</li>
+<li>Start docker container and run programs inside Docker.</li>
+<li><strong>aws</strong>: <em>ssh + yum update -y + amazon-linux-extras install docker -y</em></li>
+<li><strong>docker</strong>: <em>service docker start + service docker status + docker build + docker images + docker image prune + docker run -t -i fanconda /bin/bash + python /fanProg/invoke/run.py + docker ps -a + docker system df + docker container ls -a</em></li>
+</ul></li>
+<li><a href="https://fanwangecon.github.io/py4econ/docker/setup/htmlpdfr/fs_docker_ecr.html">AWS Docker Elastic Container Registery (ECR) Update and Push</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/docker/setup//fs_docker_ecr.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/docker/setup/htmlpdfr/fs_docker_ecr.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/docker/setup/htmlpdfr/fs_docker_ecr.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/docker/setup/htmlpdfr/fs_docker_ecr.html"><strong>html</strong></a>
+<ul>
+<li>Update and push to Elastic Container Registry (ECR) with newly built Docker image.</li>
+<li>Pull from Elastic Container Registry docker image.</li>
+<li><strong>scp</strong>: <em>scp -o StrictHostKeyChecking=accept-new -i</em></li>
+<li><strong>aws</strong>: <em>aws ecr get-login</em></li>
+<li><strong>docker</strong>: <em>docker login + docker build + docker tag + docker push + docker pull</em></li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="get-data-links" class="section level2" number="10.8">
+<h2><span class="header-section-number">A.8</span> Get Data links</h2>
+<div id="section-8.1-environmental-dataenvironmental-data-links" class="section level3" number="10.8.1">
+<h3><span class="header-section-number">A.8.1</span> <a href="get-data.html#environmental-data">Section 8.1 Environmental Data</a> links</h3>
+<ol style="list-style-type: decimal">
+<li><a href="https://fanwangecon.github.io/py4econ/getdata/envir/htmlpdfr/fs_ecmwf.html">CDS ECMWF Global Enviornmental Data Download</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/getdata/envir//fs_ecmwf.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/getdata/envir/htmlpdfr/fs_ecmwf.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/getdata/envir/htmlpdfr/fs_ecmwf.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/getdata/envir/htmlpdfr/fs_ecmwf.html"><strong>html</strong></a>
+<ul>
+<li>Using Python API get get ECMWF ERA5 data.</li>
+<li>Dynamically modify a python API file, run python inside a Conda virtual environment with R-reticulate.</li>
+<li><strong>r</strong>: <em>file() + writeLines() + unzip() + list.files() + unlink()</em></li>
+<li><strong>r-reticulate</strong>: <em>use_python() + Sys.setenv(RETICULATE_PYTHON = spth_conda_env)</em></li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="system-and-support-links" class="section level2" number="10.9">
+<h2><span class="header-section-number">A.9</span> System and Support links</h2>
+<div id="section-9.1-command-linecommand-line-links" class="section level3" number="10.9.1">
+<h3><span class="header-section-number">A.9.1</span> <a href="system-and-support.html#command-line">Section 9.1 Command Line</a> links</h3>
+<ol style="list-style-type: decimal">
+<li><a href="https://fanwangecon.github.io/py4econ/support/system/htmlpdfr/fp_command.html">Execute Python from Command Line and Run Command Line in Python</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/support/system//fp_command.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/support/system/htmlpdfr/fp_command.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/support/system/htmlpdfr/fp_command.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/support/system/htmlpdfr/fp_command.html"><strong>html</strong></a>
+<ul>
+<li>Run python functions from command line.</li>
+</ul></li>
+<li><a href="https://fanwangecon.github.io/py4econ/support/system/htmlpdfr/fp_matlab.html">Run Matlab Command Line Operations</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/support/system//fp_matlab.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/support/system/htmlpdfr/fp_matlab.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/support/system/htmlpdfr/fp_matlab.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/support/system/htmlpdfr/fp_matlab.html"><strong>html</strong></a>
+<ul>
+<li>Generate a matlab script and run the script with parameters.</li>
+<li><strong>subprocess</strong>: <em>cmd = Popen(ls_str, stdin=PIPE, stdout=PIPE, stderr=PIPE) + cmd.communicate()</em></li>
+<li><strong>decode</strong>: <em>decode(‘utf-8’)</em></li>
+<li><strong>os</strong>: <em>chdir() + getcdw()</em></li>
+</ul></li>
+</ol>
+</div>
+<div id="section-9.2-file-in-and-outfile-in-and-out-links" class="section level3" number="10.9.2">
+<h3><span class="header-section-number">A.9.2</span> <a href="system-and-support.html#file-in-and-out">Section 9.2 File In and Out</a> links</h3>
+<ol style="list-style-type: decimal">
+<li><a href="https://fanwangecon.github.io/py4econ/support/inout/htmlpdfr/fp_files.html">Python Reading and Writing to File Examples</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/support/inout//fp_files.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/support/inout/htmlpdfr/fp_files.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/support/inout/htmlpdfr/fp_files.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/support/inout/htmlpdfr/fp_files.html"><strong>html</strong></a>
+<ul>
+<li>Reading from file and replace strings in file.</li>
+<li>Convert text file to latex using pandoc and clean.</li>
+<li>Search for files in several folders with file substring.</li>
+<li>Get path root, file name, file stem, etc from path.</li>
+<li><strong>py</strong>: <em>open() + write() + replace() + [c for b in [[1,2],[2,3]] for c in b]</em></li>
+<li><strong>subprocess</strong>: <em>call()</em></li>
+<li><strong>pathlib</strong>: <em>Path().rglob() + Path().stem</em></li>
+<li><strong>os</strong>: <em>remove() + listdir() + path.isfile() + path.splitdrive() + os.path.splitext() + os.path.split()</em></li>
+</ul></li>
+<li><a href="https://fanwangecon.github.io/py4econ/support/inout/htmlpdfr/fp_folders.html">Python Directory and Folder Operations</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/support/inout//fp_folders.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/support/inout/htmlpdfr/fp_folders.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/support/inout/htmlpdfr/fp_folders.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/support/inout/htmlpdfr/fp_folders.html"><strong>html</strong></a>
+<ul>
+<li>Join folder names to form absolute path.</li>
+<li>Generate new folders and files, with existing folder substrings.</li>
+<li>Generate subfolder recursively.</li>
+<li>Copying and moving files across folders.</li>
+<li><strong>py</strong>: <em>open(srt, ‘w’) + write() + close()</em></li>
+<li><strong>os</strong>: <em>os.sep + os.listdir() + os.path.abspath() + os.path.abspath(os.path.join(os.sep, ‘users,’ ‘fan’)) + os.path.join(‘/,’ ‘c:’ ‘fa,’ ‘fb’)</em></li>
+<li><strong>pathlib</strong>: <em>Path(srt).mkdir(parents=True, exist_ok=True) + [Path(spn).stem for spn in Path(srt).rglob(st)]</em></li>
+<li><strong>shutil</strong>: <em>shutil.copyfile(‘/fa/fl.txt,’ ‘/fb/fl.txt’) + shutil.copy2(‘/fa/fl.txt,’ ‘/fb’) + shutil.rmtree(‘/fb’)</em></li>
+<li><strong>distutils</strong>: <em>dir_util.copy_tree(‘/fa,’ ‘/fb’)</em></li>
+</ul></li>
+<li><a href="https://fanwangecon.github.io/py4econ/support/inout/htmlpdfr/fp_yaml.html">Python Yaml File Parsing</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/support/inout//fp_yaml.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/support/inout/htmlpdfr/fp_yaml.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/support/inout/htmlpdfr/fp_yaml.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/support/inout/htmlpdfr/fp_yaml.html"><strong>html</strong></a>
+<ul>
+<li>Parse and read yaml files.</li>
+<li><strong>yaml</strong>: <em>load(fl_yaml, Loader=yaml.BaseLoader) + dump()</em></li>
+<li><strong>pprint</strong>: <em>pprint.pprint(ls_dict_yml, width=1)</em></li>
+</ul></li>
+</ol>
+</div>
+<div id="section-9.3-install-pythoninstall-python-links" class="section level3" number="10.9.3">
+<h3><span class="header-section-number">A.9.3</span> <a href="system-and-support.html#install-python">Section 9.3 Install Python</a> links</h3>
+<ol style="list-style-type: decimal">
+<li><a href="https://fanwangecon.github.io/py4econ/support/install/htmlpdfr/fs_install_basics.html">Basic Conda Setup Instructions</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/support/install//fs_install_basics.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/support/install/htmlpdfr/fs_install_basics.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/support/install/htmlpdfr/fs_install_basics.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/support/install/htmlpdfr/fs_install_basics.html"><strong>html</strong></a>
+<ul>
+<li>Conda and git installations</li>
+<li><strong>bash</strong>: <em>where</em></li>
+</ul></li>
+</ol>
+</div>
+<div id="section-9.4-documentationdocumentation-links" class="section level3" number="10.9.4">
+<h3><span class="header-section-number">A.9.4</span> <a href="system-and-support.html#documentation">Section 9.4 Documentation</a> links</h3>
+<ol style="list-style-type: decimal">
+<li><a href="https://fanwangecon.github.io/py4econ/support/documentation/htmlpdfr/fs_numpy_doc.html">Python Documentation Numpy Doc</a>: <a href="https://github.com/FanWangEcon/py4econ/blob/master/support/documentation//fs_numpy_doc.Rmd"><strong>rmd</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/support/documentation/htmlpdfr/fs_numpy_doc.R"><strong>r</strong></a> | <a href="https://github.com/FanWangEcon/py4econ/blob/master/support/documentation/htmlpdfr/fs_numpy_doc.pdf"><strong>pdf</strong></a> | <a href="https://fanwangecon.github.io/py4econ/support/documentation/htmlpdfr/fs_numpy_doc.html"><strong>html</strong></a>
+<ul>
+<li>Numpy documentation examples.</li>
+</ul></li>
+</ol>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-R-bookdown" class="csl-entry">
+Xie, Yihui. 2020. <em>Bookdown: Authoring Books and Technical Documents with r Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.
+</div>
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="system-and-support.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": [["Data-Structures-and-Cloud-Services-with-Python.pdf", "PDF"]],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

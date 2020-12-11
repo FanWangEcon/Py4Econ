@@ -1,0 +1,93 @@
+---
+title: "Python Function Data Type Handling"
+titleshort: "Python Function Data Type Handling"
+description: |
+  Check if parameter is string or integer, conditional execution and exception handling.
+  Check if parameter is string or an integer between some values. 
+core:
+  - package: py
+    code: |
+      type
+      isinstance(abc, str)
+      isinstance(abc, int)
+      raise
+      try except
+date: 2020-11-22
+date_start: 2020-11-22
+output:
+  pdf_document:
+    pandoc_args: '../../_output_kniti_pdf.yaml'
+    includes:
+      in_header: '../../preamble.tex'
+  html_document:
+    pandoc_args: '../../_output_kniti_html.yaml'
+    includes:
+      in_header: "../../hdga.html"
+always_allow_html: true
+urlcolor: blue
+---
+
+### Data Types
+
+```{r global_options, include = FALSE}
+try(source("../../.Rprofile"))
+```
+
+`r text_shared_preamble_one`
+`r text_shared_preamble_two`
+`r text_shared_preamble_thr`
+
+```{python}
+```
+
+#### Check Parameter Type
+
+There are parameters of a function, depending on the parameter type, execute the program differently. If integer, behave one way if string behave in another way. 
+
+```{python}
+# define the function
+def get_speckey_dict(gn_speckey=None):
+    if isinstance(gn_speckey, str):
+        print(f'{gn_speckey=} is a string')
+    elif isinstance(gn_speckey, int):
+        print(f'{gn_speckey=} is an integer')
+    else:
+        raise TypeError(f'{gn_speckey=} was not a string or an integer')
+# Call function with integer
+get_speckey_dict(1)
+# Call function with string
+get_speckey_dict('abc')
+# Call function with a list
+try: 
+    get_speckey_dict(['abc'])
+except TypeError as e: 
+    print(f'Exception{e=}')
+```
+
+#### Check if Parameter is String or Integer In Interval
+
+There is a function that takes a string or an integer between certain values. Execute if either of these two conditions are satisfied, do not if neither is satisfied. Below, print if string or an int between 1 and 11.
+
+```{python}
+# condition check function
+def check_condition(gn_invoke_set):
+
+  bl_is_str = isinstance(gn_invoke_set, str)
+  bl_is_int = isinstance(gn_invoke_set, int)
+  if bl_is_int:
+    bl_between = (gn_invoke_set >= 1 and gn_invoke_set <= 11)
+  else: 
+    bl_between = False
+    
+  if bl_between or bl_is_str:
+      print(f'{gn_invoke_set=}')
+  else:
+      print(f'{gn_invoke_set=} is not string or an integer between 1 and 11')
+      
+# call with string or integer
+check_condition('string')
+check_condition(11)
+check_condition(1)
+check_condition(199)
+check_condition(['abc'])
+```

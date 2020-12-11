@@ -1,0 +1,11 @@
+*.html linguist-vendored
+*.pdf linguist-vendored
+*.ipynb linguist-vendored
+*.tex linguist-vendored
+*.css linguist-vendored
+*.js linguist-vendored
+*.m linguist-vendored
+*.sh linguist-vendored
+*.r linguist-vendored
+*.Rmd linguist-vendored
+*.tex linguist-vendored

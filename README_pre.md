@@ -1,0 +1,13 @@
+[![ViewCount](https://views.whatilearened.today/views/github/FanWangEcon/Py4Econ.svg)]  [![Star](https://img.shields.io/github/stars/fanwangecon/Py4Econ?style=social)](https://github.com/FanWangEcon/Py4Econ/stargazers) [![Fork](https://img.shields.io/github/forks/fanwangecon/Py4Econ?style=social)](https://github.com/FanWangEcon/Py4Econ/network/members) [![Star](https://img.shields.io/github/watchers/fanwangecon/Py4Econ?style=social)](https://github.com/FanWangEcon/Py4Econ/watchers) [![DOI](https://zenodo.org/badge/257089896.svg)](https://zenodo.org/badge/latestdoi/257089896) [![DOI](https://zenodo.org/badge/320403946.svg)](https://zenodo.org/badge/latestdoi/320403946)
+
+The work-in-progress [Py4Econ](https://github.com/FanWangEcon/Py4Econ) python examples repository.
+
+> [**bookdown site**](https://fanwangecon.github.io/Py4Econ/bookdown) and [**bookdown pdf**](https://fanwangecon.github.io/Py4Econ/bookdown/Data-Structures-and-Cloud-Services-with-Python.pdf).
+
+Files are written with [RMD](https://rmarkdown.rstudio.com/). Materials are gathered from various [projects](https://fanwangecon.github.io/research) in which python code is used for research and paper-administrative tasks. Bullet points show which python packages/functions are used to achieve various objectives. This is not a python package, but a set of example files. The [pyfan](https://pyfan.readthedocs.io/en/latest/) package repository provides some associated programs.
+
+Other repositories: For dynamic savings problems, see [MEconoTools](https://fanwangecon.github.io/MEconTools/); For code examples, see also [Matlab Example Code](https://fanwangecon.github.io/M4Econ/),  [R Example Code](https://fanwangecon.github.io/R4Econ/), and [Stata Example Code](https://fanwangecon.github.io/Stata4Econ/); For intro econ with Matlab, see [Intro Mathematics for Economists](https://fanwangecon.github.io/Math4Econ/), and for intro stat with R, see [Intro Statistics for Undergraduates](https://fanwangecon.github.io/Stat4Econ/). See [here](https://github.com/FanWangEcon) for all of [Fan](https://fanwangecon.github.io/)'s public repositories.
+
+Please contact [FanWangEcon](https://fanwangecon.github.io/) for issues or problems.
+
+[![](https://img.shields.io/github/last-commit/fanwangecon/Py4Econ)](https://github.com/FanWangEcon/Py4Econ/commits/master) [![](https://img.shields.io/github/commit-activity/m/fanwangecon/Py4Econ)](https://github.com/FanWangEcon/Py4Econ/graphs/commit-activity) [![](https://img.shields.io/github/issues/fanwangecon/Py4Econ)](https://github.com/FanWangEcon/Py4Econ/issues) [![](https://img.shields.io/github/issues-pr/fanwangecon/Py4Econ)](https://github.com/FanWangEcon/Py4Econ/pulls)

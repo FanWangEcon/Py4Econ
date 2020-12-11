@@ -1,0 +1,82 @@
+---
+title: "Python Mabplotlib Basic Scatter and Line Plots"
+titleshort: "Mabplotlib Scatter and Line Plots"
+description: |
+  Plot several arrays of data, grid, figure title, and line and point patterns and colors.
+  Plot out random walk and white noise first-order autoregressive processes.
+core:
+  - package: matplotlib
+    code: |
+      subplots()
+      ax.plot()
+      ax.legend()
+      ylabel()
+      xlabel()
+      title()
+      grid()
+      show()
+  - package: numpy
+    code: |
+      random.normal()
+      random.seed()
+      cumsum()
+      arange()
+date: 2020-06-16
+date_start: 2020-06-16
+output:
+  pdf_document:
+    pandoc_args: '../../_output_kniti_pdf.yaml'
+    includes:
+      in_header: '../../preamble.tex'
+  html_document:
+    pandoc_args: '../../_output_kniti_html.yaml'
+    includes:
+      in_header: "../../hdga.html"
+always_allow_html: true
+urlcolor: blue
+---
+
+### Line and Scatter Plots
+
+```{r global_options, include = FALSE}
+try(source("../../.Rprofile"))
+```
+
+`r text_shared_preamble_one`
+`r text_shared_preamble_two`
+`r text_shared_preamble_thr`
+
+#### Plot Random Walk and White Noise Jointly
+
+Given x and y coordinates, plot out two lines. see [matplotlib.pyplot.plot](https://matplotlib.org/2.1.1/api/_as_gen/matplotlib.pyplot.plot.html). Here we will plot out the extremes of AR(1), white noise (no persistence), and random walk (fully persistent shocks).
+
+```{python}
+# Import Packages
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Generate X and Y
+np.random.seed(123)
+ar_fl_y1_rand = np.random.normal(0, 2, 100)
+ar_fl_y2_rand = np.cumsum(np.random.normal(0, 1, 100))
+ar_it_x_grid = np.arange(1,len(ar_fl_y1_rand)+1)
+
+# Start Figure
+fig, ax = plt.subplots()
+
+# Graph
+ax.plot(ar_it_x_grid, ar_fl_y1_rand,
+                     color='blue', linestyle='dashed',
+                     label='sd=2, 0 persistence')
+ax.plot(ar_it_x_grid, ar_fl_y2_rand,
+                     color='red', linestyle='solid',
+                     label='sd=1, random walk')
+                     
+# Labeling
+ax.legend(loc='upper left')
+plt.ylabel('Random Standard Normal Draws')
+plt.xlabel('Time Periods')
+plt.title('White Noise')
+plt.grid()
+plt.show()
+```

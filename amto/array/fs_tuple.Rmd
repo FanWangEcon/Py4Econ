@@ -1,0 +1,109 @@
+---
+title: "Python Define and Unpack Tuple"
+titleshort: "Define and Unpack Tuple"
+description: |
+  Define tuple in python with and without parenthesis, unpack tuple, get subset of elements.
+  Access tuple element and fail to mutate tuple element.
+core:
+  - package: py
+    code: |
+      isinstance(tp_abc, tuple)
+date: 2020-11-30
+date_start: 2020-11-30
+output:
+  pdf_document:
+    pandoc_args: '../../_output_kniti_pdf.yaml'
+    includes:
+      in_header: '../../preamble.tex'
+  html_document:
+    pandoc_args: '../../_output_kniti_html.yaml'
+    includes:
+      in_header: "../../hdga.html"
+always_allow_html: true
+urlcolor: blue
+---
+
+### Tuple
+
+```{r global_options, include = FALSE}
+try(source("../../.Rprofile"))
+```
+
+`r text_shared_preamble_one`
+`r text_shared_preamble_two`
+`r text_shared_preamble_thr`
+
+```{python}
+import numpy as np
+```
+
+#### Tuple Example
+
+A tuple is created with parenthesis on the sides (or no parenthesis), not brackets on the sides. Can access values in a tuple as in list.
+
+```{python}
+# Define Tuple, with and without parenthesis
+tp_abc = ('a', 'b', 'c')
+tp_abc_noparent = 'a', 'b', 'c'
+print(f'{tp_abc=}')
+print(f'{len(tp_abc)=}')
+print(f'{tp_abc_noparent=}')
+print(f'{(tp_abc==tp_abc_noparent)=}')
+# Check Type
+print(f'{isinstance(tp_abc, list)=}')
+print(f'{isinstance(tp_abc, tuple)=}')
+# select element
+print(f'{tp_abc[1]=}')
+```
+
+Convert tuple to a list:
+
+```{python}
+# convert Tuple to list
+ls_abc = [i for i in tp_abc]
+print(f'{ls_abc=}')
+print(f'{isinstance(ls_abc, list)=}')
+print(f'{isinstance(ls_abc, tuple)=}')
+```
+
+Since the tuple is not mutable, we can not change values inside the tuple:
+
+```{python}
+# define the tuple
+tp_abc = ('a', 'b', 'c')
+# update tuple value
+try:
+    tp_abc[0] = 'efg'
+except TypeError as error:
+    print('Caught this error: ' + repr(error))
+```
+
+#### Function Returns Tuple and Unpack
+
+When a function returns multiple *items* in a list, that is a tuple. Each element of the list can be accessed. And the tuple can be unpacked:
+
+```{python}
+# Results from some function
+tp_results = 'a', 123,  [1,2,3]
+# Unpack the results
+a_st, b_int, c_ls_int = tp_results
+# Print
+print(f'{tp_results=}')
+print(f'{a_st=}')
+print(f'{b_int=}')
+print(f'{c_ls_int=}')
+```
+
+Unpack only a subset of the elements in the tuple:
+
+```{python}
+# Unpack only one
+a_st_self_m1, _ , _ = tp_results
+# Alternative shorter
+a_st_self_m2, *_  = tp_results
+# Print
+print(f'{a_st_self_m1=}')
+print(f'{a_st_self_m2=}')
+```
+
+see [unpack the first two elements in list/tuple](https://stackoverflow.com/a/11371230/8280804).

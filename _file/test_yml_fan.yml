@@ -1,0 +1,40 @@
+- file: matrix_matlab
+  title: "One Variable Graphs and Tables"
+  description: |
+    Frequency table, bar chart and histogram.
+    R function and lapply to generate graphs/tables for different variables.
+  core:
+  - package: r
+    code: |
+      c('word1','word2')
+      function()
+      for (ctr in c(1,2)) {}
+  - package: dplyr
+    code: |
+      group_by()
+  date: 2020-05-02
+  output:
+    pdf_document:
+      pandoc_args: '../_output_kniti_pdf.yaml'
+      includes:
+        in_header: '../preamble.tex'
+  urlcolor: blue
+- file: matrix_algebra_rules
+  title: "Opening a Dataset"
+  titleshort: "Opening a Dataset"
+  description: |
+    Opening a Dataset.
+  core:
+  - package: r
+    code: |
+      setwd()
+  - package: readr
+    code: |
+      write_csv()
+  date: 2020-05-02
+  date_start: 2018-12-01
+- file: matrix_two
+  title: "Third file"
+  titleshort: "Third file"
+  description: |
+    Third file description.

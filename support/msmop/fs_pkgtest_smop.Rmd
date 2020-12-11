@@ -1,0 +1,78 @@
+---
+title: "Test Converting Matlab Code to Python Code Using SMOP"
+titleshort: "Matlab Script to Python Scrip"
+description: |
+  SMOP convertion testing.
+core:
+  - package: smop
+    code: |
+      smop
+date: 2020-04-25
+date_start: 2020-04-25
+output:
+  pdf_document:
+    pandoc_args: '../../_output_kniti_pdf.yaml'
+    includes:
+      in_header: '../../preamble.tex'
+  html_document:
+    pandoc_args: '../../_output_kniti_html.yaml'
+    includes:
+      in_header: "../../hdga.html"
+always_allow_html: true
+urlcolor: blue
+---
+
+### SMOP M to Py
+
+```{r global_options, include = FALSE}
+try(source("../../.Rprofile"))
+```
+
+`r text_shared_preamble_one`
+`r text_shared_preamble_two`
+`r text_shared_preamble_thr`
+
+Convert from matlab to python. Have a lot of matlab livescript files, which have been converted into m files already. Want to conver to python file, so that RMD can be used to generate bookdown documents.
+
+This is a good program, but it does not convert everything, only some core syntax stuff, which is helpful, but not useful.
+
+#### Installation
+
+```{bash}
+conda list env
+conda deactivate
+conda env remove -n test_smop
+conda create -n test_smop
+conda activate test_smop
+conda list
+conda deactivate
+
+conda install pip
+# the pip version is from https://github.com/victorlei/smop, PY2
+# pip install smop
+# This has modifications for PY3
+pip install git+git://github.com/victorlei/smop.git#egg=smop
+```
+
+##### Problem DiGraph
+
+Get this error message;: *AttributeError: 'DiGraph' object has no attribute 'node'*
+
+Issue addressed here: [error on notebook 'DiGraph' object has no attribute 'node'](https://github.com/victorlei/smop/issues/153#issuecomment-614712112).
+
+> G.node needs to be changed to G.nodes in two places in resolve.py. This is due to a change in networkx, as mentioned by oryba.
+
+```{bash}
+# Change at L54, L66
+nvim "C:\ProgramData\Anaconda3\envs\test_smop\Lib\site-packages\smop\resolve.py"
+```
+
+#### Test
+
+Works for core matlab function programs.
+
+```{bash}
+cd  "C:\Users\fan\pyfan\pyfan\pkgtest\smop"
+smop solver.m
+smop simple.m
+```

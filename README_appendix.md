@@ -1,24 +1,14 @@
-[![ViewCount](https://views.whatilearened.today/views/github/FanWangEcon/Py4Econ.svg)]  [![Star](https://img.shields.io/github/stars/fanwangecon/Py4Econ?style=social)](https://github.com/FanWangEcon/Py4Econ/stargazers) [![Fork](https://img.shields.io/github/forks/fanwangecon/Py4Econ?style=social)](https://github.com/FanWangEcon/Py4Econ/network/members) [![Star](https://img.shields.io/github/watchers/fanwangecon/Py4Econ?style=social)](https://github.com/FanWangEcon/Py4Econ/watchers) [![DOI](https://zenodo.org/badge/257089896.svg)](https://zenodo.org/badge/latestdoi/257089896) [![DOI](https://zenodo.org/badge/320403946.svg)](https://zenodo.org/badge/latestdoi/320403946)
+# (APPENDIX) Appendix {-}
 
-The work-in-progress [Py4Econ](https://github.com/FanWangEcon/Py4Econ) python examples repository.
+# Index and Code Links
 
-> [**bookdown site**](https://fanwangecon.github.io/Py4Econ/bookdown) and [**bookdown pdf**](https://fanwangecon.github.io/Py4Econ/bookdown/Data-Structures-and-Cloud-Services-with-Python.pdf).
+## Data Structures links
 
-Files are written with [RMD](https://rmarkdown.rstudio.com/). Materials are gathered from various [projects](https://fanwangecon.github.io/research) in which python code is used for research and paper-administrative tasks. Bullet points show which python packages/functions are used to achieve various objectives. This is not a python package, but a set of example files. The [pyfan](https://pyfan.readthedocs.io/en/latest/) package repository provides some associated programs.
-
-Other repositories: For dynamic savings problems, see [MEconoTools](https://fanwangecon.github.io/MEconTools/); For code examples, see also [Matlab Example Code](https://fanwangecon.github.io/M4Econ/),  [R Example Code](https://fanwangecon.github.io/R4Econ/), and [Stata Example Code](https://fanwangecon.github.io/Stata4Econ/); For intro econ with Matlab, see [Intro Mathematics for Economists](https://fanwangecon.github.io/Math4Econ/), and for intro stat with R, see [Intro Statistics for Undergraduates](https://fanwangecon.github.io/Stat4Econ/). See [here](https://github.com/FanWangEcon) for all of [Fan](https://fanwangecon.github.io/)'s public repositories.
-
-Please contact [FanWangEcon](https://fanwangecon.github.io/) for issues or problems.
-
-[![](https://img.shields.io/github/last-commit/fanwangecon/Py4Econ)](https://github.com/FanWangEcon/Py4Econ/commits/master) [![](https://img.shields.io/github/commit-activity/m/fanwangecon/Py4Econ)](https://github.com/FanWangEcon/Py4Econ/graphs/commit-activity) [![](https://img.shields.io/github/issues/fanwangecon/Py4Econ)](https://github.com/FanWangEcon/Py4Econ/issues) [![](https://img.shields.io/github/issues-pr/fanwangecon/Py4Econ)](https://github.com/FanWangEcon/Py4Econ/pulls)
-
-# 1  Data Structures
-
-## 1.1  Strings, Lists and Tuples
+### [Section 1.1 Strings, Lists and Tuples][Strings, Lists and Tuples] links
 
 1. [Python String Manipulation Examples](https://fanwangecon.github.io/py4econ/amto/array/htmlpdfr/fp_ary_string.html): [**rmd**](https://github.com/FanWangEcon/py4econ/blob/master/amto/array//fp_ary_string.Rmd) \| [**r**](https://github.com/FanWangEcon/py4econ/blob/master/amto/array/htmlpdfr/fp_ary_string.R) \| [**pdf**](https://github.com/FanWangEcon/py4econ/blob/master/amto/array/htmlpdfr/fp_ary_string.pdf) \| [**html**](https://fanwangecon.github.io/py4econ/amto/array/htmlpdfr/fp_ary_string.html)
 	+ Search for substring, replace string, wrap string.
-	+ Display and format numeric string with fstring.
+	+ Display and format numeric string with fstring. 
 	+ Change the decimal rounding given a list of estimates and standard error string arrays.
 	+ **py**: *zip + upper + join + round + float + split + replace + ascii_lowercase*
 	+ **textwrap**: *fill(st, width = 20)*
@@ -33,23 +23,23 @@ Please contact [FanWangEcon](https://fanwangecon.github.io/) for issues or probl
 	+ Access tuple element and fail to mutate tuple element.
 	+ **py**: *isinstance(tp_abc, tuple)*
 
-## 1.2  Dictionary
+### [Section 1.2 Dictionary][Dictionary] links
 
 1. [Python Dictionary Examples and Usages](https://fanwangecon.github.io/py4econ/amto/dict/htmlpdfr/fp_dict.html): [**rmd**](https://github.com/FanWangEcon/py4econ/blob/master/amto/dict//fp_dict.Rmd) \| [**r**](https://github.com/FanWangEcon/py4econ/blob/master/amto/dict/htmlpdfr/fp_dict.R) \| [**pdf**](https://github.com/FanWangEcon/py4econ/blob/master/amto/dict/htmlpdfr/fp_dict.pdf) \| [**html**](https://fanwangecon.github.io/py4econ/amto/dict/htmlpdfr/fp_dict.html)
-	+ Generate a dictionary, loop through a dictionary.
-	+ List comprehension with dictionary.
+	+ Generate a dictionary, loop through a dictionary. 
+	+ List comprehension with dictionary. 
 	+ **py**: *dc = {'key': "name", 'val': 1}*
 	+ **copy**: *deepcopy*
 
-## 1.3  Numpy Arrays
+### [Section 1.3 Numpy Arrays][Numpy Arrays] links
 
 1. [Numpy Combine Arrays to Matrix](https://fanwangecon.github.io/py4econ/amto/matrix/htmlpdfr/fs_array2mat.html): [**rmd**](https://github.com/FanWangEcon/py4econ/blob/master/amto/matrix//fs_array2mat.Rmd) \| [**r**](https://github.com/FanWangEcon/py4econ/blob/master/amto/matrix/htmlpdfr/fs_array2mat.R) \| [**pdf**](https://github.com/FanWangEcon/py4econ/blob/master/amto/matrix/htmlpdfr/fs_array2mat.pdf) \| [**html**](https://fanwangecon.github.io/py4econ/amto/matrix/htmlpdfr/fs_array2mat.html)
 	+ Arrays to matrix.
 	+ **numpy**: *column_stack() + random.choice() + reshape()*
 
-# 2  Pandas
+## Pandas links
 
-## 2.1  Panda Basics
+### [Section 2.1 Panda Basics][Panda Basics] links
 
 1. [Pandas Generate Dataframes with Random Numeric and String Data](https://fanwangecon.github.io/py4econ/panda/basics/htmlpdfr/fs_matrix2dataframe.html): [**rmd**](https://github.com/FanWangEcon/py4econ/blob/master/panda/basics//fs_matrix2dataframe.Rmd) \| [**r**](https://github.com/FanWangEcon/py4econ/blob/master/panda/basics/htmlpdfr/fs_matrix2dataframe.R) \| [**pdf**](https://github.com/FanWangEcon/py4econ/blob/master/panda/basics/htmlpdfr/fs_matrix2dataframe.pdf) \| [**html**](https://fanwangecon.github.io/py4econ/panda/basics/htmlpdfr/fs_matrix2dataframe.html)
 	+ Generate a dataframe from arrays.
@@ -60,13 +50,13 @@ Please contact [FanWangEcon](https://fanwangecon.github.io/) for issues or probl
 	+ Select subset of rows or columns based on cell value conditions.
 	+ **pandas**: *pd.DataFrame() + replace(['Zvcss', 'Dugei'], 'Zqovt') + df.loc[df['c5'] == 'Zqovt']*
 
-# 3  Functions
+## Functions links
 
-## 3.1  Function Arguments and Returns
+### [Section 3.1 Function Arguments and Returns][Function Arguments and Returns] links
 
 1. [Python Function Data Type Handling](https://fanwangecon.github.io/py4econ/function/args/htmlpdfr/fs_datatypes.html): [**rmd**](https://github.com/FanWangEcon/py4econ/blob/master/function/args//fs_datatypes.Rmd) \| [**r**](https://github.com/FanWangEcon/py4econ/blob/master/function/args/htmlpdfr/fs_datatypes.R) \| [**pdf**](https://github.com/FanWangEcon/py4econ/blob/master/function/args/htmlpdfr/fs_datatypes.pdf) \| [**html**](https://fanwangecon.github.io/py4econ/function/args/htmlpdfr/fs_datatypes.html)
 	+ Check if parameter is string or integer, conditional execution and exception handling.
-	+ Check if parameter is string or an integer between some values.
+	+ Check if parameter is string or an integer between some values. 
 	+ **py**: *type + isinstance(abc, str) + isinstance(abc, int) + raise + try except*
 2. [Function value returns](https://fanwangecon.github.io/py4econ/function/args/htmlpdfr/fs_func_args.html): [**rmd**](https://github.com/FanWangEcon/py4econ/blob/master/function/args//fs_func_args.Rmd) \| [**r**](https://github.com/FanWangEcon/py4econ/blob/master/function/args/htmlpdfr/fs_func_args.R) \| [**pdf**](https://github.com/FanWangEcon/py4econ/blob/master/function/args/htmlpdfr/fs_func_args.pdf) \| [**html**](https://fanwangecon.github.io/py4econ/function/args/htmlpdfr/fs_func_args.html)
 	+ Return one or multiple values from function.
@@ -76,24 +66,24 @@ Please contact [FanWangEcon](https://fanwangecon.github.io/) for issues or probl
 	+ Pass a dictionary for named arguments to a function.
 	+ **python**: *dict3 = {dict1, dict2} + dict1.update(dict2) + func(par1='val1', kwargs)*
 
-## 3.2  Exceptions
+### [Section 3.2 Exceptions][Exceptions] links
 
 1. [Python Raise, Try and Catch Exceptions](https://fanwangecon.github.io/py4econ/function/errors/htmlpdfr/fs_python_exceptions.html): [**rmd**](https://github.com/FanWangEcon/py4econ/blob/master/function/errors//fs_python_exceptions.Rmd) \| [**r**](https://github.com/FanWangEcon/py4econ/blob/master/function/errors/htmlpdfr/fs_python_exceptions.R) \| [**pdf**](https://github.com/FanWangEcon/py4econ/blob/master/function/errors/htmlpdfr/fs_python_exceptions.pdf) \| [**html**](https://fanwangecon.github.io/py4econ/function/errors/htmlpdfr/fs_python_exceptions.html)
 	+ Raise an Exception in a python function, try and catch and print to string.
 	+ **python**: *raise + try except + ValueError + TypeError      *
 
-# 4  Statistics
+## Statistics links
 
-## 4.1  Markov Process
+### [Section 4.1 Markov Process][Markov Process] links
 
 1. [Markov Transition Conditional Probability Check Sum to 1](https://fanwangecon.github.io/py4econ/stats/markov/htmlpdfr/fs_trans_mat_prob_check.html): [**rmd**](https://github.com/FanWangEcon/py4econ/blob/master/stats/markov//fs_trans_mat_prob_check.Rmd) \| [**r**](https://github.com/FanWangEcon/py4econ/blob/master/stats/markov/htmlpdfr/fs_trans_mat_prob_check.R) \| [**pdf**](https://github.com/FanWangEcon/py4econ/blob/master/stats/markov/htmlpdfr/fs_trans_mat_prob_check.pdf) \| [**html**](https://fanwangecon.github.io/py4econ/stats/markov/htmlpdfr/fs_trans_mat_prob_check.html)
 	+ Generate a sample 50 by 50 markov transition matrix.
 	+ Check row sums for approximate equality to 1.
 	+ **numpy**: *allclose + reshape + sum*
 
-# 5  Tables and Graphs
+## Tables and Graphs links
 
-## 5.1  Matplotlib Base Plots
+### [Section 5.1 Matplotlib Base Plots][Matplotlib Base Plots] links
 
 1. [Mabplotlib Scatter and Line Plots](https://fanwangecon.github.io/py4econ/tabgraph/baseplot/htmlpdfr/fp_plot_base.html): [**rmd**](https://github.com/FanWangEcon/py4econ/blob/master/tabgraph/baseplot//fp_plot_base.Rmd) \| [**r**](https://github.com/FanWangEcon/py4econ/blob/master/tabgraph/baseplot/htmlpdfr/fp_plot_base.R) \| [**pdf**](https://github.com/FanWangEcon/py4econ/blob/master/tabgraph/baseplot/htmlpdfr/fp_plot_base.pdf) \| [**html**](https://fanwangecon.github.io/py4econ/tabgraph/baseplot/htmlpdfr/fp_plot_base.html)
 	+ Plot several arrays of data, grid, figure title, and line and point patterns and colors.
@@ -106,19 +96,19 @@ Please contact [FanWangEcon](https://fanwangecon.github.io/) for issues or probl
 	+ **textwrap**: *fill()*
 	+ **json**: *dump()*
 
-# 6  Amazon Web Services
+## Amazon Web Services links
 
-## 6.1  AWS Setup
+### [Section 6.1 AWS Setup][AWS Setup] links
 
 1. [AWS Account Set-up and Start Instance](https://fanwangecon.github.io/py4econ/aws/setup/htmlpdfr/fs_aws_setup.html): [**rmd**](https://github.com/FanWangEcon/py4econ/blob/master/aws/setup//fs_aws_setup.Rmd) \| [**r**](https://github.com/FanWangEcon/py4econ/blob/master/aws/setup/htmlpdfr/fs_aws_setup.R) \| [**pdf**](https://github.com/FanWangEcon/py4econ/blob/master/aws/setup/htmlpdfr/fs_aws_setup.pdf) \| [**html**](https://fanwangecon.github.io/py4econ/aws/setup/htmlpdfr/fs_aws_setup.html)
 	+ Generate keypair on AWS, launch instance, launch security, ssh access, and AWSCLI.
 	+ **ssh**: *ssh-agent + ssh-keygen + ssh ec2-user@ec2-52-23-218-117.compute-1.amazonaws.com*
 	+ **aws**: *aws ec2 start-instances + aws ec2 stop-instances + systemctl start amazon-ssm-agent*
 2. [Boto3 Client Service Communications](https://fanwangecon.github.io/py4econ/aws/setup/htmlpdfr/fs_boto3.html): [**rmd**](https://github.com/FanWangEcon/py4econ/blob/master/aws/setup//fs_boto3.Rmd) \| [**r**](https://github.com/FanWangEcon/py4econ/blob/master/aws/setup/htmlpdfr/fs_boto3.R) \| [**pdf**](https://github.com/FanWangEcon/py4econ/blob/master/aws/setup/htmlpdfr/fs_boto3.pdf) \| [**html**](https://fanwangecon.github.io/py4econ/aws/setup/htmlpdfr/fs_boto3.html)
-	+ Start AWS services, send requests etc via boto3.
+	+ Start AWS services, send requests etc via boto3. 
 	+ **boto3**: *boto3.client(service, aws_access_key_id, aws_secret_access_key, region_name)*
 
-## 6.2  S3
+### [Section 6.2 S3][S3] links
 
 1. [AWS S3 Uploading Downloading and Syncing](https://fanwangecon.github.io/py4econ/aws/s3/htmlpdfr/fs_aws_s3.html): [**rmd**](https://github.com/FanWangEcon/py4econ/blob/master/aws/s3//fs_aws_s3.Rmd) \| [**r**](https://github.com/FanWangEcon/py4econ/blob/master/aws/s3/htmlpdfr/fs_aws_s3.R) \| [**pdf**](https://github.com/FanWangEcon/py4econ/blob/master/aws/s3/htmlpdfr/fs_aws_s3.pdf) \| [**html**](https://fanwangecon.github.io/py4econ/aws/s3/htmlpdfr/fs_aws_s3.html)
 	+ From EC2 or local computer upload files to S3 folders.
@@ -126,7 +116,7 @@ Please contact [FanWangEcon](https://fanwangecon.github.io/) for issues or probl
 	+ **py**: *platform.release()*
 	+ **boto3**: *boto3.client('s3') + s3.upload_file*
 
-## 6.3  Batch
+### [Section 6.3 Batch][Batch] links
 
 1. [AWS Batch, Batch Array](https://fanwangecon.github.io/py4econ/aws/batch/htmlpdfr/fs_aws_batch.html): [**rmd**](https://github.com/FanWangEcon/py4econ/blob/master/aws/batch//fs_aws_batch.Rmd) \| [**r**](https://github.com/FanWangEcon/py4econ/blob/master/aws/batch/htmlpdfr/fs_aws_batch.R) \| [**pdf**](https://github.com/FanWangEcon/py4econ/blob/master/aws/batch/htmlpdfr/fs_aws_batch.pdf) \| [**html**](https://fanwangecon.github.io/py4econ/aws/batch/htmlpdfr/fs_aws_batch.html)
 	+ Set up python function that uses AWS_BATCH_JOB_ARRAY_INDEX.
@@ -134,9 +124,9 @@ Please contact [FanWangEcon](https://fanwangecon.github.io/) for issues or probl
 	+ **yaml**: *load()*
 	+ **boto3**: *client() + register_job_definition(jobDefinitionName, type, containerProperties, retryStrategy) + aws_batch.submit_job(jobName, jobQueue, arrayProperties={'size':10}, jobDefinition)*
 
-# 7  Docker Container
+## Docker Container links
 
-## 7.1  Docker Setup
+### [Section 7.1 Docker Setup][Docker Setup] links
 
 1. [Docker Container Set-Up and Run on AWS](https://fanwangecon.github.io/py4econ/docker/setup/htmlpdfr/fs_docker_setup.html): [**rmd**](https://github.com/FanWangEcon/py4econ/blob/master/docker/setup//fs_docker_setup.Rmd) \| [**r**](https://github.com/FanWangEcon/py4econ/blob/master/docker/setup/htmlpdfr/fs_docker_setup.R) \| [**pdf**](https://github.com/FanWangEcon/py4econ/blob/master/docker/setup/htmlpdfr/fs_docker_setup.pdf) \| [**html**](https://fanwangecon.github.io/py4econ/docker/setup/htmlpdfr/fs_docker_setup.html)
 	+ Install Docker on AWS and build Docker image.
@@ -150,9 +140,9 @@ Please contact [FanWangEcon](https://fanwangecon.github.io/) for issues or probl
 	+ **aws**: *aws ecr get-login*
 	+ **docker**: *docker login + docker build + docker tag + docker push + docker pull*
 
-# 8  Get Data
+## Get Data links
 
-## 8.1  Environmental Data
+### [Section 8.1 Environmental Data][Environmental Data] links
 
 1. [CDS ECMWF Global Enviornmental Data Download](https://fanwangecon.github.io/py4econ/getdata/envir/htmlpdfr/fs_ecmwf.html): [**rmd**](https://github.com/FanWangEcon/py4econ/blob/master/getdata/envir//fs_ecmwf.Rmd) \| [**r**](https://github.com/FanWangEcon/py4econ/blob/master/getdata/envir/htmlpdfr/fs_ecmwf.R) \| [**pdf**](https://github.com/FanWangEcon/py4econ/blob/master/getdata/envir/htmlpdfr/fs_ecmwf.pdf) \| [**html**](https://fanwangecon.github.io/py4econ/getdata/envir/htmlpdfr/fs_ecmwf.html)
 	+ Using Python API get get ECMWF ERA5 data.
@@ -160,9 +150,9 @@ Please contact [FanWangEcon](https://fanwangecon.github.io/) for issues or probl
 	+ **r**: *file() + writeLines() + unzip() + list.files() + unlink()*
 	+ **r-reticulate**: *use_python() + Sys.setenv(RETICULATE_PYTHON = spth_conda_env)*
 
-# 9  System and Support
+## System and Support links
 
-## 9.1  Command Line
+### [Section 9.1 Command Line][Command Line] links
 
 1. [Execute Python from Command Line and Run Command Line in Python](https://fanwangecon.github.io/py4econ/support/system/htmlpdfr/fp_command.html): [**rmd**](https://github.com/FanWangEcon/py4econ/blob/master/support/system//fp_command.Rmd) \| [**r**](https://github.com/FanWangEcon/py4econ/blob/master/support/system/htmlpdfr/fp_command.R) \| [**pdf**](https://github.com/FanWangEcon/py4econ/blob/master/support/system/htmlpdfr/fp_command.pdf) \| [**html**](https://fanwangecon.github.io/py4econ/support/system/htmlpdfr/fp_command.html)
 	+ Run python functions from command line.
@@ -172,7 +162,7 @@ Please contact [FanWangEcon](https://fanwangecon.github.io/) for issues or probl
 	+ **decode**: *decode('utf-8')*
 	+ **os**: *chdir() + getcdw()*
 
-## 9.2  File In and Out
+### [Section 9.2 File In and Out][File In and Out] links
 
 1. [Python Reading and Writing to File Examples](https://fanwangecon.github.io/py4econ/support/inout/htmlpdfr/fp_files.html): [**rmd**](https://github.com/FanWangEcon/py4econ/blob/master/support/inout//fp_files.Rmd) \| [**r**](https://github.com/FanWangEcon/py4econ/blob/master/support/inout/htmlpdfr/fp_files.R) \| [**pdf**](https://github.com/FanWangEcon/py4econ/blob/master/support/inout/htmlpdfr/fp_files.pdf) \| [**html**](https://fanwangecon.github.io/py4econ/support/inout/htmlpdfr/fp_files.html)
 	+ Reading from file and replace strings in file.
@@ -187,7 +177,7 @@ Please contact [FanWangEcon](https://fanwangecon.github.io/) for issues or probl
 	+ Join folder names to form absolute path.
 	+ Generate new folders and files, with existing folder substrings.
 	+ Generate subfolder recursively.
-	+ Copying and moving files across folders.
+	+ Copying and moving files across folders. 
 	+ **py**: *open(srt, 'w') + write() + close()*
 	+ **os**: *os.sep + os.listdir() + os.path.abspath() + os.path.abspath(os.path.join(os.sep, 'users', 'fan')) + os.path.join('/', 'c:', 'fa', 'fb')*
 	+ **pathlib**: *Path(srt).mkdir(parents=True, exist_ok=True) + [Path(spn).stem for spn in Path(srt).rglob(st)]*
@@ -198,24 +188,13 @@ Please contact [FanWangEcon](https://fanwangecon.github.io/) for issues or probl
 	+ **yaml**: *load(fl_yaml, Loader=yaml.BaseLoader)       + dump()*
 	+ **pprint**: *pprint.pprint(ls_dict_yml, width=1)*
 
-## 9.3  Install Python
+### [Section 9.3 Install Python][Install Python] links
 
 1. [Basic Conda Setup Instructions](https://fanwangecon.github.io/py4econ/support/install/htmlpdfr/fs_install_basics.html): [**rmd**](https://github.com/FanWangEcon/py4econ/blob/master/support/install//fs_install_basics.Rmd) \| [**r**](https://github.com/FanWangEcon/py4econ/blob/master/support/install/htmlpdfr/fs_install_basics.R) \| [**pdf**](https://github.com/FanWangEcon/py4econ/blob/master/support/install/htmlpdfr/fs_install_basics.pdf) \| [**html**](https://fanwangecon.github.io/py4econ/support/install/htmlpdfr/fs_install_basics.html)
 	+ Conda and git installations
 	+ **bash**: *where*
 
-## 9.4  Documentation
+### [Section 9.4 Documentation][Documentation] links
 
 1. [Python Documentation Numpy Doc](https://fanwangecon.github.io/py4econ/support/documentation/htmlpdfr/fs_numpy_doc.html): [**rmd**](https://github.com/FanWangEcon/py4econ/blob/master/support/documentation//fs_numpy_doc.Rmd) \| [**r**](https://github.com/FanWangEcon/py4econ/blob/master/support/documentation/htmlpdfr/fs_numpy_doc.R) \| [**pdf**](https://github.com/FanWangEcon/py4econ/blob/master/support/documentation/htmlpdfr/fs_numpy_doc.pdf) \| [**html**](https://fanwangecon.github.io/py4econ/support/documentation/htmlpdfr/fs_numpy_doc.html)
 	+ Numpy documentation examples.
-
-----
-Please contact [![](https://img.shields.io/github/followers/fanwangecon?label=FanWangEcon&style=social)](https://github.com/FanWangEcon) [![](https://img.shields.io/twitter/follow/fanwangecon?label=%20&style=social)](https://twitter.com/fanwangecon) for issues or problems.
-
-[![DOI](https://zenodo.org/badge/320403946.svg)](https://zenodo.org/badge/latestdoi/320403946)
-
-![RepoSize](https://img.shields.io/github/repo-size/fanwangecon/Py4Econ)
-![CodeSize](https://img.shields.io/github/languages/code-size/fanwangecon/Py4Econ)
-![Language](https://img.shields.io/github/languages/top/fanwangecon/Py4Econ)
-![Release](https://img.shields.io/github/downloads/fanwangecon/Py4Econ/total)
-![License](https://img.shields.io/github/license/fanwangecon/Py4Econ)

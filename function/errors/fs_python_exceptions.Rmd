@@ -1,0 +1,100 @@
+---
+title: "Python Raise, Try and Catch Exceptions"
+titleshort: "Python Raise, Try and Catch Exceptions"
+description: |
+  Raise an Exception in a python function, try and catch and print to string.
+core:
+  - package: python
+    code: |
+      raise
+      try except
+      ValueError
+      TypeError      
+date: 2020-11-04
+date_start: 2020-11-23
+output:
+  pdf_document:
+    pandoc_args: '../../_output_kniti_pdf.yaml'
+    includes:
+      in_header: '../../preamble.tex'
+  html_document:
+    pandoc_args: '../../_output_kniti_html.yaml'
+    includes:
+      in_header: "../../hdga.html"
+always_allow_html: true
+urlcolor: blue
+---
+
+### Exception Handling
+
+```{r global_options, include = FALSE}
+try(source("../../.Rprofile"))
+```
+
+`r text_shared_preamble_one`
+`r text_shared_preamble_two`
+`r text_shared_preamble_thr`
+
+```{python}
+```
+
+#### A function That Raises an Error with Try Statement Catching it
+
+Below, we have a function that will raise a *TypeError* unless we provide an integer input. The function is called with integer input and then called with a string input. The string input is wrapped in a try and except call, where the exception catches the TypeError and prints it. 
+
+```{python}
+# define the function
+def error_test(gn_speckey=None):
+    if isinstance(gn_speckey, int):
+        print(f'{gn_speckey=} is an integer')
+    else:
+        raise TypeError(f'{gn_speckey=} is not an integer')
+# Call function with integer
+error_test(1)
+# Call function with string
+try:
+    error_test('abc')
+except TypeError as error:
+    print('Caught this error: ' + repr(error))
+```
+
+#### Handle Parameters When Conditions Not Satisfied
+
+There is a function, that can estimate or simulate, under both functionalities, there is a common string parameter, that requires specifying estimation or simulation conditions. The common string parameter should be a simple string without special separators in the case of simulation, and should be four strings concatenated together with equal sign for estimation. Generate an exception if the function is called for estimation but the string parameter does not have the required structure.
+
+- [Python 3 TypeError](https://docs.python.org/3/library/exceptions.html#TypeError)
+- [Manually raising (throwing) an exception in Python](https://stackoverflow.com/a/30317038/8280804)
+
+```{python, include=TRUE, eval = FALSE, echo = TRUE}
+# ls_st_spec_key_dict = ['NG_S_D', 'NG_S_D=KAP_M0_NLD_M_SIMU=2=3']
+# st_connector = '='
+# ls_st_esti_simu = ['esti', 'simu']
+# for st_spec_key_dict in ls_st_spec_key_dict:
+#   for st_esti_simu in ls_st_esti_simu:
+#     if st_esti_simu == 'simu':
+#       if len(st_spec_key_dict.split(st_connector)) and
+#         print('simulate with ' + st_spec_key_dict)
+
+if estimate and not isinstance(spec_key_dict, str):
+    pass
+elif (estimate is False and isinstance(spec_key_dict, str)) or (estimate is False and isinstance(spec_key_dict, dict)):
+    pass
+else:
+    st_error = 'speckey=' + speckey + ' and estimate=' + str(estimate)
+    raise ValueError(st_error)
+```
+
+#### Proceed Despite Error
+
+Sometimes, code should proceed despite error, to finish a loop for example:
+
+```{python, include=TRUE, eval = FALSE, echo = TRUE}
+# estimate at each initial random points
+for it_esti_ctr in range(esti_param_vec_count):
+    # Update the 3rd element of combo_type, which determines which draw index to use
+    combo_type[3] = it_esti_ctr
+    try:
+        invoke_run_main.invoke_main(combo_type, **dc_invoke_main_args)
+    except Exception:
+        logging.critical(f'Finished this {it_esti_ctr=} of {range(esti_param_vec_count)=}')
+```

@@ -1,0 +1,66 @@
+---
+title: "Amazon Web Services (AWS) S3 Uploading, Downloading and Syncing"
+titleshort: "AWS S3 Uploading Downloading and Syncing"
+description: |
+  From EC2 or local computer upload files to S3 folders.
+  Download sync folders with exclusions between local and S3 folders.
+core:
+  - package: py
+    code: |
+      platform.release()
+  - package: boto3
+    code: |
+      boto3.client('s3')
+      s3.upload_file
+date: 2020-10-15
+date_start: 2020-10-15
+output:
+  pdf_document:
+    pandoc_args: '../../_output_kniti_pdf.yaml'
+    includes:
+      in_header: '../../preamble.tex'
+  html_document:
+    pandoc_args: '../../_output_kniti_html.yaml'
+    includes:
+      in_header: "../../hdga.html"
+always_allow_html: true
+urlcolor: blue
+---
+
+### S3 Usages
+
+```{r global_options, include = FALSE}
+try(source("../../.Rprofile"))
+```
+
+`r text_shared_preamble_one`
+`r text_shared_preamble_two`
+`r text_shared_preamble_thr`
+
+#### Upload Local File to S3
+
+A program runs either locally or on a remote EC2 machine inside a docker container. Upon exit, data does not persist in the docker container and needs to be exported to be saved. The idea is to export program images, csv files, json files, etc to S3 when these are generated, if the program detects that it is been executed on an EC2 machine (in a container).
+
+First, inside the program, detect platform status. For Docker Container on EC2, AWS Linux 2 has platform.release of something like *4.14.193-194.317.amzn2.x86_64*.
+
+```{python}
+import platform as platform
+print(platform.release())
+# This assums using an EC2 instance where amzn is in platform name
+if 'amzn' in platform.release():
+    s3_status = True
+else:
+    s3_status = False
+print(s3_status)
+```
+
+Second, on s3, create a bucket, *fans3testbucket* for example (no underscore in name allowed). Before doing this, set up AWS Access Key ID and AWS Secrete Acccess KEy in */Users/fan/.aws* folder so that boto3 can access s3 from computer. Upon successful completion of the push, the file can be accessed at [https://fans3testbucket.s3.amazonaws.com/_data/iris_s3.dta](https://fans3testbucket.s3.amazonaws.com/_data/iris_s3.dta).
+
+```{python}
+import boto3
+s3 = boto3.client('s3')
+spn_local_path_file_name = "C:/Users/fan/py4econ/vig/aws/setup/_data/iris_s3.dta"
+str_bucket_name = "fans3testbucket"
+spn_remote_path_file_name = "_data/iris_s3.dta"
+s3.upload_file(spn_local_path_file_name, str_bucket_name, spn_remote_path_file_name)
+```

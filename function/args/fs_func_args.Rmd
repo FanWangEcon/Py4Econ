@@ -1,0 +1,71 @@
+---
+title: "Python Function Returns Multiple Values"
+titleshort: "Function value returns"
+description: |
+  Return one or multiple values from function.
+core:
+  - package: python
+    code: |
+      return a, b, c
+date: 2020-11-30
+date_start: 2020-11-30
+output:
+  pdf_document:
+    pandoc_args: '../../_output_kniti_pdf.yaml'
+    includes:
+      in_header: '../../preamble.tex'
+  html_document:
+    pandoc_args: '../../_output_kniti_html.yaml'
+    includes:
+      in_header: "../../hdga.html"
+always_allow_html: true
+urlcolor: blue
+---
+
+### Function Returns
+
+```{r global_options, include = FALSE}
+try(source("../../.Rprofile"))
+```
+
+`r text_shared_preamble_one`
+`r text_shared_preamble_two`
+`r text_shared_preamble_thr`
+
+```{python}
+```
+
+#### Function with Multiple Optional Returns
+
+There is a function that is already written, that returns some string value. Without interrupting the existing function, now add an additional return for the function. There is some conditional statement that controls whether the function returns one or two value.
+
+In the example below, if the path contains
+
+Create a testing function:
+
+```{python}
+def get_val(spn_path):
+    if 'G:' in spn_path:
+        # this returns a tuple of length 2
+        return spn_path, 'G:/repos' 
+    else:
+        return spn_path 
+```
+
+Call the function with one return, in the two calls below, the first call returns a tuple
+
+```{python}
+# Return tuple
+tp_st_return = get_val("G:/Dropbox (UH-ECON)")
+# Unpack tuple return
+st_path_a, st_path_b = get_val("G:/Dropbox (UH-ECON)")
+# Single element return
+st_return = get_val("C:/Dropbox (UH-ECON)")
+# Print
+print(f'{tp_st_return=} and {st_return=}')
+print(f'{st_path_a=} and {st_path_b=}')
+print(f'{isinstance(tp_st_return, str)=}')
+print(f'{isinstance(tp_st_return, tuple)=}')
+print(f'{isinstance(st_return, str)=}')
+print(f'{isinstance(st_return, tuple)=}')
+```

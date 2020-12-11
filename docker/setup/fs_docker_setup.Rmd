@@ -1,0 +1,212 @@
+---
+title: "Docker Container Set-Up and Run on AWS"
+titleshort: "Docker Container Set-Up and Run on AWS"
+description: |
+  Install Docker on AWS and build Docker image.
+  Start docker container and run programs inside Docker.
+core:
+  - package: aws
+    code: |
+      ssh
+      yum update -y
+      amazon-linux-extras install docker -y
+  - package: docker
+    code: |
+      service docker start
+      service docker status
+      docker build
+      docker images
+      docker image prune
+      docker run -t -i fanconda /bin/bash
+      python /fanProg/invoke/run.py
+      docker ps -a
+      docker system df
+      docker container ls -a
+date: 2020-09-13
+date_start: 2020-10-09
+output:
+  pdf_document:
+    pandoc_args: '../../_output_kniti_pdf.yaml'
+    includes:
+      in_header: '../../preamble.tex'
+  html_document:
+    pandoc_args: '../../_output_kniti_html.yaml'
+    includes:
+      in_header: "../../hdga.html"
+always_allow_html: true
+urlcolor: blue
+---
+
+### Docker Setup
+
+```{r global_options, include = FALSE}
+try(source("../../.Rprofile"))
+```
+
+`r text_shared_preamble_one`
+`r text_shared_preamble_two`
+`r text_shared_preamble_thr`
+
+#### Install Docker on AWS
+
+[Installation Instructions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html)
+
+1. Putty
+2. access to .pem key
+3. conda aws environment below
+
+For Amazon Linux 2:
+
+```{bash include=TRUE, eval = FALSE, echo = TRUE}
+# SSH into EC2 Instance
+ssh ec2-user@ec2-52-23-218-117.compute-1.amazonaws.com
+# Update
+sudo yum update -y
+# install
+sudo amazon-linux-extras install docker -y
+# start service
+sudo service docker start
+sudo service docker status
+# execute docker commands without sudo
+sudo usermod -a -G docker ec2-user
+# log out and in reboot does not change public address
+sudo reboot
+# if docker info does not work, docker start again
+docker info
+```
+
+#### Create a Dockerfile and build it
+
+Create a Dockerfile and build it. Building a dockerfile generates a docker image:
+
+```{bash include=TRUE, eval = FALSE, echo = TRUE}
+# docker folder
+mkdir ~/docker
+# cd into docker folder
+cd ~/docker
+# create a Dockerfile in the docker folder
+# copy the Example Dockerfile below to the Dockerfile
+vim Dockerfile
+# in the docker directory build the docker file
+docker build -t hello-world .
+```
+
+Example Dockerfile:
+
+```{bash include=TRUE, eval = FALSE, echo = TRUE}
+FROM ubuntu:12.04
+
+# Install dependencies
+RUN apt-get update -y
+RUN apt-get install -y apache2
+
+# Install apache and write hello world message
+RUN echo "Hello World!" > /var/www/index.html
+
+# Configure apache
+RUN a2enmod rewrite
+RUN chown -R www-data:www-data /var/www
+ENV APACHE_RUN_USER www-data
+ENV APACHE_RUN_GROUP www-data
+ENV APACHE_LOG_DIR /var/log/apache2
+
+EXPOSE 80
+
+CMD ["/usr/sbin/apache2", "-D",  "FOREGROUND"]
+```
+
+#### Run, Enter and Exit
+
+*docker build* generates a docker image, we start the docker container, run using the image created.
+
+```{bash include=TRUE, eval = FALSE, echo = TRUE}
+# list docker images available to run
+docker images
+```
+
+```{bash include=TRUE, eval = FALSE, echo = TRUE}
+These could be some images that are shown after running *docker images*:
+
+REPOSITORY                                                     TAG                 IMAGE ID            CREATED             SIZE
+XXXX7367XXXX.dkr.ecr.us-east-1.amazonaws.com/fanconda       latest              5d1a0df0796e        8 days ago          3.52GB
+XXXX7367XXXX.dkr.ecr.us-east-1.amazonaws.com/fanconda2020   latest              2db5e859d70c        2 weeks ago         3.4GB
+fanconda2020                                                latest              2db5e859d70c        2 weeks ago         3.4GB
+fanconda5                                                   latest              fa55672e7753        2 weeks ago         3.4GB
+fanconda3                                                   latest              2083f1124465        2 weeks ago         2.91GB
+```
+
+Run the image and enter into it (use an image name) and run commands with programs, upon exit, container is stopped. Entering back into the container, the data was generated before now is no longer there, it is a new container based on the same image.
+
+```{bash include=TRUE, eval = FALSE, echo = TRUE}
+# will be inside now the conda image (base)
+docker run -t -i fanconda /bin/bash
+# can run programs inside here that have been loaded into the image
+python /fanProg/invoke/run.py -A ng_s_t=kap_m0_nld_m_simu=2=3 -B b -C 20180814_beta -D esti_param.beta -E None -F min_graphs -G simu --no-ge --no-multiprocess --no-esti
+# review generated outputs inside docker, results are stored by the run.py program and associated file, to a data folder
+cd /data
+ls
+# To exit the currently running docker
+exit
+# show docker container exited
+docker ps -a
+```
+
+Root directory in conda docker:
+> fanProg  bin  boot  data  dev  etc  home  lib  lib64  media  mnt  opt  proc  pyfan  root  run  sbin  srv  sys  tmp  usr  var
+
+
+Run the image with program without entering into it.
+
+```{bash include=TRUE, eval = FALSE, echo = TRUE}
+docker run fancondajmp python /ThaiJMP/invoke/run.py -A ng_s_t=kap_m0_nld_m_simu=2=3 -B b -C 20180814_beta -D esti_param.beta -E None -F min_graphs -G simu --no-ge --no-multiprocess --no-esti
+```
+
+
+- [Docker container will automatically stop after “docker run -d"](https://stackoverflow.com/questions/30209776/docker-container-will-automatically-stop-after-docker-run-d)
+
+#### Status and Cleaning
+
+##### Docker file and Git Repo
+
+To have docker file access a git repo without exposing git repo password. Generate a private token, and access as below. See [stackoverflow-23391839](https://stackoverflow.com/a/29464430/8280804).
+
+```{bash include=TRUE, eval = FALSE, echo = TRUE}
+RUN git clone https://b123451234dfc025a836927PRIVATETOKEND1239@github.com/FanWangEcon/ThaiJMP.git /ThaiJMP/
+```
+
+##### Docker Status, Space and Clean
+
+First, start service:
+
+```{bash include=TRUE, eval = FALSE, echo = TRUE}
+# start docker
+sudo service docker start
+# see status
+sudo service docker status
+```
+
+Second, list all docker related space usages, containers and images:
+
+```{bash include=TRUE, eval = FALSE, echo = TRUE}
+# check disk usage
+docker system df
+```
+
+Third, clean containers
+
+```{bash include=TRUE, eval = FALSE, echo = TRUE}
+# see docker containers
+docker container ls -a
+# Remove all stopped docker containers
+docker rm $(docker ps -a -q)
+```
+
+Fourth, clean images
+
+```{bash include=TRUE, eval = FALSE, echo = TRUE}
+# list all images
+docker images
+docker images --all
+# Clean all images not referenced by a container
+docker image prune
+```

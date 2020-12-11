@@ -1,0 +1,71 @@
+---
+title: "Basic Conda Setup Instructions"
+titleshort: "Basic Conda Setup Instructions"
+description: |
+  Conda and git installations
+core:
+  - package: bash
+    code: |
+      where
+date: 2020-05-23
+date_start: 2020-05-23
+output:
+  pdf_document:
+    pandoc_args: '../../_output_kniti_pdf.yaml'
+    includes:
+      in_header: '../../preamble.tex'
+  html_document:
+    pandoc_args: '../../_output_kniti_html.yaml'
+    includes:
+      in_header: "../../hdga.html"
+always_allow_html: true
+urlcolor: blue
+---
+
+### Core Installations
+
+```{r global_options, include = FALSE}
+try(source("../../.Rprofile"))
+```
+
+`r text_shared_preamble_one`
+`r text_shared_preamble_two`
+`r text_shared_preamble_thr`
+
+Use the [PyYAML](https://pypi.org/project/PyYAML/) to parse yaml.
+
+#### Git Bash
+
+1. Download and install [git](https://git-scm.com/downloads)
+
+#### Conda Install
+
+1. Download [Anaconda](https://www.anaconda.com/products/individual) for Python 3. For more involved conda instructions see [here](https://fanwangecon.github.io/Tex4Econ/nontex/install/windows/fn_installations.html)
+
+2. Get where you installed conda: open up *anaconda prompt* with admin rights (press windows button, and search for anaconda prompt, right click on the resulting terminal icon, choose as admin, a terminal opens up).
+
+```
+where python
+where anaconda
+
+# C:/ProgramData/Anaconda3/Scripts/anaconda.exe
+# C:/ProgramData/Anaconda3/python.exe
+```
+
+3. Add to Path: open up windows *Path* and copy the paths found above inside.
+
+##### Add To Path Details
+
+To Add Anaconda to Path, In Windows
+
+1. Search for: Environment Variables
+2. Edit Environment Variables
+3. Add new to Path (lower half):
+    - C:/ProgramData/Anaconda3/Scripts/
+    - C:/ProgramData/Anaconda3/
+4. Now open up regular windows command Prompt, Type in:
+        conda –version
+5. Close and Open up Git Bash:
+        conda –version
+
+Alternatively, in windows, directly search for Path, and add the python and anaconda exe paths to paths.

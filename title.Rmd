@@ -1,0 +1,5 @@
+---
+title: "Data Structures and Cloud Services with Python"
+author: "Fan Wang"
+date: '`r format(Sys.Date(), "%Y-%m-%d")`'
+---

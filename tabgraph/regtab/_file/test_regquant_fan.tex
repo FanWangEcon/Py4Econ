@@ -1,0 +1,92 @@
+\begin{table}[htbp]
+\centering
+\caption{\hspace*{0mm}Quantile Regression Estimates}
+\begin{adjustbox}{max width=1\textwidth}
+\begin{tabular}{m{5cm}*{5}{>{\centering\arraybackslash}m{2cm}}}
+\toprule
+& \multicolumn{5}{l}{Estimates at conditional quantiles}\\
+\cmidrule(l{5pt}r{5pt}){2-6} 
+Variable & P10 & P25 & P50 & P75 & P90\\
+\midrule
+\addlinespace
+\multicolumn{6}{l}{\hspace*{0mm}Environmental Exposure Variables}\\
+\addlinespace
+\begin{table}[htbp]
+\centering
+\caption{\hspace*{0mm}PM10}
+\begin{adjustbox}{max width=1\textwidth}
+\begin{tabular}{m{5cm}*{5}{>{\centering\arraybackslash}m{2cm}}}
+ & -33.63\sym{***} & -21.76\sym{***} & -17.12\sym{***} & -12.97\sym{***} & -15.75\sym{***}\\
+\addlinespace
+ & (3.31) & (2.40) & (1.86) & (2.22) & (2.66)\\
+\addlinespace
+\begin{table}[htbp]
+\centering
+\caption{\hspace*{0mm}Extreme hot}
+\begin{adjustbox}{max width=1\textwidth}
+\begin{tabular}{m{5cm}*{5}{>{\centering\arraybackslash}m{2cm}}}
+ & -50.20\sym{**} & -32.29\sym{**} & -30.16\sym{***} & -28.48\sym{**} & -30.27\sym{*}\\
+\addlinespace
+ & (21.32) & (13.68) & (10.89) & (12.19) & (16.26)\\
+\addlinespace
+\addlinespace
+\multicolumn{6}{l}{\hspace*{0mm}Education and Environmental Exposure Interactions}\\
+\addlinespace
+\begin{table}[htbp]
+\centering
+\caption{\hspace*{0mm}College completion}
+\begin{adjustbox}{max width=1\textwidth}
+\begin{tabular}{m{5cm}*{5}{>{\centering\arraybackslash}m{2cm}}}
+ & -252.72\sym{***} & -133.76\sym{**} & -26.32 & -70.73 & -39.21\\
+\addlinespace
+ & (80.04) & (54.35) & (47.23) & (58.47) & (80.66)\\
+\addlinespace
+\begin{table}[htbp]
+\centering
+\caption{\hspace*{0mm}College x PM10}
+\begin{adjustbox}{max width=1\textwidth}
+\begin{tabular}{m{5cm}*{5}{>{\centering\arraybackslash}m{2cm}}}
+ & 3.86\sym{***} & 2.15\sym{***} & 0.70 & 1.07 & 0.68\\
+\addlinespace
+ & (1.06) & (0.70) & (0.59) & (0.76) & (1.05)\\
+\addlinespace
+\begin{table}[htbp]
+\centering
+\caption{\hspace*{0mm}College x extreme hot}
+\begin{adjustbox}{max width=1\textwidth}
+\begin{tabular}{m{5cm}*{5}{>{\centering\arraybackslash}m{2cm}}}
+ & 9.13 & 2.40 & -10.92 & -8.46 & -7.02\\
+\addlinespace
+ & (14.25) & (8.03) & (8.82) & (8.39) & (11.38)\\
+\addlinespace
+\addlinespace
+\multicolumn{6}{l}{\hspace*{0mm}Control Variables}\\
+\addlinespace
+\begin{table}[htbp]
+\centering
+\caption{\hspace*{0mm}Male}
+\begin{adjustbox}{max width=1\textwidth}
+\begin{tabular}{m{5cm}*{5}{>{\centering\arraybackslash}m{2cm}}}
+ & 84.51\sym{***} & 91.76\sym{***} & 107.95\sym{***} & 115.88\sym{***} & 133.56\sym{***}\\
+\addlinespace
+ & (7.80) & (4.85) & (4.11) & (5.04) & (6.96)\\
+\addlinespace
+\begin{table}[htbp]
+\centering
+\caption{\hspace*{0mm}Mother's age}
+\begin{adjustbox}{max width=1\textwidth}
+\begin{tabular}{m{5cm}*{5}{>{\centering\arraybackslash}m{2cm}}}
+ & 68.18\sym{***} & 47.92\sym{***} & 47.13\sym{***} & 51.37\sym{***} & 41.76\sym{***}\\
+\addlinespace
+ & (8.99) & (5.37) & (5.00) & (5.10) & (8.64)\\
+\addlinespace
+\hspace*{0mm}Intercept & 1180.91\sym{***} & 1434.43\sym{***} & 1891.26\sym{***} & 1923.30\sym{***} & 2460.86\sym{***}\\
+\addlinespace
+ & (327.27) & (253.20) & (239.58) & (244.98) & (333.48)\\
+\addlinespace
+\midrule
+$R(p)$ & MISSING & MISSING & MISSING & MISSING & MISSING\\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
