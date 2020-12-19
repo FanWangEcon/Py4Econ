@@ -57,44 +57,19 @@ import string as string
 import random as random
 ```
 
-#### Fstring Print Strings with Numeric Values and Other Strings
+#### Get Substring 
 
-After some code segment, print some outputs declaring the end of operation and print results.
-
-```{python}
-dc_invoke_main_args = {'speckey': 'ng_s_t',
-                       'numeric': 1.46,
-                       'ge': False,
-                       'multiprocess': False}
-                       
-print(f'speckey in dc_invoke_main_args is {dc_invoke_main_args["speckey"]}.')
-print(f'numeric in dc_invoke_main_args is {dc_invoke_main_args["numeric"]}.')
-print(f'speckey in dc_invoke_main_args is {dc_invoke_main_args}.')
-```
-
-### Fstring Format Floating Point Values 
-
-There is a number, it is a parameter value. The number of decimal points to be allowed is also a parameter value. Use Fstring to format.
+Given string, get substring after a word.
 
 ```{python}
-# Define a formatter function
-def fstring_formater(st_float, it_decimal):
-    # strip the string float, and format with it_decimal number of decimals
-    st_float = st_float.strip()
-    fl_float = float(st_float)
-    st_float_rounded = f'{fl_float:.{it_decimal}f}'
-    return st_float_rounded
-    
-# Print 
-f'{fstring_formater("1.2345", 3)=}'
-f'{fstring_formater("1.2345", 2)=}'
-f'{fstring_formater(" 1.2345 ", 1)=}'
-f'{fstring_formater(" 1.2345", 1)=}'
-# Alternatively
-it_decimal = 3
-fl_float = 123.456789
-print(f'Formating with .{it_decimal}f -> {fl_float:.{it_decimal}f}')
+st_func_stack_code = 'dc_ls_combo_type = pyfan_amto_lsdcconvert.ff_ls2dc(ls_combo_type,'
+st_search_break = 'ff_ls2dc('
+st_string_after = st_func_stack_code.split(st_search_break)[1]
+st_search_break = ','
+st_string_after = st_func_stack_code.split(st_search_break)[1]
+print(f'{st_string_after=}')
 ```
+
 
 #### Generate Random Strings
 

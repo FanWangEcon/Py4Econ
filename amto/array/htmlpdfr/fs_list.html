@@ -1878,8 +1878,28 @@ div.tocify {
 <p>Go to the <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/amto/array//fs_list.Rmd"><strong>RMD</strong></a>, <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/amto/array//htmlpdfr/fs_list.pdf"><strong>PDF</strong></a>, or <a href="https://fanwangecon.github.io//Py4Econ/amto/array//htmlpdfr/fs_list.html"><strong>HTML</strong></a> version of this file. Go back to <a href="https://fanwangecon.github.io/Py4Econ/">Python Code Examples</a> Repository (<a href="https://fanwangecon.github.io/Py4Econ/bookdown">bookdown site</a>) or the <a href="https://pyfan.readthedocs.io/en/latest/">pyfan</a> Package (<a href="https://pyfan.readthedocs.io/en/latest/reference.html">API</a>).</p>
 </blockquote>
 <pre class="python"><code>import numpy as np</code></pre>
-<div id="check-if-any-element-of-a-list-is-another-list" class="section level2" number="1.1">
-<h2 number="1.1"><span class="header-section-number">1.1</span> Check if Any Element of a List is another List</h2>
+<div id="loop-through-a-list-get-value-and-index" class="section level2" number="1.1">
+<h2 number="1.1"><span class="header-section-number">1.1</span> Loop Through a List get Value and Index</h2>
+<p>There is a list, loop through it, get out both the index and the value of each indexed element together.</p>
+<pre class="python"><code>ls_ob_combo_type = [&quot;e&quot;, &quot;20201025x_esr_list_tKap_mlt_ce1a2&quot;, [&quot;esti_param.kappa_ce9901&quot;, &quot;esti_param.kappa_ce0209&quot;], 1, &quot;C1E31M3S3=1&quot;]
+for it_idx, ob_val in enumerate(ls_ob_combo_type):
+    print(f&#39;{it_idx=} and {ob_val=}&#39;)</code></pre>
+<pre><code>## it_idx=0 and ob_val=&#39;e&#39;
+## it_idx=1 and ob_val=&#39;20201025x_esr_list_tKap_mlt_ce1a2&#39;
+## it_idx=2 and ob_val=[&#39;esti_param.kappa_ce9901&#39;, &#39;esti_param.kappa_ce0209&#39;]
+## it_idx=3 and ob_val=1
+## it_idx=4 and ob_val=&#39;C1E31M3S3=1&#39;</code></pre>
+</div>
+<div id="parse-elements-of-a-list" class="section level2" number="1.2">
+<h2 number="1.2"><span class="header-section-number">1.2</span> Parse Elements of a List</h2>
+<p>A list has multiple elements, deal them out.</p>
+<pre class="python"><code>list_test = [&#39;C1E126M4S3&#39;, 2]
+[compesti_short_name, esti_top_which] = list_test
+print(f&#39;{compesti_short_name=} and {esti_top_which=}&#39;)</code></pre>
+<pre><code>## compesti_short_name=&#39;C1E126M4S3&#39; and esti_top_which=2</code></pre>
+</div>
+<div id="check-if-any-element-of-a-list-is-another-list" class="section level2" number="1.3">
+<h2 number="1.3"><span class="header-section-number">1.3</span> Check if Any Element of a List is another List</h2>
 <p>There is a list with two elements, there is another list with say four elements. Check if any of the two element is in the list with four elements.</p>
 <pre class="python"><code>ar_int_list_a1 = [1,2]
 ar_int_list_a2 = [2,1111]
@@ -1901,8 +1921,8 @@ print(f&#39;{check_any_a1_in_b=}&#39;)</code></pre>
 <pre class="python"><code>print(f&#39;{check_any_a1_in_c=}&#39;)</code></pre>
 <pre><code>## check_any_a1_in_c=True</code></pre>
 </div>
-<div id="convert-a-list-to-a-string-list" class="section level2" number="1.2">
-<h2 number="1.2"><span class="header-section-number">1.2</span> Convert a List to a String List</h2>
+<div id="convert-a-list-to-a-string-list" class="section level2" number="1.4">
+<h2 number="1.4"><span class="header-section-number">1.4</span> Convert a List to a String List</h2>
 <p>Given a list of string and numeric values, convert to a list of string values. The MAP function is like <a href="https://fanwangecon.github.io/R4Econ/function/noloop/htmlpdfr/fs_apply.html">apply</a> in R.</p>
 <ul>
 <li><a href="https://stackoverflow.com/a/34011944/8280804">How to concatenate items in a list to a single string?</a></li>
@@ -1922,8 +1942,8 @@ ls_st_spec_key = [&#39;list_comprehension&#39; + str(spec_key) for spec_key in l
 print(ls_st_spec_key)</code></pre>
 <pre><code>## [&#39;list_comprehensionng_s_d&#39;, &#39;list_comprehensionesti_test_11_simu&#39;, &#39;list_comprehension2&#39;, &#39;list_comprehension3&#39;]</code></pre>
 </div>
-<div id="concatenate-a-list-to-a-string-with-separator" class="section level2" number="1.3">
-<h2 number="1.3"><span class="header-section-number">1.3</span> Concatenate a List to a String with Separator</h2>
+<div id="concatenate-a-list-to-a-string-with-separator" class="section level2" number="1.5">
+<h2 number="1.5"><span class="header-section-number">1.5</span> Concatenate a List to a String with Separator</h2>
 <p>Given a list of strings and numeric data types, concatenate list to a string with some separator. Also in reverse, generate a list by breaking a string joined by some separator.</p>
 <pre class="python"><code>ls_spec_key = [&#39;ng_s_d&#39;, &#39;esti_test_11_simu&#39;, 2, 3]
 st_separator = &#39;=&#39;
@@ -1935,8 +1955,8 @@ print(st_spec_key)</code></pre>
 print(st_spec_key.split(&#39;=&#39;))</code></pre>
 <pre><code>## [&#39;$ng_s_d$&#39;, &#39;$esti_test_11_simu$&#39;, &#39;$2$&#39;, &#39;$3$&#39;]</code></pre>
 </div>
-<div id="add-nth-element-to-list-when-nth-element-does-not-exist" class="section level2" number="1.4">
-<h2 number="1.4"><span class="header-section-number">1.4</span> Add Nth Element to List when Nth Element Does not Exist</h2>
+<div id="add-nth-element-to-list-when-nth-element-does-not-exist" class="section level2" number="1.6">
+<h2 number="1.6"><span class="header-section-number">1.6</span> Add Nth Element to List when Nth Element Does not Exist</h2>
 <p>There is a list with 2 elements, check if the list has 3 elements, if not, add another element.</p>
 <pre class="python"><code>ls_string_A = [&#39;c&#39;, &#39;20180918&#39;]
 ls_string_B = [&#39;c&#39;, &#39;20180918&#39;, [&#39;esti_param.alpha_k&#39;]]
@@ -1950,8 +1970,8 @@ for ls_string in [ls_string_A, ls_string_B]:
 <pre><code>## [&#39;c&#39;, &#39;20180918&#39;, None]
 ## [&#39;c&#39;, &#39;20180918&#39;, [&#39;esti_param.alpha_k&#39;]]</code></pre>
 </div>
-<div id="check-if-list-has-n-elements-of-none-for-some-elements" class="section level2" number="1.5">
-<h2 number="1.5"><span class="header-section-number">1.5</span> Check If List Has N Elements of None for Some Elements</h2>
+<div id="check-if-list-has-n-elements-of-none-for-some-elements" class="section level2" number="1.7">
+<h2 number="1.7"><span class="header-section-number">1.7</span> Check If List Has N Elements of None for Some Elements</h2>
 <p>In the example below, for A, B and C, do something, for D and E do something else.</p>
 <pre class="python"><code>ls_string_A = [&#39;c&#39;, &#39;20180918&#39;]
 ls_string_B = [&#39;c&#39;, &#39;20180918&#39;, None]
@@ -1971,8 +1991,8 @@ for ls_string in [ls_string_A, ls_string_B, ls_string_C, ls_string_D, ls_string_
 ## [&#39;c&#39;, &#39;20180918&#39;, [&#39;esti_param.alpha_k&#39;], None]
 ## [&#39;c&#39;, &#39;20180918&#39;, [&#39;esti_param.alpha_k&#39;], 5]</code></pre>
 </div>
-<div id="add-a-default-value-to-nth-element-of-list" class="section level2" number="1.6">
-<h2 number="1.6"><span class="header-section-number">1.6</span> Add a Default Value to Nth Element of List</h2>
+<div id="add-a-default-value-to-nth-element-of-list" class="section level2" number="1.8">
+<h2 number="1.8"><span class="header-section-number">1.8</span> Add a Default Value to Nth Element of List</h2>
 <p>There is a string list with potential potentially three elements. But sometimes the input only has two elements. Provide default third element value if third element is NONE or if the string list only has two elements.</p>
 <pre class="python"><code>
 ls_string_A = [&#39;c&#39;, &#39;20180918&#39;]

@@ -11,9 +11,9 @@
 
 <meta name="author" content="Fan Wang" />
 
-<meta name="date" content="2020-10-21" />
+<meta name="date" content="2020-11-30" />
 
-<title>Python Function Tuple and Dictionary as Arguments with *args and **kwargs</title>
+<title>Python Function Returns Multiple Values</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1865,134 +1865,49 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Python Function Tuple and Dictionary as Arguments with *args and **kwargs</h1>
+<h1 class="title toc-ignore">Python Function Returns Multiple Values</h1>
 <h4 class="author"><a href="https://fanwangecon.github.io/">Fan Wang</a></h4>
-<h4 class="date">2020-10-21</h4>
+<h4 class="date">2020-11-30</h4>
 
 </div>
 
 
-<div id="function-arguments" class="section level1" number="1">
-<h1 number="1"><span class="header-section-number">1</span> Function Arguments</h1>
+<div id="function-returns" class="section level1" number="1">
+<h1 number="1"><span class="header-section-number">1</span> Function Returns</h1>
 <blockquote>
 <p>Go to the <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/function/args//fs_func_returns.Rmd"><strong>RMD</strong></a>, <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/function/args//htmlpdfr/fs_func_returns.pdf"><strong>PDF</strong></a>, or <a href="https://fanwangecon.github.io//Py4Econ/function/args//htmlpdfr/fs_func_returns.html"><strong>HTML</strong></a> version of this file. Go back to <a href="https://fanwangecon.github.io/Py4Econ/">Python Code Examples</a> Repository (<a href="https://fanwangecon.github.io/Py4Econ/bookdown">bookdown site</a>) or the <a href="https://pyfan.readthedocs.io/en/latest/">pyfan</a> Package (<a href="https://pyfan.readthedocs.io/en/latest/reference.html">API</a>).</p>
 </blockquote>
-<pre class="python"><code>import pprint</code></pre>
-<div id="python-dictionary-as-argument-via-kwargs" class="section level2" number="1.1">
-<h2 number="1.1"><span class="header-section-number">1.1</span> Python Dictionary As Argument via kwargs</h2>
-<p>There is a python function that outputs a dictionary with key and value pairs that specify key aspects of how a model should be solved. For example, one of the parameters could specify the <em>vcpu</em> requirement. This <em>vcpu</em> requirement might change, and so it should be easy to update this key with alternative values.</p>
-<p>These are accomplished in the following manner. Define the full key-value pair list, with default values for several dictionaries, with model simulation, support, and compute parameters for example. These lists could be updated with some default alternative combinations, or alternatively, it could be updated with externally provided dictionary with both updated values for existing keys, or even additional key value pairs.</p>
-<p>First, we create a function that processes and outputs default parameters, it has two inputs, <em>it_default_group</em> to specify pre-fixed adjustments from defaults, and <em>kwargs</em> that allows for arbitrarily modifications and additions to parameter dictionary.</p>
-<pre class="python"><code>def gen_compesti_spec(it_default_group=None, **kwargs):
-    # A. Define the default parameter keys and values
-    esti_specs = {&#39;esti_method&#39;: &#39;MomentsSimuStates&#39;,
-                  &#39;momsets_type&#39;: [&#39;a&#39;, &#39;20180805a&#39;],
-                  &#39;esti_param_vec_count&#39;: 1,
-                  &#39;esti_max_func_eval&#39;: 10,
-                  &#39;graph_frequncy&#39;: 20}
-    compute_specs = {&#39;cpu&#39;: str(1024 * 1),
-                     &#39;memory&#39;: str(517),  # only need about 160 mb in reality
-                     &#39;workers&#39;: 1,
-                     &#39;aws_fargate&#39;: False}
-
-    # B. For different
-    compesti_specs = {**compute_specs, **esti_specs}
-
-    # C. Update dictionaries with parameter group values
-    if it_default_group == 1:
-        compesti_specs_updates = {&#39;memory&#39;: str(1024 * 55),
-                                  &#39;compute_param_vec_count&#39;: 6,
-                                  &#39;esti_param_vec_count&#39;: 640}
-        compesti_specs.update(compesti_specs_updates)
-
-    # D. Update with kward, could append new
-    compesti_specs.update(kwargs)
-
-    return compesti_specs</code></pre>
-<p>Second, we test the defaults:</p>
-<pre class="python"><code>compesti_specs = gen_compesti_spec()
-pprint.pprint(compesti_specs, width=1)</code></pre>
-<pre><code>## {&#39;aws_fargate&#39;: False,
-##  &#39;cpu&#39;: &#39;1024&#39;,
-##  &#39;esti_max_func_eval&#39;: 10,
-##  &#39;esti_method&#39;: &#39;MomentsSimuStates&#39;,
-##  &#39;esti_param_vec_count&#39;: 1,
-##  &#39;graph_frequncy&#39;: 20,
-##  &#39;memory&#39;: &#39;517&#39;,
-##  &#39;momsets_type&#39;: [&#39;a&#39;,
-##                   &#39;20180805a&#39;],
-##  &#39;workers&#39;: 1}</code></pre>
-<p>Third, we test using default group 1, pre-fixed changes to defaults:</p>
-<pre class="python"><code>compesti_specs = gen_compesti_spec(it_default_group=1)
-pprint.pprint(compesti_specs, width=1)</code></pre>
-<pre><code>## {&#39;aws_fargate&#39;: False,
-##  &#39;compute_param_vec_count&#39;: 6,
-##  &#39;cpu&#39;: &#39;1024&#39;,
-##  &#39;esti_max_func_eval&#39;: 10,
-##  &#39;esti_method&#39;: &#39;MomentsSimuStates&#39;,
-##  &#39;esti_param_vec_count&#39;: 640,
-##  &#39;graph_frequncy&#39;: 20,
-##  &#39;memory&#39;: &#39;56320&#39;,
-##  &#39;momsets_type&#39;: [&#39;a&#39;,
-##                   &#39;20180805a&#39;],
-##  &#39;workers&#39;: 1}</code></pre>
-<p>Fourth, we use kwargs to feed in arbitrary dictionary to update and append to existing parameter dictionary:</p>
-<pre class="python"><code>compesti_specs_updates = {&#39;esti_method&#39;: &#39;MomentsSimuStateszzz&#39;,
-                          &#39;moments_type&#39;: [&#39;a&#39;, &#39;20180805azzz&#39;],
-                          &#39;momsets_type&#39;: [&#39;a&#39;, &#39;20180805azzz&#39;],
-                          &#39;momsets_type_uuu&#39;: [&#39;a&#39;, &#39;20180805azzz&#39;]}
-compesti_specs = gen_compesti_spec(it_default_group=None, **compesti_specs_updates)
-pprint.pprint(compesti_specs, width=1)</code></pre>
-<pre><code>## {&#39;aws_fargate&#39;: False,
-##  &#39;cpu&#39;: &#39;1024&#39;,
-##  &#39;esti_max_func_eval&#39;: 10,
-##  &#39;esti_method&#39;: &#39;MomentsSimuStateszzz&#39;,
-##  &#39;esti_param_vec_count&#39;: 1,
-##  &#39;graph_frequncy&#39;: 20,
-##  &#39;memory&#39;: &#39;517&#39;,
-##  &#39;moments_type&#39;: [&#39;a&#39;,
-##                   &#39;20180805azzz&#39;],
-##  &#39;momsets_type&#39;: [&#39;a&#39;,
-##                   &#39;20180805azzz&#39;],
-##  &#39;momsets_type_uuu&#39;: [&#39;a&#39;,
-##                       &#39;20180805azzz&#39;],
-##  &#39;workers&#39;: 1}</code></pre>
-</div>
-<div id="named-argument-list-and-dictionary" class="section level2" number="1.2">
-<h2 number="1.2"><span class="header-section-number">1.2</span> Named Argument List and Dictionary</h2>
-<p>Define a function with named and unnamed arguments:</p>
-<pre class="python"><code>def gen_compesti_spec_named(it_default_group, esti_method, memory=123, graph_frequncy=10):
-    # A. Define the default parameter keys and values
-    esti_specs = {&#39;esti_method&#39;: &#39;MomentsSimuStates&#39;,
-                  &#39;momsets_type&#39;: [&#39;a&#39;, &#39;20180805a&#39;],
-                  &#39;it_default_group&#39;: it_default_group,
-                  &#39;esti_param_vec_count&#39;: 1,
-                  &#39;esti_max_func_eval&#39;: 10,
-                  &#39;graph_frequncy&#39;: graph_frequncy}
-    compute_specs = {&#39;cpu&#39;: str(1024 * 1),
-                     &#39;memory&#39;: str(memory),  # only need about 160 mb in reality
-                     &#39;workers&#39;: 1,
-                     &#39;aws_fargate&#39;: False}
-
-    # B. For different
-    compesti_specs = {**compute_specs, **esti_specs}
-
-    return compesti_specs</code></pre>
-<p>Provide inputs for the first two unnamed parameters explicitly. Then provided the two named parameters via a dictionary:</p>
-<pre class="python"><code>dc_inputs = {&#39;memory&#39;:12345, &#39;graph_frequncy&#39;:2}
-compesti_specs = gen_compesti_spec_named(None, &#39;MomentsSimuStates&#39;, **dc_inputs)
-pprint.pprint(compesti_specs, width=1)</code></pre>
-<pre><code>## {&#39;aws_fargate&#39;: False,
-##  &#39;cpu&#39;: &#39;1024&#39;,
-##  &#39;esti_max_func_eval&#39;: 10,
-##  &#39;esti_method&#39;: &#39;MomentsSimuStates&#39;,
-##  &#39;esti_param_vec_count&#39;: 1,
-##  &#39;graph_frequncy&#39;: 2,
-##  &#39;it_default_group&#39;: None,
-##  &#39;memory&#39;: &#39;12345&#39;,
-##  &#39;momsets_type&#39;: [&#39;a&#39;,
-##                   &#39;20180805a&#39;],
-##  &#39;workers&#39;: 1}</code></pre>
+<div id="function-with-multiple-optional-returns" class="section level2" number="1.1">
+<h2 number="1.1"><span class="header-section-number">1.1</span> Function with Multiple Optional Returns</h2>
+<p>There is a function that is already written, that returns some string value. Without interrupting the existing function, now add an additional return for the function. There is some conditional statement that controls whether the function returns one or two value.</p>
+<p>In the example below, if the path contains</p>
+<p>Create a testing function:</p>
+<pre class="python"><code>def get_val(spn_path):
+    if &#39;G:&#39; in spn_path:
+        # this returns a tuple of length 2
+        return spn_path, &#39;G:/repos&#39;
+    else:
+        return spn_path</code></pre>
+<p>Call the function with one return, in the two calls below, the first call returns a tuple</p>
+<pre class="python"><code># Return tuple
+tp_st_return = get_val(&quot;G:/Dropbox (UH-ECON)&quot;)
+# Unpack tuple return
+st_path_a, st_path_b = get_val(&quot;G:/Dropbox (UH-ECON)&quot;)
+# Single element return
+st_return = get_val(&quot;C:/Dropbox (UH-ECON)&quot;)
+# Print
+print(f&#39;{tp_st_return=} and {st_return=}&#39;)</code></pre>
+<pre><code>## tp_st_return=(&#39;G:/Dropbox (UH-ECON)&#39;, &#39;G:/repos&#39;) and st_return=&#39;C:/Dropbox (UH-ECON)&#39;</code></pre>
+<pre class="python"><code>print(f&#39;{st_path_a=} and {st_path_b=}&#39;)</code></pre>
+<pre><code>## st_path_a=&#39;G:/Dropbox (UH-ECON)&#39; and st_path_b=&#39;G:/repos&#39;</code></pre>
+<pre class="python"><code>print(f&#39;{isinstance(tp_st_return, str)=}&#39;)</code></pre>
+<pre><code>## isinstance(tp_st_return, str)=False</code></pre>
+<pre class="python"><code>print(f&#39;{isinstance(tp_st_return, tuple)=}&#39;)</code></pre>
+<pre><code>## isinstance(tp_st_return, tuple)=True</code></pre>
+<pre class="python"><code>print(f&#39;{isinstance(st_return, str)=}&#39;)</code></pre>
+<pre><code>## isinstance(st_return, str)=True</code></pre>
+<pre class="python"><code>print(f&#39;{isinstance(st_return, tuple)=}&#39;)</code></pre>
+<pre><code>## isinstance(st_return, tuple)=False</code></pre>
 </div>
 </div>
 

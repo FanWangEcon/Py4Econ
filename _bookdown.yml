@@ -9,12 +9,15 @@ rmd_files:
   - index.Rmd
   - amto/main.Rmd
   - amto/array/main.Rmd
-  - amto/array/fp_ary_string.Rmd
+  - amto/array/fs_numeric.Rmd
+  - amto/array/fs_tuple.Rmd
   - amto/array/fs_list.Rmd
+  - amto/array/fs_ary_string.Rmd
   - amto/array/fs_tuple.Rmd
   - amto/dict/main.Rmd
-  - amto/dict/fp_dict.Rmd
+  - amto/dict/fs_dict.Rmd
   - amto/matrix/main.Rmd
+  - amto/matrix/fs_numpy_basics.Rmd
   - amto/matrix/fs_array2mat.Rmd
 
   - panda/main.Rmd

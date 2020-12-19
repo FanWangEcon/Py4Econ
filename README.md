@@ -14,9 +14,20 @@ Please contact [FanWangEcon](https://fanwangecon.github.io/) for issues or probl
 
 # 1  Data Structures
 
-## 1.1  Strings, Lists and Tuples
+## 1.1  Numbers, Strings, Lists and Tuples
 
-1. [Python String Manipulation Examples](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fp_ary_string.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array//fp_ary_string.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fp_ary_string.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fp_ary_string.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fp_ary_string.html)
+1. [Basic Number Numeric Manipulations](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_numeric.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array//fs_numeric.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_numeric.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_numeric.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_numeric.html)
+	+ Loop over a list of numbers where the first and second digits have different interpretations.
+	+ **py**: **
+2. [Define and Unpack Tuple](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_tuple.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array//fs_tuple.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_tuple.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_tuple.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_tuple.html)
+	+ Define tuple in python with and without parenthesis, unpack tuple, get subset of elements.
+	+ Access tuple element and fail to mutate tuple element.
+	+ **py**: *isinstance(tp_abc, tuple)*
+3. [List Manipulations and Defaults](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_list.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array//fs_list.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_list.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_list.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_list.html)
+	+ Conditional statements based on list length and element value.
+	+ Provide default for element of a list when list does not have that element.
+	+ **py**: *lambda + join + append() + if len(X) >= 3 and X[2] is not None + if elif else*
+4. [Python String Manipulation Examples](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_ary_string.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array//fs_ary_string.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_ary_string.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_ary_string.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_ary_string.html)
 	+ Search for substring, replace string, wrap string.
 	+ Display and format numeric string with fstring. 
 	+ Change the decimal rounding given a list of estimates and standard error string arrays.
@@ -24,18 +35,14 @@ Please contact [FanWangEcon](https://fanwangecon.github.io/) for issues or probl
 	+ **textwrap**: *fill(st, width = 20)*
 	+ **fstring**: *f + f'{fl_esti_rounded:.{it_round_decimal}f}'*
 	+ **random**: *choice*
-2. [List Manipulations and Defaults](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_list.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array//fs_list.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_list.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_list.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_list.html)
-	+ Conditional statements based on list length and element value.
-	+ Provide default for element of a list when list does not have that element.
-	+ **py**: *lambda + join + append() + if len(X) >= 3 and X[2] is not None + if elif else*
-3. [Define and Unpack Tuple](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_tuple.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array//fs_tuple.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_tuple.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_tuple.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_tuple.html)
+5. [Define and Unpack Tuple](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_tuple.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array//fs_tuple.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_tuple.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_tuple.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_tuple.html)
 	+ Define tuple in python with and without parenthesis, unpack tuple, get subset of elements.
 	+ Access tuple element and fail to mutate tuple element.
 	+ **py**: *isinstance(tp_abc, tuple)*
 
 ## 1.2  Dictionary
 
-1. [Python Dictionary Examples and Usages](https://fanwangecon.github.io/Py4Econ/amto/dict/htmlpdfr/fp_dict.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/dict//fp_dict.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/dict/htmlpdfr/fp_dict.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/dict/htmlpdfr/fp_dict.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/amto/dict/htmlpdfr/fp_dict.html)
+1. [Python Dictionary Examples and Usages](https://fanwangecon.github.io/Py4Econ/amto/dict/htmlpdfr/fs_dict.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/dict//fs_dict.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/dict/htmlpdfr/fs_dict.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/dict/htmlpdfr/fs_dict.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/amto/dict/htmlpdfr/fs_dict.html)
 	+ Generate a dictionary, loop through a dictionary. 
 	+ List comprehension with dictionary. 
 	+ **py**: *dc = {'key': "name", 'val': 1}*
@@ -43,7 +50,8 @@ Please contact [FanWangEcon](https://fanwangecon.github.io/) for issues or probl
 
 ## 1.3  Numpy Arrays
 
-1. [Numpy Combine Arrays to Matrix](https://fanwangecon.github.io/Py4Econ/amto/matrix/htmlpdfr/fs_array2mat.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix//fs_array2mat.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix/htmlpdfr/fs_array2mat.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix/htmlpdfr/fs_array2mat.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/amto/matrix/htmlpdfr/fs_array2mat.html)
+1. [fs_numpy_basics](https://fanwangecon.github.io/Py4Econ/amto/matrix/htmlpdfr/fs_numpy_basics.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix//fs_numpy_basics.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix/htmlpdfr/fs_numpy_basics.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix/htmlpdfr/fs_numpy_basics.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/amto/matrix/htmlpdfr/fs_numpy_basics.html)
+2. [Numpy Combine Arrays to Matrix](https://fanwangecon.github.io/Py4Econ/amto/matrix/htmlpdfr/fs_array2mat.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix//fs_array2mat.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix/htmlpdfr/fs_array2mat.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix/htmlpdfr/fs_array2mat.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/amto/matrix/htmlpdfr/fs_array2mat.html)
 	+ Arrays to matrix.
 	+ **numpy**: *column_stack() + random.choice() + reshape()*
 
@@ -68,13 +76,13 @@ Please contact [FanWangEcon](https://fanwangecon.github.io/) for issues or probl
 	+ Check if parameter is string or integer, conditional execution and exception handling.
 	+ Check if parameter is string or an integer between some values. 
 	+ **py**: *type + isinstance(abc, str) + isinstance(abc, int) + raise + try except*
-2. [Function value returns](https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_args.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args//fs_func_args.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_args.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_args.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_args.html)
-	+ Return one or multiple values from function.
-	+ **python**: *return a, b, c*
-3. [Tuple and Dictionary as Arguments with args and kwargs](https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_returns.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args//fs_func_returns.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_returns.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_returns.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_returns.html)
-	+ Update default parameters with dictionary that replaces and appends additional key-value paris using kwargs.
+2. [Tuple and Dictionary as Arguments with args and kwargs](https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_args.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args//fs_func_args.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_args.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_args.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_args.html)
+	+ Update default parameters with dictionary that replaces and appends additional key-value pairs using kwargs.
 	+ Pass a dictionary for named arguments to a function.
 	+ **python**: *dict3 = {dict1, dict2} + dict1.update(dict2) + func(par1='val1', kwargs)*
+3. [Function value returns](https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_returns.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args//fs_func_returns.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_returns.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_returns.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_returns.html)
+	+ Return one or multiple values from function.
+	+ **python**: *return a, b, c*
 
 ## 3.2  Exceptions
 

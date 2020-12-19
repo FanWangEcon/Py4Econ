@@ -11,9 +11,9 @@
 
 <meta name="author" content="Fan Wang" />
 
-<meta name="date" content="2020-06-17" />
+<meta name="date" content="2020-05-23" />
 
-<title>Python String Manipulation Examples: Search, Replace, Wrap Strings</title>
+<title>Python Dictionary Examples and Usages</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1865,269 +1865,276 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Python String Manipulation Examples: Search, Replace, Wrap Strings</h1>
+<h1 class="title toc-ignore">Python Dictionary Examples and Usages</h1>
 <h4 class="author"><a href="https://fanwangecon.github.io/">Fan Wang</a></h4>
-<h4 class="date">2020-06-17</h4>
+<h4 class="date">2020-05-23</h4>
 
 </div>
 
 
-<div id="strings" class="section level1" number="1">
-<h1 number="1"><span class="header-section-number">1</span> Strings</h1>
+<div id="dictionary" class="section level1" number="1">
+<h1 number="1"><span class="header-section-number">1</span> Dictionary</h1>
 <blockquote>
-<p>Go to the <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/amto/array//fp_ary_string.Rmd"><strong>RMD</strong></a>, <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/amto/array//htmlpdfr/fp_ary_string.pdf"><strong>PDF</strong></a>, or <a href="https://fanwangecon.github.io//Py4Econ/amto/array//htmlpdfr/fp_ary_string.html"><strong>HTML</strong></a> version of this file. Go back to <a href="https://fanwangecon.github.io/Py4Econ/">Python Code Examples</a> Repository (<a href="https://fanwangecon.github.io/Py4Econ/bookdown">bookdown site</a>) or the <a href="https://pyfan.readthedocs.io/en/latest/">pyfan</a> Package (<a href="https://pyfan.readthedocs.io/en/latest/reference.html">API</a>).</p>
+<p>Go to the <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/amto/dict//fs_dict.Rmd"><strong>RMD</strong></a>, <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/amto/dict//htmlpdfr/fs_dict.pdf"><strong>PDF</strong></a>, or <a href="https://fanwangecon.github.io//Py4Econ/amto/dict//htmlpdfr/fs_dict.html"><strong>HTML</strong></a> version of this file. Go back to <a href="https://fanwangecon.github.io/Py4Econ/">Python Code Examples</a> Repository (<a href="https://fanwangecon.github.io/Py4Econ/bookdown">bookdown site</a>) or the <a href="https://pyfan.readthedocs.io/en/latest/">pyfan</a> Package (<a href="https://pyfan.readthedocs.io/en/latest/reference.html">API</a>).</p>
 </blockquote>
-<pre class="python"><code>import numpy as np
-import string as string
-import random as random</code></pre>
-<div id="fstring-print-strings-with-numeric-values-and-other-strings" class="section level2" number="1.1">
-<h2 number="1.1"><span class="header-section-number">1.1</span> Fstring Print Strings with Numeric Values and Other Strings</h2>
-<p>After some code segment, print some outputs declaring the end of operation and print results.</p>
-<pre class="python"><code>dc_invoke_main_args = {&#39;speckey&#39;: &#39;ng_s_t&#39;,
-                       &#39;numeric&#39;: 1.46,
-                       &#39;ge&#39;: False,
-                       &#39;multiprocess&#39;: False}
-                       
-print(f&#39;speckey in dc_invoke_main_args is {dc_invoke_main_args[&quot;speckey&quot;]}.&#39;)</code></pre>
-<pre><code>## speckey in dc_invoke_main_args is ng_s_t.</code></pre>
-<pre class="python"><code>print(f&#39;numeric in dc_invoke_main_args is {dc_invoke_main_args[&quot;numeric&quot;]}.&#39;)</code></pre>
-<pre><code>## numeric in dc_invoke_main_args is 1.46.</code></pre>
-<pre class="python"><code>print(f&#39;speckey in dc_invoke_main_args is {dc_invoke_main_args}.&#39;)</code></pre>
-<pre><code>## speckey in dc_invoke_main_args is {&#39;speckey&#39;: &#39;ng_s_t&#39;, &#39;numeric&#39;: 1.46, &#39;ge&#39;: False, &#39;multiprocess&#39;: False}.</code></pre>
+<pre class="python"><code>import pprint
+import copy as copy</code></pre>
+<div id="loop-through-a-dictionary" class="section level2" number="1.1">
+<h2 number="1.1"><span class="header-section-number">1.1</span> Loop Through a Dictionary</h2>
+<p>Given a dictionary, loop through all of its elements</p>
+<pre class="python"><code>dc_speckey_dict = {0: &#39;mpoly_1&#39;,
+                   1: &#39;ng_s_t&#39;,
+                   2: &#39;ng_s_d&#39;,
+                   3: &#39;ng_p_t&#39;,
+                   4: &#39;ng_p_d&#39;}
+for speckey_key, speckey_val in dc_speckey_dict.items():
+    print(&#39;speckey_key:&#39; + str(speckey_key) + &#39;, speckey_val:&#39; + speckey_val)</code></pre>
+<pre><code>## speckey_key:0, speckey_val:mpoly_1
+## speckey_key:1, speckey_val:ng_s_t
+## speckey_key:2, speckey_val:ng_s_d
+## speckey_key:3, speckey_val:ng_p_t
+## speckey_key:4, speckey_val:ng_p_d</code></pre>
 </div>
-</div>
-<div id="fstring-format-floating-point-values" class="section level1" number="2">
-<h1 number="2"><span class="header-section-number">2</span> Fstring Format Floating Point Values</h1>
-<p>There is a number, it is a parameter value. The number of decimal points to be allowed is also a parameter value. Use Fstring to format.</p>
-<pre class="python"><code># Define a formatter function
-def fstring_formater(st_float, it_decimal):
-    # strip the string float, and format with it_decimal number of decimals
-    st_float = st_float.strip()
-    fl_float = float(st_float)
-    st_float_rounded = f&#39;{fl_float:.{it_decimal}f}&#39;
-    return st_float_rounded
-    
-# Print 
-f&#39;{fstring_formater(&quot;1.2345&quot;, 3)=}&#39;</code></pre>
-<pre><code>## &#39;fstring_formater(&quot;1.2345&quot;, 3)=\&#39;1.234\&#39;&#39;</code></pre>
-<pre class="python"><code>f&#39;{fstring_formater(&quot;1.2345&quot;, 2)=}&#39;</code></pre>
-<pre><code>## &#39;fstring_formater(&quot;1.2345&quot;, 2)=\&#39;1.23\&#39;&#39;</code></pre>
-<pre class="python"><code>f&#39;{fstring_formater(&quot; 1.2345 &quot;, 1)=}&#39;</code></pre>
-<pre><code>## &#39;fstring_formater(&quot; 1.2345 &quot;, 1)=\&#39;1.2\&#39;&#39;</code></pre>
-<pre class="python"><code>f&#39;{fstring_formater(&quot; 1.2345&quot;, 1)=}&#39;
-# Alternatively</code></pre>
-<pre><code>## &#39;fstring_formater(&quot; 1.2345&quot;, 1)=\&#39;1.2\&#39;&#39;</code></pre>
-<pre class="python"><code>it_decimal = 3
-fl_float = 123.456789
-print(f&#39;Formating with .{it_decimal}f -&gt; {fl_float:.{it_decimal}f}&#39;)</code></pre>
-<pre><code>## Formating with .3f -&gt; 123.457</code></pre>
-<div id="generate-random-strings" class="section level2" number="2.1">
-<h2 number="2.1"><span class="header-section-number">2.1</span> Generate Random Strings</h2>
-<p>Generate some random strings:</p>
-<pre class="python"><code>random.seed(123)
-it_word_length = 5
-st_rand_word = &#39;&#39;.join(random.choice(string.ascii_lowercase) for i in range(it_word_length))
-st_rand_word = st_rand_word.capitalize()
-print(f&#39;{st_rand_word=}&#39;)</code></pre>
-<pre><code>## st_rand_word=&#39;Bicyn&#39;</code></pre>
-<p>Generate a block or random text and then convert it to a one list of strings:</p>
-<pre class="python"><code>random.seed(123)
-it_words_count = 15
-it_word_length = 5
-st_rand_word_block = &#39;&#39;.join(random.choice(string.ascii_lowercase) for ctr in range(it_word_length*it_words_count))
-ls_st_rand_word = [st_rand_word_block[ctr: ctr + it_word_length].capitalize() 
-                   for ctr in range(0, len(st_rand_word_block), it_word_length)]
-print(f&#39;{ls_st_rand_word=}&#39;)</code></pre>
-<pre><code>## ls_st_rand_word=[&#39;Bicyn&#39;, &#39;Idbmr&#39;, &#39;Rkkbf&#39;, &#39;Ekrkw&#39;, &#39;Hfany&#39;, &#39;Ctmca&#39;, &#39;Kxodb&#39;, &#39;Cveez&#39;, &#39;Ajnsp&#39;, &#39;Ipbyj&#39;, &#39;Kqzpg&#39;, &#39;Tuqsz&#39;, &#39;Kamyu&#39;, &#39;Qnvru&#39;, &#39;Zvtpq&#39;]</code></pre>
-<p>Reshape the array of words to a matrix:</p>
-<pre class="python"><code>mt_st_rand_word = np.reshape(ls_st_rand_word, [3,5])
-print(f&#39;{mt_st_rand_word=}&#39;)</code></pre>
-<pre><code>## mt_st_rand_word=array([[&#39;Bicyn&#39;, &#39;Idbmr&#39;, &#39;Rkkbf&#39;, &#39;Ekrkw&#39;, &#39;Hfany&#39;],
-##        [&#39;Ctmca&#39;, &#39;Kxodb&#39;, &#39;Cveez&#39;, &#39;Ajnsp&#39;, &#39;Ipbyj&#39;],
-##        [&#39;Kqzpg&#39;, &#39;Tuqsz&#39;, &#39;Kamyu&#39;, &#39;Qnvru&#39;, &#39;Zvtpq&#39;]], dtype=&#39;&lt;U5&#39;)</code></pre>
-<pre class="python"><code>print(f&#39;{mt_st_rand_word.shape=}&#39;)</code></pre>
-<pre><code>## mt_st_rand_word.shape=(3, 5)</code></pre>
-<pre class="python"><code>print(f&#39;{type(mt_st_rand_word)=}&#39;)</code></pre>
-<pre><code>## type(mt_st_rand_word)=&lt;class &#39;numpy.ndarray&#39;&gt;</code></pre>
-</div>
-<div id="add-string-suffix-to-numeric-array" class="section level2" number="2.2">
-<h2 number="2.2"><span class="header-section-number">2.2</span> Add String Suffix to Numeric Array</h2>
-<p>Given an numeric array, add string, for example to generate sequencial column names with suffix c:</p>
-<pre class="python"><code>ar_st_colnames = [ &#39;s&#39; + str(it_col) for it_col in np.array(range(1, 3))]
-print(ar_st_colnames)</code></pre>
-<pre><code>## [&#39;s1&#39;, &#39;s2&#39;]</code></pre>
-</div>
-<div id="search-if-names-include-strings" class="section level2" number="2.3">
-<h2 number="2.3"><span class="header-section-number">2.3</span> Search if Names Include Strings</h2>
-<p>Given a list of strings, loop but skip if string contains elements string list.</p>
-<pre class="python"><code># define string
-ls_st_ignore = [&#39;abc&#39;, &#39;efg&#39;, &#39;xyz&#39;]
-ls_st_loop = [&#39;ab cefg sdf&#39;, &#39;12345&#39;, &#39;xyz&#39;, &#39;abc xyz&#39;, &#39;good morning&#39;]
-
-# zip and loop and replace
-for st_loop in ls_st_loop:
-  if sum([st_ignore in st_loop for st_ignore in ls_st_ignore]):
-    print(&#39;skip:&#39;, st_loop)
-  else:
-    print(&#39;not skip:&#39;, st_loop)</code></pre>
-<pre><code>## skip: ab cefg sdf
-## not skip: 12345
-## skip: xyz
-## skip: abc xyz
-## not skip: good morning</code></pre>
-</div>
-<div id="replace-a-set-of-strings-in-string" class="section level2" number="2.4">
-<h2 number="2.4"><span class="header-section-number">2.4</span> Replace a Set of Strings in String</h2>
-<p>Replace terms in string</p>
-<pre class="python"><code># define string
-st_full = &quot;&quot;&quot;
-abc is a great efg, probably xyz. Yes, xyz is great, like efg. 
-eft good, EFG capitalized, efg good again. 
-A B C or abc or ABC. Interesting xyz. 
-&quot;&quot;&quot;
-
-# define new and old
-ls_st_old = [&#39;abc&#39;, &#39;efg&#39;, &#39;xyz&#39;]
-ls_st_new = [&#39;123&#39;, &#39;456&#39;, &#39;789&#39;]
-
-# zip and loop and replace
-for old, new in zip(ls_st_old, ls_st_new):
-  st_full = st_full.replace(old, new)
-
-# print
-print(st_full)</code></pre>
-<pre><code>## 
-## 123 is a great 456, probably 789. Yes, 789 is great, like 456. 
-## eft good, EFG capitalized, 456 good again. 
-## A B C or 123 or ABC. Interesting 789.</code></pre>
-</div>
-<div id="wrap-string-with-fixed-width" class="section level2" number="2.5">
-<h2 number="2.5"><span class="header-section-number">2.5</span> Wrap String with Fixed Width</h2>
-<p>Given a long string, wrap it into multiple lines with fixed width.</p>
-<pre class="python"><code>import textwrap
-
-# A long Path
-st_path = &quot;&quot;&quot;
-C:/Users/fan/Documents/Dropbox (UH-ECON)/Project Emily Minority Survey/EthLang/reg_lang_abi_cls_mino/tab3_fm/attain_m_vs_f/tab3_mand_talk_m2c_hfracle02.tex
-&quot;&quot;&quot;
-
-# Wrap text with tight width
-st_wrapped = textwrap.fill(st_path, width = 20)
-print(st_wrapped)</code></pre>
-<pre><code>##  C:/Users/fan/Docume
-## nts/Dropbox (UH-
-## ECON)/Project Emily
-## Minority Survey/EthL
-## ang/reg_lang_abi_cls
-## _mino/tab3_fm/attain
-## _m_vs_f/tab3_mand_ta
-## lk_m2c_hfracle02.tex</code></pre>
-<p>Combine Strings that are wrapped and not Wrapped</p>
-<pre class="python"><code>
-# Paths
-st_path_a = &quot;C:/Users/fan/Documents/Dropbox (UH-ECON)/Project Emily Minority Survey/EthLang/reg_lang_abi_cls_mino/tab3_fm/attain_m_vs_f/tab3_mand_talk_m2c_hfracle02.tex&quot;
-st_path_b = &#39;C:/Users/fan/R4Econ/support/development/fs_packaging.html&#39;
-
-# Combine Strings and Wrap
-str_dc_records = &#39;First Path:&#39;.upper() + &#39;\n&#39; + \
-                 textwrap.fill(st_path_a, width=25) + &#39;\n\n&#39; + \
-                 &#39;Second Path:&#39;.upper() + &#39;\n&#39; + \
-                 textwrap.fill(st_path_b, width=25)
-              
+<div id="convert-a-list-to-a-dictionary" class="section level2" number="1.2">
+<h2 number="1.2"><span class="header-section-number">1.2</span> Convert a List to a Dictionary</h2>
+<p>There is a list with different types of elements. Use the name of the list as the key, with value index added in as a part of the key, the value is the value of the dictionary.</p>
+<pre class="python"><code># List
+ls_combo_type = [&quot;e&quot;, &quot;20201025x_esr_list_tKap_mlt_ce1a2&quot;, [&quot;esti_param.kappa_ce9901&quot;, &quot;esti_param.kappa_ce0209&quot;], 1, &quot;C1E31M3S3=1&quot;]
+# List name as string variable
+st_ls_name = f&#39;{ls_combo_type=}&#39;.split(&#39;=&#39;)[0]
+# Convert to dict
+dc_from_list = {st_ls_name + &#39;_i&#39; + str(it_idx) + &#39;o&#39; + str(len(ls_combo_type)) : ob_val 
+                for it_idx, ob_val in enumerate(ls_combo_type)}
 # Print
-print(str_dc_records)                 </code></pre>
-<pre><code>## FIRST PATH:
-## C:/Users/fan/Documents/Dr
-## opbox (UH-ECON)/Project
-## Emily Minority Survey/Eth
-## Lang/reg_lang_abi_cls_min
-## o/tab3_fm/attain_m_vs_f/t
-## ab3_mand_talk_m2c_hfracle
-## 02.tex
-## 
-## SECOND PATH:
-## C:/Users/fan/R4Econ/suppo
-## rt/development/fs_packagi
-## ng.html</code></pre>
+pprint.pprint(dc_from_list, width=1)</code></pre>
+<pre><code>## {&#39;ls_combo_type_i0o5&#39;: &#39;e&#39;,
+##  &#39;ls_combo_type_i1o5&#39;: &#39;20201025x_esr_list_tKap_mlt_ce1a2&#39;,
+##  &#39;ls_combo_type_i2o5&#39;: [&#39;esti_param.kappa_ce9901&#39;,
+##                         &#39;esti_param.kappa_ce0209&#39;],
+##  &#39;ls_combo_type_i3o5&#39;: 1,
+##  &#39;ls_combo_type_i4o5&#39;: &#39;C1E31M3S3=1&#39;}</code></pre>
 </div>
-<div id="change-round-for-lists-of-string-estimates" class="section level2" number="2.6">
-<h2 number="2.6"><span class="header-section-number">2.6</span> Change Round for Lists of String Estimates</h2>
-<p>Here we have two strings in a list, with point estimates and corresponding standard errors. Estimates are separated by commas. We want to change the number of decimal points shown and set appropriate roundings. Several steps: (1) split string by comma (2) Loop over (3) extract numerical elements (4) recover</p>
-<pre class="python"><code>it_round_decimal = 1
-ls_st_all_estimates = [&quot;84.506***, 91.758***, 107.950***, 115.879***, 133.560***\n&quot;,
-                       &quot;(7.796), (4.848), (4.111), (5.044), (6.961)\n&quot;,
-                       &quot;68.180***, 47.921***, 47.127***, 51.366***, 41.764***\n&quot;,
-                       &quot;(8.986), (5.368), (4.995), (5.099), (8.637)\n&quot;]
+<div id="select-one-key-value-pair" class="section level2" number="1.3">
+<h2 number="1.3"><span class="header-section-number">1.3</span> Select One Key-value Pair</h2>
+<p>Given a dictionary, select a single key-value pair, based on either the key or the value.</p>
+<pre class="python"><code># select by key
+ls_it_keys = [0, 4]
+dc_speckey_dict_select_by_key = {it_key: dc_speckey_dict[it_key] for it_key in ls_it_keys}
+print(f&#39;{dc_speckey_dict_select_by_key=}&#39;)
+# select by value</code></pre>
+<pre><code>## dc_speckey_dict_select_by_key={0: &#39;mpoly_1&#39;, 4: &#39;ng_p_d&#39;}</code></pre>
+<pre class="python"><code>ls_st_keys = [&#39;ng_s_d&#39;, &#39;ng_p_d&#39;]
+dc_speckey_dict_select_by_val = {it_key: st_val for it_key, st_val in dc_speckey_dict.items() 
+                                 if st_val in ls_st_keys}
+print(f&#39;{dc_speckey_dict_select_by_val=}&#39;)</code></pre>
+<pre><code>## dc_speckey_dict_select_by_val={2: &#39;ng_s_d&#39;, 4: &#39;ng_p_d&#39;}</code></pre>
+<p>See <a href="https://stackoverflow.com/questions/8023306/get-key-by-value-in-dictionary">Get key by value in dictionary</a>.</p>
+</div>
+<div id="copying-dictionary-and-updating-copied-dictionary" class="section level2" number="1.4">
+<h2 number="1.4"><span class="header-section-number">1.4</span> Copying Dictionary and Updating Copied Dictionary</h2>
+<p>First, below, it looks as if the default dictionary has been copied, and that the updates to the dictionary will only impact the <em>dc_invoke_main_args</em>, but that is not the case:</p>
+<pre class="python"><code># list update
+dc_invoke_main_args_default = {&#39;speckey&#39;: &#39;ng_s_t&#39;,
+                               &#39;ge&#39;: False,
+                               &#39;multiprocess&#39;: False,
+                               &#39;estimate&#39;: False,
+                               &#39;graph_panda_list_name&#39;: &#39;min_graphs&#39;,
+                               &#39;save_directory_main&#39;: &#39;simu&#39;,
+                               &#39;log_file&#39;: False,
+                               &#39;log_file_suffix&#39;: &#39;&#39;}
+dc_invoke_main_args = dc_invoke_main_args_default
+dc_invoke_main_args[&#39;speckey&#39;] = &#39;b_ge_s_t_bis&#39;
+dc_invoke_main_args[&#39;ge&#39;] = True
+print(f&#39;speckey in dc_invoke_main_args is {dc_invoke_main_args[&quot;speckey&quot;]}.&#39;)</code></pre>
+<pre><code>## speckey in dc_invoke_main_args is b_ge_s_t_bis.</code></pre>
+<pre class="python"><code>print(f&#39;speckey in dc_invoke_main_args_default is {dc_invoke_main_args_default[&quot;speckey&quot;]}.&#39;)</code></pre>
+<pre><code>## speckey in dc_invoke_main_args_default is b_ge_s_t_bis.</code></pre>
+<p>Now this has the intended result. After updating the deep-copied dictionary, the key-values in the original dictionary are preserved:</p>
+<pre class="python"><code># list update
+dc_invoke_main_args_default = {&#39;speckey&#39;: &#39;ng_s_t&#39;,
+                               &#39;ge&#39;: False,
+                               &#39;multiprocess&#39;: False,
+                               &#39;estimate&#39;: False,
+                               &#39;graph_panda_list_name&#39;: &#39;min_graphs&#39;,
+                               &#39;save_directory_main&#39;: &#39;simu&#39;,
+                               &#39;log_file&#39;: False,
+                               &#39;log_file_suffix&#39;: &#39;&#39;}
+# deep copy and update
+dc_invoke_main_args = copy.deepcopy(dc_invoke_main_args_default)
+dc_invoke_main_args[&#39;speckey&#39;] = &#39;b_ge_s_t_bis&#39;
+dc_invoke_main_args[&#39;ge&#39;] = True
+print(f&#39;speckey in dc_invoke_main_args_default is {dc_invoke_main_args_default[&quot;speckey&quot;]}.&#39;)</code></pre>
+<pre><code>## speckey in dc_invoke_main_args_default is ng_s_t.</code></pre>
+<pre class="python"><code>print(f&#39;speckey in dc_invoke_main_args is {dc_invoke_main_args[&quot;speckey&quot;]}.&#39;)
+# deep copy and update again</code></pre>
+<pre><code>## speckey in dc_invoke_main_args is b_ge_s_t_bis.</code></pre>
+<pre class="python"><code>dc_invoke_main_args = copy.deepcopy(dc_invoke_main_args_default)
+dc_invoke_main_args[&#39;speckey&#39;] = &#39;b_ge_s_t_bis_new&#39;
+dc_invoke_main_args[&#39;ge&#39;] = False
+print(f&#39;speckey in dc_invoke_main_args is {dc_invoke_main_args[&quot;speckey&quot;]}.&#39;)</code></pre>
+<pre><code>## speckey in dc_invoke_main_args is b_ge_s_t_bis_new.</code></pre>
+<ul>
+<li><a href="https://docs.python.org/2/library/copy.html">copy and deepcopy</a></li>
+<li><a href="https://stackoverflow.com/questions/5105517/deep-copy-of-a-dict-in-python">Deep copy of a dict in python</a></li>
+</ul>
+</div>
+<div id="create-a-list-of-dictionaries" class="section level2" number="1.5">
+<h2 number="1.5"><span class="header-section-number">1.5</span> Create a List of Dictionaries</h2>
+<pre class="python"><code>import datetime
+import pprint
+ls_dc_exa =  [
+    {&quot;file&quot;: &quot;mat_matlab&quot;,
+     &quot;title&quot;: &quot;One Variable Graphs and Tables&quot;,
+     &quot;description&quot;: &quot;Frequency table, bar chart and histogram&quot;,
+     &quot;val&quot;: 1,
+     &quot;date&quot;: datetime.date(2020, 5, 2)},
+    {&quot;file&quot;: &quot;mat_two&quot;,
+     &quot;title&quot;: &quot;Second file&quot;,
+     &quot;description&quot;: &quot;Second file.&quot;,
+     &quot;val&quot;: [1, 2, 3],
+     &quot;date&quot;: datetime.date(2020, 5, 2)},
+    {&quot;file&quot;: &quot;mat_algebra_rules&quot;,
+     &quot;title&quot;: &quot;Opening a Dataset&quot;,
+     &quot;description&quot;: &quot;Opening a Dataset.&quot;,
+     &quot;val&quot;: 1.1,
+     &quot;date&quot;: datetime.date(2018, 12, 1)}
+]
+pprint.pprint(ls_dc_exa, width=1)</code></pre>
+<pre><code>## [{&#39;date&#39;: datetime.date(2020, 5, 2),
+##   &#39;description&#39;: &#39;Frequency &#39;
+##                  &#39;table, &#39;
+##                  &#39;bar &#39;
+##                  &#39;chart &#39;
+##                  &#39;and &#39;
+##                  &#39;histogram&#39;,
+##   &#39;file&#39;: &#39;mat_matlab&#39;,
+##   &#39;title&#39;: &#39;One &#39;
+##            &#39;Variable &#39;
+##            &#39;Graphs &#39;
+##            &#39;and &#39;
+##            &#39;Tables&#39;,
+##   &#39;val&#39;: 1},
+##  {&#39;date&#39;: datetime.date(2020, 5, 2),
+##   &#39;description&#39;: &#39;Second &#39;
+##                  &#39;file.&#39;,
+##   &#39;file&#39;: &#39;mat_two&#39;,
+##   &#39;title&#39;: &#39;Second &#39;
+##            &#39;file&#39;,
+##   &#39;val&#39;: [1,
+##           2,
+##           3]},
+##  {&#39;date&#39;: datetime.date(2018, 12, 1),
+##   &#39;description&#39;: &#39;Opening &#39;
+##                  &#39;a &#39;
+##                  &#39;Dataset.&#39;,
+##   &#39;file&#39;: &#39;mat_algebra_rules&#39;,
+##   &#39;title&#39;: &#39;Opening &#39;
+##            &#39;a &#39;
+##            &#39;Dataset&#39;,
+##   &#39;val&#39;: 1.1}]</code></pre>
+</div>
+<div id="iteratively-add-to-a-dictionary" class="section level2" number="1.6">
+<h2 number="1.6"><span class="header-section-number">1.6</span> Iteratively Add to A Dictionary</h2>
+<p>Iteratively add additional Key and Value pairs to a dictionary.</p>
+<pre class="python"><code>ls_snm_tex = [&quot;file1.tex&quot;, &quot;file2.tex&quot;, &quot;file3.tex&quot;]
+ls_snm_pdf = [&quot;file1.pdf&quot;, &quot;file2.pdf&quot;, &quot;file3.pdf&quot;]
 
-for st_all_estimates in ls_st_all_estimates:
+dc_tex_pdf = {}
+for tex, pdf in zip(ls_snm_tex, ls_snm_pdf):
+  dc_tex_pdf[tex] = pdf
 
-    # delete linebreak at end of line 
-    st_all_estimates = st_all_estimates.replace(&quot;\n&quot;, &quot;&quot;)
-    
-    # split
-    ls_st_estimates = st_all_estimates.split(&quot;,&quot;)
+pprint.pprint(dc_tex_pdf, width=1)</code></pre>
+<pre><code>## {&#39;file1.tex&#39;: &#39;file1.pdf&#39;,
+##  &#39;file2.tex&#39;: &#39;file2.pdf&#39;,
+##  &#39;file3.tex&#39;: &#39;file3.pdf&#39;}</code></pre>
+</div>
+<div id="select-by-keys-dictionaries-from-list-of-dictionaries" class="section level2" number="1.7">
+<h2 number="1.7"><span class="header-section-number">1.7</span> Select by Keys Dictionaries from list of Dictionaries</h2>
+<p>Given a list of dictionary, search if key name is in list:</p>
+<pre class="python"><code># string to search through
+ls_str_file_ids = [&#39;mat_matlab&#39;, &#39;mat_algebra_rules&#39;]
+# select subset
+ls_dc_selected = [dc_exa
+                  for dc_exa in ls_dc_exa
+                  if dc_exa[&#39;file&#39;] in ls_str_file_ids]
+# print
+pprint.pprint(ls_dc_selected, width=1)</code></pre>
+<pre><code>## [{&#39;date&#39;: datetime.date(2020, 5, 2),
+##   &#39;description&#39;: &#39;Frequency &#39;
+##                  &#39;table, &#39;
+##                  &#39;bar &#39;
+##                  &#39;chart &#39;
+##                  &#39;and &#39;
+##                  &#39;histogram&#39;,
+##   &#39;file&#39;: &#39;mat_matlab&#39;,
+##   &#39;title&#39;: &#39;One &#39;
+##            &#39;Variable &#39;
+##            &#39;Graphs &#39;
+##            &#39;and &#39;
+##            &#39;Tables&#39;,
+##   &#39;val&#39;: 1},
+##  {&#39;date&#39;: datetime.date(2018, 12, 1),
+##   &#39;description&#39;: &#39;Opening &#39;
+##                  &#39;a &#39;
+##                  &#39;Dataset.&#39;,
+##   &#39;file&#39;: &#39;mat_algebra_rules&#39;,
+##   &#39;title&#39;: &#39;Opening &#39;
+##            &#39;a &#39;
+##            &#39;Dataset&#39;,
+##   &#39;val&#39;: 1.1}]</code></pre>
+<p>Search and Select by Multiple Keys in Dictionary. Using two keys below:</p>
+<pre class="python"><code># string to search through
+ls_str_file_ids = [&#39;mat_matlab&#39;, &#39;mat_algebra_rules&#39;]
+# select subset
+ls_dc_selected = [dc_exa
+                  for dc_exa in ls_dc_exa
+                  if ((dc_exa[&#39;file&#39;] in ls_str_file_ids)
+                      and
+                      (dc_exa[&#39;val&#39;]== 1))]
+# print
+pprint.pprint(ls_dc_selected, width=1)</code></pre>
+<pre><code>## [{&#39;date&#39;: datetime.date(2020, 5, 2),
+##   &#39;description&#39;: &#39;Frequency &#39;
+##                  &#39;table, &#39;
+##                  &#39;bar &#39;
+##                  &#39;chart &#39;
+##                  &#39;and &#39;
+##                  &#39;histogram&#39;,
+##   &#39;file&#39;: &#39;mat_matlab&#39;,
+##   &#39;title&#39;: &#39;One &#39;
+##            &#39;Variable &#39;
+##            &#39;Graphs &#39;
+##            &#39;and &#39;
+##            &#39;Tables&#39;,
+##   &#39;val&#39;: 1}]</code></pre>
+</div>
+<div id="drop-element-of-dictionary" class="section level2" number="1.8">
+<h2 number="1.8"><span class="header-section-number">1.8</span> Drop Element of Dictionary</h2>
+<p>Drop element of a dictionary inside a list:</p>
+<pre class="python"><code># Dictionary
+dc_test = [{&quot;file&quot;: &quot;mat_matlab_1&quot;,
+           &quot;title&quot;: &quot;One Variable Graphs and Tables&quot;,
+           &quot;description&quot;: &quot;Frequency table, bar chart and histogram&quot;,
+           &quot;val&quot;: 1,
+           &quot;date&quot;: datetime.date(2020, 5, 2)},
+           {&quot;file&quot;: &quot;mat_matlab_2&quot;, 
+            &quot;val&quot;: &quot;mat_matlab_2&quot;}]
 
-    # Loop over each value separated by commas
-    for it_esti_ctr, st_esti in enumerate(ls_st_estimates):
-    
-        # Default update is to keep current
-        st_esti_update = st_esti
-    
-        # If estimates, might have stars
-        st_esti_numeric = st_esti.strip()
-        st_esti_numeric = st_esti_numeric.replace(&quot;*&quot;, &quot;&quot;)
-        st_esti_numeric = st_esti_numeric.replace(&quot;(&quot;, &quot;&quot;)
-        st_esti_numeric = st_esti_numeric.replace(&quot;)&quot;, &quot;&quot;)
-    
-        # Decimal Rounding
-        fl_esti_rounded = round(float(st_esti_numeric), it_round_decimal)
-        st_esti_rounded = f&#39;{fl_esti_rounded:.{it_round_decimal}f}&#39;
-        
-        # Replace
-        print(f&#39;{st_esti=} + {st_esti_numeric=} + {st_esti_rounded=}&#39;)
-        st_esti_rounded = st_esti.replace(st_esti_numeric, st_esti_rounded)
-        
-        # Update List
-        ls_st_estimates[it_esti_ctr] = st_esti_rounded
-    
-    # Flatten comman
-    st_text_out = &#39;,&#39;.join(ls_st_estimates)
-    print(f&#39;\n{st_text_out=}\n&#39;)
-    print()</code></pre>
-<pre><code>## st_esti=&#39;84.506***&#39; + st_esti_numeric=&#39;84.506&#39; + st_esti_rounded=&#39;84.5&#39;
-## st_esti=&#39; 91.758***&#39; + st_esti_numeric=&#39;91.758&#39; + st_esti_rounded=&#39;91.8&#39;
-## st_esti=&#39; 107.950***&#39; + st_esti_numeric=&#39;107.950&#39; + st_esti_rounded=&#39;108.0&#39;
-## st_esti=&#39; 115.879***&#39; + st_esti_numeric=&#39;115.879&#39; + st_esti_rounded=&#39;115.9&#39;
-## st_esti=&#39; 133.560***&#39; + st_esti_numeric=&#39;133.560&#39; + st_esti_rounded=&#39;133.6&#39;
-## 
-## st_text_out=&#39;84.5***, 91.8***, 108.0***, 115.9***, 133.6***&#39;
-## 
-## 
-## st_esti=&#39;(7.796)&#39; + st_esti_numeric=&#39;7.796&#39; + st_esti_rounded=&#39;7.8&#39;
-## st_esti=&#39; (4.848)&#39; + st_esti_numeric=&#39;4.848&#39; + st_esti_rounded=&#39;4.8&#39;
-## st_esti=&#39; (4.111)&#39; + st_esti_numeric=&#39;4.111&#39; + st_esti_rounded=&#39;4.1&#39;
-## st_esti=&#39; (5.044)&#39; + st_esti_numeric=&#39;5.044&#39; + st_esti_rounded=&#39;5.0&#39;
-## st_esti=&#39; (6.961)&#39; + st_esti_numeric=&#39;6.961&#39; + st_esti_rounded=&#39;7.0&#39;
-## 
-## st_text_out=&#39;(7.8), (4.8), (4.1), (5.0), (7.0)&#39;
-## 
-## 
-## st_esti=&#39;68.180***&#39; + st_esti_numeric=&#39;68.180&#39; + st_esti_rounded=&#39;68.2&#39;
-## st_esti=&#39; 47.921***&#39; + st_esti_numeric=&#39;47.921&#39; + st_esti_rounded=&#39;47.9&#39;
-## st_esti=&#39; 47.127***&#39; + st_esti_numeric=&#39;47.127&#39; + st_esti_rounded=&#39;47.1&#39;
-## st_esti=&#39; 51.366***&#39; + st_esti_numeric=&#39;51.366&#39; + st_esti_rounded=&#39;51.4&#39;
-## st_esti=&#39; 41.764***&#39; + st_esti_numeric=&#39;41.764&#39; + st_esti_rounded=&#39;41.8&#39;
-## 
-## st_text_out=&#39;68.2***, 47.9***, 47.1***, 51.4***, 41.8***&#39;
-## 
-## 
-## st_esti=&#39;(8.986)&#39; + st_esti_numeric=&#39;8.986&#39; + st_esti_rounded=&#39;9.0&#39;
-## st_esti=&#39; (5.368)&#39; + st_esti_numeric=&#39;5.368&#39; + st_esti_rounded=&#39;5.4&#39;
-## st_esti=&#39; (4.995)&#39; + st_esti_numeric=&#39;4.995&#39; + st_esti_rounded=&#39;5.0&#39;
-## st_esti=&#39; (5.099)&#39; + st_esti_numeric=&#39;5.099&#39; + st_esti_rounded=&#39;5.1&#39;
-## st_esti=&#39; (8.637)&#39; + st_esti_numeric=&#39;8.637&#39; + st_esti_rounded=&#39;8.6&#39;
-## 
-## st_text_out=&#39;(9.0), (5.4), (5.0), (5.1), (8.6)&#39;</code></pre>
+# Drop           
+del dc_test[0][&#39;val&#39;]
+del dc_test[0][&#39;file&#39;]
+del dc_test[0][&#39;description&#39;]
+del dc_test[1][&#39;val&#39;]
+
+# Print
+pprint.pprint(dc_test, width=1)</code></pre>
+<pre><code>## [{&#39;date&#39;: datetime.date(2020, 5, 2),
+##   &#39;title&#39;: &#39;One &#39;
+##            &#39;Variable &#39;
+##            &#39;Graphs &#39;
+##            &#39;and &#39;
+##            &#39;Tables&#39;},
+##  {&#39;file&#39;: &#39;mat_matlab_2&#39;}]</code></pre>
 </div>
 </div>
 

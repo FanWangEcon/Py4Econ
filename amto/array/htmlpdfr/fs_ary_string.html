@@ -11,9 +11,9 @@
 
 <meta name="author" content="Fan Wang" />
 
-<meta name="date" content="2020-10-21" />
+<meta name="date" content="2020-06-17" />
 
-<title>Python Function Tuple and Dictionary as Arguments with *args and **kwargs</title>
+<title>Python String Manipulation Examples: Search, Replace, Wrap Strings</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1865,176 +1865,239 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Python Function Tuple and Dictionary as Arguments with *args and **kwargs</h1>
+<h1 class="title toc-ignore">Python String Manipulation Examples: Search, Replace, Wrap Strings</h1>
 <h4 class="author"><a href="https://fanwangecon.github.io/">Fan Wang</a></h4>
-<h4 class="date">2020-10-21</h4>
+<h4 class="date">2020-06-17</h4>
 
 </div>
 
 
-<div id="function-arguments" class="section level1" number="1">
-<h1 number="1"><span class="header-section-number">1</span> Function Arguments</h1>
+<div id="strings" class="section level1" number="1">
+<h1 number="1"><span class="header-section-number">1</span> Strings</h1>
 <blockquote>
-<p>Go to the <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/function/args//fs_func_args.Rmd"><strong>RMD</strong></a>, <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/function/args//htmlpdfr/fs_func_args.pdf"><strong>PDF</strong></a>, or <a href="https://fanwangecon.github.io//Py4Econ/function/args//htmlpdfr/fs_func_args.html"><strong>HTML</strong></a> version of this file. Go back to <a href="https://fanwangecon.github.io/Py4Econ/">Python Code Examples</a> Repository (<a href="https://fanwangecon.github.io/Py4Econ/bookdown">bookdown site</a>) or the <a href="https://pyfan.readthedocs.io/en/latest/">pyfan</a> Package (<a href="https://pyfan.readthedocs.io/en/latest/reference.html">API</a>).</p>
+<p>Go to the <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/amto/array//fs_ary_string.Rmd"><strong>RMD</strong></a>, <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/amto/array//htmlpdfr/fs_ary_string.pdf"><strong>PDF</strong></a>, or <a href="https://fanwangecon.github.io//Py4Econ/amto/array//htmlpdfr/fs_ary_string.html"><strong>HTML</strong></a> version of this file. Go back to <a href="https://fanwangecon.github.io/Py4Econ/">Python Code Examples</a> Repository (<a href="https://fanwangecon.github.io/Py4Econ/bookdown">bookdown site</a>) or the <a href="https://pyfan.readthedocs.io/en/latest/">pyfan</a> Package (<a href="https://pyfan.readthedocs.io/en/latest/reference.html">API</a>).</p>
 </blockquote>
-<pre class="python"><code>import pprint</code></pre>
-<div id="python-dictionary-as-argument-via-kwargs" class="section level2" number="1.1">
-<h2 number="1.1"><span class="header-section-number">1.1</span> Python Dictionary As Argument via kwargs</h2>
-<p>There is a python function that outputs a dictionary with key and value pairs that specify key aspects of how a model should be solved. For example, one of the parameters could specify the <em>vcpu</em> requirement. This <em>vcpu</em> requirement might change, and so it should be easy to update this key with alternative values.</p>
-<p>These are accomplished in the following manner. Define the full key-value pair list, with default values for several dictionaries, with model simulation, support, and compute parameters for example. These lists could be updated with some default alternative combinations, or alternatively, it could be updated with externally provided dictionary with both updated values for existing keys, or even additional key value pairs.</p>
-<p>First, we create a function that processes and outputs default parameters, it has two inputs, <em>it_default_group</em> to specify pre-fixed adjustments from defaults, and <em>kwargs</em> that allows for arbitrarily modifications and additions to parameter dictionary.</p>
-<pre class="python"><code>def gen_compesti_spec(it_default_group=None, **kwargs):
-    # A. Define the default parameter keys and values
-    esti_specs = {&#39;esti_method&#39;: &#39;MomentsSimuStates&#39;,
-                  &#39;momsets_type&#39;: [&#39;a&#39;, &#39;20180805a&#39;],
-                  &#39;esti_param_vec_count&#39;: 1,
-                  &#39;esti_max_func_eval&#39;: 10,
-                  &#39;graph_frequncy&#39;: 20}
-    compute_specs = {&#39;cpu&#39;: str(1024 * 1),
-                     &#39;memory&#39;: str(517),  # only need about 160 mb in reality
-                     &#39;workers&#39;: 1,
-                     &#39;aws_fargate&#39;: False}
-
-    # B. For different
-    compesti_specs = {**compute_specs, **esti_specs}
-
-    # C. Update dictionaries with parameter group values
-    if it_default_group == 1:
-        compesti_specs_updates = {&#39;memory&#39;: str(1024 * 55),
-                                  &#39;compute_param_vec_count&#39;: 6,
-                                  &#39;esti_param_vec_count&#39;: 640}
-        compesti_specs.update(compesti_specs_updates)
-
-    # D. Update with kward, could append new
-    compesti_specs.update(kwargs)
-
-    return compesti_specs</code></pre>
-<p>Second, we test the defaults:</p>
-<pre class="python"><code>compesti_specs = gen_compesti_spec()
-pprint.pprint(compesti_specs, width=1)</code></pre>
-<pre><code>## {&#39;aws_fargate&#39;: False,
-##  &#39;cpu&#39;: &#39;1024&#39;,
-##  &#39;esti_max_func_eval&#39;: 10,
-##  &#39;esti_method&#39;: &#39;MomentsSimuStates&#39;,
-##  &#39;esti_param_vec_count&#39;: 1,
-##  &#39;graph_frequncy&#39;: 20,
-##  &#39;memory&#39;: &#39;517&#39;,
-##  &#39;momsets_type&#39;: [&#39;a&#39;,
-##                   &#39;20180805a&#39;],
-##  &#39;workers&#39;: 1}</code></pre>
-<p>Third, we test using default group 1, pre-fixed changes to defaults:</p>
-<pre class="python"><code>compesti_specs = gen_compesti_spec(it_default_group=1)
-pprint.pprint(compesti_specs, width=1)</code></pre>
-<pre><code>## {&#39;aws_fargate&#39;: False,
-##  &#39;compute_param_vec_count&#39;: 6,
-##  &#39;cpu&#39;: &#39;1024&#39;,
-##  &#39;esti_max_func_eval&#39;: 10,
-##  &#39;esti_method&#39;: &#39;MomentsSimuStates&#39;,
-##  &#39;esti_param_vec_count&#39;: 640,
-##  &#39;graph_frequncy&#39;: 20,
-##  &#39;memory&#39;: &#39;56320&#39;,
-##  &#39;momsets_type&#39;: [&#39;a&#39;,
-##                   &#39;20180805a&#39;],
-##  &#39;workers&#39;: 1}</code></pre>
-<p>Fourth, we use kwargs to feed in arbitrary dictionary to update and append to existing parameter dictionary:</p>
-<pre class="python"><code>compesti_specs_updates = {&#39;esti_method&#39;: &#39;MomentsSimuStateszzz&#39;,
-                          &#39;moments_type&#39;: [&#39;a&#39;, &#39;20180805azzz&#39;],
-                          &#39;momsets_type&#39;: [&#39;a&#39;, &#39;20180805azzz&#39;],
-                          &#39;momsets_type_uuu&#39;: [&#39;a&#39;, &#39;20180805azzz&#39;]}
-compesti_specs = gen_compesti_spec(it_default_group=None, **compesti_specs_updates)
-pprint.pprint(compesti_specs, width=1)</code></pre>
-<pre><code>## {&#39;aws_fargate&#39;: False,
-##  &#39;cpu&#39;: &#39;1024&#39;,
-##  &#39;esti_max_func_eval&#39;: 10,
-##  &#39;esti_method&#39;: &#39;MomentsSimuStateszzz&#39;,
-##  &#39;esti_param_vec_count&#39;: 1,
-##  &#39;graph_frequncy&#39;: 20,
-##  &#39;memory&#39;: &#39;517&#39;,
-##  &#39;moments_type&#39;: [&#39;a&#39;,
-##                   &#39;20180805azzz&#39;],
-##  &#39;momsets_type&#39;: [&#39;a&#39;,
-##                   &#39;20180805azzz&#39;],
-##  &#39;momsets_type_uuu&#39;: [&#39;a&#39;,
-##                       &#39;20180805azzz&#39;],
-##  &#39;workers&#39;: 1}</code></pre>
+<pre class="python"><code>import numpy as np
+import string as string
+import random as random</code></pre>
+<div id="get-substring" class="section level2" number="1.1">
+<h2 number="1.1"><span class="header-section-number">1.1</span> Get Substring</h2>
+<p>Given string, get substring after a word.</p>
+<pre class="python"><code>st_func_stack_code = &#39;dc_ls_combo_type = pyfan_amto_lsdcconvert.ff_ls2dc(ls_combo_type,&#39;
+st_search_break = &#39;ff_ls2dc(&#39;
+st_string_after = st_func_stack_code.split(st_search_break)[1]
+st_search_break = &#39;,&#39;
+st_string_after = st_func_stack_code.split(st_search_break)[1]
+print(f&#39;{st_string_after=}&#39;)</code></pre>
+<pre><code>## st_string_after=&#39;&#39;</code></pre>
 </div>
-<div id="named-argument-list-and-dictionary" class="section level2" number="1.2">
-<h2 number="1.2"><span class="header-section-number">1.2</span> Named Argument List and Dictionary</h2>
-<p>Define a function with named and unnamed arguments:</p>
-<pre class="python"><code>def gen_compesti_spec_named(it_default_group, esti_method, memory=123, graph_frequncy=10):
-    # A. Define the default parameter keys and values
-    esti_specs = {&#39;esti_method&#39;: &#39;MomentsSimuStates&#39;,
-                  &#39;momsets_type&#39;: [&#39;a&#39;, &#39;20180805a&#39;],
-                  &#39;it_default_group&#39;: it_default_group,
-                  &#39;esti_param_vec_count&#39;: 1,
-                  &#39;esti_max_func_eval&#39;: 10,
-                  &#39;graph_frequncy&#39;: graph_frequncy}
-    compute_specs = {&#39;cpu&#39;: str(1024 * 1),
-                     &#39;memory&#39;: str(memory),  # only need about 160 mb in reality
-                     &#39;workers&#39;: 1,
-                     &#39;aws_fargate&#39;: False}
+<div id="generate-random-strings" class="section level2" number="1.2">
+<h2 number="1.2"><span class="header-section-number">1.2</span> Generate Random Strings</h2>
+<p>Generate some random strings:</p>
+<pre class="python"><code>random.seed(123)
+it_word_length = 5
+st_rand_word = &#39;&#39;.join(random.choice(string.ascii_lowercase) for i in range(it_word_length))
+st_rand_word = st_rand_word.capitalize()
+print(f&#39;{st_rand_word=}&#39;)</code></pre>
+<pre><code>## st_rand_word=&#39;Bicyn&#39;</code></pre>
+<p>Generate a block or random text and then convert it to a one list of strings:</p>
+<pre class="python"><code>random.seed(123)
+it_words_count = 15
+it_word_length = 5
+st_rand_word_block = &#39;&#39;.join(random.choice(string.ascii_lowercase) for ctr in range(it_word_length*it_words_count))
+ls_st_rand_word = [st_rand_word_block[ctr: ctr + it_word_length].capitalize() 
+                   for ctr in range(0, len(st_rand_word_block), it_word_length)]
+print(f&#39;{ls_st_rand_word=}&#39;)</code></pre>
+<pre><code>## ls_st_rand_word=[&#39;Bicyn&#39;, &#39;Idbmr&#39;, &#39;Rkkbf&#39;, &#39;Ekrkw&#39;, &#39;Hfany&#39;, &#39;Ctmca&#39;, &#39;Kxodb&#39;, &#39;Cveez&#39;, &#39;Ajnsp&#39;, &#39;Ipbyj&#39;, &#39;Kqzpg&#39;, &#39;Tuqsz&#39;, &#39;Kamyu&#39;, &#39;Qnvru&#39;, &#39;Zvtpq&#39;]</code></pre>
+<p>Reshape the array of words to a matrix:</p>
+<pre class="python"><code>mt_st_rand_word = np.reshape(ls_st_rand_word, [3,5])
+print(f&#39;{mt_st_rand_word=}&#39;)</code></pre>
+<pre><code>## mt_st_rand_word=array([[&#39;Bicyn&#39;, &#39;Idbmr&#39;, &#39;Rkkbf&#39;, &#39;Ekrkw&#39;, &#39;Hfany&#39;],
+##        [&#39;Ctmca&#39;, &#39;Kxodb&#39;, &#39;Cveez&#39;, &#39;Ajnsp&#39;, &#39;Ipbyj&#39;],
+##        [&#39;Kqzpg&#39;, &#39;Tuqsz&#39;, &#39;Kamyu&#39;, &#39;Qnvru&#39;, &#39;Zvtpq&#39;]], dtype=&#39;&lt;U5&#39;)</code></pre>
+<pre class="python"><code>print(f&#39;{mt_st_rand_word.shape=}&#39;)</code></pre>
+<pre><code>## mt_st_rand_word.shape=(3, 5)</code></pre>
+<pre class="python"><code>print(f&#39;{type(mt_st_rand_word)=}&#39;)</code></pre>
+<pre><code>## type(mt_st_rand_word)=&lt;class &#39;numpy.ndarray&#39;&gt;</code></pre>
+</div>
+<div id="add-string-suffix-to-numeric-array" class="section level2" number="1.3">
+<h2 number="1.3"><span class="header-section-number">1.3</span> Add String Suffix to Numeric Array</h2>
+<p>Given an numeric array, add string, for example to generate sequencial column names with suffix c:</p>
+<pre class="python"><code>ar_st_colnames = [ &#39;s&#39; + str(it_col) for it_col in np.array(range(1, 3))]
+print(ar_st_colnames)</code></pre>
+<pre><code>## [&#39;s1&#39;, &#39;s2&#39;]</code></pre>
+</div>
+<div id="search-if-names-include-strings" class="section level2" number="1.4">
+<h2 number="1.4"><span class="header-section-number">1.4</span> Search if Names Include Strings</h2>
+<p>Given a list of strings, loop but skip if string contains elements string list.</p>
+<pre class="python"><code># define string
+ls_st_ignore = [&#39;abc&#39;, &#39;efg&#39;, &#39;xyz&#39;]
+ls_st_loop = [&#39;ab cefg sdf&#39;, &#39;12345&#39;, &#39;xyz&#39;, &#39;abc xyz&#39;, &#39;good morning&#39;]
 
-    # B. For different
-    compesti_specs = {**compute_specs, **esti_specs}
+# zip and loop and replace
+for st_loop in ls_st_loop:
+  if sum([st_ignore in st_loop for st_ignore in ls_st_ignore]):
+    print(&#39;skip:&#39;, st_loop)
+  else:
+    print(&#39;not skip:&#39;, st_loop)</code></pre>
+<pre><code>## skip: ab cefg sdf
+## not skip: 12345
+## skip: xyz
+## skip: abc xyz
+## not skip: good morning</code></pre>
+</div>
+<div id="replace-a-set-of-strings-in-string" class="section level2" number="1.5">
+<h2 number="1.5"><span class="header-section-number">1.5</span> Replace a Set of Strings in String</h2>
+<p>Replace terms in string</p>
+<pre class="python"><code># define string
+st_full = &quot;&quot;&quot;
+abc is a great efg, probably xyz. Yes, xyz is great, like efg. 
+eft good, EFG capitalized, efg good again. 
+A B C or abc or ABC. Interesting xyz. 
+&quot;&quot;&quot;
 
-    return compesti_specs</code></pre>
-<p>Provide inputs for the first two unnamed parameters explicitly. Then provided the two named parameters via a dictionary:</p>
-<pre class="python"><code>dc_inputs = {&#39;memory&#39;:12345, &#39;graph_frequncy&#39;:2}
-compesti_specs = gen_compesti_spec_named(None, &#39;MomentsSimuStates&#39;, **dc_inputs)
-pprint.pprint(compesti_specs, width=1)</code></pre>
-<pre><code>## {&#39;aws_fargate&#39;: False,
-##  &#39;cpu&#39;: &#39;1024&#39;,
-##  &#39;esti_max_func_eval&#39;: 10,
-##  &#39;esti_method&#39;: &#39;MomentsSimuStates&#39;,
-##  &#39;esti_param_vec_count&#39;: 1,
-##  &#39;graph_frequncy&#39;: 2,
-##  &#39;it_default_group&#39;: None,
-##  &#39;memory&#39;: &#39;12345&#39;,
-##  &#39;momsets_type&#39;: [&#39;a&#39;,
-##                   &#39;20180805a&#39;],
-##  &#39;workers&#39;: 1}</code></pre>
-<!-- ## Function Call Parameters as String  -->
-<!-- There is a function, call the function, return the string name of the variable used to call the function inside the function. -->
-<!-- Define the function: -->
-<!-- ```{python} -->
-<!-- # import package -->
-<!-- import traceback -->
-<!-- import pprint -->
-<!-- # define function -->
-<!-- def ffi_ls2dc(ls_list, st_counter_str='i', st_all_str='o', st_ls_name=None): -->
-<!--     if st_ls_name is None: -->
-<!--         stack = traceback.extract_stack() -->
-<!--         filename, lineno, function_name, code = stack[-2] -->
-<!--         print('abc') -->
-<!--         print(code) -->
-<!--         # if "ls_list=" in code: -->
-<!--         #     # function called with three parameters all named, looks like: -->
-<!--         #     #   "dc_ls_combo_type = pyfan_amto_lsdcconvert.ff_ls2dc(ls_list=ls_combo_type," -->
-<!--         #     st_ls_name = code.split("ls_list=")[1] -->
-<!--         # else: -->
-<!--         #     # function was not called with named parameter, looks like: -->
-<!--         #     #   "dc_ls_combo_type = pyfan_amto_lsdcconvert.ff_ls2dc(ls_combo_type, 'i', 'o')" -->
-<!--         #     #    "dc_ls_combo_type = pyfan_amto_lsdcconvert.ff_ls2dc(ls_combo_type)" -->
-<!--         #     st_ls_name = code.split("ff_ls2dc(")[1] -->
-<!--         #  -->
-<!--         # # Get first input element -->
-<!--         # st_ls_name = st_ls_name.split(",")[0] -->
-<!--         # if "=" in st_ls_name: -->
-<!--         #     raise ValueError(f'ff_ls2dc function called incorrectly, ls_list parameter must be first:{code=}') -->
-<!--     return st_ls_name -->
-<!-- ``` -->
-<!-- Call the function with different parameter combinations: -->
-<!-- ```{python} -->
-<!-- ls_combo_type = [1,2,3] -->
-<!-- # convert calling function without parameters: -->
-<!-- ffi_ls2dc(ls_combo_type, 'i', 'o') -->
-<!-- # convert calling function with later parameter names: -->
-<!-- ffi_ls2dc(ls_combo_type, st_counter_str='i', st_all_str='o') -->
-<!-- # convert calling function with all named parameters: -->
-<!-- ffi_ls2dc(ls_list=ls_combo_type, st_counter_str='i', st_all_str='o') -->
-<!-- # provide name for list -->
-<!-- ffi_ls2dc(ls_list=ls_combo_type, st_counter_str='CTR', st_all_str='OF', st_ls_name='ls_other_name') -->
-<!-- ``` -->
+# define new and old
+ls_st_old = [&#39;abc&#39;, &#39;efg&#39;, &#39;xyz&#39;]
+ls_st_new = [&#39;123&#39;, &#39;456&#39;, &#39;789&#39;]
+
+# zip and loop and replace
+for old, new in zip(ls_st_old, ls_st_new):
+  st_full = st_full.replace(old, new)
+
+# print
+print(st_full)</code></pre>
+<pre><code>## 
+## 123 is a great 456, probably 789. Yes, 789 is great, like 456. 
+## eft good, EFG capitalized, 456 good again. 
+## A B C or 123 or ABC. Interesting 789.</code></pre>
+</div>
+<div id="wrap-string-with-fixed-width" class="section level2" number="1.6">
+<h2 number="1.6"><span class="header-section-number">1.6</span> Wrap String with Fixed Width</h2>
+<p>Given a long string, wrap it into multiple lines with fixed width.</p>
+<pre class="python"><code>import textwrap
+
+# A long Path
+st_path = &quot;&quot;&quot;
+C:/Users/fan/Documents/Dropbox (UH-ECON)/Project Emily Minority Survey/EthLang/reg_lang_abi_cls_mino/tab3_fm/attain_m_vs_f/tab3_mand_talk_m2c_hfracle02.tex
+&quot;&quot;&quot;
+
+# Wrap text with tight width
+st_wrapped = textwrap.fill(st_path, width = 20)
+print(st_wrapped)</code></pre>
+<pre><code>##  C:/Users/fan/Docume
+## nts/Dropbox (UH-
+## ECON)/Project Emily
+## Minority Survey/EthL
+## ang/reg_lang_abi_cls
+## _mino/tab3_fm/attain
+## _m_vs_f/tab3_mand_ta
+## lk_m2c_hfracle02.tex</code></pre>
+<p>Combine Strings that are wrapped and not Wrapped</p>
+<pre class="python"><code>
+# Paths
+st_path_a = &quot;C:/Users/fan/Documents/Dropbox (UH-ECON)/Project Emily Minority Survey/EthLang/reg_lang_abi_cls_mino/tab3_fm/attain_m_vs_f/tab3_mand_talk_m2c_hfracle02.tex&quot;
+st_path_b = &#39;C:/Users/fan/R4Econ/support/development/fs_packaging.html&#39;
+
+# Combine Strings and Wrap
+str_dc_records = &#39;First Path:&#39;.upper() + &#39;\n&#39; + \
+                 textwrap.fill(st_path_a, width=25) + &#39;\n\n&#39; + \
+                 &#39;Second Path:&#39;.upper() + &#39;\n&#39; + \
+                 textwrap.fill(st_path_b, width=25)
+              
+# Print
+print(str_dc_records)                 </code></pre>
+<pre><code>## FIRST PATH:
+## C:/Users/fan/Documents/Dr
+## opbox (UH-ECON)/Project
+## Emily Minority Survey/Eth
+## Lang/reg_lang_abi_cls_min
+## o/tab3_fm/attain_m_vs_f/t
+## ab3_mand_talk_m2c_hfracle
+## 02.tex
+## 
+## SECOND PATH:
+## C:/Users/fan/R4Econ/suppo
+## rt/development/fs_packagi
+## ng.html</code></pre>
+</div>
+<div id="change-round-for-lists-of-string-estimates" class="section level2" number="1.7">
+<h2 number="1.7"><span class="header-section-number">1.7</span> Change Round for Lists of String Estimates</h2>
+<p>Here we have two strings in a list, with point estimates and corresponding standard errors. Estimates are separated by commas. We want to change the number of decimal points shown and set appropriate roundings. Several steps: (1) split string by comma (2) Loop over (3) extract numerical elements (4) recover</p>
+<pre class="python"><code>it_round_decimal = 1
+ls_st_all_estimates = [&quot;84.506***, 91.758***, 107.950***, 115.879***, 133.560***\n&quot;,
+                       &quot;(7.796), (4.848), (4.111), (5.044), (6.961)\n&quot;,
+                       &quot;68.180***, 47.921***, 47.127***, 51.366***, 41.764***\n&quot;,
+                       &quot;(8.986), (5.368), (4.995), (5.099), (8.637)\n&quot;]
+
+for st_all_estimates in ls_st_all_estimates:
+
+    # delete linebreak at end of line 
+    st_all_estimates = st_all_estimates.replace(&quot;\n&quot;, &quot;&quot;)
+    
+    # split
+    ls_st_estimates = st_all_estimates.split(&quot;,&quot;)
+
+    # Loop over each value separated by commas
+    for it_esti_ctr, st_esti in enumerate(ls_st_estimates):
+    
+        # Default update is to keep current
+        st_esti_update = st_esti
+    
+        # If estimates, might have stars
+        st_esti_numeric = st_esti.strip()
+        st_esti_numeric = st_esti_numeric.replace(&quot;*&quot;, &quot;&quot;)
+        st_esti_numeric = st_esti_numeric.replace(&quot;(&quot;, &quot;&quot;)
+        st_esti_numeric = st_esti_numeric.replace(&quot;)&quot;, &quot;&quot;)
+    
+        # Decimal Rounding
+        fl_esti_rounded = round(float(st_esti_numeric), it_round_decimal)
+        st_esti_rounded = f&#39;{fl_esti_rounded:.{it_round_decimal}f}&#39;
+        
+        # Replace
+        print(f&#39;{st_esti=} + {st_esti_numeric=} + {st_esti_rounded=}&#39;)
+        st_esti_rounded = st_esti.replace(st_esti_numeric, st_esti_rounded)
+        
+        # Update List
+        ls_st_estimates[it_esti_ctr] = st_esti_rounded
+    
+    # Flatten comman
+    st_text_out = &#39;,&#39;.join(ls_st_estimates)
+    print(f&#39;\n{st_text_out=}\n&#39;)
+    print()</code></pre>
+<pre><code>## st_esti=&#39;84.506***&#39; + st_esti_numeric=&#39;84.506&#39; + st_esti_rounded=&#39;84.5&#39;
+## st_esti=&#39; 91.758***&#39; + st_esti_numeric=&#39;91.758&#39; + st_esti_rounded=&#39;91.8&#39;
+## st_esti=&#39; 107.950***&#39; + st_esti_numeric=&#39;107.950&#39; + st_esti_rounded=&#39;108.0&#39;
+## st_esti=&#39; 115.879***&#39; + st_esti_numeric=&#39;115.879&#39; + st_esti_rounded=&#39;115.9&#39;
+## st_esti=&#39; 133.560***&#39; + st_esti_numeric=&#39;133.560&#39; + st_esti_rounded=&#39;133.6&#39;
+## 
+## st_text_out=&#39;84.5***, 91.8***, 108.0***, 115.9***, 133.6***&#39;
+## 
+## 
+## st_esti=&#39;(7.796)&#39; + st_esti_numeric=&#39;7.796&#39; + st_esti_rounded=&#39;7.8&#39;
+## st_esti=&#39; (4.848)&#39; + st_esti_numeric=&#39;4.848&#39; + st_esti_rounded=&#39;4.8&#39;
+## st_esti=&#39; (4.111)&#39; + st_esti_numeric=&#39;4.111&#39; + st_esti_rounded=&#39;4.1&#39;
+## st_esti=&#39; (5.044)&#39; + st_esti_numeric=&#39;5.044&#39; + st_esti_rounded=&#39;5.0&#39;
+## st_esti=&#39; (6.961)&#39; + st_esti_numeric=&#39;6.961&#39; + st_esti_rounded=&#39;7.0&#39;
+## 
+## st_text_out=&#39;(7.8), (4.8), (4.1), (5.0), (7.0)&#39;
+## 
+## 
+## st_esti=&#39;68.180***&#39; + st_esti_numeric=&#39;68.180&#39; + st_esti_rounded=&#39;68.2&#39;
+## st_esti=&#39; 47.921***&#39; + st_esti_numeric=&#39;47.921&#39; + st_esti_rounded=&#39;47.9&#39;
+## st_esti=&#39; 47.127***&#39; + st_esti_numeric=&#39;47.127&#39; + st_esti_rounded=&#39;47.1&#39;
+## st_esti=&#39; 51.366***&#39; + st_esti_numeric=&#39;51.366&#39; + st_esti_rounded=&#39;51.4&#39;
+## st_esti=&#39; 41.764***&#39; + st_esti_numeric=&#39;41.764&#39; + st_esti_rounded=&#39;41.8&#39;
+## 
+## st_text_out=&#39;68.2***, 47.9***, 47.1***, 51.4***, 41.8***&#39;
+## 
+## 
+## st_esti=&#39;(8.986)&#39; + st_esti_numeric=&#39;8.986&#39; + st_esti_rounded=&#39;9.0&#39;
+## st_esti=&#39; (5.368)&#39; + st_esti_numeric=&#39;5.368&#39; + st_esti_rounded=&#39;5.4&#39;
+## st_esti=&#39; (4.995)&#39; + st_esti_numeric=&#39;4.995&#39; + st_esti_rounded=&#39;5.0&#39;
+## st_esti=&#39; (5.099)&#39; + st_esti_numeric=&#39;5.099&#39; + st_esti_rounded=&#39;5.1&#39;
+## st_esti=&#39; (8.637)&#39; + st_esti_numeric=&#39;8.637&#39; + st_esti_rounded=&#39;8.6&#39;
+## 
+## st_text_out=&#39;(9.0), (5.4), (5.0), (5.1), (8.6)&#39;</code></pre>
 </div>
 </div>
 

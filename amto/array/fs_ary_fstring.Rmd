@@ -1,0 +1,149 @@
+---
+title: "Python Fstring Numeric Decimal and Significance Formatting"
+titleshort: "Fstring Numeric Decimal and Significance Formatting"
+description: |
+  Use Fstring formatting to get the name of a variable as string.
+  Display and format numeric string with fstring with significance or decimals.
+  Conditional decimal formatting based on how larger a number is.
+  Break out of inner loop of a nested loop and continue with outter loop.
+core:
+  - package: python
+    code: | 
+      break 
+      continue
+  - package: fstring
+    code: |
+      f
+      f'{fl_esti_rounded:.{it_round_decimal}f}'
+      f'{st_some_str_var=}'.split('=')[0]
+date: 2020-12-14
+date_start: 2020-12-18
+output:
+  pdf_document:
+    pandoc_args: '../../_output_kniti_pdf.yaml'
+    includes:
+      in_header: '../../preamble.tex'
+  html_document:
+    pandoc_args: '../../_output_kniti_html.yaml'
+    includes:
+      in_header: "../../hdga.html"
+always_allow_html: true
+urlcolor: blue
+---
+
+### FString
+
+```{r global_options, include = FALSE}
+try(source("../../.Rprofile"))
+```
+
+`r text_shared_preamble_one`
+`r text_shared_preamble_two`
+`r text_shared_preamble_thr`
+
+```{python}
+import numpy as np
+import string as string
+import random as random
+```
+
+#### Use FString to get String of variable 
+
+#### Fstring Print Strings with Numeric Values and Other Strings
+
+After some code segment, print some outputs declaring the end of operation and print results. See [Getting the name of a variable as a string](https://stackoverflow.com/a/58451182/8280804).
+
+```{python}
+st_some_str_var = "abcefg"
+st_some_str_var_name = f'{st_some_str_var=}'.split('=')[0]
+print(f'{isinstance(st_some_str_var_name, str)=}')
+print(f'{st_some_str_var_name=}')
+```
+
+#### Fstring Format Floating Point Values Significance
+
+Keep up to X significance numbers. See [How can I print many significant figures in Python?](https://stackoverflow.com/a/52899472/8280804). 
+
+```{python}
+# birthweight estimate
+fl_estimate_birthweight = 3181.49
+# 1 significance number
+print(f'1 significance numbers, {fl_estimate_birthweight:.1}')
+# 3 significance number
+print(f'3 significance numbers, {fl_estimate_birthweight:.3}')
+# 5 significance number
+print(f'5 significance numbers, {fl_estimate_birthweight=:.5}')
+# 7 significance number
+print(f'7 significance numbers, {fl_estimate_birthweight=:.7}')
+```
+
+#### Fstring Format Floating Point Values Decimals
+
+Keep up to X decimal points.
+
+```{python}
+# birthweight estimate
+fl_estimate_birthweight = 3181.49
+# 1 significance number
+print(f'0 decimal, {fl_estimate_birthweight:.0f}')
+# 3 significance number
+print(f'1 decimal, {fl_estimate_birthweight:.1f}')
+# 5 significance number
+print(f'2 decimals, {fl_estimate_birthweight=:.2f}')
+# 7 significance number
+print(f'3 decimals, {fl_estimate_birthweight=:.3f}')
+```
+
+#### Fstring Decimal Function
+
+For a regression table, use a combination of significance number and decimal number formatting to properly output information. For numbers that exceed 
+
+```{python}
+# Define a formatter function
+def fstring_formater(st_float, it_decimal):
+    # strip the string float, and format with it_decimal number of decimals
+    st_float = st_float.strip()
+    fl_float = float(st_float)
+    st_float_rounded = f'{fl_float:.{it_decimal}f}'
+    return st_float_rounded
+
+# Print 
+f'{fstring_formater("1.2345", 3)=}'
+f'{fstring_formater("1.2345", 2)=}'
+f'{fstring_formater(" 1.2345 ", 1)=}'
+f'{fstring_formater(" 1.2345", 1)=}'
+
+# Alternatively
+it_decimal = 3
+fl_float = 123.456789
+print(f'Formating with .{it_decimal}f -> {fl_float:.{it_decimal}f}')
+```
+
+#### Fstring Decimal Function with Dictionary Threshold
+
+Specify a dictionary of threshold levels, where numbers below a particular threshold level, and above the previous one, will be formatted with a particular number of decimal points. This is to be used for example, in formatting a table, where numbers above say 1000 will have 0 decimal points, but numbers below 100 should have 1 decimal point, etc. 
+
+The example below also demonstrates how to break out of the inner loop to proceed with the outter loop. See [Breaking out of nested loops](https://stackoverflow.com/a/654002/8280804).
+
+In the example below, we loop through a list of numbers of different size with different decimals, and the *dc_round_decimal* dictionary determines how each number is formatted based on their size.
+
+```{python}
+ls_st_numformated = []
+ls_fl_num2format = [0.0012345, 0.12345, 12.345, 123.45, 1234.5, 123456.789]
+# dict incremental formatter
+# if below 0.1 keep 4 decimals, If below 1 keep 3, if below 100 keep 2, 
+# if otherwise above, then keep 0 decimals
+dc_round_decimal = {0.1:4, 1:3, 100:2, float("inf"):0}
+# Loop over formatter
+for fl_num2format in ls_fl_num2format:
+    for fl_threshold, it_decimals in dc_round_decimal.items():
+        if fl_num2format <= fl_threshold:
+            st_float_rounded = f'{fl_num2format:.{it_decimals}f}'
+            ls_st_numformated.append(st_float_rounded)
+            print(f'{fl_num2format=}, {st_float_rounded=}, {fl_threshold=}, {it_decimals=}')
+            break
+    else:
+        continue
+# print return
+print(f'{ls_st_numformated=}')
+```

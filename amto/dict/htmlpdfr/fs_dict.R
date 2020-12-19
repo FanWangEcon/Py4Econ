@@ -22,6 +22,25 @@ try(source("../../.Rprofile"))
 ##     print('speckey_key:' + str(speckey_key) + ', speckey_val:' + speckey_val)
 
 
+## # List
+
+## ls_combo_type = ["e", "20201025x_esr_list_tKap_mlt_ce1a2", ["esti_param.kappa_ce9901", "esti_param.kappa_ce0209"], 1, "C1E31M3S3=1"]
+
+## # List name as string variable
+
+## st_ls_name = f'{ls_combo_type=}'.split('=')[0]
+
+## # Convert to dict
+
+## dc_from_list = {st_ls_name + '_i' + str(it_idx) + 'o' + str(len(ls_combo_type)) : ob_val
+
+##                 for it_idx, ob_val in enumerate(ls_combo_type)}
+
+## # Print
+
+## pprint.pprint(dc_from_list, width=1)
+
+
 ## # select by key
 
 ## ls_it_keys = [0, 4]

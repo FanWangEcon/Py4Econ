@@ -5,6 +5,20 @@ try(source("../../.Rprofile"))
 ## import numpy as np
 
 
+## ls_ob_combo_type = ["e", "20201025x_esr_list_tKap_mlt_ce1a2", ["esti_param.kappa_ce9901", "esti_param.kappa_ce0209"], 1, "C1E31M3S3=1"]
+
+## for it_idx, ob_val in enumerate(ls_ob_combo_type):
+
+##     print(f'{it_idx=} and {ob_val=}')
+
+
+## list_test = ['C1E126M4S3', 2]
+
+## [compesti_short_name, esti_top_which] = list_test
+
+## print(f'{compesti_short_name=} and {esti_top_which=}')
+
+
 ## ar_int_list_a1 = [1,2]
 
 ## ar_int_list_a2 = [2,1111]

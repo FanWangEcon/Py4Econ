@@ -1,0 +1,49 @@
+---
+title: "Python Basic Number Numeric Manipulations"
+titleshort: "Basic Number Numeric Manipulations"
+description: |
+  Loop over a list of numbers where the first and second digits have different interpretations.
+core:
+  - package: py
+    code: |
+
+date: 2020-12-18
+date_start: 2020-12-18
+output:
+  pdf_document:
+    pandoc_args: '../../_output_kniti_pdf.yaml'
+    includes:
+      in_header: '../../preamble.tex'
+  html_document:
+    pandoc_args: '../../_output_kniti_html.yaml'
+    includes:
+      in_header: "../../hdga.html"
+always_allow_html: true
+urlcolor: blue
+---
+
+### Numeric Basics
+
+```{r global_options, include = FALSE}
+try(source("../../.Rprofile"))
+```
+
+`r text_shared_preamble_one`
+`r text_shared_preamble_two`
+`r text_shared_preamble_thr`
+
+```{python}
+import numpy as np
+```
+
+#### Two Digit Numbers Coding Conditional Information
+
+We have numbers between 0 and 99, these indicate different estimation specifications, where the digit number is the estimation tolerance level, and the tens number is the minimization algorithm.
+
+```{python}
+ls_it_esti_optsalgo = [0, 1, 10, 15, 23, 89, 90, 99]
+for it_esti_optsalgo in ls_it_esti_optsalgo:
+    it_esti_optsalgo_tens = int(np.floor(it_esti_optsalgo/10))
+    it_esti_optsalgo_digits = it_esti_optsalgo%10
+    print(f'{it_esti_optsalgo_tens=}, {it_esti_optsalgo_digits=}')
+```
