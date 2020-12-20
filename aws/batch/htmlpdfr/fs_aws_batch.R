@@ -158,7 +158,6 @@ try(source("../../.Rprofile"))
 ##     jobDefinition=jobDefinitionName)
 
 ## 
-
 ## # Print response
 
 ## pprint.pprint(response, width=1)

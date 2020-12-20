@@ -11,9 +11,9 @@
 
 <meta name="author" content="Fan Wang" />
 
-<meta name="date" content="2020-10-17" />
+<meta name="date" content="2020-12-19" />
 
-<title>Amazon Web Services (AWS) Batch Array</title>
+<title>Python Command Line Argument Parsing</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1865,167 +1865,148 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Amazon Web Services (AWS) Batch Array</h1>
+<h1 class="title toc-ignore">Python Command Line Argument Parsing</h1>
 <h4 class="author"><a href="https://fanwangecon.github.io/">Fan Wang</a></h4>
-<h4 class="date">2020-10-17</h4>
+<h4 class="date">2020-12-19</h4>
 
 </div>
 
 
-<div id="aws-batch-run" class="section level1" number="1">
-<h1 number="1"><span class="header-section-number">1</span> AWS Batch Run</h1>
+<div id="python-command-line-arguments-parsing" class="section level1" number="1">
+<h1 number="1"><span class="header-section-number">1</span> Python Command-line Arguments Parsing</h1>
 <blockquote>
-<p>Go to the <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/aws/batch//fs_aws_batch.Rmd"><strong>RMD</strong></a>, <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/aws/batch//htmlpdfr/fs_aws_batch.pdf"><strong>PDF</strong></a>, or <a href="https://fanwangecon.github.io//Py4Econ/aws/batch//htmlpdfr/fs_aws_batch.html"><strong>HTML</strong></a> version of this file. Go back to <a href="https://fanwangecon.github.io/Py4Econ/">Python Code Examples</a> Repository (<a href="https://fanwangecon.github.io/Py4Econ/bookdown">bookdown site</a>) or the <a href="https://pyfan.readthedocs.io/en/latest/">pyfan</a> Package (<a href="https://pyfan.readthedocs.io/en/latest/reference.html">API</a>).</p>
+<p>Go to the <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/function/args//fs_func_args_cmd.Rmd"><strong>RMD</strong></a>, <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/function/args//htmlpdfr/fs_func_args_cmd.pdf"><strong>PDF</strong></a>, or <a href="https://fanwangecon.github.io//Py4Econ/function/args//htmlpdfr/fs_func_args_cmd.html"><strong>HTML</strong></a> version of this file. Go back to <a href="https://fanwangecon.github.io/Py4Econ/">Python Code Examples</a> Repository (<a href="https://fanwangecon.github.io/Py4Econ/bookdown">bookdown site</a>) or the <a href="https://pyfan.readthedocs.io/en/latest/">pyfan</a> Package (<a href="https://pyfan.readthedocs.io/en/latest/reference.html">API</a>).</p>
 </blockquote>
-<div id="preparing-a-docker-image-and-a-python-function-for-batch-array-job" class="section level2" number="1.1">
-<h2 number="1.1"><span class="header-section-number">1.1</span> Preparing a Docker Image and a Python Function for Batch Array Job</h2>
-<p>We want to set-up a function that can be used jointly with <a href="https://docs.aws.amazon.com/batch/latest/userguide/array_jobs.html">AWS Batch Array</a>. With Batch Array, can run many simulations concurrently. All simulations might only differ in random seed for drawing shocks. This requires setting up the proper dockerfile as well as modifying the python function that we want to invoke slightly.</p>
-<p>First, create and push a docker image, see this <a href="https://fanwangecon.github.io/Py4Econ/docker/setup/htmlpdfr/fs_docker_ecr.html#141_Example_Docker_File_for_AWS">dockerfile</a>. Following the AWS ECR instructions, this registers a docker image in AWS ECR with a URI: <em>XXXX7367XXXX.dkr.ecr.us-east-1.amazonaws.com/fanconda</em></p>
-<p>The <a href="https://fanwangecon.github.io/Py4Econ/docker/setup/htmlpdfr/fs_docker_ecr.html#141_Example_Docker_File_for_AWS">dockerfile</a> has for CMD: <em>CMD [“python”, “/pyfan/pyfan/graph/exa/scatterline3.py”]</em>. This runs the function <a href="https://github.com/FanWangEcon/pyfan/blob/master/pyfan/graph/exa/scatterline3.py">scatterline3</a>.</p>
-<p>Second, the <a href="https://github.com/FanWangEcon/pyfan/blob/master/pyfan/graph/exa/scatterline3.py">scatterline3</a> function checks if <a href="https://github.com/FanWangEcon/pyfan/blob/master/pyfan/graph/exa/scatterline3.py#L167"><em>AWS_BATCH_JOB_ARRAY_INDEX</em> is in the <em>os.environ</em></a>. <em>AWS_BATCH_JOB_ARRAY_INDEX</em>, if exists, is used as a random seed to generate data for the graph. When the function is run in a docker container via batch, the function saves the graph output to a bucket in AWS s3. The pushing the s3 is achieved by <a href="https://github.com/FanWangEcon/pyfan/blob/master/pyfan/aws/general/path.py">pyfan.aws.general.path.py</a>.</p>
-<p>In the batch job, when <em>arrayProperties = {‘size’: 10}</em>, this will generate <em>AWS_BATCH_JOB_ARRAY_INDEX</em> from 1 through 10 in 10 sub-tasks of a single batch task. These <em>AWS_BATCH_JOB_ARRAY_INDEX</em> could be used as different random seeds, and could be used as folder suffixes.</p>
-<p>Here, the <a href="https://github.com/FanWangEcon/pyfan/blob/master/pyfan/graph/exa/scatterline3.py">scatterline3</a> function generates a graph, that will be stored for testing purpose in <a href="https://s3.console.aws.amazon.com/s3/buckets/fans3testbucket/pyfan_gph_scatter_line_rand/?region=us-east-1&amp;tab=overview">pyfan_gph_scatter_line_rand folder of fans3testbucket bucket</a>, the images saved has <em>seed_0.png</em>, <em>seed_1.png</em>, …, <em>seed_10.png</em> as names when <em>arrayProperties = {‘size’: 10}</em>.</p>
+<pre class="python"><code>import pprint
+import argparse</code></pre>
+<div id="positional-and-optional-arguments" class="section level2" number="1.1">
+<h2 number="1.1"><span class="header-section-number">1.1</span> Positional and Optional Arguments</h2>
+<p>Provide a positional and an optional argument. Position arguments are provided positions when the module is called, without prefixed by which parameter this is. Optional argument requires parameter specification.</p>
+<pre class="python"><code># Start parser for arguments
+parser = argparse.ArgumentParser()
+
+# Positional argument 1st, will be stored as int
+parser.add_argument(&#39;esrtype&#39;, type=int, help=&#39;positional argument 1st&#39;)
+# Positional argument 2nd, will be stored as string</code></pre>
+<pre><code>## _StoreAction(option_strings=[], dest=&#39;esrtype&#39;, nargs=None, const=None, default=None, type=&lt;class &#39;int&#39;&gt;, choices=None, help=&#39;positional argument 1st&#39;, metavar=None)</code></pre>
+<pre class="python"><code>parser.add_argument(&#39;speckey&#39;, type=str, help=&#39;positional argument 2nd&#39;)
+
+# Optional argument</code></pre>
+<pre><code>## _StoreAction(option_strings=[], dest=&#39;speckey&#39;, nargs=None, const=None, default=None, type=&lt;class &#39;str&#39;&gt;, choices=None, help=&#39;positional argument 2nd&#39;, metavar=None)</code></pre>
+<pre class="python"><code>parser.add_argument(&#39;-A&#39;, type=str, default=&#39;opt_arg_A_default_str_val&#39;)
+
+# Call with positional argument specified
+# Note that one is bracketed, will be interpreted as int</code></pre>
+<pre><code>## _StoreAction(option_strings=[&#39;-A&#39;], dest=&#39;A&#39;, nargs=None, const=None, default=&#39;opt_arg_A_default_str_val&#39;, type=&lt;class &#39;str&#39;&gt;, choices=None, help=None, metavar=None)</code></pre>
+<pre class="python"><code>print(f&quot;Must specify posi. arg: {parser.parse_args([&#39;1&#39;, &#39;mpoly_1=esti_tinytst_mpoly_13=3=3&#39;])=}&quot;)
+# Call with two positional arguments and one optional
+# Note that the first positional argument becomes int, second beomce str</code></pre>
+<pre><code>## Must specify posi. arg: parser.parse_args([&#39;1&#39;, &#39;mpoly_1=esti_tinytst_mpoly_13=3=3&#39;])=Namespace(A=&#39;opt_arg_A_default_str_val&#39;, esrtype=1, speckey=&#39;mpoly_1=esti_tinytst_mpoly_13=3=3&#39;)</code></pre>
+<pre class="python"><code>print(f&quot;With opt arg: {parser.parse_args([&#39;1&#39;, &#39;2&#39;, &#39;-A&#39;, &#39;abc&#39;])=}&quot;)</code></pre>
+<pre><code>## With opt arg: parser.parse_args([&#39;1&#39;, &#39;2&#39;, &#39;-A&#39;, &#39;abc&#39;])=Namespace(A=&#39;abc&#39;, esrtype=1, speckey=&#39;2&#39;)</code></pre>
 </div>
-<div id="register-a-batch-job-definition" class="section level2" number="1.2">
-<h2 number="1.2"><span class="header-section-number">1.2</span> Register A Batch Job Definition</h2>
-<p>Given the docker image we created: <em>XXXX7367XXXX.dkr.ecr.us-east-1.amazonaws.com/fanconda</em>, we can use this to register a batch job.</p>
+<div id="short-and-long-parameter-name-specifications" class="section level2" number="1.2">
+<h2 number="1.2"><span class="header-section-number">1.2</span> Short and Long Parameter Name Specifications</h2>
+<p>Test below a boolean parameter that will be true or false. The default value is False. The parameter is called <em>boolparam</em> with short name <em>abc</em>. There is a variety of ways of setting the parameter to true.</p>
+<pre class="python"><code># Start parser for arguments
+parser = argparse.ArgumentParser()
+
+# short name for the first parameter is a, full name is abc, boolean parameter
+parser.add_argument(&#39;-abc&#39;, &#39;--boolparam&#39;, action=&quot;store_true&quot;, default=False)
+
+# default is false but turn on option so true</code></pre>
+<pre><code>## _StoreTrueAction(option_strings=[&#39;-abc&#39;, &#39;--boolparam&#39;], dest=&#39;boolparam&#39;, nargs=0, const=True, default=False, type=None, choices=None, help=None, metavar=None)</code></pre>
+<pre class="python"><code>print(f&quot;default false: {parser.parse_args()=}&quot;)</code></pre>
+<pre><code>## default false: parser.parse_args()=Namespace(boolparam=False)</code></pre>
+<pre class="python"><code>print(f&quot;default false, set to true, short all: {parser.parse_args([&#39;-abc&#39;])=}&quot;)</code></pre>
+<pre><code>## default false, set to true, short all: parser.parse_args([&#39;-abc&#39;])=Namespace(boolparam=True)</code></pre>
+<pre class="python"><code>print(f&quot;default false, set to true, short part ab for abc: {parser.parse_args([&#39;-ab&#39;])=}&quot;)</code></pre>
+<pre><code>## default false, set to true, short part ab for abc: parser.parse_args([&#39;-ab&#39;])=Namespace(boolparam=True)</code></pre>
+<pre class="python"><code>print(f&quot;default false, set to true, short part a for abc: {parser.parse_args([&#39;-a&#39;])=}&quot;)</code></pre>
+<pre><code>## default false, set to true, short part a for abc: parser.parse_args([&#39;-a&#39;])=Namespace(boolparam=True)</code></pre>
+<pre class="python"><code>print(f&quot;default false, set to true, full param: {parser.parse_args([&#39;--boolparam&#39;])=}&quot;)</code></pre>
+<pre><code>## default false, set to true, full param: parser.parse_args([&#39;--boolparam&#39;])=Namespace(boolparam=True)</code></pre>
+<pre class="python"><code>print(f&quot;default false, set to true, full param: {parser.parse_args([&#39;--boolparam&#39;])=}&quot;)</code></pre>
+<pre><code>## default false, set to true, full param: parser.parse_args([&#39;--boolparam&#39;])=Namespace(boolparam=True)</code></pre>
+</div>
+<div id="boolean-integer-string-and-list-parameters" class="section level2" number="1.3">
+<h2 number="1.3"><span class="header-section-number">1.3</span> Boolean, Integer, String and list Parameters</h2>
+<p>How to handle parameters of different types, boolean, integer, string and list. For these four types, the same way to specify short and long parameter names. How to set the parameter types, and how to set default values for each type.</p>
+<p>Use only short names</p>
+<pre class="python"><code># Start parser for arguments
+parser = argparse.ArgumentParser()
+
+# Single letter string parameters
+# Note dest name over-rides full name
+parser.add_argument(&#39;-cta&#39;, &#39;--cttaaaaa&#39;, dest=&quot;combo_type_a&quot;, default=&#39;e&#39;,
+                    type=str)
+# Multiple letters and integers
+# Note without dest full name is dest</code></pre>
+<pre><code>## _StoreAction(option_strings=[&#39;-cta&#39;, &#39;--cttaaaaa&#39;], dest=&#39;combo_type_a&#39;, nargs=None, const=None, default=&#39;e&#39;, type=&lt;class &#39;str&#39;&gt;, choices=None, help=None, metavar=None)</code></pre>
+<pre class="python"><code>parser.add_argument(&#39;-ctb&#39;, &#39;--combo_type_b&#39;, default=&#39;20201025&#39;,
+                    type=str)
+# Multiple letters and integers
+# Note without dest and full name short name is parameter name</code></pre>
+<pre><code>## _StoreAction(option_strings=[&#39;-ctb&#39;, &#39;--combo_type_b&#39;], dest=&#39;combo_type_b&#39;, nargs=None, const=None, default=&#39;20201025&#39;, type=&lt;class &#39;str&#39;&gt;, choices=None, help=None, metavar=None)</code></pre>
+<pre class="python"><code>parser.add_argument(&#39;-ctc&#39;, default=[&#39;list_tKap_mlt_ce1a2&#39;],
+                    nargs=&#39;+&#39;, type=str)
+
+# Print defaults</code></pre>
+<pre><code>## _StoreAction(option_strings=[&#39;-ctc&#39;], dest=&#39;ctc&#39;, nargs=&#39;+&#39;, const=None, default=[&#39;list_tKap_mlt_ce1a2&#39;], type=&lt;class &#39;str&#39;&gt;, choices=None, help=None, metavar=None)</code></pre>
+<pre class="python"><code>print(f&quot;default false: {parser.parse_args()=}&quot;)
+# change parameters</code></pre>
+<pre><code>## default false: parser.parse_args()=Namespace(combo_type_a=&#39;e&#39;, combo_type_b=&#39;20201025&#39;, ctc=[&#39;list_tKap_mlt_ce1a2&#39;])</code></pre>
+<pre class="python"><code>print(f&quot;default false: {parser.parse_args([&#39;-ctb&#39;, &#39;20201111&#39;])=}&quot;)</code></pre>
+<pre><code>## default false: parser.parse_args([&#39;-ctb&#39;, &#39;20201111&#39;])=Namespace(combo_type_a=&#39;e&#39;, combo_type_b=&#39;20201111&#39;, ctc=[&#39;list_tKap_mlt_ce1a2&#39;])</code></pre>
+<p>see <a href="https://pymotw.com/2/argparse/#variable-argument-lists">variable-argument-lists</a>.</p>
+</div>
+<div id="parse-multiple-parameter-types" class="section level2" number="1.4">
+<h2 number="1.4"><span class="header-section-number">1.4</span> Parse multiple parameter types</h2>
+<p>Provide several types of parameters to a function, so that the function can be called easily container call to execute estimation. The types of parameters includes:</p>
 <ol style="list-style-type: decimal">
-<li>computing requirements: memory and cpu: <em>vCpus = 1</em> and <em>Memory=7168</em> for example</li>
-<li>which container to pull from (ECR): List the image name: <em>XXXX7367XXXX.dkr.ecr.us-east-1.amazonaws.com/fanconda</em> for example</li>
-<li>job role ARN: <em>arn:aws:iam::XXXX7367XXXX:role/ecsExecutionRole</em> to allow for proper in and out from and to the container.</li>
+<li>A list including parameter information</li>
+<li>A string including estimation/computational controls</li>
+<li>Additional parameters</li>
 </ol>
-<p>These can be registered programmatically by using boto3: <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/batch.html">Boto3 Batch Documentation</a></p>
-<p>In the example below, will register a new job definition, this will add <em>pyfan-scatterline3-test-rmd</em> to <a href="https://console.aws.amazon.com/batch/v2/home?region=us-east-1#job-definition">job definition</a> as an additional job definition.</p>
-<p>Everytime, when the code below is re-run, a new batch revision number is generated. AWS allows per batch job to have potential hundreds of thousands of revisions.</p>
-<pre class="python"><code>import boto3
-import yaml
-import pprint
+<pre class="python"><code># Start parser for arguments
+parser = argparse.ArgumentParser()
 
-# Load YAML file with security info
-srn_aws_yml = &quot;C:/Users/fan/fanwangecon.github.io/_data/aws.yml&quot;
-fl_yaml = open(srn_aws_yml)
-ls_dict_yml = yaml.load(fl_yaml, Loader=yaml.BaseLoader)
-aws_yml_dict_yml = ls_dict_yml[0]
+# First (and only) positional argument for esrtype:
+parser.add_argument(&#39;esrtype&#39;, type=int, help=&#39;positional argument&#39;)
 
-# Dictionary storing job definition related information
-job_dict = {&quot;jobDefinitionName&quot;: &#39;pyfan-scatterline3-test-rmd&#39;,
-            &quot;type&quot;: &quot;container&quot;,
-            &quot;containerProperties&quot;: {
-                &quot;image&quot;: aws_yml_dict_yml[&#39;main_aws_id&#39;] + &quot;.dkr.ecr.&quot; +
-                         aws_yml_dict_yml[&#39;region&#39;] + &quot;.amazonaws.com/fanconda&quot;,
-                &quot;vcpus&quot;: int(1),
-                &quot;memory&quot;: int(1024),
-                &quot;command&quot;: [&quot;python&quot;,
-                            &quot;/pyfan/pyfan/graph/exa/scatterline3.py&quot;,
-                            &quot;-A&quot;, &quot;fans3testbucket&quot;,
-                            &quot;-B&quot;, &quot;111&quot;],
-                &quot;jobRoleArn&quot;: &quot;arn:aws:iam::&quot; + aws_yml_dict_yml[&#39;main_aws_id&#39;] +
-                              &quot;:role/&quot; + aws_yml_dict_yml[&#39;batch_task_executionRoleArn&#39;]
-            },
-            &quot;retryStrategy&quot;: {
-                &quot;attempts&quot;: 1
-            }}
+# Optional argument</code></pre>
+<pre><code>## _StoreAction(option_strings=[], dest=&#39;esrtype&#39;, nargs=None, const=None, default=None, type=&lt;class &#39;int&#39;&gt;, choices=None, help=&#39;positional argument&#39;, metavar=None)</code></pre>
+<pre class="python"><code>parser.add_argument(&#39;-s&#39;, dest=&#39;speckey&#39;, type=str,
+                    default=&#39;ng_s_t=esti_tinytst_thin_1=3=3&#39;,
+                    help=&quot;compute and esti keys and omments&quot;)
 
-# Use AWS Personal Access Keys etc to start boto3 client
-aws_batch = boto3.client(&#39;batch&#39;,
-  aws_access_key_id=aws_yml_dict_yml[&#39;aws_access_key_id&#39;],
-  aws_secret_access_key=aws_yml_dict_yml[&#39;aws_secret_access_key&#39;],
-  region_name=aws_yml_dict_yml[&#39;region&#39;])
+# abc and e of comb_type</code></pre>
+<pre><code>## _StoreAction(option_strings=[&#39;-s&#39;], dest=&#39;speckey&#39;, nargs=None, const=None, default=&#39;ng_s_t=esti_tinytst_thin_1=3=3&#39;, type=&lt;class &#39;str&#39;&gt;, choices=None, help=&#39;compute and esti keys and omments&#39;, metavar=None)</code></pre>
+<pre class="python"><code>parser.add_argument(&#39;-cta&#39;, dest=&quot;combo_type_a&quot;, default=&#39;e&#39;, type=str)</code></pre>
+<pre><code>## _StoreAction(option_strings=[&#39;-cta&#39;], dest=&#39;combo_type_a&#39;, nargs=None, const=None, default=&#39;e&#39;, type=&lt;class &#39;str&#39;&gt;, choices=None, help=None, metavar=None)</code></pre>
+<pre class="python"><code>parser.add_argument(&#39;-ctb&#39;, dest=&quot;combo_type_b&quot;, default=&#39;20201025&#39;, type=str)</code></pre>
+<pre><code>## _StoreAction(option_strings=[&#39;-ctb&#39;], dest=&#39;combo_type_b&#39;, nargs=None, const=None, default=&#39;20201025&#39;, type=&lt;class &#39;str&#39;&gt;, choices=None, help=None, metavar=None)</code></pre>
+<pre class="python"><code>parser.add_argument(&#39;-ctc&#39;, dest=&quot;combo_type_c&quot;, default=[&#39;list_tKap_mlt_ce1a2&#39;], nargs=&#39;+&#39;, type=str)</code></pre>
+<pre><code>## _StoreAction(option_strings=[&#39;-ctc&#39;], dest=&#39;combo_type_c&#39;, nargs=&#39;+&#39;, const=None, default=[&#39;list_tKap_mlt_ce1a2&#39;], type=&lt;class &#39;str&#39;&gt;, choices=None, help=None, metavar=None)</code></pre>
+<pre class="python"><code>parser.add_argument(&#39;-cte1&#39;, dest=&quot;combo_type_e1&quot;, default=None, type=str)</code></pre>
+<pre><code>## _StoreAction(option_strings=[&#39;-cte1&#39;], dest=&#39;combo_type_e1&#39;, nargs=None, const=None, default=None, type=&lt;class &#39;str&#39;&gt;, choices=None, help=None, metavar=None)</code></pre>
+<pre class="python"><code>parser.add_argument(&#39;-cte2&#39;, dest=&quot;combo_type_e2&quot;, default=&#39;mpoly_1=esti_tinytst_mpoly_13=3=3&#39;, type=str)
 
-# Register a job definition
-response = aws_batch.register_job_definition(
-        jobDefinitionName = job_dict[&#39;jobDefinitionName&#39;],
-        type = job_dict[&#39;type&#39;],
-        containerProperties = job_dict[&#39;containerProperties&#39;],
-        retryStrategy = job_dict[&#39;retryStrategy&#39;])
+# other parameters</code></pre>
+<pre><code>## _StoreAction(option_strings=[&#39;-cte2&#39;], dest=&#39;combo_type_e2&#39;, nargs=None, const=None, default=&#39;mpoly_1=esti_tinytst_mpoly_13=3=3&#39;, type=&lt;class &#39;str&#39;&gt;, choices=None, help=None, metavar=None)</code></pre>
+<pre class="python"><code>parser.add_argument(&#39;-f&#39;, dest=&quot;save_directory_main&quot;, default=&#39;esti&#39;)
 
-# Print response
-pprint.pprint(response, width=1)</code></pre>
-<pre><code>## {&#39;ResponseMetadata&#39;: {&#39;HTTPHeaders&#39;: {&#39;connection&#39;: &#39;keep-alive&#39;,
-##                                       &#39;content-length&#39;: &#39;169&#39;,
-##                                       &#39;content-type&#39;: &#39;application/json&#39;,
-##                                       &#39;date&#39;: &#39;Sun, &#39;
-##                                               &#39;20 &#39;
-##                                               &#39;Dec &#39;
-##                                               &#39;2020 &#39;
-##                                               &#39;15:46:44 &#39;
-##                                               &#39;GMT&#39;,
-##                                       &#39;x-amz-apigw-id&#39;: &#39;X267rG5AoAMFuZQ=&#39;,
-##                                       &#39;x-amzn-requestid&#39;: &#39;f4a16155-5165-4f86-9713-50196aa338c8&#39;,
-##                                       &#39;x-amzn-trace-id&#39;: &#39;Root=1-5fdf71e4-0643ed800ffff3b966b94467;Sampled=0&#39;},
-##                       &#39;HTTPStatusCode&#39;: 200,
-##                       &#39;RequestId&#39;: &#39;f4a16155-5165-4f86-9713-50196aa338c8&#39;,
-##                       &#39;RetryAttempts&#39;: 0},
-##  &#39;jobDefinitionArn&#39;: &#39;arn:aws:batch:us-east-1:710673677961:job-definition/pyfan-scatterline3-test-rmd:70&#39;,
-##  &#39;jobDefinitionName&#39;: &#39;pyfan-scatterline3-test-rmd&#39;,
-##  &#39;revision&#39;: 70}</code></pre>
-</div>
-<div id="submit-a-batch-array" class="section level2" number="1.3">
-<h2 number="1.3"><span class="header-section-number">1.3</span> Submit a Batch Array</h2>
-<p>Given the batch job definition that has been created. Create also Job Queues and related compute environments. Then we can run Batch Array. Upon submitting the batch array, you can monitor AWS EC2 instances, should notice potentially many instances of EC2 starting up. AWS is starting EC2 instances to complete the batch array jobs.</p>
-<p>create a <a href="https://docs.aws.amazon.com/batch/latest/userguide/compute_environments.html">batch compute environment</a> that uses <a href="https://aws.amazon.com/ec2/pricing/">spot price instances</a>, which will be much cheaper than on demand costs. Will need to set proper AMI roles, <em>arn:aws:iam::XXXX7367XXXX:role/AmazonEC2SpotFleetRole</em> for <em>Spot fleet role</em>, and also proper securities.</p>
-<p>When the <em>array_size</em> parameter is equal to 100, that starts 100 child processes, with 1 through 100 for <em>AWS_BATCH_JOB_ARRAY_INDEX</em>, which, could be used directly by the python function by taking in the parameter from the os environment as shown earlier. For demonstration purposes, will only set <em>array_size=3</em> in the example below.</p>
-<p>Outputs from the <a href="https://github.com/FanWangEcon/pyfan/blob/master/pyfan/graph/exa/scatterline3.py#L138">scatterline3</a> has a timestamp, so each time the code below is run, will generate several new images, with the same set of random seeds, but different date prefix. The output <a href="https://s3.console.aws.amazon.com/s3/buckets/fans3testbucket/pyfan_gph_scatter_line_rand/?region=us-east-1&amp;tab=overview">s3 folder is public</a>.</p>
-<pre class="python"><code>import boto3
-import yaml
-import pprint
-
-import datetime as datetime
-
-# Using the &quot;jobDefinitionName&quot;: &#39;pyfan-scatterline3-test-rmd&#39; from registering
-jobDefinitionName = &#39;pyfan-scatterline3-test-rmd&#39;
-
-# How many child batch processes to start
-# child process differ in: AWS_BATCH_JOB_ARRAY_INDEX
-array_size = 3
-
-# job name
-timestr = &quot;{:%Y%m%d%H%M%S%f}&quot;.format(datetime.datetime.now())
-timesufx = &#39;_&#39; + timestr
-st_jobName = jobDefinitionName + timesufx
-
-# job queue (needs to design own queue in batch)
-st_jobQueue = &#39;Spot&#39;
-
-# start batch service
-# Load YAML file with security info
-srn_aws_yml = &quot;C:/Users/fan/fanwangecon.github.io/_data/aws.yml&quot;
-fl_yaml = open(srn_aws_yml)
-ls_dict_yml = yaml.load(fl_yaml, Loader=yaml.BaseLoader)
-aws_yml_dict_yml = ls_dict_yml[0]
-# Use AWS Personal Access Keys etc to start boto3 client
-aws_batch = boto3.client(&#39;batch&#39;,
-                         aws_access_key_id=aws_yml_dict_yml[&#39;aws_access_key_id&#39;],
-                         aws_secret_access_key=aws_yml_dict_yml[&#39;aws_secret_access_key&#39;],
-                         region_name=aws_yml_dict_yml[&#39;region&#39;])
-
-# aws batch submit job
-response = aws_batch.submit_job(
-    jobName=st_jobName,
-    jobQueue=st_jobQueue,
-    arrayProperties={&#39;size&#39;: array_size},
-    jobDefinition=jobDefinitionName)
-
-# Print response
-pprint.pprint(response, width=1)</code></pre>
-<pre><code>## {&#39;ResponseMetadata&#39;: {&#39;HTTPHeaders&#39;: {&#39;connection&#39;: &#39;keep-alive&#39;,
-##                                       &#39;content-length&#39;: &#39;198&#39;,
-##                                       &#39;content-type&#39;: &#39;application/json&#39;,
-##                                       &#39;date&#39;: &#39;Sun, &#39;
-##                                               &#39;20 &#39;
-##                                               &#39;Dec &#39;
-##                                               &#39;2020 &#39;
-##                                               &#39;15:46:44 &#39;
-##                                               &#39;GMT&#39;,
-##                                       &#39;x-amz-apigw-id&#39;: &#39;X267xG75IAMF0mA=&#39;,
-##                                       &#39;x-amzn-requestid&#39;: &#39;f00d92a0-d1ad-4185-9b9f-63f4098997cd&#39;,
-##                                       &#39;x-amzn-trace-id&#39;: &#39;Root=1-5fdf71e4-59242f6f0469ffcd684676ed;Sampled=0&#39;},
-##                       &#39;HTTPStatusCode&#39;: 200,
-##                       &#39;RequestId&#39;: &#39;f00d92a0-d1ad-4185-9b9f-63f4098997cd&#39;,
-##                       &#39;RetryAttempts&#39;: 0},
-##  &#39;jobArn&#39;: &#39;arn:aws:batch:us-east-1:710673677961:job/11ca4397-5af7-44d3-aa16-6fe7f78f35a8&#39;,
-##  &#39;jobId&#39;: &#39;11ca4397-5af7-44d3-aa16-6fe7f78f35a8&#39;,
-##  &#39;jobName&#39;: &#39;pyfan-scatterline3-test-rmd_20201220094644398950&#39;}</code></pre>
+# Default, must specify erstype</code></pre>
+<pre><code>## _StoreAction(option_strings=[&#39;-f&#39;], dest=&#39;save_directory_main&#39;, nargs=None, const=None, default=&#39;esti&#39;, type=None, choices=None, help=None, metavar=None)</code></pre>
+<pre class="python"><code>print(f&quot;default false: {parser.parse_args([&#39;1&#39;])=}&quot;)
+# Print with the nargs+ arguments
+# specified two elements, abc, and efg for nargs ctc, becomes a string list</code></pre>
+<pre><code>## default false: parser.parse_args([&#39;1&#39;])=Namespace(combo_type_a=&#39;e&#39;, combo_type_b=&#39;20201025&#39;, combo_type_c=[&#39;list_tKap_mlt_ce1a2&#39;], combo_type_e1=None, combo_type_e2=&#39;mpoly_1=esti_tinytst_mpoly_13=3=3&#39;, esrtype=1, save_directory_main=&#39;esti&#39;, speckey=&#39;ng_s_t=esti_tinytst_thin_1=3=3&#39;)</code></pre>
+<pre class="python"><code>print(f&quot;default false: {parser.parse_args([&#39;1&#39;, &#39;-ctc&#39;, &#39;abc&#39;, &#39;efg&#39;])=}&quot;)
+# one input for ctc, still generates a list</code></pre>
+<pre><code>## default false: parser.parse_args([&#39;1&#39;, &#39;-ctc&#39;, &#39;abc&#39;, &#39;efg&#39;])=Namespace(combo_type_a=&#39;e&#39;, combo_type_b=&#39;20201025&#39;, combo_type_c=[&#39;abc&#39;, &#39;efg&#39;], combo_type_e1=None, combo_type_e2=&#39;mpoly_1=esti_tinytst_mpoly_13=3=3&#39;, esrtype=1, save_directory_main=&#39;esti&#39;, speckey=&#39;ng_s_t=esti_tinytst_thin_1=3=3&#39;)</code></pre>
+<pre class="python"><code>print(f&quot;default false: {parser.parse_args([&#39;1&#39;, &#39;-ctc&#39;, &#39;abc&#39;])=}&quot;)</code></pre>
+<pre><code>## default false: parser.parse_args([&#39;1&#39;, &#39;-ctc&#39;, &#39;abc&#39;])=Namespace(combo_type_a=&#39;e&#39;, combo_type_b=&#39;20201025&#39;, combo_type_c=[&#39;abc&#39;], combo_type_e1=None, combo_type_e2=&#39;mpoly_1=esti_tinytst_mpoly_13=3=3&#39;, esrtype=1, save_directory_main=&#39;esti&#39;, speckey=&#39;ng_s_t=esti_tinytst_thin_1=3=3&#39;)</code></pre>
 </div>
 </div>
 

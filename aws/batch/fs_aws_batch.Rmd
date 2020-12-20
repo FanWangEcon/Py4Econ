@@ -40,21 +40,21 @@ try(source("../../.Rprofile"))
 
 #### Preparing a Docker Image and a Python Function for Batch Array Job
 
-We want to set-up a function that can be used jointly with [AWS Batch Array](https://docs.aws.amazon.com/batch/latest/userguide/array_jobs.html). With Batch Array, can run many simulations concurrently. All simulations might only differ in random seed for drawing shocks. This requires setting up the proper dockerfile as well as modifying the python function that we want to invoke slightly. 
+We want to set-up a function that can be used jointly with [AWS Batch Array](https://docs.aws.amazon.com/batch/latest/userguide/array_jobs.html). With Batch Array, can run many simulations concurrently. All simulations might only differ in random seed for drawing shocks. This requires setting up the proper dockerfile as well as modifying the python function that we want to invoke slightly.
 
-First, create and push a docker image, see this [dockerfile](https://fanwangecon.github.io/pyfan/vig/docker/setup/htmlpdfr/fs_docker_ecr.html#141_Example_Docker_File_for_AWS). Following the AWS ECR instructions, this registers a docker image in AWS ECR with a URI: *XXXX7367XXXX.dkr.ecr.us-east-1.amazonaws.com/fanconda*
+First, create and push a docker image, see this [dockerfile](https://fanwangecon.github.io/Py4Econ/docker/setup/htmlpdfr/fs_docker_ecr.html#141_Example_Docker_File_for_AWS). Following the AWS ECR instructions, this registers a docker image in AWS ECR with a URI: *XXXX7367XXXX.dkr.ecr.us-east-1.amazonaws.com/fanconda*
 
-The [dockerfile](https://fanwangecon.github.io/pyfan/vig/docker/setup/htmlpdfr/fs_docker_ecr.html#141_Example_Docker_File_for_AWS) has for CMD: *CMD ["python", "/pyfan/pyfan/graph/exa/scatterline3.py"]*. This runs the function [scatterline3](https://github.com/FanWangEcon/pyfan/blob/master/pyfan/graph/exa/scatterline3.py). 
+The [dockerfile](https://fanwangecon.github.io/Py4Econ/docker/setup/htmlpdfr/fs_docker_ecr.html#141_Example_Docker_File_for_AWS) has for CMD: *CMD ["python", "/pyfan/pyfan/graph/exa/scatterline3.py"]*. This runs the function [scatterline3](https://github.com/FanWangEcon/pyfan/blob/master/pyfan/graph/exa/scatterline3.py).
 
 Second, the [scatterline3](https://github.com/FanWangEcon/pyfan/blob/master/pyfan/graph/exa/scatterline3.py) function checks if [*AWS_BATCH_JOB_ARRAY_INDEX* is in the *os.environ*](https://github.com/FanWangEcon/pyfan/blob/master/pyfan/graph/exa/scatterline3.py#L167). *AWS_BATCH_JOB_ARRAY_INDEX*, if exists, is used as a random seed to generate data for the graph. When the function is run in a docker container via batch, the function saves the graph output to a bucket in AWS s3. The pushing the s3 is achieved by [pyfan.aws.general.path.py](https://github.com/FanWangEcon/pyfan/blob/master/pyfan/aws/general/path.py).
 
-In the batch job, when *arrayProperties = {'size': 10}*, this will generate *AWS_BATCH_JOB_ARRAY_INDEX* from 1 through 10 in 10 sub-tasks of a single batch task. These *AWS_BATCH_JOB_ARRAY_INDEX* could be used as different random seeds, and could be used as folder suffixes. 
+In the batch job, when *arrayProperties = {'size': 10}*, this will generate *AWS_BATCH_JOB_ARRAY_INDEX* from 1 through 10 in 10 sub-tasks of a single batch task. These *AWS_BATCH_JOB_ARRAY_INDEX* could be used as different random seeds, and could be used as folder suffixes.
 
-Here, the [scatterline3](https://github.com/FanWangEcon/pyfan/blob/master/pyfan/graph/exa/scatterline3.py) function generates a graph, that will be stored for testing purpose in [pyfan_gph_scatter_line_rand folder of fans3testbucket bucket](https://s3.console.aws.amazon.com/s3/buckets/fans3testbucket/pyfan_gph_scatter_line_rand/?region=us-east-1&tab=overview), the images saved has *seed_0.png*, *seed_1.png*, ..., *seed_10.png* as names when *arrayProperties = {'size': 10}*. 
+Here, the [scatterline3](https://github.com/FanWangEcon/pyfan/blob/master/pyfan/graph/exa/scatterline3.py) function generates a graph, that will be stored for testing purpose in [pyfan_gph_scatter_line_rand folder of fans3testbucket bucket](https://s3.console.aws.amazon.com/s3/buckets/fans3testbucket/pyfan_gph_scatter_line_rand/?region=us-east-1&tab=overview), the images saved has *seed_0.png*, *seed_1.png*, ..., *seed_10.png* as names when *arrayProperties = {'size': 10}*.
 
 #### Register A Batch Job Definition
 
-Given the docker image we created: *XXXX7367XXXX.dkr.ecr.us-east-1.amazonaws.com/fanconda*, we can use this to register a batch job. 
+Given the docker image we created: *XXXX7367XXXX.dkr.ecr.us-east-1.amazonaws.com/fanconda*, we can use this to register a batch job.
 
 1. computing requirements: memory and cpu: *vCpus = 1* and *Memory=7168* for example
 2. which container to pull from (ECR): List the image name: *XXXX7367XXXX.dkr.ecr.us-east-1.amazonaws.com/fanconda* for example
@@ -115,7 +115,7 @@ pprint.pprint(response, width=1)
 
 #### Submit a Batch Array
 
-Given the batch job definition that has been created. Create also Job Queues and related compute environments. Then we can run Batch Array. Upon submitting the batch array, you can monitor AWS EC2 instances, should notice potentially many instances of EC2 starting up. AWS is starting EC2 instances to complete the batch array jobs. 
+Given the batch job definition that has been created. Create also Job Queues and related compute environments. Then we can run Batch Array. Upon submitting the batch array, you can monitor AWS EC2 instances, should notice potentially many instances of EC2 starting up. AWS is starting EC2 instances to complete the batch array jobs.
 
 create a [batch compute environment](https://docs.aws.amazon.com/batch/latest/userguide/compute_environments.html) that uses [spot price instances](https://aws.amazon.com/ec2/pricing/), which will be much cheaper than on demand costs. Will need to set proper AMI roles, *arn:aws:iam::XXXX7367XXXX:role/AmazonEC2SpotFleetRole* for *Spot fleet role*, and also proper securities.
 
@@ -163,7 +163,7 @@ response = aws_batch.submit_job(
     jobQueue=st_jobQueue,
     arrayProperties={'size': array_size},
     jobDefinition=jobDefinitionName)
-    
+
 # Print response
 pprint.pprint(response, width=1)
 ```

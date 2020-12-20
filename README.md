@@ -80,7 +80,10 @@ Please contact [FanWangEcon](https://fanwangecon.github.io/) for issues or probl
 	+ Update default parameters with dictionary that replaces and appends additional key-value pairs using kwargs.
 	+ Pass a dictionary for named arguments to a function.
 	+ **python**: *dict3 = {dict1, dict2} + dict1.update(dict2) + func(par1='val1', kwargs)*
-3. [Function value returns](https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_returns.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args//fs_func_returns.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_returns.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_returns.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_returns.html)
+3. [Command line argument parsing](https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_args_cmd.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args//fs_func_args_cmd.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_args_cmd.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_args_cmd.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_args_cmd.html)
+	+ Parse parameters entered via command line to call a python script.
+	+ **argparse**: *parser.add_argument() + parser.parse_args()*
+4. [Function value returns](https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_returns.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args//fs_func_returns.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_returns.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_returns.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_returns.html)
 	+ Return one or multiple values from function.
 	+ **python**: *return a, b, c*
 
