@@ -13,7 +13,7 @@
 
 <meta name="date" content="2020-12-19" />
 
-<title>Python Command Line Argument Parsing</title>
+<title>Python Command Line Argument Parsing Positional and Optional Arguments</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1865,7 +1865,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Python Command Line Argument Parsing</h1>
+<h1 class="title toc-ignore">Python Command Line Argument Parsing Positional and Optional Arguments</h1>
 <h4 class="author"><a href="https://fanwangecon.github.io/">Fan Wang</a></h4>
 <h4 class="date">2020-12-19</h4>
 
@@ -1929,10 +1929,34 @@ parser.add_argument(&#39;-abc&#39;, &#39;--boolparam&#39;, action=&quot;store_tr
 <pre class="python"><code>print(f&quot;default false, set to true, full param: {parser.parse_args([&#39;--boolparam&#39;])=}&quot;)</code></pre>
 <pre><code>## default false, set to true, full param: parser.parse_args([&#39;--boolparam&#39;])=Namespace(boolparam=True)</code></pre>
 </div>
-<div id="boolean-integer-string-and-list-parameters" class="section level2" number="1.3">
-<h2 number="1.3"><span class="header-section-number">1.3</span> Boolean, Integer, String and list Parameters</h2>
+<div id="a-list-of-allowed-values" class="section level2" number="1.3">
+<h2 number="1.3"><span class="header-section-number">1.3</span> A List of Allowed Values</h2>
+<p>There is a parameter, only some specific values are allowed. Also provide help for each allowed option. Note added <em>argparse.RawTextHelpFormatter</em> to parse the next lines in help.</p>
+<pre class="python"><code># Start parse
+parser = argparse.ArgumentParser(description=&#39;Run ESR cmd&#39;, formatter_class=argparse.RawTextHelpFormatter)
+
+# A required positional argument parameter tht is int and can take eight possible values
+parser.add_argument(&#39;esrtype&#39;, type=int,
+                    choices=[1, 2, 3, 4, 5, 6, 7, 8],
+                    help=&#39;1. Simulate at N sets of parameter combinations\n&#39;
+                         &#39;2. Polynomial approximation surface based on (1) &#39;
+                         &#39;for each outcome of interest, find best\n&#39;
+                         &#39;3. Estimation at N sets of starting points with (2) as objective function\n&#39;
+                         &#39;4. Gather results frorm (3), find M best.\n&#39;
+                         &#39;5. Simulate (estimate once) at the top M best results from (4) actual model, &#39;
+                         &#39;compare objective to approximated from (3)\n&#39;
+                         &#39;6. Gather results from (5), re-rank best of the M best from (4)\n&#39;
+                         &#39;7. Estimate at the top M best results from (4) actual model, &#39;
+                         &#39;(4) M best are M best seeds\n&#39;
+                         &#39;8. Gather results from (7), re-rank best of the final results from the M best seeds&#39;)
+# Print defaults</code></pre>
+<pre><code>## _StoreAction(option_strings=[], dest=&#39;esrtype&#39;, nargs=None, const=None, default=None, type=&lt;class &#39;int&#39;&gt;, choices=[1, 2, 3, 4, 5, 6, 7, 8], help=&#39;1. Simulate at N sets of parameter combinations\n2. Polynomial approximation surface based on (1) for each outcome of interest, find best\n3. Estimation at N sets of starting points with (2) as objective function\n4. Gather results frorm (3), find M best.\n5. Simulate (estimate once) at the top M best results from (4) actual model, compare objective to approximated from (3)\n6. Gather results from (5), re-rank best of the M best from (4)\n7. Estimate at the top M best results from (4) actual model, (4) M best are M best seeds\n8. Gather results from (7), re-rank best of the final results from the M best seeds&#39;, metavar=None)</code></pre>
+<pre class="python"><code>print(f&quot;provide 1 for the value of the positional argument: {parser.parse_args([&#39;1&#39;])=}&quot;)</code></pre>
+<pre><code>## provide 1 for the value of the positional argument: parser.parse_args([&#39;1&#39;])=Namespace(esrtype=1)</code></pre>
+</div>
+<div id="boolean-integer-string-and-list-parameters" class="section level2" number="1.4">
+<h2 number="1.4"><span class="header-section-number">1.4</span> Boolean, Integer, String and list Parameters</h2>
 <p>How to handle parameters of different types, boolean, integer, string and list. For these four types, the same way to specify short and long parameter names. How to set the parameter types, and how to set default values for each type.</p>
-<p>Use only short names</p>
 <pre class="python"><code># Start parser for arguments
 parser = argparse.ArgumentParser()
 
@@ -1960,8 +1984,8 @@ parser.add_argument(&#39;-cta&#39;, &#39;--cttaaaaa&#39;, dest=&quot;combo_type_
 <pre><code>## default false: parser.parse_args([&#39;-ctb&#39;, &#39;20201111&#39;])=Namespace(combo_type_a=&#39;e&#39;, combo_type_b=&#39;20201111&#39;, ctc=[&#39;list_tKap_mlt_ce1a2&#39;])</code></pre>
 <p>see <a href="https://pymotw.com/2/argparse/#variable-argument-lists">variable-argument-lists</a>.</p>
 </div>
-<div id="parse-multiple-parameter-types" class="section level2" number="1.4">
-<h2 number="1.4"><span class="header-section-number">1.4</span> Parse multiple parameter types</h2>
+<div id="parse-multiple-parameter-types" class="section level2" number="1.5">
+<h2 number="1.5"><span class="header-section-number">1.5</span> Parse multiple parameter types</h2>
 <p>Provide several types of parameters to a function, so that the function can be called easily container call to execute estimation. The types of parameters includes:</p>
 <ol style="list-style-type: decimal">
 <li>A list including parameter information</li>

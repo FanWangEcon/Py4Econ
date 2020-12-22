@@ -10,6 +10,7 @@
 	+ Loop over a list of numbers where the first and second digits have different interpretations.
 	+ **py**: **
 2. [Define and Unpack Tuple](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_tuple.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array//fs_tuple.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_tuple.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_tuple.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_tuple.html)
+	+ Define/deal multiple variables on the same line
 	+ Define tuple in python with and without parenthesis, unpack tuple, get subset of elements.
 	+ Access tuple element and fail to mutate tuple element.
 	+ **py**: *isinstance(tp_abc, tuple)*
@@ -26,6 +27,7 @@
 	+ **fstring**: *f + f'{fl_esti_rounded:.{it_round_decimal}f}'*
 	+ **random**: *choice*
 5. [Define and Unpack Tuple](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_tuple.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array//fs_tuple.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_tuple.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_tuple.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_tuple.html)
+	+ Define/deal multiple variables on the same line
 	+ Define tuple in python with and without parenthesis, unpack tuple, get subset of elements.
 	+ Access tuple element and fail to mutate tuple element.
 	+ **py**: *isinstance(tp_abc, tuple)*
@@ -70,8 +72,10 @@
 	+ Update default parameters with dictionary that replaces and appends additional key-value pairs using kwargs.
 	+ Pass a dictionary for named arguments to a function.
 	+ **python**: *dict3 = {dict1, dict2} + dict1.update(dict2) + func(par1='val1', kwargs)*
-3. [Command line argument parsing](https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_args_cmd.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args//fs_func_args_cmd.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_args_cmd.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_args_cmd.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_args_cmd.html)
+3. [Command Line Argument Parsing Positional and Optional Arguments](https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_args_cmd.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args//fs_func_args_cmd.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_args_cmd.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_args_cmd.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_args_cmd.html)
 	+ Parse parameters entered via command line to call a python script.
+	+ Optional and positional arguments of different data types (int, str, etc.).
+	+ Default values, allowed list of values.
 	+ **argparse**: *parser.add_argument() + parser.parse_args()*
 4. [Function value returns](https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_returns.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args//fs_func_returns.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_returns.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_returns.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_returns.html)
 	+ Return one or multiple values from function.
@@ -121,11 +125,13 @@
 
 ### [Section 6.2 S3][S3] links
 
-1. [AWS S3 Uploading Downloading and Syncing](https://fanwangecon.github.io/Py4Econ/aws/s3/htmlpdfr/fs_aws_s3.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/aws/s3//fs_aws_s3.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/aws/s3/htmlpdfr/fs_aws_s3.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/aws/s3/htmlpdfr/fs_aws_s3.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/aws/s3/htmlpdfr/fs_aws_s3.html)
+1. [AWS S3 Uploading, Downloading and Syncing, Locally, EC2 and in Docker Container](https://fanwangecon.github.io/Py4Econ/aws/s3/htmlpdfr/fs_aws_s3.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/aws/s3//fs_aws_s3.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/aws/s3/htmlpdfr/fs_aws_s3.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/aws/s3/htmlpdfr/fs_aws_s3.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/aws/s3/htmlpdfr/fs_aws_s3.html)
 	+ From EC2 or local computer upload files to S3 folders.
 	+ Download sync folders with exclusions between local and S3 folders.
+	+ Download file from S3 to local computer, an EC2 Linux computer, or into a Docker Container.
 	+ **py**: *platform.release()*
-	+ **boto3**: *boto3.client('s3') + s3.upload_file*
+	+ **boto3**: *boto3.client('s3') + s3.upload_file() + s3.download_file()*
+	+ **os**: *sep*
 
 ### [Section 6.3 Batch][Batch] links
 

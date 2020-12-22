@@ -1,8 +1,13 @@
-## ----global_options, include = FALSE------------------------------------------------------------------------------------
+## ----global_options, include = FALSE------------------------------------------------------------------------------------------------------------------------------
 try(source("../../.Rprofile"))
 
 
 ## import numpy as np
+
+
+## st_cta, st_ctb, it_ctc = 'e', '20201025x_esr', 2
+
+## print(f'{st_cta=} and {st_ctb=} and {it_ctc=}')
 
 
 ## # Define Tuple, with and without parenthesis

@@ -1878,8 +1878,15 @@ div.tocify {
 <p>Go to the <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/amto/array//fs_tuple.Rmd"><strong>RMD</strong></a>, <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/amto/array//htmlpdfr/fs_tuple.pdf"><strong>PDF</strong></a>, or <a href="https://fanwangecon.github.io//Py4Econ/amto/array//htmlpdfr/fs_tuple.html"><strong>HTML</strong></a> version of this file. Go back to <a href="https://fanwangecon.github.io/Py4Econ/">Python Code Examples</a> Repository (<a href="https://fanwangecon.github.io/Py4Econ/bookdown">bookdown site</a>) or the <a href="https://pyfan.readthedocs.io/en/latest/">pyfan</a> Package (<a href="https://pyfan.readthedocs.io/en/latest/reference.html">API</a>).</p>
 </blockquote>
 <pre class="python"><code>import numpy as np</code></pre>
-<div id="tuple-example" class="section level2" number="1.1">
-<h2 number="1.1"><span class="header-section-number">1.1</span> Tuple Example</h2>
+<div id="deal-variables" class="section level2" number="1.1">
+<h2 number="1.1"><span class="header-section-number">1.1</span> Deal Variables</h2>
+<p>Define a number of variables in one line.</p>
+<pre class="python"><code>st_cta, st_ctb, it_ctc = &#39;e&#39;, &#39;20201025x_esr&#39;, 2
+print(f&#39;{st_cta=} and {st_ctb=} and {it_ctc=}&#39;)</code></pre>
+<pre><code>## st_cta=&#39;e&#39; and st_ctb=&#39;20201025x_esr&#39; and it_ctc=2</code></pre>
+</div>
+<div id="tuple-example" class="section level2" number="1.2">
+<h2 number="1.2"><span class="header-section-number">1.2</span> Tuple Example</h2>
 <p>A tuple is created with parenthesis on the sides (or no parenthesis), not brackets on the sides. Can access values in a tuple as in list.</p>
 <pre class="python"><code># Define Tuple, with and without parenthesis
 tp_abc = (&#39;a&#39;, &#39;b&#39;, &#39;c&#39;)
@@ -1919,8 +1926,8 @@ except TypeError as error:
     print(&#39;Caught this error: &#39; + repr(error))</code></pre>
 <pre><code>## Caught this error: TypeError(&quot;&#39;tuple&#39; object does not support item assignment&quot;)</code></pre>
 </div>
-<div id="function-returns-tuple-and-unpack" class="section level2" number="1.2">
-<h2 number="1.2"><span class="header-section-number">1.2</span> Function Returns Tuple and Unpack</h2>
+<div id="function-returns-tuple-and-unpack" class="section level2" number="1.3">
+<h2 number="1.3"><span class="header-section-number">1.3</span> Function Returns Tuple and Unpack</h2>
 <p>When a function returns multiple <em>items</em> in a list, that is a tuple. Each element of the list can be accessed. And the tuple can be unpacked:</p>
 <pre class="python"><code># Results from some function
 tp_results = &#39;a&#39;, 123,  [1,2,3]

@@ -13,7 +13,7 @@
 
 <meta name="date" content="2020-10-15" />
 
-<title>Amazon Web Services (AWS) S3 Uploading, Downloading and Syncing</title>
+<title>Amazon Web Services (AWS) S3 Uploading, Downloading and Syncing Locally, on EC2 and in Docker Container</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1865,7 +1865,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Amazon Web Services (AWS) S3 Uploading, Downloading and Syncing</h1>
+<h1 class="title toc-ignore">Amazon Web Services (AWS) S3 Uploading, Downloading and Syncing Locally, on EC2 and in Docker Container</h1>
 <h4 class="author"><a href="https://fanwangecon.github.io/">Fan Wang</a></h4>
 <h4 class="date">2020-10-15</h4>
 
@@ -1894,10 +1894,97 @@ print(s3_status)</code></pre>
 <p>Second, on s3, create a bucket, <em>fans3testbucket</em> for example (no underscore in name allowed). Before doing this, set up AWS Access Key ID and AWS Secrete Acccess KEy in <em>/Users/fan/.aws</em> folder so that boto3 can access s3 from computer. Upon successful completion of the push, the file can be accessed at <a href="https://fans3testbucket.s3.amazonaws.com/_data/iris_s3.dta">https://fans3testbucket.s3.amazonaws.com/_data/iris_s3.dta</a>.</p>
 <pre class="python"><code>import boto3
 s3 = boto3.client(&#39;s3&#39;)
-spn_local_path_file_name = &quot;C:/Users/fan/py4econ/vig/aws/setup/_data/iris_s3.dta&quot;
+spn_local_path_file_name = &quot;C:/Users/fan/Py4Econ/aws/setup/_data/iris_s3.dta&quot;
 str_bucket_name = &quot;fans3testbucket&quot;
 spn_remote_path_file_name = &quot;_data/iris_s3.dta&quot;
 s3.upload_file(spn_local_path_file_name, str_bucket_name, spn_remote_path_file_name)</code></pre>
+</div>
+<div id="download-file-from-s3-to-local-machine" class="section level2" number="1.2">
+<h2 number="1.2"><span class="header-section-number">1.2</span> Download File from S3 to Local Machine</h2>
+<p>On a local computer, download a particular file from S3. Download back the file we just uploaded onto S3.</p>
+<pre class="python"><code>import boto3
+s3 = boto3.client(&#39;s3&#39;)
+spn_local_path_file_name = &quot;C:/Users/fan/Py4Econ/aws/setup/_data/iris_s3_downloaded.dta&quot;
+str_bucket_name = &quot;fans3testbucket&quot;
+spn_remote_path_file_name = &quot;_data/iris_s3.dta&quot;
+s3.download_file(str_bucket_name, spn_remote_path_file_name, spn_local_path_file_name)</code></pre>
+</div>
+<div id="download-file-from-s3-to-ec2-machine" class="section level2" number="1.3">
+<h2 number="1.3"><span class="header-section-number">1.3</span> Download File from S3 to EC2 Machine</h2>
+<p>On a EC2 machine, <em>Amazon Linux 2 AMI</em>, for example. Install pip, and install boto3, then download file to the <em>/data/</em> folder.</p>
+<pre class="bash"><code># ssh into EC2 linux 2 AMI
+ssh -i &quot;G:/repos/ThaiJMP/boto3aws/aws_ec2/pem/fan_wang-key-pair-us_east_nv.pem&quot; ec2-user@3.81.101.142
+# generate data folder
+mkdir data
+# install boto3
+sudo yum install python-pip python3-wheel &amp;&amp; Pip install boto3 --user
+# try download file using boto3
+# go into python
+python</code></pre>
+<p>Now inside python, download the <em>iris_s3.dta</em> to the data folder under root in the EC2 Machine.</p>
+<pre class="python"><code>import boto3
+s3 = boto3.client(&#39;s3&#39;)
+spn_ec2_path_file_name = &quot;/home/ec2-user/data/iris_s3_downloaded.dta&quot;
+str_bucket_name = &quot;fans3testbucket&quot;
+spn_s3_path_file_name = &quot;_data/iris_s3.dta&quot;
+s3.download_file(str_bucket_name, spn_s3_path_file_name, spn_ec2_path_file_name)</code></pre>
+</div>
+<div id="download-file-from-s3-to-active-docker-container" class="section level2" number="1.4">
+<h2 number="1.4"><span class="header-section-number">1.4</span> Download File from S3 to Active Docker Container</h2>
+<p>Working inside an active docker container.</p>
+<p>First activate and enter into a docker container:</p>
+<pre class="bash"><code># inside EC2 AMI Linux 2, start dockers
+sudo service docker start
+sudo service docker status
+# see docker images
+docker images
+# run docker container and enter inside
+docker run -t -i fanconda /bin/bash
+# make a data directory and a esti subdirectory
+mkdir data
+cd data
+mkdir esti
+# enter python
+python</code></pre>
+<p>Inside docker, which has boto3 installed already. The Path is different than on EC2, the path root structure is shorter, but otherwise the same.</p>
+<pre class="python"><code>import boto3
+s3 = boto3.client(&#39;s3&#39;)
+spn_container_path_file_name = &quot;/data/esti/iris_s3_downloaded.dta&quot;
+str_bucket_name = &quot;fans3testbucket&quot;
+spn_s3_path_file_name = &quot;_data/iris_s3.dta&quot;
+s3.download_file(str_bucket_name, spn_s3_path_file_name, spn_container_path_file_name)</code></pre>
+</div>
+<div id="forward-and-backward-slashes" class="section level2" number="1.5">
+<h2 number="1.5"><span class="header-section-number">1.5</span> Forward and Backward Slashes</h2>
+<p>Following up on the uploading example above, suppose that rather than using forward slash, backward slash is used, then AWS gets confused about folder. This will not appear under the _data folder, but will appear as a file with file name: *_data/iris_s3.dta* under the bucket.</p>
+<p>Note that the <em>folder</em> for S3 is a GUI trick, but still, we want to use forward slash properly, so that all double backslash that might be generated by default path tools need to be converted to forward slashes</p>
+<pre class="python"><code>import os
+# This generates a file directly under bucket _data\iris_s3:
+spn_remote_path_file_name_backslash = &quot;_data\\iris_s3_slashbackforward.dta&quot;
+s3.upload_file(spn_local_path_file_name, str_bucket_name, spn_remote_path_file_name_backslash)
+# This allows the folder structure to be clickable:
+spn_remote_path_file_name_forwardslash = spn_remote_path_file_name_backslash.replace(os.sep, &#39;/&#39;)
+s3.upload_file(spn_local_path_file_name, str_bucket_name, spn_remote_path_file_name_forwardslash)
+# Print slashs
+print(f&#39;{spn_remote_path_file_name_backslash=}&#39;)</code></pre>
+<pre><code>## spn_remote_path_file_name_backslash=&#39;_data\\iris_s3_slashbackforward.dta&#39;</code></pre>
+<pre class="python"><code>print(f&#39;{spn_remote_path_file_name_forwardslash=}&#39;)</code></pre>
+<pre><code>## spn_remote_path_file_name_forwardslash=&#39;_data/iris_s3_slashbackforward.dta&#39;</code></pre>
+</div>
+<div id="sync-local-drive-with-s3-of-a-particular-file-type" class="section level2" number="1.6">
+<h2 number="1.6"><span class="header-section-number">1.6</span> Sync Local Drive with S3 of a Particular File Type</h2>
+<p><a href="https://github.com/boto/boto3/issues/358">Boto3 does not offer directory upload/download for s3</a>. Needs to rely on aws command line.</p>
+<p>To sync local folder with all files from a particular AWS folder, exclude image files:</p>
+<pre class="bash"><code># CD into a directory
+cd /d &quot;G:\S3\fanconda202010\esti&quot;
+# Make a new directory making S3 Directory Name
+mkdir e_20201025x_esr_medtst_list_tKap_mlt_ce1a2
+# cd into the directory just made
+cd /d &quot;G:\S3\thaijmp202010\esti\e_20201025x_esr_medtst_list_tKap_mlt_ce1a2&quot;
+# copy all results from the s3 folder&#39;s subfolders including subfolders, excluding images
+aws s3 cp ^
+    s3://fanconda202010/esti/e_20201025x_esr_medtst_list_tKap_mlt_ce1a2/ . ^
+    --recursive --exclude &quot;*.png&quot;</code></pre>
 </div>
 </div>
 

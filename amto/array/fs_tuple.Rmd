@@ -2,6 +2,7 @@
 title: "Python Define and Unpack Tuple"
 titleshort: "Define and Unpack Tuple"
 description: |
+  Define/deal multiple variables on the same line
   Define tuple in python with and without parenthesis, unpack tuple, get subset of elements.
   Access tuple element and fail to mutate tuple element.
 core:
@@ -35,6 +36,15 @@ try(source("../../.Rprofile"))
 
 ```{python}
 import numpy as np
+```
+
+#### Deal Variables
+
+Define a number of variables in one line.
+
+```{python}
+st_cta, st_ctb, it_ctc = 'e', '20201025x_esr', 2
+print(f'{st_cta=} and {st_ctb=} and {it_ctc=}')
 ```
 
 #### Tuple Example

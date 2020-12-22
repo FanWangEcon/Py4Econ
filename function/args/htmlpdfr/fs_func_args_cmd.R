@@ -1,4 +1,4 @@
-## ----global_options, include = FALSE------------------------------------------------------------------------------------
+## ----global_options, include = FALSE------------------------------------------------------------------------------------------------------------------------------
 try(source("../../.Rprofile"))
 
 
@@ -62,6 +62,44 @@ try(source("../../.Rprofile"))
 ## print(f"default false, set to true, full param: {parser.parse_args(['--boolparam'])=}")
 
 ## print(f"default false, set to true, full param: {parser.parse_args(['--boolparam'])=}")
+
+
+## # Start parse
+
+## parser = argparse.ArgumentParser(description='Run ESR cmd', formatter_class=argparse.RawTextHelpFormatter)
+
+## 
+## # A required positional argument parameter tht is int and can take eight possible values
+
+## parser.add_argument('esrtype', type=int,
+
+##                     choices=[1, 2, 3, 4, 5, 6, 7, 8],
+
+##                     help='1. Simulate at N sets of parameter combinations\n'
+
+##                          '2. Polynomial approximation surface based on (1) '
+
+##                          'for each outcome of interest, find best\n'
+
+##                          '3. Estimation at N sets of starting points with (2) as objective function\n'
+
+##                          '4. Gather results frorm (3), find M best.\n'
+
+##                          '5. Simulate (estimate once) at the top M best results from (4) actual model, '
+
+##                          'compare objective to approximated from (3)\n'
+
+##                          '6. Gather results from (5), re-rank best of the M best from (4)\n'
+
+##                          '7. Estimate at the top M best results from (4) actual model, '
+
+##                          '(4) M best are M best seeds\n'
+
+##                          '8. Gather results from (7), re-rank best of the final results from the M best seeds')
+
+## # Print defaults
+
+## print(f"provide 1 for the value of the positional argument: {parser.parse_args(['1'])=}")
 
 
 ## # Start parser for arguments
