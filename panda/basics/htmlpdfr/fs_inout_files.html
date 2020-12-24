@@ -11,9 +11,9 @@
 
 <meta name="author" content="Fan Wang" />
 
-<meta name="date" content="2020-09-13" />
+<meta name="date" content="2020-12-23" />
 
-<title>AWS Docker Elastic Container Registery (ECR) Update and Push</title>
+<title>Pandas Dataframe Export as CSV with Automatic File Path and Name</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1865,283 +1865,52 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">AWS Docker Elastic Container Registery (ECR) Update and Push</h1>
+<h1 class="title toc-ignore">Pandas Dataframe Export as CSV with Automatic File Path and Name</h1>
 <h4 class="author"><a href="https://fanwangecon.github.io/">Fan Wang</a></h4>
-<h4 class="date">2020-09-13</h4>
+<h4 class="date">2020-12-23</h4>
 
 </div>
 
 
-<div id="ecr-setup" class="section level1" number="1">
-<h1 number="1"><span class="header-section-number">1</span> ECR Setup</h1>
+<div id="pandas-importing-and-exporting" class="section level1" number="1">
+<h1 number="1"><span class="header-section-number">1</span> Pandas Importing and Exporting</h1>
 <blockquote>
-<p>Go to the <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/docker/setup//fs_docker_ecr.Rmd"><strong>RMD</strong></a>, <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/docker/setup//htmlpdfr/fs_docker_ecr.pdf"><strong>PDF</strong></a>, or <a href="https://fanwangecon.github.io//Py4Econ/docker/setup//htmlpdfr/fs_docker_ecr.html"><strong>HTML</strong></a> version of this file. Go back to <a href="https://fanwangecon.github.io/Py4Econ/">Python Code Examples</a> Repository (<a href="https://fanwangecon.github.io/Py4Econ/bookdown">bookdown site</a>) or the <a href="https://pyfan.readthedocs.io/en/latest/">pyfan</a> Package (<a href="https://pyfan.readthedocs.io/en/latest/reference.html">API</a>).</p>
+<p>Go to the <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/panda/basics//fs_inout_files.Rmd"><strong>RMD</strong></a>, <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/panda/basics//htmlpdfr/fs_inout_files.pdf"><strong>PDF</strong></a>, or <a href="https://fanwangecon.github.io//Py4Econ/panda/basics//htmlpdfr/fs_inout_files.html"><strong>HTML</strong></a> version of this file. Go back to <a href="https://fanwangecon.github.io/Py4Econ/">Python Code Examples</a> Repository (<a href="https://fanwangecon.github.io/Py4Econ/bookdown">bookdown site</a>) or the <a href="https://pyfan.readthedocs.io/en/latest/">pyfan</a> Package (<a href="https://pyfan.readthedocs.io/en/latest/reference.html">API</a>).</p>
 </blockquote>
-<div id="pull-from-elastic-container-registry-ecr" class="section level2" number="1.1">
-<h2 number="1.1"><span class="header-section-number">1.1</span> Pull from Elastic Container Registry (ECR)</h2>
-<p>Given docker files already on ECR, in EC2, first, get password, then pull.</p>
-<pre class="bash"><code># log in
-# copy the output from the line below and paste
-aws ecr get-login --no-include-email
-# this is copied from output of the command above
-docker login -u AWS -p PASSWORDPASSWORDPASSWORDPASSWORD https://XXXX7367XXXX.dkr.ecr.us-east-1.amazonaws.com
-# pull from docker
-docker pull XXXX7367XXXX.dkr.ecr.us-east-1.amazonaws.com/fancondaXX</code></pre>
-</div>
-<div id="update-elastic-container-registry-ecr" class="section level2" number="1.2">
-<h2 number="1.2"><span class="header-section-number">1.2</span> Update Elastic Container Registry (ECR)</h2>
-<p>There is a local conda file, perhaps some project repo have been updated, need to update docker file on ECR (or create new ones). Controlling EC2 can be done manually, or via <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/prereqs-ssm-agent.html">SSM</a>.</p>
+<div id="export-a-dataframe-to-csv-in-user-download-with-automatic-file-name" class="section level2" number="1.1">
+<h2 number="1.1"><span class="header-section-number">1.1</span> Export a Dataframe to CSV in User Download with Automatic File Name</h2>
+<p>During debugging and testing, a large dataframe is generated, but certain operation produces error. To fully debug, drop into debugger on error in PyCharm, and use console to generate a dataframe of just the matrix at issue. Now export this dataframe to csv in the fastest way possible.</p>
 <ol style="list-style-type: decimal">
-<li>Start a EC2 Instance</li>
-<li>Create a docker folder on EC2 instance (on remote)</li>
-<li>scp update dockerfile in EC2 docker folder (local to remote)</li>
-<li>build on remote server docker container (on remote)</li>
-<li>push from EC2 updated docker to ECR (on remote)</li>
+<li>Find user home path, generate a download subdirectory if it does not exist.</li>
+<li>Export the current dataframe to csv in that file, with auto row and column names.</li>
+<li>The dataframe will be named after the current variable array name, and will have a time suffix added.</li>
 </ol>
-<p>First, after creating/starting a EC2 instance, create a docker file and scp update:</p>
-<pre class="bash"><code># Then a sequences of SSM calls:
-# on local machine:
-ssh -i &quot;C:/Users/fan/CondaPrj/boto3aws/aws_ec2/pem/fan_wang-key-pair-us_east_nv.pem&quot; ec2-user@54.161.29.209
+<p>Replace the mt_abc line below, use a different name that should appear in the saved file name.</p>
+<pre class="python"><code># Import Pathlib and panddas
+import pandas as pd
+import numpy as np
+from pathlib import Path
+import time
 
-# if new instance, create a docker folder under main
-# on remote machine
-mkdir /home/ec2-user/docker
+# replace mt_abc line by the matrix currently used
+mt_abc = np.column_stack(np.random.randint(10, size=(5, 3)))
+# Save results to C:\Users\fan\Downloads\PythonDebug, generate if does not exist.
+srt_pydebug = Path.joinpath(Path.home(), &quot;Downloads&quot;, &quot;PythonDebug&quot;)
+srt_pydebug.mkdir(parents=True, exist_ok=True)
+# Matrix to data frame with columns and row names
+df2export = pd.DataFrame(data=mt_abc,
+                         index=[&#39;r&#39; + str(it_col) for it_col in np.array(range(1, mt_abc.shape[0] + 1))],
+                         columns=[&#39;c&#39; + str(it_col) for it_col in np.array(range(1, mt_abc.shape[1] + 1))])
+# Export File Name
+spn_csv_path = Path.joinpath(srt_pydebug, f&#39;{mt_abc=}&#39;.split(&#39;=&#39;)[0] + &#39;-&#39; + time.strftime(&quot;%Y%m%d-%H%M%S&quot;) + &#39;.csv&#39;)
+# export
+df2export.to_csv(spn_csv_path, sep=&quot;,&quot;)
 
-# ssm call to remove current dockerfile
-# on remote machine
-rm /home/ec2-user/docker/Dockerfile
-
-# run local scp command to copy lateste Dockerfile to EC2, local scp generated by ec2managee
-# on local machine
-scp -o StrictHostKeyChecking=accept-new -i C:/Users/fan/CondaPrj/boto3aws/aws_ec2/pem/fan_wang-key-pair-us_east_nv.pem C:/Users/fan/CondaPrj/boto3aws/aws_ecr/container/DockerfileInstall ec2-user@54.161.29.209:~/docker/Dockerfile</code></pre>
-<p>Second, start container service remotely, and build new container:</p>
-<pre class="bash"><code># start docker service on ec2
-# on remote machine
-sudo service docker start
-
-# On remote machine
-cd /home/ec2-user/docker
-docker build -t fanconda6 --build-arg CACHE_DATE=2020-09-21-22-43-52 .</code></pre>
-<p>Third, push new container to ECR (tag, get token, login, push):</p>
-<pre class="bash"><code># Start Container Service
-sudo service docker start
-
-# CD into folder on remote
-cd /home/ec2-user/docker
-
-# tag docker
-docker tag fancondaxxx XXXX7367XXXX.dkr.ecr.us-east-1.amazonaws.com/fancondaxxx
-
-# ECR Docker Log in
-# ssm.get_authorization_token(registryIds=[boto3aws.aws_keys()[&#39;main_aws_id&#39;]])
-# Decode authorization token
-docker login -u AWS -p TOKENX6XXXxXXg1XXg3OX0= https://XXXX7367XXXX.dkr.ecr.us-east-1.amazonaws.com
-
-# ECR Docker Push to ECR
-docker push XXXX7367XXXX.dkr.ecr.us-east-1.amazonaws.com/fancondaxxx</code></pre>
-</div>
-<div id="pyfan-procedures" class="section level2" number="1.3">
-<h2 number="1.3"><span class="header-section-number">1.3</span> PyFan Procedures</h2>
-<ol style="list-style-type: decimal">
-<li>Start EC2 instance</li>
-<li>Push to ECR</li>
-<li>Get SSH link to EC2, SSH into EC2</li>
-<li><em>sudo service docker start</em> and <em>docker images</em> (or see pull earlier)</li>
-<li>start docker image and enter to access via command line: <em>docker run -t -i fanconda /bin/bash</em></li>
-</ol>
-</div>
-<div id="more-example-ecr-code-and-outputs" class="section level2" number="1.4">
-<h2 number="1.4"><span class="header-section-number">1.4</span> More Example ECR Code and Outputs</h2>
-<div id="example-docker-file-for-aws" class="section level3" number="1.4.1">
-<h3 number="1.4.1"><span class="header-section-number">1.4.1</span> Example Docker File for AWS</h3>
-<p>Note that that private git repos are pulled in. Note also that AWS keys are set up to allow for various access to AWS services.</p>
-<pre class="bash"><code>FROM continuumio/anaconda3
-
-VOLUME /data
-
-# Conda update
-RUN conda update conda
-
-# https://github.com/ContinuumIO/docker-images/issues/49#issuecomment-311556456
-RUN apt-get update &amp;&amp; \
-    apt-get install libgl1-mesa-glx -y
-
-# Install Conda additional packages that i use
-RUN conda install -c conda-forge interpolation
-RUN conda install -c conda-forge boto3
-
-# see https://github.com/moby/moby/issues/22832, this allows for code below to run without --no-cache
-ARG CACHE_DATE=2000-01-01
-
-# Clone our private GitHub Repository: PyFan
-RUN git clone https://b123451234dfc025a836927PRIVATETOKEND1239@github.com/FanWangEcon/pyfan.git /pyfan/
-
-# Make port 80 available to the world outside this container
-EXPOSE 80
-
-# Install software
-ENV PYTHONPATH /pyfan/
-
-ENV AWS_BUCKET_NAME=BucketName
-ENV AWS_ACCESS_KEY_ID=XKIXXXGSXXXBZXX43XXX
-ENV AWS_SECRET_ACCESS_KEY=xxTgp9r0f4XXXXXXX1XXlG1vTy07wydxXXXXXX11
-
-# Run
-CMD [&quot;python&quot;, &quot;/pyfan/pyfan/graph/exa/scatterline3.py&quot;]</code></pre>
-</div>
-<div id="example-ssm-communication" class="section level3" number="1.4.2">
-<h3 number="1.4.2"><span class="header-section-number">1.4.2</span> Example SSM communication</h3>
-<pre class="bash"><code># aws_keys stores keys
-aws_keys_dict = aws_keys()
-ssm = boto3.client(&#39;ssm&#39;,
-                   aws_access_key_id=aws_keys_dict[&#39;aws_access_key_id&#39;],
-                   aws_secret_access_key=aws_keys_dict[&#39;aws_secret_access_key&#39;],
-                   region_name=aws_keys_dict[&#39;region&#39;])
-commands = &#39;rm /home/ec2-user/docker/Dockerfile&#39;
-resp = client.send_command(
-        DocumentName=&quot;AWS-RunShellScript&quot;, # One of AWS&#39; preconfigured documents
-        Parameters={&#39;commands&#39;: commands},
-        InstanceIds=[instance_id])</code></pre>
-</div>
-<div id="outputs-from-docker-build" class="section level3" number="1.4.3">
-<h3 number="1.4.3"><span class="header-section-number">1.4.3</span> Outputs from Docker Build</h3>
-<p>outputs from docker build</p>
-<pre class="bash"><code>json.py - jdump - 47 -  2020-09-22 16:04:32,459 - INFO list_command_invocation-cur_output
-:[
-    &quot;Sending build context to Docker daemon  3.072kB\r\r&quot;,
-    &quot;Step 1/16 : FROM continuumio/anaconda3&quot;,
-    &quot; ---&gt; 472a925c4385&quot;,
-    &quot;Step 2/16 : VOLUME /data&quot;,
-    &quot; ---&gt; Using cache&quot;,
-    &quot; ---&gt; cf4e6a503f00&quot;,
-    &quot;Step 3/16 : RUN conda update conda&quot;,
-    &quot; ---&gt; Using cache&quot;,
-    &quot; ---&gt; 542901f01365&quot;,
-    &quot;Step 4/16 : RUN apt-get update &amp;&amp; apt-get install libgl1-mesa-glx -y&quot;,
-    &quot; ---&gt; Using cache&quot;,
-    &quot; ---&gt; 6672960aa00c&quot;,
-    &quot;Step 5/16 : RUN conda install -c conda-forge interpolation&quot;,
-    &quot; ---&gt; Using cache&quot;,
-    &quot; ---&gt; efd86a4259a4&quot;,
-    &quot;Step 6/16 : RUN conda install -c conda-forge boto3&quot;,
-    &quot; ---&gt; Using cache&quot;,
-    &quot; ---&gt; bd0146dac9b3&quot;,
-    &quot;Step 7/16 : ARG CACHE_DATE=2000-01-01&quot;,
-    &quot; ---&gt; Using cache&quot;,
-    &quot; ---&gt; dc40688e3720&quot;,
-    &quot;Step 8/16 : RUN git clone https://XXXX@github.com/FanWangEcon/pyfan.git /pyfan/&quot;,
-    &quot; ---&gt; Running in 9c0c2a444540&quot;,
-    &quot;\u001b[91mCloning into &#39;/pyfan&#39;...&quot;,
-    &quot;\u001b[0mRemoving intermediate container 9c0c2a444540&quot;,
-    &quot; ---&gt; c80480cc51a1&quot;,
-    &quot;Step 9/16 : RUN git clone https://XXXX@github.com/FanWangEcon/CondaProg.git /CondaProg/&quot;,
-    &quot; ---&gt; Running in 07d9f665b760&quot;,
-    &quot;\u001b[91mCloning into &#39;/CondaProg&#39;...&quot;,
-    &quot;\u001b[0mRemoving intermediate container 07d9f665b760&quot;,
-    &quot; ---&gt; a5ac6c6e1458&quot;,
-    &quot;Step 10/16 : EXPOSE 80&quot;,
-    &quot; ---&gt; Running in 1a8ef516e236&quot;,
-    &quot;Removing intermediate container 1a8ef516e236&quot;,
-    &quot; ---&gt; 13ab2965e892&quot;,
-    &quot;Step 11/16 : ENV PYTHONPATH /pyfan/&quot;,
-    &quot; ---&gt; Running in 2d9e4b68164b&quot;,
-    &quot;Removing intermediate container 2d9e4b68164b&quot;,
-    &quot; ---&gt; 0a74e69ce1c8&quot;,
-    &quot;Step 12/16 : ENV PYTHONPATH $PYTHONPATH:/CondaProg/&quot;,
-    &quot; ---&gt; Running in ba59f1273f51&quot;,
-    &quot;Removing intermediate container ba59f1273f51&quot;,
-    &quot; ---&gt; 11fd9d732e2e&quot;,
-    &quot;Step 13/16 : ENV AWS_BUCKET_NAME=BucketName&quot;,
-    &quot; ---&gt; Running in e7a052d3eacf&quot;,
-    &quot;Removing intermediate container e7a052d3eacf&quot;,
-    &quot; ---&gt; 5e294f562838&quot;,
-    &quot;Step 14/16 : ENV AWS_ACCESS_KEY_ID=XXXXX5GSDZSXXXX43XXX&quot;,
-    &quot; ---&gt; Running in 60d810a8514f&quot;,
-    &quot;Removing intermediate container 60d810a8514f&quot;,
-    &quot; ---&gt; 2fa1ac4e7d3b&quot;,
-    &quot;Step 15/16 : ENV AWS_SECRET_ACCESS_KEY=XXXXXXXXXXXXX&quot;,
-    &quot; ---&gt; Running in 8b34126cee5d&quot;,
-    &quot;Removing intermediate container 8b34126cee5d&quot;,
-    &quot; ---&gt; 93bd8b521d61&quot;,
-    &quot;Step 16/16 : CMD [\&quot;python\&quot;, \&quot;/CondaPrj/invoke/invoke.py\&quot;]&quot;,
-    &quot; ---&gt; Running in dd3ed44dcca7&quot;,
-    &quot;Removing intermediate container dd3ed44dcca7&quot;,
-    &quot; ---&gt; 506f92a794cd&quot;,
-    &quot;Successfully built 506f92a794cd&quot;,
-    &quot;Successfully tagged fanconda:latest&quot;,
-    &quot;Total reclaimed space: 0B&quot;,
-    &quot;&quot;
-]</code></pre>
-</div>
-<div id="output-from-docker-push" class="section level3" number="1.4.4">
-<h3 number="1.4.4"><span class="header-section-number">1.4.4</span> Output from Docker Push</h3>
-<pre class="bash"><code>json.py - jdump - 47 -  2020-09-22 16:05:32,986 - INFO list_command_invocation-cur_output
-:[
-    &quot;The push refers to repository [XXXX7367XXXX.dkr.ecr.us-east-1.amazonaws.com/fanconda]&quot;,
-    &quot;63cc929545c3: Preparing&quot;,
-    &quot;d849f5d67bbb: Preparing&quot;,
-    &quot;f9c77b2e4c5f: Preparing&quot;,
-    &quot;7ffd6385ae0e: Preparing&quot;,
-    &quot;2fc88e09d363: Preparing&quot;,
-    &quot;50e089036495: Preparing&quot;,
-    &quot;6637031dbcc2: Preparing&quot;,
-    &quot;68d0bdfd0715: Preparing&quot;,
-    &quot;d0f104dc0a1f: Preparing&quot;,
-    &quot;50e089036495: Waiting&quot;,
-    &quot;6637031dbcc2: Waiting&quot;,
-    &quot;68d0bdfd0715: Waiting&quot;,
-    &quot;d0f104dc0a1f: Waiting&quot;,
-    &quot;2fc88e09d363: Layer already exists&quot;,
-    &quot;7ffd6385ae0e: Layer already exists&quot;,
-    &quot;50e089036495: Layer already exists&quot;,
-    &quot;6637031dbcc2: Layer already exists&quot;,
-    &quot;68d0bdfd0715: Layer already exists&quot;,
-    &quot;d0f104dc0a1f: Layer already exists&quot;,
-    &quot;d849f5d67bbb: Pushed&quot;,
-    &quot;f9c77b2e4c5f: Pushed&quot;,
-    &quot;63cc929545c3: Pushed&quot;,
-    &quot;latest: digest: sha256:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX size: 2226&quot;,
-    &quot;&quot;
-]</code></pre>
-</div>
-<div id="aws-ecr-instructions" class="section level3" number="1.4.5">
-<h3 number="1.4.5"><span class="header-section-number">1.4.5</span> AWS ECR Instructions</h3>
-<p>Under repositories listed under ECR, click on <em>View push command</em>, which shows:</p>
-<pre class="bash"><code># Retrieve an authentication token and authenticate your Docker client to your registry.
-# Use the AWS CLI:
-
-aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin XXXX7367XXXX.dkr.ecr.us-east-1.amazonaws.com
-
-# Note: If you receive an error using the AWS CLI, make sure that you have the latest version of the AWS CLI and Docker installed.
-# Build your Docker image using the following command. For information on building a Docker file from scratch see the instructions here . You can skip this step if your image is already built:
-docker build -t fanconda .
-
-# After the build completes, tag your image so you can push the image to this repository:
-docker tag fanconda:latest XXXX7367XXXX.dkr.ecr.us-east-1.amazonaws.com/fanconda:latest</code></pre>
-</div>
-</div>
-<div id="command-line-sequence-gathered" class="section level2" number="1.5">
-<h2 number="1.5"><span class="header-section-number">1.5</span> Command Line Sequence Gathered</h2>
-<p>Gathered sequence of command line operations:</p>
-<pre class="bash"><code>ssh -i &quot;G:/repos/CondaPrj/boto3aws/aws_ec2/pem/fan_wang-key-pair-us_east_nv.pem&quot; ec2-user@34.229.39.138
-
-docker run -t -i fanconda /bin/bash
-
-scp -o StrictHostKeyChecking=accept-new -i G:/repos/CondaPrj/boto3aws/aws_ec2/pem/fan_wang-key-pair-us_east_nv.pem G:/repos/CondaPrj/boto3aws/aws_ecr/container/DockerfileConda ec2-user@34.229.39.138:~/docker/Dockerfile
-
-sudo service docker start
-
-cd /home/ec2-user/docker
-docker build -t fanconda --build-arg CACHE_DATE=2020-12-22-10-58-57 .
-docker system prune --force
-
-cd /home/ec2-user/docker
-docker tag fanconda 710673677961.dkr.ecr.us-east-1.amazonaws.com/fanconda
-
-aws ecr get-login --no-include-email
-docker login -u AWS -p XXXXX= https://710673677961.dkr.ecr.us-east-1.amazonaws.com
-
-docker push 710673677961.dkr.ecr.us-east-1.amazonaws.com/fanconda</code></pre>
+# print
+print(f&#39;{srt_pydebug=}&#39;)</code></pre>
+<pre><code>## srt_pydebug=WindowsPath(&#39;C:/Users/fan/Downloads/PythonDebug&#39;)</code></pre>
+<pre class="python"><code>print(f&#39;{spn_csv_path=}&#39;)</code></pre>
+<pre><code>## spn_csv_path=WindowsPath(&#39;C:/Users/fan/Downloads/PythonDebug/mt_abc-20201223-221237.csv&#39;)</code></pre>
 </div>
 </div>
 

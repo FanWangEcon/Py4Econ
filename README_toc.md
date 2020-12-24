@@ -22,11 +22,6 @@
 	+ **textwrap**: *fill(st, width = 20)*
 	+ **fstring**: *f + f'{fl_esti_rounded:.{it_round_decimal}f}'*
 	+ **random**: *choice*
-5. [Define and Unpack Tuple](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_tuple.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array//fs_tuple.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_tuple.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_tuple.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_tuple.html)
-	+ Define/deal multiple variables on the same line
-	+ Define tuple in python with and without parenthesis, unpack tuple, get subset of elements.
-	+ Access tuple element and fail to mutate tuple element.
-	+ **py**: *isinstance(tp_abc, tuple)*
 
 ## 1.2  Dictionary
 
@@ -55,6 +50,13 @@
 2. [Python Pandas Conditional Selection of Selectiotn Rows and Columns](https://fanwangecon.github.io/Py4Econ/panda/basics/htmlpdfr/fs_select.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/panda/basics//fs_select.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/panda/basics/htmlpdfr/fs_select.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/panda/basics/htmlpdfr/fs_select.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/panda/basics/htmlpdfr/fs_select.html)
 	+ Select subset of rows or columns based on cell value conditions.
 	+ **pandas**: *pd.DataFrame() + replace(['Zvcss', 'Dugei'], 'Zqovt') + df.loc[df['c5'] == 'Zqovt']*
+3. [Dataframe Export as CSV with Automatic File Path and Name](https://fanwangecon.github.io/Py4Econ/panda/basics/htmlpdfr/fs_inout_files.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/panda/basics//fs_inout_files.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/panda/basics/htmlpdfr/fs_inout_files.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/panda/basics/htmlpdfr/fs_inout_files.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/panda/basics/htmlpdfr/fs_inout_files.html)
+	+ Export a pandas dataframe to csv, store automatically in user home download folder.
+	+ File name contains the variable name, use fstring to get variable name as file string.
+	+ **pandas**: *df2export.to_csv(spn_csv_path, sep=",")*
+	+ **pathlib**: *home() + joinpath() + mkdir(parents=True, exist_ok=True)*
+	+ **fstring**: *f'{mt_abc=}'.split('=')[0]*
+	+ **time**: *strftime("%Y%m%d-%H%M%S")*
 
 # 3  Functions
 
@@ -67,6 +69,7 @@
 2. [Tuple and Dictionary as Arguments with args and kwargs](https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_args.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args//fs_func_args.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_args.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_args.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_args.html)
 	+ Update default parameters with dictionary that replaces and appends additional key-value pairs using kwargs.
 	+ Pass a dictionary for named arguments to a function.
+	+ Python function None as default for mutable list argument.
 	+ **python**: *dict3 = {dict1, dict2} + dict1.update(dict2) + func(par1='val1', kwargs)*
 3. [Command Line Argument Parsing Positional and Optional Arguments](https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_args_cmd.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args//fs_func_args_cmd.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_args_cmd.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_args_cmd.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_args_cmd.html)
 	+ Parse parameters entered via command line to call a python script.
@@ -177,15 +180,16 @@
 
 ## 9.2  File In and Out
 
-1. [Python Reading and Writing to File Examples](https://fanwangecon.github.io/Py4Econ/support/inout/htmlpdfr/fp_files.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/support/inout//fp_files.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/support/inout/htmlpdfr/fp_files.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/support/inout/htmlpdfr/fp_files.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/support/inout/htmlpdfr/fp_files.html)
+1. [Searching for Programs, Reading and Writing to File Examples](https://fanwangecon.github.io/Py4Econ/support/inout/htmlpdfr/fp_files.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/support/inout//fp_files.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/support/inout/htmlpdfr/fp_files.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/support/inout/htmlpdfr/fp_files.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/support/inout/htmlpdfr/fp_files.html)
+	+ Check the path to a particular installed program.
+	+ Get the parent folder of the current file.
 	+ Reading from file and replace strings in file.
 	+ Convert text file to latex using pandoc and clean.
-	+ Search for files in several folders with file substring.
-	+ Get path root, file name, file stem, etc from path.
 	+ **py**: *open() + write() + replace() + [c for b in [[1,2],[2,3]] for c in b]*
 	+ **subprocess**: *call()*
-	+ **pathlib**: *Path().rglob() + Path().stem*
-	+ **os**: *remove() + listdir() + path.isfile() + path.splitdrive() + os.path.splitext() + os.path.split()*
+	+ **pathlib**: *Path().rglob() + Path().stem + Path(spn).parents[1]*
+	+ **os**: *remove() + listdir() + path.isfile() + path.splitdrive() + path.splitext() + path.split()*
+	+ **shutil**: *which()*
 2. [Python Directory and Folder Operations](https://fanwangecon.github.io/Py4Econ/support/inout/htmlpdfr/fp_folders.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/support/inout//fp_folders.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/support/inout/htmlpdfr/fp_folders.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/support/inout/htmlpdfr/fp_folders.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/support/inout/htmlpdfr/fp_folders.html)
 	+ Join folder names to form absolute path.
 	+ Generate new folders and files, with existing folder substrings.

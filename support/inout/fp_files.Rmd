@@ -1,7 +1,9 @@
 ---
-title: "Python Reading and Writing to File Examples"
-titleshort: "Python Reading and Writing to File Examples"
+title: "Python Searching for Programs, Reading and Writing to File Examples"
+titleshort: "Searching for Programs, Reading and Writing to File Examples"
 description: |
+  Check the path to a particular installed program.
+  Get the parent folder of the current file.
   Reading from file and replace strings in file.
   Convert text file to latex using pandoc and clean.
   Search for files in several folders with file substring.
@@ -20,16 +22,20 @@ core:
     code: |
       Path().rglob()
       Path().stem
+      Path(spn).parents[1]
   - package: os
     code: |
       remove()
       listdir()
       path.isfile()
       path.splitdrive()
-      os.path.splitext()
-      os.path.split()
+      path.splitext()
+      path.split()
+  - package: shutil
+    code: |
+      which()
 date: 2020-05-09
-date_start: 2020-05-09
+date_start: 2020-12-23
 output:
   pdf_document:
     pandoc_args: '../../_output_kniti_pdf.yaml'
@@ -43,7 +49,7 @@ always_allow_html: true
 urlcolor: blue
 ---
 
-### Read and Write and Convert
+### Check, Read, Write and Convert Files
 
 ```{r global_options, include = FALSE}
 try(source("../../.Rprofile"))
@@ -53,9 +59,65 @@ try(source("../../.Rprofile"))
 `r text_shared_preamble_two`
 `r text_shared_preamble_thr`
 
-- python create a text file
-- python write file from paragraphs
+#### Check if where a Program is. 
 
+Suppose we want to generate a commandline call from within python and want to start it in bash. Calling something like "C:/Program Files/Git/git-bash.exe -c COMMANDS". However, depending on the computer that is been used, the git-bash command might be in different spots. How do we find the right path to the *git-bash* file. Accomplish this by using *shutil.which*, which can find the path to different commands, including the *git* command. Given the path that we found, the *git-bash.exe* file is stored in the *Git* folder, two levels up. So we will use pathlib to get to the correct path location. To be safe, go up one level, and then two levels to search for *git-bash.exe*.
+
+First, find the path to the git exe command:
+
+```{python}
+# Imports
+import os  
+import shutil  
+# cmd  
+st_cmd = 'git'
+# Using shutil.which() method to find local path to the *git* command
+spn_path_to_git = shutil.which(st_cmd) 
+# Print result 
+print(f'{spn_path_to_git=}')
+```
+
+Second, find the parent and grandparent folders:
+
+```{python}
+from pathlib import Path
+# Get the parent folder 2 levels up
+srt_path_git_parent_folder = Path(spn_path_to_git).parents[0]
+srt_path_git_grandparent_folder = Path(spn_path_to_git).parents[1]
+# Print
+print(f'{srt_path_git_parent_folder=}')
+print(f'{srt_path_git_grandparent_folder=}')
+# Search for for the git-bash.exe file in parent and then in the grandparent folder.
+```
+
+Third, search inside parent folder first, and then grand until find the path to *git-bash.exe*. Will put all three steps code together:
+
+```{python}
+# required packages
+import shutil
+from pathlib import Path
+# find path to git
+st_cmd = 'git'
+spn_path_to_git = shutil.which(st_cmd) 
+# find path to git-bash.exe
+spn_path_to_gitbash = ''
+for it_up_iter in [0,1]:
+    # up-tier folder
+    srt_path_git_up_folder = Path(spn_path_to_git).parents[it_up_iter]
+    # search
+    # get file names in folders (not recursively)
+    ls_spn_found_git_bash = [spn_file for spt_srh in [srt_path_git_up_folder]
+                             for spn_file in Path(spt_srh).glob('git-bash.exe')]
+    # if found, length of ls of founds files must be 1
+    if len(ls_spn_found_git_bash) == 1:
+        spn_path_to_gitbash = ls_spn_found_git_bash[0]
+        break
+        
+if spn_path_to_gitbash == '':
+    raise NameError(f'failed to find git-bash, {spn_path_to_git=}')
+else:
+    print(f'Found git-bash: {spn_path_to_gitbash} by searching around {spn_path_to_git=}')
+```
 
 #### Generate a tex file
 
@@ -132,7 +194,7 @@ import subprocess
 import os
 
 # Change to local directory so path in tex respected.
-os.chdir("C:/Users/fan/py4econ/vig/support/inout")
+os.chdir("C:/Users/fan/py4econ/support/inout")
 
 # Convert tex to pdf
 subprocess.call(['C:/texlive/2020/bin/win32/xelatex.exe', '-output-directory',

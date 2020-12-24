@@ -147,7 +147,7 @@
 
 \title{Data Structures and Cloud Services with Python}
 \author{Fan Wang}
-\date{2020-12-11}
+\date{2020-12-23}
 
 \begin{document}
 \maketitle
@@ -178,8 +178,595 @@ Please contact \href{https://fanwangecon.github.io/}{FanWangEcon} for issues or 
 \hypertarget{data-structures}{%
 \chapter{Data Structures}\label{data-structures}}
 
-\hypertarget{strings-lists-and-tuples}{%
-\section{Strings, Lists and Tuples}\label{strings-lists-and-tuples}}
+\hypertarget{numbers-strings-lists-and-tuples}{%
+\section{Numbers, Strings, Lists and Tuples}\label{numbers-strings-lists-and-tuples}}
+
+\hypertarget{numeric-basics}{%
+\subsection{Numeric Basics}\label{numeric-basics}}
+
+\begin{quote}
+Go back to \href{http://fanwangecon.github.io/}{fan}'s \href{https://fanwangecon.github.io/Py4Econ/}{Python Code Examples} Repository (\href{https://fanwangecon.github.io/Py4Econ/bookdown}{bookdown site}) or the \href{https://pyfan.readthedocs.io/en/latest/}{pyfan} Package (\href{https://pyfan.readthedocs.io/en/latest/reference.html}{API}).
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{two-digit-numbers-coding-conditional-information}{%
+\subsubsection{Two Digit Numbers Coding Conditional Information}\label{two-digit-numbers-coding-conditional-information}}
+
+We have numbers between 0 and 99, these indicate different estimation specifications, where the digit number is the estimation tolerance level, and the tens number is the minimization algorithm.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ls\_it\_esti\_optsalgo }\OperatorTok{=}\NormalTok{ [}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{89}\NormalTok{, }\DecValTok{90}\NormalTok{, }\DecValTok{99}\NormalTok{]}
+\ControlFlowTok{for}\NormalTok{ it\_esti\_optsalgo }\KeywordTok{in}\NormalTok{ ls\_it\_esti\_optsalgo:}
+\NormalTok{    it\_esti\_optsalgo\_tens }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(np.floor(it\_esti\_optsalgo}\OperatorTok{/}\DecValTok{10}\NormalTok{))}
+\NormalTok{    it\_esti\_optsalgo\_digits }\OperatorTok{=}\NormalTok{ it\_esti\_optsalgo}\OperatorTok{\%}\DecValTok{10}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{it\_esti\_optsalgo\_tens}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{, }\SpecialCharTok{\{}\NormalTok{it\_esti\_optsalgo\_digits}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## it_esti_optsalgo_tens=0, it_esti_optsalgo_digits=0
+## it_esti_optsalgo_tens=0, it_esti_optsalgo_digits=1
+## it_esti_optsalgo_tens=1, it_esti_optsalgo_digits=0
+## it_esti_optsalgo_tens=1, it_esti_optsalgo_digits=5
+## it_esti_optsalgo_tens=2, it_esti_optsalgo_digits=3
+## it_esti_optsalgo_tens=8, it_esti_optsalgo_digits=9
+## it_esti_optsalgo_tens=9, it_esti_optsalgo_digits=0
+## it_esti_optsalgo_tens=9, it_esti_optsalgo_digits=9
+\end{verbatim}
+
+\hypertarget{tuple}{%
+\subsection{Tuple}\label{tuple}}
+
+\begin{quote}
+Go back to \href{http://fanwangecon.github.io/}{fan}'s \href{https://fanwangecon.github.io/Py4Econ/}{Python Code Examples} Repository (\href{https://fanwangecon.github.io/Py4Econ/bookdown}{bookdown site}) or the \href{https://pyfan.readthedocs.io/en/latest/}{pyfan} Package (\href{https://pyfan.readthedocs.io/en/latest/reference.html}{API}).
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{deal-variables}{%
+\subsubsection{Deal Variables}\label{deal-variables}}
+
+Define a number of variables in one line.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{st\_cta, st\_ctb, it\_ctc }\OperatorTok{=} \StringTok{\textquotesingle{}e\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}20201025x\_esr\textquotesingle{}}\NormalTok{, }\DecValTok{2}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{st\_cta}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{ and }\SpecialCharTok{\{}\NormalTok{st\_ctb}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{ and }\SpecialCharTok{\{}\NormalTok{it\_ctc}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## st_cta='e' and st_ctb='20201025x_esr' and it_ctc=2
+\end{verbatim}
+
+\hypertarget{tuple-example}{%
+\subsubsection{Tuple Example}\label{tuple-example}}
+
+A tuple is created with parenthesis on the sides (or no parenthesis), not brackets on the sides. Can access values in a tuple as in list.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Define Tuple, with and without parenthesis}
+\NormalTok{tp\_abc }\OperatorTok{=}\NormalTok{ (}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{)}
+\NormalTok{tp\_abc\_noparent }\OperatorTok{=} \StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}c\textquotesingle{}}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{tp\_abc}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## tp_abc=('a', 'b', 'c')
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\BuiltInTok{len}\NormalTok{(tp\_abc)}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## len(tp_abc)=3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{tp\_abc\_noparent}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## tp_abc_noparent=('a', 'b', 'c')
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{(tp\_abc}\OperatorTok{==}\NormalTok{tp\_abc\_noparent)}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\CommentTok{\# Check Type}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## (tp_abc==tp_abc_noparent)=True
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\BuiltInTok{isinstance}\NormalTok{(tp\_abc, }\BuiltInTok{list}\NormalTok{)}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## isinstance(tp_abc, list)=False
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\BuiltInTok{isinstance}\NormalTok{(tp\_abc, }\BuiltInTok{tuple}\NormalTok{)}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\CommentTok{\# select element}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## isinstance(tp_abc, tuple)=True
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{tp\_abc[}\DecValTok{1}\NormalTok{]}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## tp_abc[1]='b'
+\end{verbatim}
+
+Convert tuple to a list:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# convert Tuple to list}
+\NormalTok{ls\_abc }\OperatorTok{=}\NormalTok{ [i }\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in}\NormalTok{ tp\_abc]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{ls\_abc}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ls_abc=['a', 'b', 'c']
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\BuiltInTok{isinstance}\NormalTok{(ls\_abc, }\BuiltInTok{list}\NormalTok{)}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## isinstance(ls_abc, list)=True
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\BuiltInTok{isinstance}\NormalTok{(ls\_abc, }\BuiltInTok{tuple}\NormalTok{)}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## isinstance(ls_abc, tuple)=False
+\end{verbatim}
+
+Since the tuple is not mutable, we can not change values inside the tuple:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# define the tuple}
+\NormalTok{tp\_abc }\OperatorTok{=}\NormalTok{ (}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{)}
+\CommentTok{\# update tuple value}
+\ControlFlowTok{try}\NormalTok{:}
+\NormalTok{    tp\_abc[}\DecValTok{0}\NormalTok{] }\OperatorTok{=} \StringTok{\textquotesingle{}efg\textquotesingle{}}
+\ControlFlowTok{except} \PreprocessorTok{TypeError} \ImportTok{as}\NormalTok{ error:}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}Caught this error: \textquotesingle{}} \OperatorTok{+} \BuiltInTok{repr}\NormalTok{(error))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Caught this error: TypeError("'tuple' object does not support item assignment")
+\end{verbatim}
+
+\hypertarget{function-returns-tuple-and-unpack}{%
+\subsubsection{Function Returns Tuple and Unpack}\label{function-returns-tuple-and-unpack}}
+
+When a function returns multiple \emph{items} in a list, that is a tuple. Each element of the list can be accessed. And the tuple can be unpacked:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Results from some function}
+\NormalTok{tp\_results }\OperatorTok{=} \StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{, }\DecValTok{123}\NormalTok{,  [}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{]}
+\CommentTok{\# Unpack the results}
+\NormalTok{a\_st, b\_int, c\_ls\_int }\OperatorTok{=}\NormalTok{ tp\_results}
+\CommentTok{\# Print}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{tp\_results}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## tp_results=('a', 123, [1, 2, 3])
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{a\_st}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## a_st='a'
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{b\_int}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## b_int=123
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{c\_ls\_int}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## c_ls_int=[1, 2, 3]
+\end{verbatim}
+
+Unpack only a subset of the elements in the tuple:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Unpack only one}
+\NormalTok{a\_st\_self\_m1, \_ , \_ }\OperatorTok{=}\NormalTok{ tp\_results}
+\CommentTok{\# Alternative shorter}
+\NormalTok{a\_st\_self\_m2, }\OperatorTok{*}\NormalTok{\_  }\OperatorTok{=}\NormalTok{ tp\_results}
+\CommentTok{\# Print}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{a\_st\_self\_m1}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## a_st_self_m1='a'
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{a\_st\_self\_m2}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## a_st_self_m2='a'
+\end{verbatim}
+
+see \href{https://stackoverflow.com/a/11371230/8280804}{unpack the first two elements in list/tuple}.
+
+\hypertarget{list}{%
+\subsection{List}\label{list}}
+
+\begin{quote}
+Go back to \href{http://fanwangecon.github.io/}{fan}'s \href{https://fanwangecon.github.io/Py4Econ/}{Python Code Examples} Repository (\href{https://fanwangecon.github.io/Py4Econ/bookdown}{bookdown site}) or the \href{https://pyfan.readthedocs.io/en/latest/}{pyfan} Package (\href{https://pyfan.readthedocs.io/en/latest/reference.html}{API}).
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{loop-through-a-list-get-value-and-index}{%
+\subsubsection{Loop Through a List get Value and Index}\label{loop-through-a-list-get-value-and-index}}
+
+There is a list, loop through it, get out both the index and the value of each indexed element together.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ls\_ob\_combo\_type }\OperatorTok{=}\NormalTok{ [}\StringTok{"e"}\NormalTok{, }\StringTok{"20201025x\_esr\_list\_tKap\_mlt\_ce1a2"}\NormalTok{, [}\StringTok{"esti\_param.kappa\_ce9901"}\NormalTok{, }\StringTok{"esti\_param.kappa\_ce0209"}\NormalTok{], }\DecValTok{1}\NormalTok{, }\StringTok{"C1E31M3S3=1"}\NormalTok{]}
+\ControlFlowTok{for}\NormalTok{ it\_idx, ob\_val }\KeywordTok{in} \BuiltInTok{enumerate}\NormalTok{(ls\_ob\_combo\_type):}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{it\_idx}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{ and }\SpecialCharTok{\{}\NormalTok{ob\_val}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## it_idx=0 and ob_val='e'
+## it_idx=1 and ob_val='20201025x_esr_list_tKap_mlt_ce1a2'
+## it_idx=2 and ob_val=['esti_param.kappa_ce9901', 'esti_param.kappa_ce0209']
+## it_idx=3 and ob_val=1
+## it_idx=4 and ob_val='C1E31M3S3=1'
+\end{verbatim}
+
+\hypertarget{parse-elements-of-a-list}{%
+\subsubsection{Parse Elements of a List}\label{parse-elements-of-a-list}}
+
+A list has multiple elements, deal them out.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{list\_test }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}C1E126M4S3\textquotesingle{}}\NormalTok{, }\DecValTok{2}\NormalTok{]}
+\NormalTok{[compesti\_short\_name, esti\_top\_which] }\OperatorTok{=}\NormalTok{ list\_test}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{compesti\_short\_name}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{ and }\SpecialCharTok{\{}\NormalTok{esti\_top\_which}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## compesti_short_name='C1E126M4S3' and esti_top_which=2
+\end{verbatim}
+
+\hypertarget{check-if-any-element-of-a-list-is-another-list}{%
+\subsubsection{Check if Any Element of a List is another List}\label{check-if-any-element-of-a-list-is-another-list}}
+
+There is a list with two elements, there is another list with say four elements. Check if any of the two element is in the list with four elements.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ar\_int\_list\_a1 }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{]}
+\NormalTok{ar\_int\_list\_a2 }\OperatorTok{=}\NormalTok{ [}\DecValTok{2}\NormalTok{,}\DecValTok{1111}\NormalTok{]}
+\NormalTok{ar\_int\_list\_a3 }\OperatorTok{=}\NormalTok{ [}\DecValTok{2111}\NormalTok{,}\DecValTok{1111}\NormalTok{]}
+\NormalTok{ar\_int\_list\_b }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{11}\NormalTok{,}\DecValTok{999}\NormalTok{]}
+\NormalTok{ar\_int\_list\_c }\OperatorTok{=}\NormalTok{ [}\DecValTok{2}\NormalTok{]}
+
+\NormalTok{check\_any\_a1\_in\_b }\OperatorTok{=}  \BuiltInTok{any}\NormalTok{(item }\KeywordTok{in}\NormalTok{ ar\_int\_list\_a1 }\ControlFlowTok{for}\NormalTok{ item }\KeywordTok{in}\NormalTok{ ar\_int\_list\_b)}
+\NormalTok{check\_any\_a2\_in\_b }\OperatorTok{=}  \BuiltInTok{any}\NormalTok{(item }\KeywordTok{in}\NormalTok{ ar\_int\_list\_a2 }\ControlFlowTok{for}\NormalTok{ item }\KeywordTok{in}\NormalTok{ ar\_int\_list\_b)}
+\NormalTok{check\_any\_a3\_in\_b }\OperatorTok{=}  \BuiltInTok{any}\NormalTok{(item }\KeywordTok{in}\NormalTok{ ar\_int\_list\_a3 }\ControlFlowTok{for}\NormalTok{ item }\KeywordTok{in}\NormalTok{ ar\_int\_list\_b)}
+\NormalTok{check\_any\_a1\_in\_c }\OperatorTok{=}  \BuiltInTok{any}\NormalTok{(item }\KeywordTok{in}\NormalTok{ ar\_int\_list\_a1 }\ControlFlowTok{for}\NormalTok{ item }\KeywordTok{in}\NormalTok{ ar\_int\_list\_c)}
+
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{check\_any\_a1\_in\_b}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## check_any_a1_in_b=True
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{check\_any\_a2\_in\_b}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## check_any_a2_in_b=True
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{check\_any\_a3\_in\_b}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## check_any_a3_in_b=False
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{check\_any\_a1\_in\_c}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## check_any_a1_in_c=True
+\end{verbatim}
+
+\hypertarget{convert-a-list-to-a-string-list}{%
+\subsubsection{Convert a List to a String List}\label{convert-a-list-to-a-string-list}}
+
+Given a list of string and numeric values, convert to a list of string values. The MAP function is like \href{https://fanwangecon.github.io/R4Econ/function/noloop/htmlpdfr/fs_apply.html}{apply} in R.
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://stackoverflow.com/a/34011944/8280804}{How to concatenate items in a list to a single string?}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ls\_spec\_key }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}ng\_s\_d\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}esti\_test\_11\_simu\textquotesingle{}}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{]}
+\NormalTok{ls\_st\_spec\_key }\OperatorTok{=} \BuiltInTok{list}\NormalTok{(}\BuiltInTok{map}\NormalTok{(}\BuiltInTok{str}\NormalTok{, ls\_spec\_key))}
+\BuiltInTok{print}\NormalTok{(ls\_st\_spec\_key)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ['ng_s_d', 'esti_test_11_simu', '2', '3']
+\end{verbatim}
+
+Additionally, append some common element to each element of the string using MAP.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ls\_spec\_key }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}ng\_s\_d\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}esti\_test\_11\_simu\textquotesingle{}}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{]}
+\NormalTok{ls\_st\_spec\_key }\OperatorTok{=} \BuiltInTok{list}\NormalTok{(}\BuiltInTok{map}\NormalTok{(}\KeywordTok{lambda}\NormalTok{ x: }\StringTok{\textquotesingle{}add++\textquotesingle{}} \OperatorTok{+} \BuiltInTok{str}\NormalTok{(x), ls\_spec\_key))}
+\BuiltInTok{print}\NormalTok{(ls\_st\_spec\_key)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ['add++ng_s_d', 'add++esti_test_11_simu', 'add++2', 'add++3']
+\end{verbatim}
+
+Equivalently, via list comprehension
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ls\_spec\_key }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}ng\_s\_d\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}esti\_test\_11\_simu\textquotesingle{}}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{]}
+\NormalTok{ls\_st\_spec\_key }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}list\_comprehension\textquotesingle{}} \OperatorTok{+} \BuiltInTok{str}\NormalTok{(spec\_key) }\ControlFlowTok{for}\NormalTok{ spec\_key }\KeywordTok{in}\NormalTok{ ls\_spec\_key]}
+\BuiltInTok{print}\NormalTok{(ls\_st\_spec\_key)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ['list_comprehensionng_s_d', 'list_comprehensionesti_test_11_simu', 'list_comprehension2', 'list_comprehension3']
+\end{verbatim}
+
+\hypertarget{concatenate-a-list-to-a-string-with-separator}{%
+\subsubsection{Concatenate a List to a String with Separator}\label{concatenate-a-list-to-a-string-with-separator}}
+
+Given a list of strings and numeric data types, concatenate list to a string with some separator. Also in reverse, generate a list by breaking a string joined by some separator.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ls\_spec\_key }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}ng\_s\_d\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}esti\_test\_11\_simu\textquotesingle{}}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{]}
+\NormalTok{st\_separator }\OperatorTok{=} \StringTok{\textquotesingle{}=\textquotesingle{}}
+\NormalTok{st\_spec\_key }\OperatorTok{=}\NormalTok{ st\_separator.join(}\BuiltInTok{list}\NormalTok{(}\BuiltInTok{map}\NormalTok{(}\KeywordTok{lambda}\NormalTok{ x : }\BuiltInTok{str}\NormalTok{(x), ls\_spec\_key)))}
+\BuiltInTok{print}\NormalTok{(st\_spec\_key)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ng_s_d=esti_test_11_simu=2=3
+\end{verbatim}
+
+Now break string apart:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{st\_spec\_key }\OperatorTok{=} \StringTok{\textquotesingle{}=\textquotesingle{}}\NormalTok{.join(}\BuiltInTok{list}\NormalTok{(}\BuiltInTok{map}\NormalTok{(}\KeywordTok{lambda}\NormalTok{ x : }\StringTok{\textquotesingle{}$\textquotesingle{}} \OperatorTok{+} \BuiltInTok{str}\NormalTok{(x) }\OperatorTok{+} \StringTok{\textquotesingle{}$\textquotesingle{}}\NormalTok{, [}\StringTok{\textquotesingle{}ng\_s\_d\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}esti\_test\_11\_simu\textquotesingle{}}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{])))}
+\BuiltInTok{print}\NormalTok{(st\_spec\_key.split(}\StringTok{\textquotesingle{}=\textquotesingle{}}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ['$ng_s_d$', '$esti_test_11_simu$', '$2$', '$3$']
+\end{verbatim}
+
+\hypertarget{add-nth-element-to-list-when-nth-element-does-not-exist}{%
+\subsubsection{Add Nth Element to List when Nth Element Does not Exist}\label{add-nth-element-to-list-when-nth-element-does-not-exist}}
+
+There is a list with 2 elements, check if the list has 3 elements, if not, add another element.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ls\_string\_A }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}20180918\textquotesingle{}}\NormalTok{]}
+\NormalTok{ls\_string\_B }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}20180918\textquotesingle{}}\NormalTok{, [}\StringTok{\textquotesingle{}esti\_param.alpha\_k\textquotesingle{}}\NormalTok{]]}
+
+\ControlFlowTok{for}\NormalTok{ ls\_string }\KeywordTok{in}\NormalTok{ [ls\_string\_A, ls\_string\_B]:}
+  \ControlFlowTok{if} \BuiltInTok{len}\NormalTok{(ls\_string) }\OperatorTok{==} \DecValTok{2}\NormalTok{:}
+\NormalTok{    ls\_string.insert(}\DecValTok{2}\NormalTok{, }\VariableTok{None}\NormalTok{)}
+    
+  \BuiltInTok{print}\NormalTok{(ls\_string)}
+  
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ['c', '20180918', None]
+## ['c', '20180918', ['esti_param.alpha_k']]
+\end{verbatim}
+
+\hypertarget{check-if-list-has-n-elements-of-none-for-some-elements}{%
+\subsubsection{Check If List Has N Elements of None for Some Elements}\label{check-if-list-has-n-elements-of-none-for-some-elements}}
+
+In the example below, for A, B and C, do something, for D and E do something else.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ls\_string\_A }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}20180918\textquotesingle{}}\NormalTok{]}
+\NormalTok{ls\_string\_B }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}20180918\textquotesingle{}}\NormalTok{, }\VariableTok{None}\NormalTok{]}
+\NormalTok{ls\_string\_C }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}20180918\textquotesingle{}}\NormalTok{, }\VariableTok{None}\NormalTok{, }\VariableTok{None}\NormalTok{]}
+\NormalTok{ls\_string\_D }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}20180918\textquotesingle{}}\NormalTok{, [}\StringTok{\textquotesingle{}esti\_param.alpha\_k\textquotesingle{}}\NormalTok{], }\VariableTok{None}\NormalTok{]}
+\NormalTok{ls\_string\_E }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}20180918\textquotesingle{}}\NormalTok{, [}\StringTok{\textquotesingle{}esti\_param.alpha\_k\textquotesingle{}}\NormalTok{], }\DecValTok{5}\NormalTok{]}
+
+\ControlFlowTok{for}\NormalTok{ ls\_string }\KeywordTok{in}\NormalTok{ [ls\_string\_A, ls\_string\_B, ls\_string\_C, ls\_string\_D, ls\_string\_E]:}
+  \ControlFlowTok{if} \BuiltInTok{len}\NormalTok{(ls\_string) }\OperatorTok{\textgreater{}=} \DecValTok{3} \KeywordTok{and}\NormalTok{ ls\_string[}\DecValTok{2}\NormalTok{] }\KeywordTok{is} \KeywordTok{not} \VariableTok{None}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(ls\_string)}
+  \ControlFlowTok{else}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(ls\_string[}\DecValTok{0}\NormalTok{:}\DecValTok{2}\NormalTok{])}
+  
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ['c', '20180918']
+## ['c', '20180918']
+## ['c', '20180918']
+## ['c', '20180918', ['esti_param.alpha_k'], None]
+## ['c', '20180918', ['esti_param.alpha_k'], 5]
+\end{verbatim}
+
+\hypertarget{add-a-default-value-to-nth-element-of-list}{%
+\subsubsection{Add a Default Value to Nth Element of List}\label{add-a-default-value-to-nth-element-of-list}}
+
+There is a string list with potential potentially three elements. But sometimes the input only has two elements. Provide default third element value if third element is NONE or if the string list only has two elements.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{ls\_string\_A }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}20180918\textquotesingle{}}\NormalTok{]}
+\NormalTok{ls\_string\_B }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}20180918\textquotesingle{}}\NormalTok{, }\VariableTok{None}\NormalTok{]}
+\NormalTok{ls\_string\_C }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}20180918\textquotesingle{}}\NormalTok{, [}\StringTok{\textquotesingle{}esti\_param.alpha\_k\textquotesingle{}}\NormalTok{]]}
+
+\ControlFlowTok{for}\NormalTok{ ls\_string }\KeywordTok{in}\NormalTok{ [ls\_string\_A, ls\_string\_B, ls\_string\_C]:}
+
+  \ControlFlowTok{if} \BuiltInTok{len}\NormalTok{(ls\_string) }\OperatorTok{\textless{}=} \DecValTok{2}\NormalTok{:}
+    \CommentTok{\# Deals with situation A}
+\NormalTok{    ls\_string.append([}\StringTok{\textquotesingle{}esti\_param.alpha\_k\textquotesingle{}}\NormalTok{])}
+  \ControlFlowTok{elif}\NormalTok{ ls\_string[}\DecValTok{2}\NormalTok{] }\KeywordTok{is} \VariableTok{None}\NormalTok{:}
+    \CommentTok{\# Deals with situation B}
+\NormalTok{    ls\_string[}\DecValTok{2}\NormalTok{] }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}esti\_param.alpha\_k\textquotesingle{}}\NormalTok{]}
+  \ControlFlowTok{else}\NormalTok{:}
+    \CommentTok{\# Situation C}
+    \ControlFlowTok{pass}
+
+  \BuiltInTok{print}\NormalTok{(ls\_string)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ['c', '20180918', ['esti_param.alpha_k']]
+## ['c', '20180918', ['esti_param.alpha_k']]
+## ['c', '20180918', ['esti_param.alpha_k']]
+\end{verbatim}
+
+Now do the same thing for a numeric list:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{ls\_string\_A }\OperatorTok{=}\NormalTok{ [}\DecValTok{11}\NormalTok{, }\DecValTok{22}\NormalTok{]}
+\NormalTok{ls\_string\_B }\OperatorTok{=}\NormalTok{ [}\DecValTok{11}\NormalTok{, }\DecValTok{22}\NormalTok{, }\VariableTok{None}\NormalTok{]}
+\NormalTok{ls\_string\_C }\OperatorTok{=}\NormalTok{ [}\DecValTok{11}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{33}\NormalTok{]}
+
+\ControlFlowTok{for}\NormalTok{ ls\_string }\KeywordTok{in}\NormalTok{ [ls\_string\_A, ls\_string\_B, ls\_string\_C]:}
+
+  \ControlFlowTok{if} \BuiltInTok{len}\NormalTok{(ls\_string) }\OperatorTok{\textless{}=} \DecValTok{2}\NormalTok{:}
+    \CommentTok{\# Deals with situation A}
+\NormalTok{    ls\_string.append(}\DecValTok{33}\NormalTok{)}
+  \ControlFlowTok{elif}\NormalTok{ ls\_string[}\DecValTok{2}\NormalTok{] }\KeywordTok{is} \VariableTok{None}\NormalTok{:}
+    \CommentTok{\# Deals with situation B}
+\NormalTok{    ls\_string[}\DecValTok{2}\NormalTok{] }\OperatorTok{=} \DecValTok{33}
+  \ControlFlowTok{else}\NormalTok{:}
+    \CommentTok{\# Situation C}
+    \ControlFlowTok{pass}
+
+  \BuiltInTok{print}\NormalTok{(ls\_string)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [11, 22, 33]
+## [11, 22, 33]
+## [11, 22, 33]
+\end{verbatim}
 
 \hypertarget{strings}{%
 \subsection{Strings}\label{strings}}
@@ -196,111 +783,24 @@ Go back to \href{http://fanwangecon.github.io/}{fan}'s \href{https://fanwangecon
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{fstring-print-strings-with-numeric-values-and-other-strings}{%
-\subsubsection{Fstring Print Strings with Numeric Values and Other Strings}\label{fstring-print-strings-with-numeric-values-and-other-strings}}
+\hypertarget{get-substring}{%
+\subsubsection{Get Substring}\label{get-substring}}
 
-After some code segment, print some outputs declaring the end of operation and print results.
+Given string, get substring after a word.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{dc\_invoke\_main\_args }\OperatorTok{=}\NormalTok{ \{}\StringTok{\textquotesingle{}speckey\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}ng\_s\_t\textquotesingle{}}\NormalTok{,}
-                       \StringTok{\textquotesingle{}numeric\textquotesingle{}}\NormalTok{: }\FloatTok{1.46}\NormalTok{,}
-                       \StringTok{\textquotesingle{}ge\textquotesingle{}}\NormalTok{: }\VariableTok{False}\NormalTok{,}
-                       \StringTok{\textquotesingle{}multiprocess\textquotesingle{}}\NormalTok{: }\VariableTok{False}\NormalTok{\}}
-                       
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}speckey in dc\_invoke\_main\_args is }\SpecialCharTok{\{}\NormalTok{dc\_invoke\_main\_args[}\StringTok{"speckey"}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{.\textquotesingle{}}\NormalTok{)}
+\NormalTok{st\_func\_stack\_code }\OperatorTok{=} \StringTok{\textquotesingle{}dc\_ls\_combo\_type = pyfan\_amto\_lsdcconvert.ff\_ls2dc(ls\_combo\_type,\textquotesingle{}}
+\NormalTok{st\_search\_break }\OperatorTok{=} \StringTok{\textquotesingle{}ff\_ls2dc(\textquotesingle{}}
+\NormalTok{st\_string\_after }\OperatorTok{=}\NormalTok{ st\_func\_stack\_code.split(st\_search\_break)[}\DecValTok{1}\NormalTok{]}
+\NormalTok{st\_search\_break }\OperatorTok{=} \StringTok{\textquotesingle{},\textquotesingle{}}
+\NormalTok{st\_string\_after }\OperatorTok{=}\NormalTok{ st\_func\_stack\_code.split(st\_search\_break)[}\DecValTok{1}\NormalTok{]}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{st\_string\_after}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## speckey in dc_invoke_main_args is ng_s_t.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}numeric in dc\_invoke\_main\_args is }\SpecialCharTok{\{}\NormalTok{dc\_invoke\_main\_args[}\StringTok{"numeric"}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{.\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## numeric in dc_invoke_main_args is 1.46.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}speckey in dc\_invoke\_main\_args is }\SpecialCharTok{\{}\NormalTok{dc\_invoke\_main\_args}\SpecialCharTok{\}}\SpecialStringTok{.\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## speckey in dc_invoke_main_args is {'speckey': 'ng_s_t', 'numeric': 1.46, 'ge': False, 'multiprocess': False}.
-\end{verbatim}
-
-\hypertarget{fstring-format-floating-point-values}{%
-\subsection{Fstring Format Floating Point Values}\label{fstring-format-floating-point-values}}
-
-There is a number, it is a parameter value. The number of decimal points to be allowed is also a parameter value. Use Fstring to format.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Define a formatter function}
-\KeywordTok{def}\NormalTok{ fstring\_formater(st\_float, it\_decimal):}
-    \CommentTok{\# strip the string float, and format with it\_decimal number of decimals}
-\NormalTok{    st\_float }\OperatorTok{=}\NormalTok{ st\_float.strip()}
-\NormalTok{    fl\_float }\OperatorTok{=} \BuiltInTok{float}\NormalTok{(st\_float)}
-\NormalTok{    st\_float\_rounded }\OperatorTok{=} \SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{fl\_float}\SpecialCharTok{:.}\NormalTok{\{it\_decimal\}}\SpecialCharTok{f\}}\SpecialStringTok{\textquotesingle{}}
-    \ControlFlowTok{return}\NormalTok{ st\_float\_rounded}
-    
-\CommentTok{\# Print }
-\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{fstring\_formater(}\StringTok{"1.2345"}\NormalTok{, }\DecValTok{3}\NormalTok{)}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 'fstring_formater("1.2345", 3)=\'1.234\''
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{fstring\_formater(}\StringTok{"1.2345"}\NormalTok{, }\DecValTok{2}\NormalTok{)}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 'fstring_formater("1.2345", 2)=\'1.23\''
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{fstring\_formater(}\StringTok{" 1.2345 "}\NormalTok{, }\DecValTok{1}\NormalTok{)}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 'fstring_formater(" 1.2345 ", 1)=\'1.2\''
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{fstring\_formater(}\StringTok{" 1.2345"}\NormalTok{, }\DecValTok{1}\NormalTok{)}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}
-\CommentTok{\# Alternatively}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 'fstring_formater(" 1.2345", 1)=\'1.2\''
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{it\_decimal }\OperatorTok{=} \DecValTok{3}
-\NormalTok{fl\_float }\OperatorTok{=} \FloatTok{123.456789}
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}Formating with .}\SpecialCharTok{\{}\NormalTok{it\_decimal}\SpecialCharTok{\}}\SpecialStringTok{f {-}\textgreater{} }\SpecialCharTok{\{}\NormalTok{fl\_float}\SpecialCharTok{:.}\NormalTok{\{it\_decimal\}}\SpecialCharTok{f\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Formating with .3f -> 123.457
+## st_string_after=''
 \end{verbatim}
 
 \hypertarget{generate-random-strings}{%
@@ -608,500 +1108,6 @@ Here we have two strings in a list, with point estimates and corresponding stand
 ## st_text_out='(9.0), (5.4), (5.0), (5.1), (8.6)'
 \end{verbatim}
 
-\hypertarget{list}{%
-\subsection{List}\label{list}}
-
-\begin{quote}
-Go back to \href{http://fanwangecon.github.io/}{fan}'s \href{https://fanwangecon.github.io/Py4Econ/}{Python Code Examples} Repository (\href{https://fanwangecon.github.io/Py4Econ/bookdown}{bookdown site}) or the \href{https://pyfan.readthedocs.io/en/latest/}{pyfan} Package (\href{https://pyfan.readthedocs.io/en/latest/reference.html}{API}).
-\end{quote}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{check-if-any-element-of-a-list-is-another-list}{%
-\subsubsection{Check if Any Element of a List is another List}\label{check-if-any-element-of-a-list-is-another-list}}
-
-There is a list with two elements, there is another list with say four elements. Check if any of the two element is in the list with four elements.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{ar\_int\_list\_a1 }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{]}
-\NormalTok{ar\_int\_list\_a2 }\OperatorTok{=}\NormalTok{ [}\DecValTok{2}\NormalTok{,}\DecValTok{1111}\NormalTok{]}
-\NormalTok{ar\_int\_list\_a3 }\OperatorTok{=}\NormalTok{ [}\DecValTok{2111}\NormalTok{,}\DecValTok{1111}\NormalTok{]}
-\NormalTok{ar\_int\_list\_b }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{11}\NormalTok{,}\DecValTok{999}\NormalTok{]}
-\NormalTok{ar\_int\_list\_c }\OperatorTok{=}\NormalTok{ [}\DecValTok{2}\NormalTok{]}
-
-\NormalTok{check\_any\_a1\_in\_b }\OperatorTok{=}  \BuiltInTok{any}\NormalTok{(item }\KeywordTok{in}\NormalTok{ ar\_int\_list\_a1 }\ControlFlowTok{for}\NormalTok{ item }\KeywordTok{in}\NormalTok{ ar\_int\_list\_b)}
-\NormalTok{check\_any\_a2\_in\_b }\OperatorTok{=}  \BuiltInTok{any}\NormalTok{(item }\KeywordTok{in}\NormalTok{ ar\_int\_list\_a2 }\ControlFlowTok{for}\NormalTok{ item }\KeywordTok{in}\NormalTok{ ar\_int\_list\_b)}
-\NormalTok{check\_any\_a3\_in\_b }\OperatorTok{=}  \BuiltInTok{any}\NormalTok{(item }\KeywordTok{in}\NormalTok{ ar\_int\_list\_a3 }\ControlFlowTok{for}\NormalTok{ item }\KeywordTok{in}\NormalTok{ ar\_int\_list\_b)}
-\NormalTok{check\_any\_a1\_in\_c }\OperatorTok{=}  \BuiltInTok{any}\NormalTok{(item }\KeywordTok{in}\NormalTok{ ar\_int\_list\_a1 }\ControlFlowTok{for}\NormalTok{ item }\KeywordTok{in}\NormalTok{ ar\_int\_list\_c)}
-
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{check\_any\_a1\_in\_b}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## check_any_a1_in_b=True
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{check\_any\_a2\_in\_b}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## check_any_a2_in_b=True
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{check\_any\_a3\_in\_b}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## check_any_a3_in_b=False
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{check\_any\_a1\_in\_c}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## check_any_a1_in_c=True
-\end{verbatim}
-
-\hypertarget{convert-a-list-to-a-string-list}{%
-\subsubsection{Convert a List to a String List}\label{convert-a-list-to-a-string-list}}
-
-Given a list of string and numeric values, convert to a list of string values. The MAP function is like \href{https://fanwangecon.github.io/R4Econ/function/noloop/htmlpdfr/fs_apply.html}{apply} in R.
-
-\begin{itemize}
-\tightlist
-\item
-  \href{https://stackoverflow.com/a/34011944/8280804}{How to concatenate items in a list to a single string?}
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{ls\_spec\_key }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}ng\_s\_d\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}esti\_test\_11\_simu\textquotesingle{}}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{]}
-\NormalTok{ls\_st\_spec\_key }\OperatorTok{=} \BuiltInTok{list}\NormalTok{(}\BuiltInTok{map}\NormalTok{(}\BuiltInTok{str}\NormalTok{, ls\_spec\_key))}
-\BuiltInTok{print}\NormalTok{(ls\_st\_spec\_key)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## ['ng_s_d', 'esti_test_11_simu', '2', '3']
-\end{verbatim}
-
-Additionally, append some common element to each element of the string using MAP.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{ls\_spec\_key }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}ng\_s\_d\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}esti\_test\_11\_simu\textquotesingle{}}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{]}
-\NormalTok{ls\_st\_spec\_key }\OperatorTok{=} \BuiltInTok{list}\NormalTok{(}\BuiltInTok{map}\NormalTok{(}\KeywordTok{lambda}\NormalTok{ x: }\StringTok{\textquotesingle{}add++\textquotesingle{}} \OperatorTok{+} \BuiltInTok{str}\NormalTok{(x), ls\_spec\_key))}
-\BuiltInTok{print}\NormalTok{(ls\_st\_spec\_key)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## ['add++ng_s_d', 'add++esti_test_11_simu', 'add++2', 'add++3']
-\end{verbatim}
-
-Equivalently, via list comprehension
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{ls\_spec\_key }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}ng\_s\_d\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}esti\_test\_11\_simu\textquotesingle{}}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{]}
-\NormalTok{ls\_st\_spec\_key }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}list\_comprehension\textquotesingle{}} \OperatorTok{+} \BuiltInTok{str}\NormalTok{(spec\_key) }\ControlFlowTok{for}\NormalTok{ spec\_key }\KeywordTok{in}\NormalTok{ ls\_spec\_key]}
-\BuiltInTok{print}\NormalTok{(ls\_st\_spec\_key)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## ['list_comprehensionng_s_d', 'list_comprehensionesti_test_11_simu', 'list_comprehension2', 'list_comprehension3']
-\end{verbatim}
-
-\hypertarget{concatenate-a-list-to-a-string-with-separator}{%
-\subsubsection{Concatenate a List to a String with Separator}\label{concatenate-a-list-to-a-string-with-separator}}
-
-Given a list of strings and numeric data types, concatenate list to a string with some separator. Also in reverse, generate a list by breaking a string joined by some separator.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{ls\_spec\_key }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}ng\_s\_d\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}esti\_test\_11\_simu\textquotesingle{}}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{]}
-\NormalTok{st\_separator }\OperatorTok{=} \StringTok{\textquotesingle{}=\textquotesingle{}}
-\NormalTok{st\_spec\_key }\OperatorTok{=}\NormalTok{ st\_separator.join(}\BuiltInTok{list}\NormalTok{(}\BuiltInTok{map}\NormalTok{(}\KeywordTok{lambda}\NormalTok{ x : }\BuiltInTok{str}\NormalTok{(x), ls\_spec\_key)))}
-\BuiltInTok{print}\NormalTok{(st\_spec\_key)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## ng_s_d=esti_test_11_simu=2=3
-\end{verbatim}
-
-Now break string apart:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{st\_spec\_key }\OperatorTok{=} \StringTok{\textquotesingle{}=\textquotesingle{}}\NormalTok{.join(}\BuiltInTok{list}\NormalTok{(}\BuiltInTok{map}\NormalTok{(}\KeywordTok{lambda}\NormalTok{ x : }\StringTok{\textquotesingle{}$\textquotesingle{}} \OperatorTok{+} \BuiltInTok{str}\NormalTok{(x) }\OperatorTok{+} \StringTok{\textquotesingle{}$\textquotesingle{}}\NormalTok{, [}\StringTok{\textquotesingle{}ng\_s\_d\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}esti\_test\_11\_simu\textquotesingle{}}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{])))}
-\BuiltInTok{print}\NormalTok{(st\_spec\_key.split(}\StringTok{\textquotesingle{}=\textquotesingle{}}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## ['$ng_s_d$', '$esti_test_11_simu$', '$2$', '$3$']
-\end{verbatim}
-
-\hypertarget{add-nth-element-to-list-when-nth-element-does-not-exist}{%
-\subsubsection{Add Nth Element to List when Nth Element Does not Exist}\label{add-nth-element-to-list-when-nth-element-does-not-exist}}
-
-There is a list with 2 elements, check if the list has 3 elements, if not, add another element.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{ls\_string\_A }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}20180918\textquotesingle{}}\NormalTok{]}
-\NormalTok{ls\_string\_B }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}20180918\textquotesingle{}}\NormalTok{, [}\StringTok{\textquotesingle{}esti\_param.alpha\_k\textquotesingle{}}\NormalTok{]]}
-
-\ControlFlowTok{for}\NormalTok{ ls\_string }\KeywordTok{in}\NormalTok{ [ls\_string\_A, ls\_string\_B]:}
-  \ControlFlowTok{if} \BuiltInTok{len}\NormalTok{(ls\_string) }\OperatorTok{==} \DecValTok{2}\NormalTok{:}
-\NormalTok{    ls\_string.insert(}\DecValTok{2}\NormalTok{, }\VariableTok{None}\NormalTok{)}
-    
-  \BuiltInTok{print}\NormalTok{(ls\_string)}
-  
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## ['c', '20180918', None]
-## ['c', '20180918', ['esti_param.alpha_k']]
-\end{verbatim}
-
-\hypertarget{check-if-list-has-n-elements-of-none-for-some-elements}{%
-\subsubsection{Check If List Has N Elements of None for Some Elements}\label{check-if-list-has-n-elements-of-none-for-some-elements}}
-
-In the example below, for A, B and C, do something, for D and E do something else.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{ls\_string\_A }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}20180918\textquotesingle{}}\NormalTok{]}
-\NormalTok{ls\_string\_B }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}20180918\textquotesingle{}}\NormalTok{, }\VariableTok{None}\NormalTok{]}
-\NormalTok{ls\_string\_C }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}20180918\textquotesingle{}}\NormalTok{, }\VariableTok{None}\NormalTok{, }\VariableTok{None}\NormalTok{]}
-\NormalTok{ls\_string\_D }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}20180918\textquotesingle{}}\NormalTok{, [}\StringTok{\textquotesingle{}esti\_param.alpha\_k\textquotesingle{}}\NormalTok{], }\VariableTok{None}\NormalTok{]}
-\NormalTok{ls\_string\_E }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}20180918\textquotesingle{}}\NormalTok{, [}\StringTok{\textquotesingle{}esti\_param.alpha\_k\textquotesingle{}}\NormalTok{], }\DecValTok{5}\NormalTok{]}
-
-\ControlFlowTok{for}\NormalTok{ ls\_string }\KeywordTok{in}\NormalTok{ [ls\_string\_A, ls\_string\_B, ls\_string\_C, ls\_string\_D, ls\_string\_E]:}
-  \ControlFlowTok{if} \BuiltInTok{len}\NormalTok{(ls\_string) }\OperatorTok{\textgreater{}=} \DecValTok{3} \KeywordTok{and}\NormalTok{ ls\_string[}\DecValTok{2}\NormalTok{] }\KeywordTok{is} \KeywordTok{not} \VariableTok{None}\NormalTok{:}
-    \BuiltInTok{print}\NormalTok{(ls\_string)}
-  \ControlFlowTok{else}\NormalTok{:}
-    \BuiltInTok{print}\NormalTok{(ls\_string[}\DecValTok{0}\NormalTok{:}\DecValTok{2}\NormalTok{])}
-  
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## ['c', '20180918']
-## ['c', '20180918']
-## ['c', '20180918']
-## ['c', '20180918', ['esti_param.alpha_k'], None]
-## ['c', '20180918', ['esti_param.alpha_k'], 5]
-\end{verbatim}
-
-\hypertarget{add-a-default-value-to-nth-element-of-list}{%
-\subsubsection{Add a Default Value to Nth Element of List}\label{add-a-default-value-to-nth-element-of-list}}
-
-There is a string list with potential potentially three elements. But sometimes the input only has two elements. Provide default third element value if third element is NONE or if the string list only has two elements.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-
-\NormalTok{ls\_string\_A }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}20180918\textquotesingle{}}\NormalTok{]}
-\NormalTok{ls\_string\_B }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}20180918\textquotesingle{}}\NormalTok{, }\VariableTok{None}\NormalTok{]}
-\NormalTok{ls\_string\_C }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}20180918\textquotesingle{}}\NormalTok{, [}\StringTok{\textquotesingle{}esti\_param.alpha\_k\textquotesingle{}}\NormalTok{]]}
-
-\ControlFlowTok{for}\NormalTok{ ls\_string }\KeywordTok{in}\NormalTok{ [ls\_string\_A, ls\_string\_B, ls\_string\_C]:}
-
-  \ControlFlowTok{if} \BuiltInTok{len}\NormalTok{(ls\_string) }\OperatorTok{\textless{}=} \DecValTok{2}\NormalTok{:}
-    \CommentTok{\# Deals with situation A}
-\NormalTok{    ls\_string.append([}\StringTok{\textquotesingle{}esti\_param.alpha\_k\textquotesingle{}}\NormalTok{])}
-  \ControlFlowTok{elif}\NormalTok{ ls\_string[}\DecValTok{2}\NormalTok{] }\KeywordTok{is} \VariableTok{None}\NormalTok{:}
-    \CommentTok{\# Deals with situation B}
-\NormalTok{    ls\_string[}\DecValTok{2}\NormalTok{] }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}esti\_param.alpha\_k\textquotesingle{}}\NormalTok{]}
-  \ControlFlowTok{else}\NormalTok{:}
-    \CommentTok{\# Situation C}
-    \ControlFlowTok{pass}
-
-  \BuiltInTok{print}\NormalTok{(ls\_string)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## ['c', '20180918', ['esti_param.alpha_k']]
-## ['c', '20180918', ['esti_param.alpha_k']]
-## ['c', '20180918', ['esti_param.alpha_k']]
-\end{verbatim}
-
-Now do the same thing for a numeric list:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-
-\NormalTok{ls\_string\_A }\OperatorTok{=}\NormalTok{ [}\DecValTok{11}\NormalTok{, }\DecValTok{22}\NormalTok{]}
-\NormalTok{ls\_string\_B }\OperatorTok{=}\NormalTok{ [}\DecValTok{11}\NormalTok{, }\DecValTok{22}\NormalTok{, }\VariableTok{None}\NormalTok{]}
-\NormalTok{ls\_string\_C }\OperatorTok{=}\NormalTok{ [}\DecValTok{11}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{33}\NormalTok{]}
-
-\ControlFlowTok{for}\NormalTok{ ls\_string }\KeywordTok{in}\NormalTok{ [ls\_string\_A, ls\_string\_B, ls\_string\_C]:}
-
-  \ControlFlowTok{if} \BuiltInTok{len}\NormalTok{(ls\_string) }\OperatorTok{\textless{}=} \DecValTok{2}\NormalTok{:}
-    \CommentTok{\# Deals with situation A}
-\NormalTok{    ls\_string.append(}\DecValTok{33}\NormalTok{)}
-  \ControlFlowTok{elif}\NormalTok{ ls\_string[}\DecValTok{2}\NormalTok{] }\KeywordTok{is} \VariableTok{None}\NormalTok{:}
-    \CommentTok{\# Deals with situation B}
-\NormalTok{    ls\_string[}\DecValTok{2}\NormalTok{] }\OperatorTok{=} \DecValTok{33}
-  \ControlFlowTok{else}\NormalTok{:}
-    \CommentTok{\# Situation C}
-    \ControlFlowTok{pass}
-
-  \BuiltInTok{print}\NormalTok{(ls\_string)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [11, 22, 33]
-## [11, 22, 33]
-## [11, 22, 33]
-\end{verbatim}
-
-\hypertarget{tuple}{%
-\subsection{Tuple}\label{tuple}}
-
-\begin{quote}
-Go back to \href{http://fanwangecon.github.io/}{fan}'s \href{https://fanwangecon.github.io/Py4Econ/}{Python Code Examples} Repository (\href{https://fanwangecon.github.io/Py4Econ/bookdown}{bookdown site}) or the \href{https://pyfan.readthedocs.io/en/latest/}{pyfan} Package (\href{https://pyfan.readthedocs.io/en/latest/reference.html}{API}).
-\end{quote}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{tuple-example}{%
-\subsubsection{Tuple Example}\label{tuple-example}}
-
-A tuple is created with parenthesis on the sides (or no parenthesis), not brackets on the sides. Can access values in a tuple as in list.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Define Tuple, with and without parenthesis}
-\NormalTok{tp\_abc }\OperatorTok{=}\NormalTok{ (}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{)}
-\NormalTok{tp\_abc\_noparent }\OperatorTok{=} \StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}c\textquotesingle{}}
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{tp\_abc}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## tp_abc=('a', 'b', 'c')
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\BuiltInTok{len}\NormalTok{(tp\_abc)}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## len(tp_abc)=3
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{tp\_abc\_noparent}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## tp_abc_noparent=('a', 'b', 'c')
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{(tp\_abc}\OperatorTok{==}\NormalTok{tp\_abc\_noparent)}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\CommentTok{\# Check Type}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## (tp_abc==tp_abc_noparent)=True
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\BuiltInTok{isinstance}\NormalTok{(tp\_abc, }\BuiltInTok{list}\NormalTok{)}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## isinstance(tp_abc, list)=False
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\BuiltInTok{isinstance}\NormalTok{(tp\_abc, }\BuiltInTok{tuple}\NormalTok{)}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\CommentTok{\# select element}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## isinstance(tp_abc, tuple)=True
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{tp\_abc[}\DecValTok{1}\NormalTok{]}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## tp_abc[1]='b'
-\end{verbatim}
-
-Convert tuple to a list:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# convert Tuple to list}
-\NormalTok{ls\_abc }\OperatorTok{=}\NormalTok{ [i }\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in}\NormalTok{ tp\_abc]}
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{ls\_abc}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## ls_abc=['a', 'b', 'c']
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\BuiltInTok{isinstance}\NormalTok{(ls\_abc, }\BuiltInTok{list}\NormalTok{)}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## isinstance(ls_abc, list)=True
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\BuiltInTok{isinstance}\NormalTok{(ls\_abc, }\BuiltInTok{tuple}\NormalTok{)}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## isinstance(ls_abc, tuple)=False
-\end{verbatim}
-
-Since the tuple is not mutable, we can not change values inside the tuple:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# define the tuple}
-\NormalTok{tp\_abc }\OperatorTok{=}\NormalTok{ (}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{)}
-\CommentTok{\# update tuple value}
-\ControlFlowTok{try}\NormalTok{:}
-\NormalTok{    tp\_abc[}\DecValTok{0}\NormalTok{] }\OperatorTok{=} \StringTok{\textquotesingle{}efg\textquotesingle{}}
-\ControlFlowTok{except} \PreprocessorTok{TypeError} \ImportTok{as}\NormalTok{ error:}
-    \BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}Caught this error: \textquotesingle{}} \OperatorTok{+} \BuiltInTok{repr}\NormalTok{(error))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Caught this error: TypeError("'tuple' object does not support item assignment")
-\end{verbatim}
-
-\hypertarget{function-returns-tuple-and-unpack}{%
-\subsubsection{Function Returns Tuple and Unpack}\label{function-returns-tuple-and-unpack}}
-
-When a function returns multiple \emph{items} in a list, that is a tuple. Each element of the list can be accessed. And the tuple can be unpacked:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Results from some function}
-\NormalTok{tp\_results }\OperatorTok{=} \StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{, }\DecValTok{123}\NormalTok{,  [}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{]}
-\CommentTok{\# Unpack the results}
-\NormalTok{a\_st, b\_int, c\_ls\_int }\OperatorTok{=}\NormalTok{ tp\_results}
-\CommentTok{\# Print}
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{tp\_results}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## tp_results=('a', 123, [1, 2, 3])
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{a\_st}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## a_st='a'
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{b\_int}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## b_int=123
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{c\_ls\_int}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## c_ls_int=[1, 2, 3]
-\end{verbatim}
-
-Unpack only a subset of the elements in the tuple:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Unpack only one}
-\NormalTok{a\_st\_self\_m1, \_ , \_ }\OperatorTok{=}\NormalTok{ tp\_results}
-\CommentTok{\# Alternative shorter}
-\NormalTok{a\_st\_self\_m2, }\OperatorTok{*}\NormalTok{\_  }\OperatorTok{=}\NormalTok{ tp\_results}
-\CommentTok{\# Print}
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{a\_st\_self\_m1}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## a_st_self_m1='a'
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{a\_st\_self\_m2}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## a_st_self_m2='a'
-\end{verbatim}
-
-see \href{https://stackoverflow.com/a/11371230/8280804}{unpack the first two elements in list/tuple}.
-
 \hypertarget{dictionary}{%
 \section{Dictionary}\label{dictionary}}
 
@@ -1142,6 +1148,34 @@ Given a dictionary, loop through all of its elements
 ## speckey_key:2, speckey_val:ng_s_d
 ## speckey_key:3, speckey_val:ng_p_t
 ## speckey_key:4, speckey_val:ng_p_d
+\end{verbatim}
+
+\hypertarget{convert-a-list-to-a-dictionary}{%
+\subsubsection{Convert a List to a Dictionary}\label{convert-a-list-to-a-dictionary}}
+
+There is a list with different types of elements. Use the name of the list as the key, with value index added in as a part of the key, the value is the value of the dictionary.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# List}
+\NormalTok{ls\_combo\_type }\OperatorTok{=}\NormalTok{ [}\StringTok{"e"}\NormalTok{, }\StringTok{"20201025x\_esr\_list\_tKap\_mlt\_ce1a2"}\NormalTok{, [}\StringTok{"esti\_param.kappa\_ce9901"}\NormalTok{, }\StringTok{"esti\_param.kappa\_ce0209"}\NormalTok{], }\DecValTok{1}\NormalTok{, }\StringTok{"C1E31M3S3=1"}\NormalTok{]}
+\CommentTok{\# List name as string variable}
+\NormalTok{st\_ls\_name }\OperatorTok{=} \SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{ls\_combo\_type}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{.split(}\StringTok{\textquotesingle{}=\textquotesingle{}}\NormalTok{)[}\DecValTok{0}\NormalTok{]}
+\CommentTok{\# Convert to dict}
+\NormalTok{dc\_from\_list }\OperatorTok{=}\NormalTok{ \{st\_ls\_name }\OperatorTok{+} \StringTok{\textquotesingle{}\_i\textquotesingle{}} \OperatorTok{+} \BuiltInTok{str}\NormalTok{(it\_idx) }\OperatorTok{+} \StringTok{\textquotesingle{}o\textquotesingle{}} \OperatorTok{+} \BuiltInTok{str}\NormalTok{(}\BuiltInTok{len}\NormalTok{(ls\_combo\_type)) : ob\_val }
+                \ControlFlowTok{for}\NormalTok{ it\_idx, ob\_val }\KeywordTok{in} \BuiltInTok{enumerate}\NormalTok{(ls\_combo\_type)\}}
+\CommentTok{\# Print}
+\NormalTok{pprint.pprint(dc\_from\_list, width}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## {'ls_combo_type_i0o5': 'e',
+##  'ls_combo_type_i1o5': '20201025x_esr_list_tKap_mlt_ce1a2',
+##  'ls_combo_type_i2o5': ['esti_param.kappa_ce9901',
+##                         'esti_param.kappa_ce0209'],
+##  'ls_combo_type_i3o5': 1,
+##  'ls_combo_type_i4o5': 'C1E31M3S3=1'}
 \end{verbatim}
 
 \hypertarget{select-one-key-value-pair}{%
@@ -1789,6 +1823,72 @@ There is a dataframe with many rows, select a subset of rows where a particular 
 
 See \href{https://stackoverflow.com/a/17071908/8280804}{How to select rows from a DataFrame based on column values}.
 
+\hypertarget{pandas-importing-and-exporting}{%
+\subsection{Pandas Importing and Exporting}\label{pandas-importing-and-exporting}}
+
+\begin{quote}
+Go back to \href{http://fanwangecon.github.io/}{fan}'s \href{https://fanwangecon.github.io/Py4Econ/}{Python Code Examples} Repository (\href{https://fanwangecon.github.io/Py4Econ/bookdown}{bookdown site}) or the \href{https://pyfan.readthedocs.io/en/latest/}{pyfan} Package (\href{https://pyfan.readthedocs.io/en/latest/reference.html}{API}).
+\end{quote}
+
+\hypertarget{export-a-dataframe-to-csv-in-user-download-with-automatic-file-name}{%
+\subsubsection{Export a Dataframe to CSV in User Download with Automatic File Name}\label{export-a-dataframe-to-csv-in-user-download-with-automatic-file-name}}
+
+During debugging and testing, a large dataframe is generated, but certain operation produces error. To fully debug, drop into debugger on error in PyCharm, and use console to generate a dataframe of just the matrix at issue. Now export this dataframe to csv in the fastest way possible.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Find user home path, generate a download subdirectory if it does not exist.
+\item
+  Export the current dataframe to csv in that file, with auto row and column names.
+\item
+  The dataframe will be named after the current variable array name, and will have a time suffix added.
+\end{enumerate}
+
+Replace the mt\_abc line below, use a different name that should appear in the saved file name.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Import Pathlib and panddas}
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{from}\NormalTok{ pathlib }\ImportTok{import}\NormalTok{ Path}
+\ImportTok{import}\NormalTok{ time}
+
+\CommentTok{\# replace mt\_abc line by the matrix currently used}
+\NormalTok{mt\_abc }\OperatorTok{=}\NormalTok{ np.column\_stack(np.random.randint(}\DecValTok{10}\NormalTok{, size}\OperatorTok{=}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{3}\NormalTok{)))}
+\CommentTok{\# Save results to C:\textbackslash{}Users\textbackslash{}fan\textbackslash{}Downloads\textbackslash{}PythonDebug, generate if does not exist.}
+\NormalTok{srt\_pydebug }\OperatorTok{=}\NormalTok{ Path.joinpath(Path.home(), }\StringTok{"Downloads"}\NormalTok{, }\StringTok{"PythonDebug"}\NormalTok{)}
+\NormalTok{srt\_pydebug.mkdir(parents}\OperatorTok{=}\VariableTok{True}\NormalTok{, exist\_ok}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+\CommentTok{\# Matrix to data frame with columns and row names}
+\NormalTok{df2export }\OperatorTok{=}\NormalTok{ pd.DataFrame(data}\OperatorTok{=}\NormalTok{mt\_abc,}
+\NormalTok{                         index}\OperatorTok{=}\NormalTok{[}\StringTok{\textquotesingle{}r\textquotesingle{}} \OperatorTok{+} \BuiltInTok{str}\NormalTok{(it\_col) }\ControlFlowTok{for}\NormalTok{ it\_col }\KeywordTok{in}\NormalTok{ np.array(}\BuiltInTok{range}\NormalTok{(}\DecValTok{1}\NormalTok{, mt\_abc.shape[}\DecValTok{0}\NormalTok{] }\OperatorTok{+} \DecValTok{1}\NormalTok{))],}
+\NormalTok{                         columns}\OperatorTok{=}\NormalTok{[}\StringTok{\textquotesingle{}c\textquotesingle{}} \OperatorTok{+} \BuiltInTok{str}\NormalTok{(it\_col) }\ControlFlowTok{for}\NormalTok{ it\_col }\KeywordTok{in}\NormalTok{ np.array(}\BuiltInTok{range}\NormalTok{(}\DecValTok{1}\NormalTok{, mt\_abc.shape[}\DecValTok{1}\NormalTok{] }\OperatorTok{+} \DecValTok{1}\NormalTok{))])}
+\CommentTok{\# Export File Name}
+\NormalTok{spn\_csv\_path }\OperatorTok{=}\NormalTok{ Path.joinpath(srt\_pydebug, }\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{mt\_abc}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{.split(}\StringTok{\textquotesingle{}=\textquotesingle{}}\NormalTok{)[}\DecValTok{0}\NormalTok{] }\OperatorTok{+} \StringTok{\textquotesingle{}{-}\textquotesingle{}} \OperatorTok{+}\NormalTok{ time.strftime(}\StringTok{"\%Y\%m}\SpecialCharTok{\%d}\StringTok{{-}\%H\%M\%S"}\NormalTok{) }\OperatorTok{+} \StringTok{\textquotesingle{}.csv\textquotesingle{}}\NormalTok{)}
+\CommentTok{\# export}
+\NormalTok{df2export.to\_csv(spn\_csv\_path, sep}\OperatorTok{=}\StringTok{","}\NormalTok{)}
+
+\CommentTok{\# print}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{srt\_pydebug}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## srt_pydebug=WindowsPath('C:/Users/fan/Downloads/PythonDebug')
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{spn\_csv\_path}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## spn_csv_path=WindowsPath('C:/Users/fan/Downloads/PythonDebug/mt_abc-20201223-221408.csv')
+\end{verbatim}
+
 \hypertarget{functions}{%
 \chapter{Functions}\label{functions}}
 
@@ -1922,102 +2022,6 @@ There is a function that takes a string or an integer between certain values. Ex
 ## gn_invoke_set=['abc'] is not string or an integer between 1 and 11
 \end{verbatim}
 
-\hypertarget{function-returns}{%
-\subsection{Function Returns}\label{function-returns}}
-
-\begin{quote}
-Go back to \href{http://fanwangecon.github.io/}{fan}'s \href{https://fanwangecon.github.io/Py4Econ/}{Python Code Examples} Repository (\href{https://fanwangecon.github.io/Py4Econ/bookdown}{bookdown site}) or the \href{https://pyfan.readthedocs.io/en/latest/}{pyfan} Package (\href{https://pyfan.readthedocs.io/en/latest/reference.html}{API}).
-\end{quote}
-
-\hypertarget{function-with-multiple-optional-returns}{%
-\subsubsection{Function with Multiple Optional Returns}\label{function-with-multiple-optional-returns}}
-
-There is a function that is already written, that returns some string value. Without interrupting the existing function, now add an additional return for the function. There is some conditional statement that controls whether the function returns one or two value.
-
-In the example below, if the path contains
-
-Create a testing function:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{def}\NormalTok{ get\_val(spn\_path):}
-    \ControlFlowTok{if} \StringTok{\textquotesingle{}G:\textquotesingle{}} \KeywordTok{in}\NormalTok{ spn\_path:}
-        \CommentTok{\# this returns a tuple of length 2}
-        \ControlFlowTok{return}\NormalTok{ spn\_path, }\StringTok{\textquotesingle{}G:/repos\textquotesingle{}} 
-    \ControlFlowTok{else}\NormalTok{:}
-        \ControlFlowTok{return}\NormalTok{ spn\_path }
-\end{Highlighting}
-\end{Shaded}
-
-Call the function with one return, in the two calls below, the first call returns a tuple
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Return tuple}
-\NormalTok{tp\_st\_return }\OperatorTok{=}\NormalTok{ get\_val(}\StringTok{"G:/Dropbox (UH{-}ECON)"}\NormalTok{)}
-\CommentTok{\# Unpack tuple return}
-\NormalTok{st\_path\_a, st\_path\_b }\OperatorTok{=}\NormalTok{ get\_val(}\StringTok{"G:/Dropbox (UH{-}ECON)"}\NormalTok{)}
-\CommentTok{\# Single element return}
-\NormalTok{st\_return }\OperatorTok{=}\NormalTok{ get\_val(}\StringTok{"C:/Dropbox (UH{-}ECON)"}\NormalTok{)}
-\CommentTok{\# Print}
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{tp\_st\_return}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{ and }\SpecialCharTok{\{}\NormalTok{st\_return}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## tp_st_return=('G:/Dropbox (UH-ECON)', 'G:/repos') and st_return='C:/Dropbox (UH-ECON)'
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{st\_path\_a}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{ and }\SpecialCharTok{\{}\NormalTok{st\_path\_b}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## st_path_a='G:/Dropbox (UH-ECON)' and st_path_b='G:/repos'
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\BuiltInTok{isinstance}\NormalTok{(tp\_st\_return, }\BuiltInTok{str}\NormalTok{)}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## isinstance(tp_st_return, str)=False
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\BuiltInTok{isinstance}\NormalTok{(tp\_st\_return, }\BuiltInTok{tuple}\NormalTok{)}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## isinstance(tp_st_return, tuple)=True
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\BuiltInTok{isinstance}\NormalTok{(st\_return, }\BuiltInTok{str}\NormalTok{)}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## isinstance(st_return, str)=True
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\BuiltInTok{isinstance}\NormalTok{(st\_return, }\BuiltInTok{tuple}\NormalTok{)}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## isinstance(st_return, tuple)=False
-\end{verbatim}
-
 \hypertarget{function-arguments}{%
 \subsection{Function Arguments}\label{function-arguments}}
 
@@ -2030,6 +2034,53 @@ Go back to \href{http://fanwangecon.github.io/}{fan}'s \href{https://fanwangecon
 \ImportTok{import}\NormalTok{ pprint}
 \end{Highlighting}
 \end{Shaded}
+
+\hypertarget{mutable-argument-default}{%
+\subsubsection{Mutable Argument Default}\label{mutable-argument-default}}
+
+If a parameter is a list, that is mutable, or a dict. Default values for the mutable parameter should be None, with the actual default value provided inside the function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Mutable dict as parameters}
+\KeywordTok{def}\NormalTok{ ffi\_tab\_txt2tex(dc\_fmd\_sym\_sig}\OperatorTok{=}\VariableTok{None}\NormalTok{, dc\_tex\_sig\_sym}\OperatorTok{=}\VariableTok{None}\NormalTok{):}
+    \ControlFlowTok{if}\NormalTok{ dc\_fmd\_sym\_sig }\KeywordTok{is} \VariableTok{None}\NormalTok{:}
+        \CommentTok{\# defaults}
+\NormalTok{        dc\_fmd\_sym\_sig }\OperatorTok{=}\NormalTok{ \{}\StringTok{\textquotesingle{}***\textquotesingle{}}\NormalTok{: }\FloatTok{1e{-}2}\NormalTok{, }\StringTok{\textquotesingle{}**\textquotesingle{}}\NormalTok{: }\FloatTok{5e{-}2}\NormalTok{, }\StringTok{\textquotesingle{}*\textquotesingle{}}\NormalTok{: }\FloatTok{1e{-}1}\NormalTok{\}}
+    \ControlFlowTok{if}\NormalTok{ dc\_tex\_sig\_sym }\KeywordTok{is} \VariableTok{None}\NormalTok{:}
+        \CommentTok{\# defaults}
+\NormalTok{        dc\_tex\_sig\_sym }\OperatorTok{=}\NormalTok{ \{}\StringTok{\textquotesingle{}1e{-}3\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{sym\{***\}\textquotesingle{}}\NormalTok{,}
+                          \StringTok{\textquotesingle{}1e{-}2\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{sym\{**\}\textquotesingle{}}\NormalTok{,}
+                          \StringTok{\textquotesingle{}5e{-}2\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{sym\{*\}\textquotesingle{}}\NormalTok{,}
+                          \StringTok{\textquotesingle{}1e{-}1\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{dagger\textquotesingle{}}\NormalTok{\}}
+
+    \CommentTok{\# print}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{dc\_fmd\_sym\_sig}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{dc\_tex\_sig\_sym}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+    
+\CommentTok{\# Call function with default}
+\NormalTok{ffi\_tab\_txt2tex()}
+\CommentTok{\# Call function update the first dict }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## dc_fmd_sym_sig={'***': 0.01, '**': 0.05, '*': 0.1}
+## dc_tex_sig_sym={'1e-3': '\\sym{***}', '1e-2': '\\sym{**}', '5e-2': '\\sym{*}', '1e-1': '\\dagger'}
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ffi\_tab\_txt2tex(dc\_fmd\_sym\_sig }\OperatorTok{=}\NormalTok{ \{}\StringTok{\textquotesingle{}***\textquotesingle{}}\NormalTok{: }\FloatTok{1e{-}3}\NormalTok{, }\StringTok{\textquotesingle{}**\textquotesingle{}}\NormalTok{: }\FloatTok{1e{-}2}\NormalTok{, }\StringTok{\textquotesingle{}*\textquotesingle{}}\NormalTok{: }\FloatTok{5e{-}2}\NormalTok{\})}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## dc_fmd_sym_sig={'***': 0.001, '**': 0.01, '*': 0.05}
+## dc_tex_sig_sym={'1e-3': '\\sym{***}', '1e-2': '\\sym{**}', '5e-2': '\\sym{*}', '1e-1': '\\dagger'}
+\end{verbatim}
+
+see \href{https://stackoverflow.com/questions/1132941/least-astonishment-and-the-mutable-default-argument}{``Least Astonishment'' and the Mutable Default Argument}.
 
 \hypertarget{python-dictionary-as-argument-via-kwargs}{%
 \subsubsection{Python Dictionary As Argument via kwargs}\label{python-dictionary-as-argument-via-kwargs}}
@@ -2195,6 +2246,521 @@ Provide inputs for the first two unnamed parameters explicitly. Then provided th
 ##  'momsets_type': ['a',
 ##                   '20180805a'],
 ##  'workers': 1}
+\end{verbatim}
+
+\hypertarget{python-command-line-arguments-parsing}{%
+\subsection{Python Command-line Arguments Parsing}\label{python-command-line-arguments-parsing}}
+
+\begin{quote}
+Go back to \href{http://fanwangecon.github.io/}{fan}'s \href{https://fanwangecon.github.io/Py4Econ/}{Python Code Examples} Repository (\href{https://fanwangecon.github.io/Py4Econ/bookdown}{bookdown site}) or the \href{https://pyfan.readthedocs.io/en/latest/}{pyfan} Package (\href{https://pyfan.readthedocs.io/en/latest/reference.html}{API}).
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ pprint}
+\ImportTok{import}\NormalTok{ argparse}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{positional-and-optional-arguments}{%
+\subsubsection{Positional and Optional Arguments}\label{positional-and-optional-arguments}}
+
+Provide a positional and an optional argument. Position arguments are provided positions when the module is called, without prefixed by which parameter this is. Optional argument requires parameter specification.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Start parser for arguments}
+\NormalTok{parser }\OperatorTok{=}\NormalTok{ argparse.ArgumentParser()}
+
+\CommentTok{\# Positional argument 1st, will be stored as int}
+\NormalTok{parser.add\_argument(}\StringTok{\textquotesingle{}esrtype\textquotesingle{}}\NormalTok{, }\BuiltInTok{type}\OperatorTok{=}\BuiltInTok{int}\NormalTok{, }\BuiltInTok{help}\OperatorTok{=}\StringTok{\textquotesingle{}positional argument 1st\textquotesingle{}}\NormalTok{)}
+\CommentTok{\# Positional argument 2nd, will be stored as string}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## _StoreAction(option_strings=[], dest='esrtype', nargs=None, const=None, default=None, type=<class 'int'>, choices=None, help='positional argument 1st', metavar=None)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{parser.add\_argument(}\StringTok{\textquotesingle{}speckey\textquotesingle{}}\NormalTok{, }\BuiltInTok{type}\OperatorTok{=}\BuiltInTok{str}\NormalTok{, }\BuiltInTok{help}\OperatorTok{=}\StringTok{\textquotesingle{}positional argument 2nd\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Optional argument}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## _StoreAction(option_strings=[], dest='speckey', nargs=None, const=None, default=None, type=<class 'str'>, choices=None, help='positional argument 2nd', metavar=None)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{parser.add\_argument(}\StringTok{\textquotesingle{}{-}A\textquotesingle{}}\NormalTok{, }\BuiltInTok{type}\OperatorTok{=}\BuiltInTok{str}\NormalTok{, default}\OperatorTok{=}\StringTok{\textquotesingle{}opt\_arg\_A\_default\_str\_val\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Call with positional argument specified}
+\CommentTok{\# Note that one is bracketed, will be interpreted as int}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## _StoreAction(option_strings=['-A'], dest='A', nargs=None, const=None, default='opt_arg_A_default_str_val', type=<class 'str'>, choices=None, help=None, metavar=None)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Must specify posi. arg: }\SpecialCharTok{\{}\NormalTok{parser}\SpecialCharTok{.}\NormalTok{parse\_args([}\StringTok{\textquotesingle{}1\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}mpoly\_1=esti\_tinytst\_mpoly\_13=3=3\textquotesingle{}}\NormalTok{])}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# Call with two positional arguments and one optional}
+\CommentTok{\# Note that the first positional argument becomes int, second beomce str}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Must specify posi. arg: parser.parse_args(['1', 'mpoly_1=esti_tinytst_mpoly_13=3=3'])=Namespace(A='opt_arg_A_default_str_val', esrtype=1, speckey='mpoly_1=esti_tinytst_mpoly_13=3=3')
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"With opt arg: }\SpecialCharTok{\{}\NormalTok{parser}\SpecialCharTok{.}\NormalTok{parse\_args([}\StringTok{\textquotesingle{}1\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}2\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}{-}A\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}abc\textquotesingle{}}\NormalTok{])}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## With opt arg: parser.parse_args(['1', '2', '-A', 'abc'])=Namespace(A='abc', esrtype=1, speckey='2')
+\end{verbatim}
+
+\hypertarget{short-and-long-parameter-name-specifications}{%
+\subsubsection{Short and Long Parameter Name Specifications}\label{short-and-long-parameter-name-specifications}}
+
+Test below a boolean parameter that will be true or false. The default value is False. The parameter is called \emph{boolparam} with short name \emph{abc}. There is a variety of ways of setting the parameter to true.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Start parser for arguments}
+\NormalTok{parser }\OperatorTok{=}\NormalTok{ argparse.ArgumentParser()}
+
+\CommentTok{\# short name for the first parameter is a, full name is abc, boolean parameter}
+\NormalTok{parser.add\_argument(}\StringTok{\textquotesingle{}{-}abc\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}{-}{-}boolparam\textquotesingle{}}\NormalTok{, action}\OperatorTok{=}\StringTok{"store\_true"}\NormalTok{, default}\OperatorTok{=}\VariableTok{False}\NormalTok{)}
+
+\CommentTok{\# default is false but turn on option so true}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## _StoreTrueAction(option_strings=['-abc', '--boolparam'], dest='boolparam', nargs=0, const=True, default=False, type=None, choices=None, help=None, metavar=None)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"default false: }\SpecialCharTok{\{}\NormalTok{parser}\SpecialCharTok{.}\NormalTok{parse\_args()}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## default false: parser.parse_args()=Namespace(boolparam=False)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"default false, set to true, short all: }\SpecialCharTok{\{}\NormalTok{parser}\SpecialCharTok{.}\NormalTok{parse\_args([}\StringTok{\textquotesingle{}{-}abc\textquotesingle{}}\NormalTok{])}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## default false, set to true, short all: parser.parse_args(['-abc'])=Namespace(boolparam=True)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"default false, set to true, short part ab for abc: }\SpecialCharTok{\{}\NormalTok{parser}\SpecialCharTok{.}\NormalTok{parse\_args([}\StringTok{\textquotesingle{}{-}ab\textquotesingle{}}\NormalTok{])}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## default false, set to true, short part ab for abc: parser.parse_args(['-ab'])=Namespace(boolparam=True)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"default false, set to true, short part a for abc: }\SpecialCharTok{\{}\NormalTok{parser}\SpecialCharTok{.}\NormalTok{parse\_args([}\StringTok{\textquotesingle{}{-}a\textquotesingle{}}\NormalTok{])}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## default false, set to true, short part a for abc: parser.parse_args(['-a'])=Namespace(boolparam=True)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"default false, set to true, full param: }\SpecialCharTok{\{}\NormalTok{parser}\SpecialCharTok{.}\NormalTok{parse\_args([}\StringTok{\textquotesingle{}{-}{-}boolparam\textquotesingle{}}\NormalTok{])}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## default false, set to true, full param: parser.parse_args(['--boolparam'])=Namespace(boolparam=True)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"default false, set to true, full param: }\SpecialCharTok{\{}\NormalTok{parser}\SpecialCharTok{.}\NormalTok{parse\_args([}\StringTok{\textquotesingle{}{-}{-}boolparam\textquotesingle{}}\NormalTok{])}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## default false, set to true, full param: parser.parse_args(['--boolparam'])=Namespace(boolparam=True)
+\end{verbatim}
+
+\hypertarget{a-list-of-allowed-values}{%
+\subsubsection{A List of Allowed Values}\label{a-list-of-allowed-values}}
+
+There is a parameter, only some specific values are allowed. Also provide help for each allowed option. Note added \emph{argparse.RawTextHelpFormatter} to parse the next lines in help.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Start parse}
+\NormalTok{parser }\OperatorTok{=}\NormalTok{ argparse.ArgumentParser(description}\OperatorTok{=}\StringTok{\textquotesingle{}Run ESR cmd\textquotesingle{}}\NormalTok{, formatter\_class}\OperatorTok{=}\NormalTok{argparse.RawTextHelpFormatter)}
+
+\CommentTok{\# A required positional argument parameter tht is int and can take eight possible values}
+\NormalTok{parser.add\_argument(}\StringTok{\textquotesingle{}esrtype\textquotesingle{}}\NormalTok{, }\BuiltInTok{type}\OperatorTok{=}\BuiltInTok{int}\NormalTok{,}
+\NormalTok{                    choices}\OperatorTok{=}\NormalTok{[}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{8}\NormalTok{],}
+                    \BuiltInTok{help}\OperatorTok{=}\StringTok{\textquotesingle{}1. Simulate at N sets of parameter combinations}\CharTok{\textbackslash{}n}\StringTok{\textquotesingle{}}
+                         \StringTok{\textquotesingle{}2. Polynomial approximation surface based on (1) \textquotesingle{}}
+                         \StringTok{\textquotesingle{}for each outcome of interest, find best}\CharTok{\textbackslash{}n}\StringTok{\textquotesingle{}}
+                         \StringTok{\textquotesingle{}3. Estimation at N sets of starting points with (2) as objective function}\CharTok{\textbackslash{}n}\StringTok{\textquotesingle{}}
+                         \StringTok{\textquotesingle{}4. Gather results frorm (3), find M best.}\CharTok{\textbackslash{}n}\StringTok{\textquotesingle{}}
+                         \StringTok{\textquotesingle{}5. Simulate (estimate once) at the top M best results from (4) actual model, \textquotesingle{}}
+                         \StringTok{\textquotesingle{}compare objective to approximated from (3)}\CharTok{\textbackslash{}n}\StringTok{\textquotesingle{}}
+                         \StringTok{\textquotesingle{}6. Gather results from (5), re{-}rank best of the M best from (4)}\CharTok{\textbackslash{}n}\StringTok{\textquotesingle{}}
+                         \StringTok{\textquotesingle{}7. Estimate at the top M best results from (4) actual model, \textquotesingle{}}
+                         \StringTok{\textquotesingle{}(4) M best are M best seeds}\CharTok{\textbackslash{}n}\StringTok{\textquotesingle{}}
+                         \StringTok{\textquotesingle{}8. Gather results from (7), re{-}rank best of the final results from the M best seeds\textquotesingle{}}\NormalTok{)}
+\CommentTok{\# Print defaults}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## _StoreAction(option_strings=[], dest='esrtype', nargs=None, const=None, default=None, type=<class 'int'>, choices=[1, 2, 3, 4, 5, 6, 7, 8], help='1. Simulate at N sets of parameter combinations\n2. Polynomial approximation surface based on (1) for each outcome of interest, find best\n3. Estimation at N sets of starting points with (2) as objective function\n4. Gather results frorm (3), find M best.\n5. Simulate (estimate once) at the top M best results from (4) actual model, compare objective to approximated from (3)\n6. Gather results from (5), re-rank best of the M best from (4)\n7. Estimate at the top M best results from (4) actual model, (4) M best are M best seeds\n8. Gather results from (7), re-rank best of the final results from the M best seeds', metavar=None)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"provide 1 for the value of the positional argument: }\SpecialCharTok{\{}\NormalTok{parser}\SpecialCharTok{.}\NormalTok{parse\_args([}\StringTok{\textquotesingle{}1\textquotesingle{}}\NormalTok{])}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## provide 1 for the value of the positional argument: parser.parse_args(['1'])=Namespace(esrtype=1)
+\end{verbatim}
+
+\hypertarget{boolean-integer-string-and-list-parameters}{%
+\subsubsection{Boolean, Integer, String and list Parameters}\label{boolean-integer-string-and-list-parameters}}
+
+How to handle parameters of different types, boolean, integer, string and list. For these four types, the same way to specify short and long parameter names. How to set the parameter types, and how to set default values for each type.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Start parser for arguments}
+\NormalTok{parser }\OperatorTok{=}\NormalTok{ argparse.ArgumentParser()}
+
+\CommentTok{\# Single letter string parameters}
+\CommentTok{\# Note dest name over{-}rides full name}
+\NormalTok{parser.add\_argument(}\StringTok{\textquotesingle{}{-}cta\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}{-}{-}cttaaaaa\textquotesingle{}}\NormalTok{, dest}\OperatorTok{=}\StringTok{"combo\_type\_a"}\NormalTok{, default}\OperatorTok{=}\StringTok{\textquotesingle{}e\textquotesingle{}}\NormalTok{,}
+                    \BuiltInTok{type}\OperatorTok{=}\BuiltInTok{str}\NormalTok{)}
+\CommentTok{\# Multiple letters and integers}
+\CommentTok{\# Note without dest full name is dest}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## _StoreAction(option_strings=['-cta', '--cttaaaaa'], dest='combo_type_a', nargs=None, const=None, default='e', type=<class 'str'>, choices=None, help=None, metavar=None)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{parser.add\_argument(}\StringTok{\textquotesingle{}{-}ctb\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}{-}{-}combo\_type\_b\textquotesingle{}}\NormalTok{, default}\OperatorTok{=}\StringTok{\textquotesingle{}20201025\textquotesingle{}}\NormalTok{,}
+                    \BuiltInTok{type}\OperatorTok{=}\BuiltInTok{str}\NormalTok{)}
+\CommentTok{\# Multiple letters and integers}
+\CommentTok{\# Note without dest and full name short name is parameter name}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## _StoreAction(option_strings=['-ctb', '--combo_type_b'], dest='combo_type_b', nargs=None, const=None, default='20201025', type=<class 'str'>, choices=None, help=None, metavar=None)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{parser.add\_argument(}\StringTok{\textquotesingle{}{-}ctc\textquotesingle{}}\NormalTok{, default}\OperatorTok{=}\NormalTok{[}\StringTok{\textquotesingle{}list\_tKap\_mlt\_ce1a2\textquotesingle{}}\NormalTok{],}
+\NormalTok{                    nargs}\OperatorTok{=}\StringTok{\textquotesingle{}+\textquotesingle{}}\NormalTok{, }\BuiltInTok{type}\OperatorTok{=}\BuiltInTok{str}\NormalTok{)}
+
+\CommentTok{\# Print defaults}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## _StoreAction(option_strings=['-ctc'], dest='ctc', nargs='+', const=None, default=['list_tKap_mlt_ce1a2'], type=<class 'str'>, choices=None, help=None, metavar=None)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"default false: }\SpecialCharTok{\{}\NormalTok{parser}\SpecialCharTok{.}\NormalTok{parse\_args()}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# change parameters}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## default false: parser.parse_args()=Namespace(combo_type_a='e', combo_type_b='20201025', ctc=['list_tKap_mlt_ce1a2'])
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"default false: }\SpecialCharTok{\{}\NormalTok{parser}\SpecialCharTok{.}\NormalTok{parse\_args([}\StringTok{\textquotesingle{}{-}ctb\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}20201111\textquotesingle{}}\NormalTok{])}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## default false: parser.parse_args(['-ctb', '20201111'])=Namespace(combo_type_a='e', combo_type_b='20201111', ctc=['list_tKap_mlt_ce1a2'])
+\end{verbatim}
+
+see \href{https://pymotw.com/2/argparse/\#variable-argument-lists}{variable-argument-lists}.
+
+\hypertarget{parse-multiple-parameter-types}{%
+\subsubsection{Parse multiple parameter types}\label{parse-multiple-parameter-types}}
+
+Provide several types of parameters to a function, so that the function can be called easily container call to execute estimation. The types of parameters includes:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  A list including parameter information
+\item
+  A string including estimation/computational controls
+\item
+  Additional parameters
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Start parser for arguments}
+\NormalTok{parser }\OperatorTok{=}\NormalTok{ argparse.ArgumentParser()}
+
+\CommentTok{\# First (and only) positional argument for esrtype:}
+\NormalTok{parser.add\_argument(}\StringTok{\textquotesingle{}esrtype\textquotesingle{}}\NormalTok{, }\BuiltInTok{type}\OperatorTok{=}\BuiltInTok{int}\NormalTok{, }\BuiltInTok{help}\OperatorTok{=}\StringTok{\textquotesingle{}positional argument\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Optional argument}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## _StoreAction(option_strings=[], dest='esrtype', nargs=None, const=None, default=None, type=<class 'int'>, choices=None, help='positional argument', metavar=None)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{parser.add\_argument(}\StringTok{\textquotesingle{}{-}s\textquotesingle{}}\NormalTok{, dest}\OperatorTok{=}\StringTok{\textquotesingle{}speckey\textquotesingle{}}\NormalTok{, }\BuiltInTok{type}\OperatorTok{=}\BuiltInTok{str}\NormalTok{,}
+\NormalTok{                    default}\OperatorTok{=}\StringTok{\textquotesingle{}ng\_s\_t=esti\_tinytst\_thin\_1=3=3\textquotesingle{}}\NormalTok{,}
+                    \BuiltInTok{help}\OperatorTok{=}\StringTok{"compute and esti keys and omments"}\NormalTok{)}
+
+\CommentTok{\# abc and e of comb\_type}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## _StoreAction(option_strings=['-s'], dest='speckey', nargs=None, const=None, default='ng_s_t=esti_tinytst_thin_1=3=3', type=<class 'str'>, choices=None, help='compute and esti keys and omments', metavar=None)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{parser.add\_argument(}\StringTok{\textquotesingle{}{-}cta\textquotesingle{}}\NormalTok{, dest}\OperatorTok{=}\StringTok{"combo\_type\_a"}\NormalTok{, default}\OperatorTok{=}\StringTok{\textquotesingle{}e\textquotesingle{}}\NormalTok{, }\BuiltInTok{type}\OperatorTok{=}\BuiltInTok{str}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## _StoreAction(option_strings=['-cta'], dest='combo_type_a', nargs=None, const=None, default='e', type=<class 'str'>, choices=None, help=None, metavar=None)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{parser.add\_argument(}\StringTok{\textquotesingle{}{-}ctb\textquotesingle{}}\NormalTok{, dest}\OperatorTok{=}\StringTok{"combo\_type\_b"}\NormalTok{, default}\OperatorTok{=}\StringTok{\textquotesingle{}20201025\textquotesingle{}}\NormalTok{, }\BuiltInTok{type}\OperatorTok{=}\BuiltInTok{str}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## _StoreAction(option_strings=['-ctb'], dest='combo_type_b', nargs=None, const=None, default='20201025', type=<class 'str'>, choices=None, help=None, metavar=None)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{parser.add\_argument(}\StringTok{\textquotesingle{}{-}ctc\textquotesingle{}}\NormalTok{, dest}\OperatorTok{=}\StringTok{"combo\_type\_c"}\NormalTok{, default}\OperatorTok{=}\NormalTok{[}\StringTok{\textquotesingle{}list\_tKap\_mlt\_ce1a2\textquotesingle{}}\NormalTok{], nargs}\OperatorTok{=}\StringTok{\textquotesingle{}+\textquotesingle{}}\NormalTok{, }\BuiltInTok{type}\OperatorTok{=}\BuiltInTok{str}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## _StoreAction(option_strings=['-ctc'], dest='combo_type_c', nargs='+', const=None, default=['list_tKap_mlt_ce1a2'], type=<class 'str'>, choices=None, help=None, metavar=None)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{parser.add\_argument(}\StringTok{\textquotesingle{}{-}cte1\textquotesingle{}}\NormalTok{, dest}\OperatorTok{=}\StringTok{"combo\_type\_e1"}\NormalTok{, default}\OperatorTok{=}\VariableTok{None}\NormalTok{, }\BuiltInTok{type}\OperatorTok{=}\BuiltInTok{str}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## _StoreAction(option_strings=['-cte1'], dest='combo_type_e1', nargs=None, const=None, default=None, type=<class 'str'>, choices=None, help=None, metavar=None)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{parser.add\_argument(}\StringTok{\textquotesingle{}{-}cte2\textquotesingle{}}\NormalTok{, dest}\OperatorTok{=}\StringTok{"combo\_type\_e2"}\NormalTok{, default}\OperatorTok{=}\StringTok{\textquotesingle{}mpoly\_1=esti\_tinytst\_mpoly\_13=3=3\textquotesingle{}}\NormalTok{, }\BuiltInTok{type}\OperatorTok{=}\BuiltInTok{str}\NormalTok{)}
+
+\CommentTok{\# other parameters}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## _StoreAction(option_strings=['-cte2'], dest='combo_type_e2', nargs=None, const=None, default='mpoly_1=esti_tinytst_mpoly_13=3=3', type=<class 'str'>, choices=None, help=None, metavar=None)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{parser.add\_argument(}\StringTok{\textquotesingle{}{-}f\textquotesingle{}}\NormalTok{, dest}\OperatorTok{=}\StringTok{"save\_directory\_main"}\NormalTok{, default}\OperatorTok{=}\StringTok{\textquotesingle{}esti\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Default, must specify erstype}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## _StoreAction(option_strings=['-f'], dest='save_directory_main', nargs=None, const=None, default='esti', type=None, choices=None, help=None, metavar=None)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"default false: }\SpecialCharTok{\{}\NormalTok{parser}\SpecialCharTok{.}\NormalTok{parse\_args([}\StringTok{\textquotesingle{}1\textquotesingle{}}\NormalTok{])}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# Print with the nargs+ arguments}
+\CommentTok{\# specified two elements, abc, and efg for nargs ctc, becomes a string list}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## default false: parser.parse_args(['1'])=Namespace(combo_type_a='e', combo_type_b='20201025', combo_type_c=['list_tKap_mlt_ce1a2'], combo_type_e1=None, combo_type_e2='mpoly_1=esti_tinytst_mpoly_13=3=3', esrtype=1, save_directory_main='esti', speckey='ng_s_t=esti_tinytst_thin_1=3=3')
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"default false: }\SpecialCharTok{\{}\NormalTok{parser}\SpecialCharTok{.}\NormalTok{parse\_args([}\StringTok{\textquotesingle{}1\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}{-}ctc\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}abc\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}efg\textquotesingle{}}\NormalTok{])}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\CommentTok{\# one input for ctc, still generates a list}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## default false: parser.parse_args(['1', '-ctc', 'abc', 'efg'])=Namespace(combo_type_a='e', combo_type_b='20201025', combo_type_c=['abc', 'efg'], combo_type_e1=None, combo_type_e2='mpoly_1=esti_tinytst_mpoly_13=3=3', esrtype=1, save_directory_main='esti', speckey='ng_s_t=esti_tinytst_thin_1=3=3')
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"default false: }\SpecialCharTok{\{}\NormalTok{parser}\SpecialCharTok{.}\NormalTok{parse\_args([}\StringTok{\textquotesingle{}1\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}{-}ctc\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}abc\textquotesingle{}}\NormalTok{])}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## default false: parser.parse_args(['1', '-ctc', 'abc'])=Namespace(combo_type_a='e', combo_type_b='20201025', combo_type_c=['abc'], combo_type_e1=None, combo_type_e2='mpoly_1=esti_tinytst_mpoly_13=3=3', esrtype=1, save_directory_main='esti', speckey='ng_s_t=esti_tinytst_thin_1=3=3')
+\end{verbatim}
+
+\hypertarget{function-returns}{%
+\subsection{Function Returns}\label{function-returns}}
+
+\begin{quote}
+Go back to \href{http://fanwangecon.github.io/}{fan}'s \href{https://fanwangecon.github.io/Py4Econ/}{Python Code Examples} Repository (\href{https://fanwangecon.github.io/Py4Econ/bookdown}{bookdown site}) or the \href{https://pyfan.readthedocs.io/en/latest/}{pyfan} Package (\href{https://pyfan.readthedocs.io/en/latest/reference.html}{API}).
+\end{quote}
+
+\hypertarget{function-with-multiple-optional-returns}{%
+\subsubsection{Function with Multiple Optional Returns}\label{function-with-multiple-optional-returns}}
+
+There is a function that is already written, that returns some string value. Without interrupting the existing function, now add an additional return for the function. There is some conditional statement that controls whether the function returns one or two value.
+
+In the example below, if the path contains
+
+Create a testing function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ get\_val(spn\_path):}
+    \ControlFlowTok{if} \StringTok{\textquotesingle{}G:\textquotesingle{}} \KeywordTok{in}\NormalTok{ spn\_path:}
+        \CommentTok{\# this returns a tuple of length 2}
+        \ControlFlowTok{return}\NormalTok{ spn\_path, }\StringTok{\textquotesingle{}G:/repos\textquotesingle{}}
+    \ControlFlowTok{else}\NormalTok{:}
+        \ControlFlowTok{return}\NormalTok{ spn\_path}
+\end{Highlighting}
+\end{Shaded}
+
+Call the function with one return, in the two calls below, the first call returns a tuple
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Return tuple}
+\NormalTok{tp\_st\_return }\OperatorTok{=}\NormalTok{ get\_val(}\StringTok{"G:/Dropbox (UH{-}ECON)"}\NormalTok{)}
+\CommentTok{\# Unpack tuple return}
+\NormalTok{st\_path\_a, st\_path\_b }\OperatorTok{=}\NormalTok{ get\_val(}\StringTok{"G:/Dropbox (UH{-}ECON)"}\NormalTok{)}
+\CommentTok{\# Single element return}
+\NormalTok{st\_return }\OperatorTok{=}\NormalTok{ get\_val(}\StringTok{"C:/Dropbox (UH{-}ECON)"}\NormalTok{)}
+\CommentTok{\# Print}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{tp\_st\_return}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{ and }\SpecialCharTok{\{}\NormalTok{st\_return}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## tp_st_return=('G:/Dropbox (UH-ECON)', 'G:/repos') and st_return='C:/Dropbox (UH-ECON)'
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{st\_path\_a}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{ and }\SpecialCharTok{\{}\NormalTok{st\_path\_b}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## st_path_a='G:/Dropbox (UH-ECON)' and st_path_b='G:/repos'
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\BuiltInTok{isinstance}\NormalTok{(tp\_st\_return, }\BuiltInTok{str}\NormalTok{)}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## isinstance(tp_st_return, str)=False
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\BuiltInTok{isinstance}\NormalTok{(tp\_st\_return, }\BuiltInTok{tuple}\NormalTok{)}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## isinstance(tp_st_return, tuple)=True
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\BuiltInTok{isinstance}\NormalTok{(st\_return, }\BuiltInTok{str}\NormalTok{)}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## isinstance(st_return, str)=True
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\BuiltInTok{isinstance}\NormalTok{(st\_return, }\BuiltInTok{tuple}\NormalTok{)}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## isinstance(st_return, tuple)=False
 \end{verbatim}
 
 \hypertarget{exceptions}{%
@@ -2743,7 +3309,7 @@ Given x and y coordinates, plot out two lines. see \href{https://matplotlib.org/
 \end{Shaded}
 
 \begin{verbatim}
-## [<matplotlib.lines.Line2D object at 0x0000026F598DBB80>]
+## [<matplotlib.lines.Line2D object at 0x000002D3FD5E3580>]
 \end{verbatim}
 
 \begin{Shaded}
@@ -2757,7 +3323,7 @@ Given x and y coordinates, plot out two lines. see \href{https://matplotlib.org/
 \end{Shaded}
 
 \begin{verbatim}
-## [<matplotlib.lines.Line2D object at 0x0000026F598DB310>]
+## [<matplotlib.lines.Line2D object at 0x000002D3FD5E3A00>]
 \end{verbatim}
 
 \begin{Shaded}
@@ -2767,7 +3333,7 @@ Given x and y coordinates, plot out two lines. see \href{https://matplotlib.org/
 \end{Shaded}
 
 \begin{verbatim}
-## <matplotlib.legend.Legend object at 0x0000026F56E7D580>
+## <matplotlib.legend.Legend object at 0x000002D3FD788E80>
 \end{verbatim}
 
 \begin{Shaded}
@@ -2807,7 +3373,7 @@ Given x and y coordinates, plot out two lines. see \href{https://matplotlib.org/
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{Data-Structures-and-Cloud-Services-with-Python_files/figure-latex/unnamed-chunk-90-1} \end{center}
+\begin{center}\includegraphics{Data-Structures-and-Cloud-Services-with-Python_files/figure-latex/unnamed-chunk-106-1} \end{center}
 
 \hypertarget{text-plot}{%
 \subsection{Text Plot}\label{text-plot}}
@@ -2862,7 +3428,7 @@ Plot Text as Image. \href{https://matplotlib.org/3.1.1/gallery/pyplots/text_layo
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{Data-Structures-and-Cloud-Services-with-Python_files/figure-latex/unnamed-chunk-92-1} \end{center}
+\begin{center}\includegraphics{Data-Structures-and-Cloud-Services-with-Python_files/figure-latex/unnamed-chunk-108-1} \end{center}
 
 \hypertarget{amazon-web-services}{%
 \chapter{Amazon Web Services}\label{amazon-web-services}}
@@ -3269,7 +3835,7 @@ We load AWS access key and secret acess key etc in from a \href{https://fanwange
 ## {'ResponseMetadata': '',
 ##  'computeEnvironments': [{'computeEnvironmentArn': 'arn:aws:batch:us-east-1:710673677961:compute-environment/SpotEnv2560',
 ##                           'computeEnvironmentName': 'SpotEnv2560',
-##                           'computeResources': {'desiredvCpus': 4,
+##                           'computeResources': {'desiredvCpus': 16,
 ##                                                'ec2KeyPair': 'fan_wang-key-pair-us_east_nv',
 ##                                                'instanceRole': '',
 ##                                                'instanceTypes': ['optimal'],
@@ -3339,10 +3905,153 @@ Second, on s3, create a bucket, \emph{fans3testbucket} for example (no underscor
 \begin{Highlighting}[]
 \ImportTok{import}\NormalTok{ boto3}
 \NormalTok{s3 }\OperatorTok{=}\NormalTok{ boto3.client(}\StringTok{\textquotesingle{}s3\textquotesingle{}}\NormalTok{)}
-\NormalTok{spn\_local\_path\_file\_name }\OperatorTok{=} \StringTok{"C:/Users/fan/py4econ/vig/aws/setup/\_data/iris\_s3.dta"}
+\NormalTok{spn\_local\_path\_file\_name }\OperatorTok{=} \StringTok{"C:/Users/fan/Py4Econ/aws/setup/\_data/iris\_s3.dta"}
 \NormalTok{str\_bucket\_name }\OperatorTok{=} \StringTok{"fans3testbucket"}
 \NormalTok{spn\_remote\_path\_file\_name }\OperatorTok{=} \StringTok{"\_data/iris\_s3.dta"}
 \NormalTok{s3.upload\_file(spn\_local\_path\_file\_name, str\_bucket\_name, spn\_remote\_path\_file\_name)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{download-file-from-s3-to-local-machine}{%
+\subsubsection{Download File from S3 to Local Machine}\label{download-file-from-s3-to-local-machine}}
+
+On a local computer, download a particular file from S3. Download back the file we just uploaded onto S3.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ boto3}
+\NormalTok{s3 }\OperatorTok{=}\NormalTok{ boto3.client(}\StringTok{\textquotesingle{}s3\textquotesingle{}}\NormalTok{)}
+\NormalTok{spn\_local\_path\_file\_name }\OperatorTok{=} \StringTok{"C:/Users/fan/Py4Econ/aws/setup/\_data/iris\_s3\_downloaded.dta"}
+\NormalTok{str\_bucket\_name }\OperatorTok{=} \StringTok{"fans3testbucket"}
+\NormalTok{spn\_remote\_path\_file\_name }\OperatorTok{=} \StringTok{"\_data/iris\_s3.dta"}
+\NormalTok{s3.download\_file(str\_bucket\_name, spn\_remote\_path\_file\_name, spn\_local\_path\_file\_name)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{download-file-from-s3-to-ec2-machine}{%
+\subsubsection{Download File from S3 to EC2 Machine}\label{download-file-from-s3-to-ec2-machine}}
+
+On a EC2 machine, \emph{Amazon Linux 2 AMI}, for example. Install pip, and install boto3, then download file to the \emph{/data/} folder.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ssh into EC2 linux 2 AMI}
+\FunctionTok{ssh}\NormalTok{ {-}i }\StringTok{"G:/repos/ThaiJMP/boto3aws/aws\_ec2/pem/fan\_wang{-}key{-}pair{-}us\_east\_nv.pem"}\NormalTok{ ec2{-}user@3.81.101.142}
+\CommentTok{\# generate data folder}
+\FunctionTok{mkdir}\NormalTok{ data}
+\CommentTok{\# install boto3}
+\FunctionTok{sudo}\NormalTok{ yum install python{-}pip python3{-}wheel }\KeywordTok{\&\&} \ExtensionTok{Pip}\NormalTok{ install boto3 {-}{-}user}
+\CommentTok{\# try download file using boto3}
+\CommentTok{\# go into python}
+\ExtensionTok{python}
+\end{Highlighting}
+\end{Shaded}
+
+Now inside python, download the \emph{iris\_s3.dta} to the data folder under root in the EC2 Machine.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ boto3}
+\NormalTok{s3 }\OperatorTok{=}\NormalTok{ boto3.client(}\StringTok{\textquotesingle{}s3\textquotesingle{}}\NormalTok{)}
+\NormalTok{spn\_ec2\_path\_file\_name }\OperatorTok{=} \StringTok{"/home/ec2{-}user/data/iris\_s3\_downloaded.dta"}
+\NormalTok{str\_bucket\_name }\OperatorTok{=} \StringTok{"fans3testbucket"}
+\NormalTok{spn\_s3\_path\_file\_name }\OperatorTok{=} \StringTok{"\_data/iris\_s3.dta"}
+\NormalTok{s3.download\_file(str\_bucket\_name, spn\_s3\_path\_file\_name, spn\_ec2\_path\_file\_name)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{download-file-from-s3-to-active-docker-container}{%
+\subsubsection{Download File from S3 to Active Docker Container}\label{download-file-from-s3-to-active-docker-container}}
+
+Working inside an active docker container.
+
+First activate and enter into a docker container:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# inside EC2 AMI Linux 2, start dockers}
+\FunctionTok{sudo}\NormalTok{ service docker start}
+\FunctionTok{sudo}\NormalTok{ service docker status}
+\CommentTok{\# see docker images}
+\ExtensionTok{docker}\NormalTok{ images}
+\CommentTok{\# run docker container and enter inside}
+\ExtensionTok{docker}\NormalTok{ run {-}t {-}i fanconda /bin/bash}
+\CommentTok{\# make a data directory and a esti subdirectory}
+\FunctionTok{mkdir}\NormalTok{ data}
+\BuiltInTok{cd}\NormalTok{ data}
+\FunctionTok{mkdir}\NormalTok{ esti}
+\CommentTok{\# enter python}
+\ExtensionTok{python}
+\end{Highlighting}
+\end{Shaded}
+
+Inside docker, which has boto3 installed already. The Path is different than on EC2, the path root structure is shorter, but otherwise the same.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ boto3}
+\NormalTok{s3 }\OperatorTok{=}\NormalTok{ boto3.client(}\StringTok{\textquotesingle{}s3\textquotesingle{}}\NormalTok{)}
+\NormalTok{spn\_container\_path\_file\_name }\OperatorTok{=} \StringTok{"/data/esti/iris\_s3\_downloaded.dta"}
+\NormalTok{str\_bucket\_name }\OperatorTok{=} \StringTok{"fans3testbucket"}
+\NormalTok{spn\_s3\_path\_file\_name }\OperatorTok{=} \StringTok{"\_data/iris\_s3.dta"}
+\NormalTok{s3.download\_file(str\_bucket\_name, spn\_s3\_path\_file\_name, spn\_container\_path\_file\_name)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{forward-and-backward-slashes}{%
+\subsubsection{Forward and Backward Slashes}\label{forward-and-backward-slashes}}
+
+Following up on the uploading example above, suppose that rather than using forward slash, backward slash is used, then AWS gets confused about folder. This will not appear under the \_data folder, but will appear as a file with file name: *\_data/iris\_s3.dta* under the bucket.
+
+Note that the \emph{folder} for S3 is a GUI trick, but still, we want to use forward slash properly, so that all double backslash that might be generated by default path tools need to be converted to forward slashes
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ os}
+\CommentTok{\# This generates a file directly under bucket \_data\textbackslash{}iris\_s3:}
+\NormalTok{spn\_remote\_path\_file\_name\_backslash }\OperatorTok{=} \StringTok{"\_data}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{iris\_s3\_slashbackforward.dta"}
+\NormalTok{s3.upload\_file(spn\_local\_path\_file\_name, str\_bucket\_name, spn\_remote\_path\_file\_name\_backslash)}
+\CommentTok{\# This allows the folder structure to be clickable:}
+\NormalTok{spn\_remote\_path\_file\_name\_forwardslash }\OperatorTok{=}\NormalTok{ spn\_remote\_path\_file\_name\_backslash.replace(os.sep, }\StringTok{\textquotesingle{}/\textquotesingle{}}\NormalTok{)}
+\NormalTok{s3.upload\_file(spn\_local\_path\_file\_name, str\_bucket\_name, spn\_remote\_path\_file\_name\_forwardslash)}
+\CommentTok{\# Print slashs}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{spn\_remote\_path\_file\_name\_backslash}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## spn_remote_path_file_name_backslash='_data\\iris_s3_slashbackforward.dta'
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{spn\_remote\_path\_file\_name\_forwardslash}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## spn_remote_path_file_name_forwardslash='_data/iris_s3_slashbackforward.dta'
+\end{verbatim}
+
+\hypertarget{sync-local-drive-with-s3-of-a-particular-file-type}{%
+\subsubsection{Sync Local Drive with S3 of a Particular File Type}\label{sync-local-drive-with-s3-of-a-particular-file-type}}
+
+\href{https://github.com/boto/boto3/issues/358}{Boto3 does not offer directory upload/download for s3}. Needs to rely on aws command line.
+
+To sync local folder with all files from a particular AWS folder, exclude image files:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# CD into a directory}
+\BuiltInTok{cd}\NormalTok{ /d }\StringTok{"G:\textbackslash{}S3\textbackslash{}fanconda202010\textbackslash{}esti"}
+\CommentTok{\# Make a new directory making S3 Directory Name}
+\FunctionTok{mkdir}\NormalTok{ e\_20201025x\_esr\_medtst\_list\_tKap\_mlt\_ce1a2}
+\CommentTok{\# cd into the directory just made}
+\BuiltInTok{cd}\NormalTok{ /d }\StringTok{"G:\textbackslash{}S3\textbackslash{}thaijmp202010\textbackslash{}esti\textbackslash{}e\_20201025x\_esr\_medtst\_list\_tKap\_mlt\_ce1a2"}
+\CommentTok{\# copy all results from the s3 folder\textquotesingle{}s subfolders including subfolders, excluding images}
+\ExtensionTok{aws}\NormalTok{ s3 cp \^{}}
+    \ExtensionTok{s3}\NormalTok{://fanconda202010/esti/e\_20201025x\_esr\_medtst\_list\_tKap\_mlt\_ce1a2/ . \^{}}
+    \ExtensionTok{{-}{-}recursive}\NormalTok{ {-}{-}exclude }\StringTok{"*.png"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3361,9 +4070,9 @@ Go back to \href{http://fanwangecon.github.io/}{fan}'s \href{https://fanwangecon
 
 We want to set-up a function that can be used jointly with \href{https://docs.aws.amazon.com/batch/latest/userguide/array_jobs.html}{AWS Batch Array}. With Batch Array, can run many simulations concurrently. All simulations might only differ in random seed for drawing shocks. This requires setting up the proper dockerfile as well as modifying the python function that we want to invoke slightly.
 
-First, create and push a docker image, see this \href{https://fanwangecon.github.io/pyfan/vig/docker/setup/htmlpdfr/fs_docker_ecr.html\#141_Example_Docker_File_for_AWS}{dockerfile}. Following the AWS ECR instructions, this registers a docker image in AWS ECR with a URI: \emph{XXXX7367XXXX.dkr.ecr.us-east-1.amazonaws.com/fanconda}
+First, create and push a docker image, see this \href{https://fanwangecon.github.io/Py4Econ/docker/setup/htmlpdfr/fs_docker_ecr.html\#141_Example_Docker_File_for_AWS}{dockerfile}. Following the AWS ECR instructions, this registers a docker image in AWS ECR with a URI: \emph{XXXX7367XXXX.dkr.ecr.us-east-1.amazonaws.com/fanconda}
 
-The \href{https://fanwangecon.github.io/pyfan/vig/docker/setup/htmlpdfr/fs_docker_ecr.html\#141_Example_Docker_File_for_AWS}{dockerfile} has for CMD: \emph{CMD {[}``python'', ``/pyfan/pyfan/graph/exa/scatterline3.py''{]}}. This runs the function \href{https://github.com/FanWangEcon/pyfan/blob/master/pyfan/graph/exa/scatterline3.py}{scatterline3}.
+The \href{https://fanwangecon.github.io/Py4Econ/docker/setup/htmlpdfr/fs_docker_ecr.html\#141_Example_Docker_File_for_AWS}{dockerfile} has for CMD: \emph{CMD {[}``python'', ``/pyfan/pyfan/graph/exa/scatterline3.py''{]}}. This runs the function \href{https://github.com/FanWangEcon/pyfan/blob/master/pyfan/graph/exa/scatterline3.py}{scatterline3}.
 
 Second, the \href{https://github.com/FanWangEcon/pyfan/blob/master/pyfan/graph/exa/scatterline3.py}{scatterline3} function checks if \href{https://github.com/FanWangEcon/pyfan/blob/master/pyfan/graph/exa/scatterline3.py\#L167}{\emph{AWS\_BATCH\_JOB\_ARRAY\_INDEX} is in the \emph{os.environ}}. \emph{AWS\_BATCH\_JOB\_ARRAY\_INDEX}, if exists, is used as a random seed to generate data for the graph. When the function is run in a docker container via batch, the function saves the graph output to a bucket in AWS s3. The pushing the s3 is achieved by \href{https://github.com/FanWangEcon/pyfan/blob/master/pyfan/aws/general/path.py}{pyfan.aws.general.path.py}.
 
@@ -3446,21 +4155,21 @@ Everytime, when the code below is re-run, a new batch revision number is generat
 ## {'ResponseMetadata': {'HTTPHeaders': {'connection': 'keep-alive',
 ##                                       'content-length': '169',
 ##                                       'content-type': 'application/json',
-##                                       'date': 'Fri, '
-##                                               '11 '
+##                                       'date': 'Thu, '
+##                                               '24 '
 ##                                               'Dec '
 ##                                               '2020 '
-##                                               '16:16:49 '
+##                                               '04:14:19 '
 ##                                               'GMT',
-##                                       'x-amz-apigw-id': 'XZU5tHGBoAMF4jw=',
-##                                       'x-amzn-requestid': '348c3aeb-54f1-471c-99c6-570e1eaf829a',
-##                                       'x-amzn-trace-id': 'Root=1-5fd39b71-7ef2be9f1b4450a930b90e7a;Sampled=0'},
+##                                       'x-amz-apigw-id': 'YChQVHpToAMFlvw=',
+##                                       'x-amzn-requestid': '5aa27236-f210-441b-953b-1e5e5f174790',
+##                                       'x-amzn-trace-id': 'Root=1-5fe4159b-6ab04cc4565da45d0c6fcdc7'},
 ##                       'HTTPStatusCode': 200,
-##                       'RequestId': '348c3aeb-54f1-471c-99c6-570e1eaf829a',
+##                       'RequestId': '5aa27236-f210-441b-953b-1e5e5f174790',
 ##                       'RetryAttempts': 0},
-##  'jobDefinitionArn': 'arn:aws:batch:us-east-1:710673677961:job-definition/pyfan-scatterline3-test-rmd:66',
+##  'jobDefinitionArn': 'arn:aws:batch:us-east-1:710673677961:job-definition/pyfan-scatterline3-test-rmd:72',
 ##  'jobDefinitionName': 'pyfan-scatterline3-test-rmd',
-##  'revision': 66}
+##  'revision': 72}
 \end{verbatim}
 
 \hypertarget{submit-a-batch-array}{%
@@ -3515,7 +4224,7 @@ Outputs from the \href{https://github.com/FanWangEcon/pyfan/blob/master/pyfan/gr
 \NormalTok{    jobQueue}\OperatorTok{=}\NormalTok{st\_jobQueue,}
 \NormalTok{    arrayProperties}\OperatorTok{=}\NormalTok{\{}\StringTok{\textquotesingle{}size\textquotesingle{}}\NormalTok{: array\_size\},}
 \NormalTok{    jobDefinition}\OperatorTok{=}\NormalTok{jobDefinitionName)}
-    
+
 \CommentTok{\# Print response}
 \NormalTok{pprint.pprint(response, width}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
 \end{Highlighting}
@@ -3525,21 +4234,21 @@ Outputs from the \href{https://github.com/FanWangEcon/pyfan/blob/master/pyfan/gr
 ## {'ResponseMetadata': {'HTTPHeaders': {'connection': 'keep-alive',
 ##                                       'content-length': '198',
 ##                                       'content-type': 'application/json',
-##                                       'date': 'Fri, '
-##                                               '11 '
+##                                       'date': 'Thu, '
+##                                               '24 '
 ##                                               'Dec '
 ##                                               '2020 '
-##                                               '16:16:51 '
+##                                               '04:14:20 '
 ##                                               'GMT',
-##                                       'x-amz-apigw-id': 'XZU6GFUgIAMFeaA=',
-##                                       'x-amzn-requestid': '4c8cc4b9-913b-4869-8127-693286ea76f2',
-##                                       'x-amzn-trace-id': 'Root=1-5fd39b73-1e913a0d5771e8f131c5295a;Sampled=0'},
+##                                       'x-amz-apigw-id': 'YChQZEr4oAMFT0w=',
+##                                       'x-amzn-requestid': 'f26268a1-3736-4fe9-9db8-f82dcbb6f33d',
+##                                       'x-amzn-trace-id': 'Root=1-5fe4159c-3605981b58819e8b434eab57'},
 ##                       'HTTPStatusCode': 200,
-##                       'RequestId': '4c8cc4b9-913b-4869-8127-693286ea76f2',
+##                       'RequestId': 'f26268a1-3736-4fe9-9db8-f82dcbb6f33d',
 ##                       'RetryAttempts': 0},
-##  'jobArn': 'arn:aws:batch:us-east-1:710673677961:job/4ab4dbed-0746-45f4-8512-682aff8c10cf',
-##  'jobId': '4ab4dbed-0746-45f4-8512-682aff8c10cf',
-##  'jobName': 'pyfan-scatterline3-test-rmd_20201211101649110880'}
+##  'jobArn': 'arn:aws:batch:us-east-1:710673677961:job/3500f28f-2dee-493e-aab2-83fd7a562527',
+##  'jobId': '3500f28f-2dee-493e-aab2-83fd7a562527',
+##  'jobName': 'pyfan-scatterline3-test-rmd_20201223221411943541'}
 \end{verbatim}
 
 \hypertarget{docker-container}{%
@@ -3808,7 +4517,7 @@ First, after creating/starting a EC2 instance, create a docker file and scp upda
 \begin{Highlighting}[]
 \CommentTok{\# Then a sequences of SSM calls:}
 \CommentTok{\# on local machine:}
-\FunctionTok{ssh}\NormalTok{ {-}i }\StringTok{"C:/Users/fan/ThaiJMP/boto3aws/aws\_ec2/pem/fan\_wang{-}key{-}pair{-}us\_east\_nv.pem"}\NormalTok{ ec2{-}user@54.161.29.209}
+\FunctionTok{ssh}\NormalTok{ {-}i }\StringTok{"C:/Users/fan/CondaPrj/boto3aws/aws\_ec2/pem/fan\_wang{-}key{-}pair{-}us\_east\_nv.pem"}\NormalTok{ ec2{-}user@54.161.29.209}
 
 \CommentTok{\# if new instance, create a docker folder under main}
 \CommentTok{\# on remote machine}
@@ -3820,7 +4529,7 @@ First, after creating/starting a EC2 instance, create a docker file and scp upda
 
 \CommentTok{\# run local scp command to copy lateste Dockerfile to EC2, local scp generated by ec2managee}
 \CommentTok{\# on local machine}
-\FunctionTok{scp}\NormalTok{ {-}o StrictHostKeyChecking=accept{-}new {-}i C:/Users/fan/ThaiJMP/boto3aws/aws\_ec2/pem/fan\_wang{-}key{-}pair{-}us\_east\_nv.pem C:/Users/fan/ThaiJMP/boto3aws/aws\_ecr/container/DockerfileInstall ec2{-}user@54.161.29.209:\textasciitilde{}/docker/Dockerfile}
+\FunctionTok{scp}\NormalTok{ {-}o StrictHostKeyChecking=accept{-}new {-}i C:/Users/fan/CondaPrj/boto3aws/aws\_ec2/pem/fan\_wang{-}key{-}pair{-}us\_east\_nv.pem C:/Users/fan/CondaPrj/boto3aws/aws\_ecr/container/DockerfileInstall ec2{-}user@54.161.29.209:\textasciitilde{}/docker/Dockerfile}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4008,7 +4717,7 @@ outputs from docker build
     \StringTok{" {-}{-}{-}\textgreater{} Running in 8b34126cee5d"}\NormalTok{,}
     \StringTok{"Removing intermediate container 8b34126cee5d"}\NormalTok{,}
     \StringTok{" {-}{-}{-}\textgreater{} 93bd8b521d61"}\NormalTok{,}
-    \StringTok{"Step 16/16 : CMD [}\DataTypeTok{\textbackslash{}"}\StringTok{python}\DataTypeTok{\textbackslash{}"}\StringTok{, }\DataTypeTok{\textbackslash{}"}\StringTok{/ThaiJMP/invoke/invoke.py}\DataTypeTok{\textbackslash{}"}\StringTok{]"}\NormalTok{,}
+    \StringTok{"Step 16/16 : CMD [}\DataTypeTok{\textbackslash{}"}\StringTok{python}\DataTypeTok{\textbackslash{}"}\StringTok{, }\DataTypeTok{\textbackslash{}"}\StringTok{/CondaPrj/invoke/invoke.py}\DataTypeTok{\textbackslash{}"}\StringTok{]"}\NormalTok{,}
     \StringTok{" {-}{-}{-}\textgreater{} Running in dd3ed44dcca7"}\NormalTok{,}
     \StringTok{"Removing intermediate container dd3ed44dcca7"}\NormalTok{,}
     \StringTok{" {-}{-}{-}\textgreater{} 506f92a794cd"}\NormalTok{,}
@@ -4074,6 +4783,35 @@ Under repositories listed under ECR, click on \emph{View push command}, which sh
 
 \CommentTok{\# After the build completes, tag your image so you can push the image to this repository:}
 \ExtensionTok{docker}\NormalTok{ tag fanconda:latest XXXX7367XXXX.dkr.ecr.us{-}east{-}1.amazonaws.com/fanconda:latest}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{command-line-sequence-gathered}{%
+\subsubsection{Command Line Sequence Gathered}\label{command-line-sequence-gathered}}
+
+Gathered sequence of command line operations:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ssh}\NormalTok{ {-}i }\StringTok{"G:/repos/CondaPrj/boto3aws/aws\_ec2/pem/fan\_wang{-}key{-}pair{-}us\_east\_nv.pem"}\NormalTok{ ec2{-}user@34.229.39.138}
+
+\ExtensionTok{docker}\NormalTok{ run {-}t {-}i fanconda /bin/bash}
+
+\FunctionTok{scp}\NormalTok{ {-}o StrictHostKeyChecking=accept{-}new {-}i G:/repos/CondaPrj/boto3aws/aws\_ec2/pem/fan\_wang{-}key{-}pair{-}us\_east\_nv.pem G:/repos/CondaPrj/boto3aws/aws\_ecr/container/DockerfileConda ec2{-}user@34.229.39.138:\textasciitilde{}/docker/Dockerfile}
+
+\FunctionTok{sudo}\NormalTok{ service docker start}
+
+\BuiltInTok{cd}\NormalTok{ /home/ec2{-}user/docker}
+\ExtensionTok{docker}\NormalTok{ build {-}t fanconda {-}{-}build{-}arg CACHE\_DATE=2020{-}12{-}22{-}10{-}58{-}57 .}
+\ExtensionTok{docker}\NormalTok{ system prune {-}{-}force}
+
+\BuiltInTok{cd}\NormalTok{ /home/ec2{-}user/docker}
+\ExtensionTok{docker}\NormalTok{ tag fanconda 710673677961.dkr.ecr.us{-}east{-}1.amazonaws.com/fanconda}
+
+\ExtensionTok{aws}\NormalTok{ ecr get{-}login {-}{-}no{-}include{-}email}
+\ExtensionTok{docker}\NormalTok{ login {-}u AWS {-}p XXXXX= https://710673677961.dkr.ecr.us{-}east{-}1.amazonaws.com}
+
+\ExtensionTok{docker}\NormalTok{ push 710673677961.dkr.ecr.us{-}east{-}1.amazonaws.com/fanconda}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4453,7 +5191,7 @@ Show CSV results:
 
 \begin{table}[!h]
 
-\caption{\label{tab:unnamed-chunk-138}Chinese Long and Lat, Temperature Pressure, 2008 Jan 1st at 12 noon?}
+\caption{\label{tab:unnamed-chunk-162}Chinese Long and Lat, Temperature Pressure, 2008 Jan 1st at 12 noon?}
 \centering
 \begin{tabular}[t]{l|r|r|r|r|r|r|r|r}
 \hline
@@ -5066,20 +5804,100 @@ Third, run the function again, but with \emph{x=3}:
 \hypertarget{file-in-and-out}{%
 \section{File In and Out}\label{file-in-and-out}}
 
-\hypertarget{read-and-write-and-convert}{%
-\subsection{Read and Write and Convert}\label{read-and-write-and-convert}}
+\hypertarget{check-read-write-and-convert-files}{%
+\subsection{Check, Read, Write and Convert Files}\label{check-read-write-and-convert-files}}
 
 \begin{quote}
 Go back to \href{http://fanwangecon.github.io/}{fan}'s \href{https://fanwangecon.github.io/Py4Econ/}{Python Code Examples} Repository (\href{https://fanwangecon.github.io/Py4Econ/bookdown}{bookdown site}) or the \href{https://pyfan.readthedocs.io/en/latest/}{pyfan} Package (\href{https://pyfan.readthedocs.io/en/latest/reference.html}{API}).
 \end{quote}
 
-\begin{itemize}
-\tightlist
-\item
-  python create a text file
-\item
-  python write file from paragraphs
-\end{itemize}
+\hypertarget{check-if-where-a-program-is.}{%
+\subsubsection{Check if where a Program is.}\label{check-if-where-a-program-is.}}
+
+Suppose we want to generate a commandline call from within python and want to start it in bash. Calling something like ``C:/Program Files/Git/git-bash.exe -c COMMANDS''. However, depending on the computer that is been used, the git-bash command might be in different spots. How do we find the right path to the \emph{git-bash} file. Accomplish this by using \emph{shutil.which}, which can find the path to different commands, including the \emph{git} command. Given the path that we found, the \emph{git-bash.exe} file is stored in the \emph{Git} folder, two levels up. So we will use pathlib to get to the correct path location. To be safe, go up one level, and then two levels to search for \emph{git-bash.exe}.
+
+First, find the path to the git exe command:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Imports}
+\ImportTok{import}\NormalTok{ os  }
+\ImportTok{import}\NormalTok{ shutil  }
+\CommentTok{\# cmd  }
+\NormalTok{st\_cmd }\OperatorTok{=} \StringTok{\textquotesingle{}git\textquotesingle{}}
+\CommentTok{\# Using shutil.which() method to find local path to the *git* command}
+\NormalTok{spn\_path\_to\_git }\OperatorTok{=}\NormalTok{ shutil.which(st\_cmd) }
+\CommentTok{\# Print result }
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{spn\_path\_to\_git}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## spn_path_to_git='G:\\ProgramData\\Git\\cmd\\git.EXE'
+\end{verbatim}
+
+Second, find the parent and grandparent folders:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{from}\NormalTok{ pathlib }\ImportTok{import}\NormalTok{ Path}
+\CommentTok{\# Get the parent folder 2 levels up}
+\NormalTok{srt\_path\_git\_parent\_folder }\OperatorTok{=}\NormalTok{ Path(spn\_path\_to\_git).parents[}\DecValTok{0}\NormalTok{]}
+\NormalTok{srt\_path\_git\_grandparent\_folder }\OperatorTok{=}\NormalTok{ Path(spn\_path\_to\_git).parents[}\DecValTok{1}\NormalTok{]}
+\CommentTok{\# Print}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{srt\_path\_git\_parent\_folder}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## srt_path_git_parent_folder=WindowsPath('G:/ProgramData/Git/cmd')
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{srt\_path\_git\_grandparent\_folder}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\CommentTok{\# Search for for the git{-}bash.exe file in parent and then in the grandparent folder.}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## srt_path_git_grandparent_folder=WindowsPath('G:/ProgramData/Git')
+\end{verbatim}
+
+Third, search inside parent folder first, and then grand until find the path to \emph{git-bash.exe}. Will put all three steps code together:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# required packages}
+\ImportTok{import}\NormalTok{ shutil}
+\ImportTok{from}\NormalTok{ pathlib }\ImportTok{import}\NormalTok{ Path}
+\CommentTok{\# find path to git}
+\NormalTok{st\_cmd }\OperatorTok{=} \StringTok{\textquotesingle{}git\textquotesingle{}}
+\NormalTok{spn\_path\_to\_git }\OperatorTok{=}\NormalTok{ shutil.which(st\_cmd) }
+\CommentTok{\# find path to git{-}bash.exe}
+\NormalTok{spn\_path\_to\_gitbash }\OperatorTok{=} \StringTok{\textquotesingle{}\textquotesingle{}}
+\ControlFlowTok{for}\NormalTok{ it\_up\_iter }\KeywordTok{in}\NormalTok{ [}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{]:}
+    \CommentTok{\# up{-}tier folder}
+\NormalTok{    srt\_path\_git\_up\_folder }\OperatorTok{=}\NormalTok{ Path(spn\_path\_to\_git).parents[it\_up\_iter]}
+    \CommentTok{\# search}
+    \CommentTok{\# get file names in folders (not recursively)}
+\NormalTok{    ls\_spn\_found\_git\_bash }\OperatorTok{=}\NormalTok{ [spn\_file }\ControlFlowTok{for}\NormalTok{ spt\_srh }\KeywordTok{in}\NormalTok{ [srt\_path\_git\_up\_folder]}
+                             \ControlFlowTok{for}\NormalTok{ spn\_file }\KeywordTok{in}\NormalTok{ Path(spt\_srh).glob(}\StringTok{\textquotesingle{}git{-}bash.exe\textquotesingle{}}\NormalTok{)]}
+    \CommentTok{\# if found, length of ls of founds files must be 1}
+    \ControlFlowTok{if} \BuiltInTok{len}\NormalTok{(ls\_spn\_found\_git\_bash) }\OperatorTok{==} \DecValTok{1}\NormalTok{:}
+\NormalTok{        spn\_path\_to\_gitbash }\OperatorTok{=}\NormalTok{ ls\_spn\_found\_git\_bash[}\DecValTok{0}\NormalTok{]}
+        \ControlFlowTok{break}
+        
+\ControlFlowTok{if}\NormalTok{ spn\_path\_to\_gitbash }\OperatorTok{==} \StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{:}
+    \ControlFlowTok{raise} \PreprocessorTok{NameError}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}failed to find git{-}bash, }\SpecialCharTok{\{}\NormalTok{spn\_path\_to\_git}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\ControlFlowTok{else}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}Found git{-}bash: }\SpecialCharTok{\{}\NormalTok{spn\_path\_to\_gitbash}\SpecialCharTok{\}}\SpecialStringTok{ by searching around }\SpecialCharTok{\{}\NormalTok{spn\_path\_to\_git}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Found git-bash: G:\ProgramData\Git\git-bash.exe by searching around spn_path_to_git='G:\\ProgramData\\Git\\cmd\\git.EXE'
+\end{verbatim}
 
 \hypertarget{generate-a-tex-file}{%
 \subsubsection{Generate a tex file}\label{generate-a-tex-file}}
@@ -5226,7 +6044,7 @@ Compile tex file to pdf and clean up the extraneous pdf outputs. See \href{https
 \ImportTok{import}\NormalTok{ os}
 
 \CommentTok{\# Change to local directory so path in tex respected.}
-\NormalTok{os.chdir(}\StringTok{"C:/Users/fan/py4econ/vig/support/inout"}\NormalTok{)}
+\NormalTok{os.chdir(}\StringTok{"C:/Users/fan/py4econ/support/inout"}\NormalTok{)}
 
 \CommentTok{\# Convert tex to pdf}
 \NormalTok{subprocess.call([}\StringTok{\textquotesingle{}C:/texlive/2020/bin/win32/xelatex.exe\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}{-}output{-}directory\textquotesingle{}}\NormalTok{,}
@@ -6578,14 +7396,50 @@ String outputs.
 \hypertarget{data-structures-links}{%
 \section{Data Structures links}\label{data-structures-links}}
 
-\hypertarget{section-1.1-strings-lists-and-tuplesstrings-lists-and-tuples-links}{%
-\subsection{\texorpdfstring{\protect\hyperlink{strings-lists-and-tuples}{Section 1.1 Strings, Lists and Tuples} links}{Section 1.1 Strings, Lists and Tuples links}}\label{section-1.1-strings-lists-and-tuplesstrings-lists-and-tuples-links}}
+\hypertarget{section-1.1-numbers-strings-lists-and-tuplesnumbers-strings-lists-and-tuples-links}{%
+\subsection{\texorpdfstring{\protect\hyperlink{numbers-strings-lists-and-tuples}{Section 1.1 Numbers, Strings, Lists and Tuples} links}{Section 1.1 Numbers, Strings, Lists and Tuples links}}\label{section-1.1-numbers-strings-lists-and-tuplesnumbers-strings-lists-and-tuples-links}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \href{https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fp_ary_string.html}{Python String Manipulation Examples}: \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array//fp_ary_string.Rmd}{\textbf{rmd}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fp_ary_string.R}{\textbf{r}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fp_ary_string.pdf}{\textbf{pdf}} \textbar{} \href{https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fp_ary_string.html}{\textbf{html}}
+  \href{https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_numeric.html}{Basic Number Numeric Manipulations}: \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array//fs_numeric.Rmd}{\textbf{rmd}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_numeric.R}{\textbf{r}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_numeric.pdf}{\textbf{pdf}} \textbar{} \href{https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_numeric.html}{\textbf{html}}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Loop over a list of numbers where the first and second digits have different interpretations.
+  \item
+    \textbf{py}: **
+  \end{itemize}
+\item
+  \href{https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_tuple.html}{Define and Unpack Tuple}: \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array//fs_tuple.Rmd}{\textbf{rmd}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_tuple.R}{\textbf{r}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_tuple.pdf}{\textbf{pdf}} \textbar{} \href{https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_tuple.html}{\textbf{html}}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Define/deal multiple variables on the same line
+  \item
+    Define tuple in python with and without parenthesis, unpack tuple, get subset of elements.
+  \item
+    Access tuple element and fail to mutate tuple element.
+  \item
+    \textbf{py}: \emph{isinstance(tp\_abc, tuple)}
+  \end{itemize}
+\item
+  \href{https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_list.html}{List Manipulations and Defaults}: \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array//fs_list.Rmd}{\textbf{rmd}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_list.R}{\textbf{r}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_list.pdf}{\textbf{pdf}} \textbar{} \href{https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_list.html}{\textbf{html}}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Conditional statements based on list length and element value.
+  \item
+    Provide default for element of a list when list does not have that element.
+  \item
+    \textbf{py}: \emph{lambda + join + append() + if len(X) \textgreater= 3 and X{[}2{]} is not None + if elif else}
+  \end{itemize}
+\item
+  \href{https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_ary_string.html}{Python String Manipulation Examples}: \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array//fs_ary_string.Rmd}{\textbf{rmd}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_ary_string.R}{\textbf{r}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_ary_string.pdf}{\textbf{pdf}} \textbar{} \href{https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_ary_string.html}{\textbf{html}}
 
   \begin{itemize}
   \tightlist
@@ -6604,30 +7458,6 @@ String outputs.
   \item
     \textbf{random}: \emph{choice}
   \end{itemize}
-\item
-  \href{https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_list.html}{List Manipulations and Defaults}: \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array//fs_list.Rmd}{\textbf{rmd}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_list.R}{\textbf{r}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_list.pdf}{\textbf{pdf}} \textbar{} \href{https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_list.html}{\textbf{html}}
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Conditional statements based on list length and element value.
-  \item
-    Provide default for element of a list when list does not have that element.
-  \item
-    \textbf{py}: \emph{lambda + join + append() + if len(X) \textgreater= 3 and X{[}2{]} is not None + if elif else}
-  \end{itemize}
-\item
-  \href{https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_tuple.html}{Define and Unpack Tuple}: \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array//fs_tuple.Rmd}{\textbf{rmd}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_tuple.R}{\textbf{r}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_tuple.pdf}{\textbf{pdf}} \textbar{} \href{https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_tuple.html}{\textbf{html}}
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Define tuple in python with and without parenthesis, unpack tuple, get subset of elements.
-  \item
-    Access tuple element and fail to mutate tuple element.
-  \item
-    \textbf{py}: \emph{isinstance(tp\_abc, tuple)}
-  \end{itemize}
 \end{enumerate}
 
 \hypertarget{section-1.2-dictionarydictionary-links}{%
@@ -6637,7 +7467,7 @@ String outputs.
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \href{https://fanwangecon.github.io/Py4Econ/amto/dict/htmlpdfr/fp_dict.html}{Python Dictionary Examples and Usages}: \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/dict//fp_dict.Rmd}{\textbf{rmd}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/dict/htmlpdfr/fp_dict.R}{\textbf{r}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/dict/htmlpdfr/fp_dict.pdf}{\textbf{pdf}} \textbar{} \href{https://fanwangecon.github.io/Py4Econ/amto/dict/htmlpdfr/fp_dict.html}{\textbf{html}}
+  \href{https://fanwangecon.github.io/Py4Econ/amto/dict/htmlpdfr/fs_dict.html}{Python Dictionary Examples and Usages}: \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/dict//fs_dict.Rmd}{\textbf{rmd}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/dict/htmlpdfr/fs_dict.R}{\textbf{r}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/dict/htmlpdfr/fs_dict.pdf}{\textbf{pdf}} \textbar{} \href{https://fanwangecon.github.io/Py4Econ/amto/dict/htmlpdfr/fs_dict.html}{\textbf{html}}
 
   \begin{itemize}
   \tightlist
@@ -6658,6 +7488,8 @@ String outputs.
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
+\item
+  \href{https://fanwangecon.github.io/Py4Econ/amto/matrix/htmlpdfr/fs_numpy_basics.html}{fs\_numpy\_basics}: \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix//fs_numpy_basics.Rmd}{\textbf{rmd}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix/htmlpdfr/fs_numpy_basics.R}{\textbf{r}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix/htmlpdfr/fs_numpy_basics.pdf}{\textbf{pdf}} \textbar{} \href{https://fanwangecon.github.io/Py4Econ/amto/matrix/htmlpdfr/fs_numpy_basics.html}{\textbf{html}}
 \item
   \href{https://fanwangecon.github.io/Py4Econ/amto/matrix/htmlpdfr/fs_array2mat.html}{Numpy Combine Arrays to Matrix}: \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix//fs_array2mat.Rmd}{\textbf{rmd}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix/htmlpdfr/fs_array2mat.R}{\textbf{r}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix/htmlpdfr/fs_array2mat.pdf}{\textbf{pdf}} \textbar{} \href{https://fanwangecon.github.io/Py4Econ/amto/matrix/htmlpdfr/fs_array2mat.html}{\textbf{html}}
 
@@ -6703,6 +7535,24 @@ String outputs.
   \item
     \textbf{pandas}: \emph{pd.DataFrame() + replace({[}`Zvcss', `Dugei'{]}, `Zqovt') + df.loc{[}df{[}`c5'{]} == `Zqovt'{]}}
   \end{itemize}
+\item
+  \href{https://fanwangecon.github.io/Py4Econ/panda/basics/htmlpdfr/fs_inout_files.html}{Dataframe Export as CSV with Automatic File Path and Name}: \href{https://github.com/FanWangEcon/Py4Econ/blob/master/panda/basics//fs_inout_files.Rmd}{\textbf{rmd}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/panda/basics/htmlpdfr/fs_inout_files.R}{\textbf{r}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/panda/basics/htmlpdfr/fs_inout_files.pdf}{\textbf{pdf}} \textbar{} \href{https://fanwangecon.github.io/Py4Econ/panda/basics/htmlpdfr/fs_inout_files.html}{\textbf{html}}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Export a pandas dataframe to csv, store automatically in user home download folder.
+  \item
+    File name contains the variable name, use fstring to get variable name as file string.
+  \item
+    \textbf{pandas}: \emph{df2export.to\_csv(spn\_csv\_path, sep=``,'')}
+  \item
+    \textbf{pathlib}: \emph{home() + joinpath() + mkdir(parents=True, exist\_ok=True)}
+  \item
+    \textbf{fstring}: \emph{f'\{mt\_abc=\}`.split('='){[}0{]}}
+  \item
+    \textbf{time}: \emph{strftime(``\%Y\%m\%d-\%H\%M\%S'')}
+  \end{itemize}
 \end{enumerate}
 
 \hypertarget{functions-links}{%
@@ -6727,7 +7577,35 @@ String outputs.
     \textbf{py}: \emph{type + isinstance(abc, str) + isinstance(abc, int) + raise + try except}
   \end{itemize}
 \item
-  \href{https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_args.html}{Function value returns}: \href{https://github.com/FanWangEcon/Py4Econ/blob/master/function/args//fs_func_args.Rmd}{\textbf{rmd}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_args.R}{\textbf{r}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_args.pdf}{\textbf{pdf}} \textbar{} \href{https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_args.html}{\textbf{html}}
+  \href{https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_args.html}{Tuple and Dictionary as Arguments with args and kwargs}: \href{https://github.com/FanWangEcon/Py4Econ/blob/master/function/args//fs_func_args.Rmd}{\textbf{rmd}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_args.R}{\textbf{r}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_args.pdf}{\textbf{pdf}} \textbar{} \href{https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_args.html}{\textbf{html}}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Update default parameters with dictionary that replaces and appends additional key-value pairs using kwargs.
+  \item
+    Pass a dictionary for named arguments to a function.
+  \item
+    Python function None as default for mutable list argument.
+  \item
+    \textbf{python}: \emph{dict3 = \{dict1, dict2\} + dict1.update(dict2) + func(par1=`val1', kwargs)}
+  \end{itemize}
+\item
+  \href{https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_args_cmd.html}{Command Line Argument Parsing Positional and Optional Arguments}: \href{https://github.com/FanWangEcon/Py4Econ/blob/master/function/args//fs_func_args_cmd.Rmd}{\textbf{rmd}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_args_cmd.R}{\textbf{r}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_args_cmd.pdf}{\textbf{pdf}} \textbar{} \href{https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_args_cmd.html}{\textbf{html}}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Parse parameters entered via command line to call a python script.
+  \item
+    Optional and positional arguments of different data types (int, str, etc.).
+  \item
+    Default values, allowed list of values.
+  \item
+    \textbf{argparse}: \emph{parser.add\_argument() + parser.parse\_args()}
+  \end{itemize}
+\item
+  \href{https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_returns.html}{Function value returns}: \href{https://github.com/FanWangEcon/Py4Econ/blob/master/function/args//fs_func_returns.Rmd}{\textbf{rmd}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_returns.R}{\textbf{r}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_returns.pdf}{\textbf{pdf}} \textbar{} \href{https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_returns.html}{\textbf{html}}
 
   \begin{itemize}
   \tightlist
@@ -6735,18 +7613,6 @@ String outputs.
     Return one or multiple values from function.
   \item
     \textbf{python}: \emph{return a, b, c}
-  \end{itemize}
-\item
-  \href{https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_returns.html}{Tuple and Dictionary as Arguments with args and kwargs}: \href{https://github.com/FanWangEcon/Py4Econ/blob/master/function/args//fs_func_returns.Rmd}{\textbf{rmd}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_returns.R}{\textbf{r}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/function/args/htmlpdfr/fs_func_returns.pdf}{\textbf{pdf}} \textbar{} \href{https://fanwangecon.github.io/Py4Econ/function/args/htmlpdfr/fs_func_returns.html}{\textbf{html}}
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Update default parameters with dictionary that replaces and appends additional key-value paris using kwargs.
-  \item
-    Pass a dictionary for named arguments to a function.
-  \item
-    \textbf{python}: \emph{dict3 = \{dict1, dict2\} + dict1.update(dict2) + func(par1=`val1', kwargs)}
   \end{itemize}
 \end{enumerate}
 
@@ -6870,7 +7736,7 @@ String outputs.
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \href{https://fanwangecon.github.io/Py4Econ/aws/s3/htmlpdfr/fs_aws_s3.html}{AWS S3 Uploading Downloading and Syncing}: \href{https://github.com/FanWangEcon/Py4Econ/blob/master/aws/s3//fs_aws_s3.Rmd}{\textbf{rmd}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/aws/s3/htmlpdfr/fs_aws_s3.R}{\textbf{r}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/aws/s3/htmlpdfr/fs_aws_s3.pdf}{\textbf{pdf}} \textbar{} \href{https://fanwangecon.github.io/Py4Econ/aws/s3/htmlpdfr/fs_aws_s3.html}{\textbf{html}}
+  \href{https://fanwangecon.github.io/Py4Econ/aws/s3/htmlpdfr/fs_aws_s3.html}{AWS S3 Uploading, Downloading and Syncing, Locally, EC2 and in Docker Container}: \href{https://github.com/FanWangEcon/Py4Econ/blob/master/aws/s3//fs_aws_s3.Rmd}{\textbf{rmd}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/aws/s3/htmlpdfr/fs_aws_s3.R}{\textbf{r}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/aws/s3/htmlpdfr/fs_aws_s3.pdf}{\textbf{pdf}} \textbar{} \href{https://fanwangecon.github.io/Py4Econ/aws/s3/htmlpdfr/fs_aws_s3.html}{\textbf{html}}
 
   \begin{itemize}
   \tightlist
@@ -6879,9 +7745,13 @@ String outputs.
   \item
     Download sync folders with exclusions between local and S3 folders.
   \item
+    Download file from S3 to local computer, an EC2 Linux computer, or into a Docker Container.
+  \item
     \textbf{py}: \emph{platform.release()}
   \item
-    \textbf{boto3}: \emph{boto3.client(`s3') + s3.upload\_file}
+    \textbf{boto3}: \emph{boto3.client(`s3') + s3.upload\_file() + s3.download\_file()}
+  \item
+    \textbf{os}: \emph{sep}
   \end{itemize}
 \end{enumerate}
 
@@ -7013,26 +7883,28 @@ String outputs.
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \href{https://fanwangecon.github.io/Py4Econ/support/inout/htmlpdfr/fp_files.html}{Python Reading and Writing to File Examples}: \href{https://github.com/FanWangEcon/Py4Econ/blob/master/support/inout//fp_files.Rmd}{\textbf{rmd}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/support/inout/htmlpdfr/fp_files.R}{\textbf{r}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/support/inout/htmlpdfr/fp_files.pdf}{\textbf{pdf}} \textbar{} \href{https://fanwangecon.github.io/Py4Econ/support/inout/htmlpdfr/fp_files.html}{\textbf{html}}
+  \href{https://fanwangecon.github.io/Py4Econ/support/inout/htmlpdfr/fp_files.html}{Searching for Programs, Reading and Writing to File Examples}: \href{https://github.com/FanWangEcon/Py4Econ/blob/master/support/inout//fp_files.Rmd}{\textbf{rmd}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/support/inout/htmlpdfr/fp_files.R}{\textbf{r}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/support/inout/htmlpdfr/fp_files.pdf}{\textbf{pdf}} \textbar{} \href{https://fanwangecon.github.io/Py4Econ/support/inout/htmlpdfr/fp_files.html}{\textbf{html}}
 
   \begin{itemize}
   \tightlist
+  \item
+    Check the path to a particular installed program.
+  \item
+    Get the parent folder of the current file.
   \item
     Reading from file and replace strings in file.
   \item
     Convert text file to latex using pandoc and clean.
   \item
-    Search for files in several folders with file substring.
-  \item
-    Get path root, file name, file stem, etc from path.
-  \item
     \textbf{py}: \emph{open() + write() + replace() + {[}c for b in {[}{[}1,2{]},{[}2,3{]}{]} for c in b{]}}
   \item
     \textbf{subprocess}: \emph{call()}
   \item
-    \textbf{pathlib}: \emph{Path().rglob() + Path().stem}
+    \textbf{pathlib}: \emph{Path().rglob() + Path().stem + Path(spn).parents{[}1{]}}
   \item
-    \textbf{os}: \emph{remove() + listdir() + path.isfile() + path.splitdrive() + os.path.splitext() + os.path.split()}
+    \textbf{os}: \emph{remove() + listdir() + path.isfile() + path.splitdrive() + path.splitext() + path.split()}
+  \item
+    \textbf{shutil}: \emph{which()}
   \end{itemize}
 \item
   \href{https://fanwangecon.github.io/Py4Econ/support/inout/htmlpdfr/fp_folders.html}{Python Directory and Folder Operations}: \href{https://github.com/FanWangEcon/Py4Econ/blob/master/support/inout//fp_folders.Rmd}{\textbf{rmd}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/support/inout/htmlpdfr/fp_folders.R}{\textbf{r}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/support/inout/htmlpdfr/fp_folders.pdf}{\textbf{pdf}} \textbar{} \href{https://fanwangecon.github.io/Py4Econ/support/inout/htmlpdfr/fp_folders.html}{\textbf{html}}

@@ -13,7 +13,7 @@
 
 <meta name="date" content="2020-05-09" />
 
-<title>Python Reading and Writing to File Examples</title>
+<title>Python Searching for Programs, Reading and Writing to File Examples</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1865,24 +1865,72 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Python Reading and Writing to File Examples</h1>
+<h1 class="title toc-ignore">Python Searching for Programs, Reading and Writing to File Examples</h1>
 <h4 class="author"><a href="https://fanwangecon.github.io/">Fan Wang</a></h4>
 <h4 class="date">2020-05-09</h4>
 
 </div>
 
 
-<div id="read-and-write-and-convert" class="section level1" number="1">
-<h1 number="1"><span class="header-section-number">1</span> Read and Write and Convert</h1>
+<div id="check-read-write-and-convert-files" class="section level1" number="1">
+<h1 number="1"><span class="header-section-number">1</span> Check, Read, Write and Convert Files</h1>
 <blockquote>
 <p>Go to the <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/support/inout//fp_files.Rmd"><strong>RMD</strong></a>, <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/support/inout//htmlpdfr/fp_files.pdf"><strong>PDF</strong></a>, or <a href="https://fanwangecon.github.io//Py4Econ/support/inout//htmlpdfr/fp_files.html"><strong>HTML</strong></a> version of this file. Go back to <a href="https://fanwangecon.github.io/Py4Econ/">Python Code Examples</a> Repository (<a href="https://fanwangecon.github.io/Py4Econ/bookdown">bookdown site</a>) or the <a href="https://pyfan.readthedocs.io/en/latest/">pyfan</a> Package (<a href="https://pyfan.readthedocs.io/en/latest/reference.html">API</a>).</p>
 </blockquote>
-<ul>
-<li>python create a text file</li>
-<li>python write file from paragraphs</li>
-</ul>
-<div id="generate-a-tex-file" class="section level2" number="1.1">
-<h2 number="1.1"><span class="header-section-number">1.1</span> Generate a tex file</h2>
+<div id="check-if-where-a-program-is." class="section level2" number="1.1">
+<h2 number="1.1"><span class="header-section-number">1.1</span> Check if where a Program is.</h2>
+<p>Suppose we want to generate a commandline call from within python and want to start it in bash. Calling something like “C:/Program Files/Git/git-bash.exe -c COMMANDS”. However, depending on the computer that is been used, the git-bash command might be in different spots. How do we find the right path to the <em>git-bash</em> file. Accomplish this by using <em>shutil.which</em>, which can find the path to different commands, including the <em>git</em> command. Given the path that we found, the <em>git-bash.exe</em> file is stored in the <em>Git</em> folder, two levels up. So we will use pathlib to get to the correct path location. To be safe, go up one level, and then two levels to search for <em>git-bash.exe</em>.</p>
+<p>First, find the path to the git exe command:</p>
+<pre class="python"><code># Imports
+import os  
+import shutil  
+# cmd  
+st_cmd = &#39;git&#39;
+# Using shutil.which() method to find local path to the *git* command
+spn_path_to_git = shutil.which(st_cmd) 
+# Print result 
+print(f&#39;{spn_path_to_git=}&#39;)</code></pre>
+<pre><code>## spn_path_to_git=&#39;G:\\ProgramData\\Git\\cmd\\git.EXE&#39;</code></pre>
+<p>Second, find the parent and grandparent folders:</p>
+<pre class="python"><code>from pathlib import Path
+# Get the parent folder 2 levels up
+srt_path_git_parent_folder = Path(spn_path_to_git).parents[0]
+srt_path_git_grandparent_folder = Path(spn_path_to_git).parents[1]
+# Print
+print(f&#39;{srt_path_git_parent_folder=}&#39;)</code></pre>
+<pre><code>## srt_path_git_parent_folder=WindowsPath(&#39;G:/ProgramData/Git/cmd&#39;)</code></pre>
+<pre class="python"><code>print(f&#39;{srt_path_git_grandparent_folder=}&#39;)
+# Search for for the git-bash.exe file in parent and then in the grandparent folder.</code></pre>
+<pre><code>## srt_path_git_grandparent_folder=WindowsPath(&#39;G:/ProgramData/Git&#39;)</code></pre>
+<p>Third, search inside parent folder first, and then grand until find the path to <em>git-bash.exe</em>. Will put all three steps code together:</p>
+<pre class="python"><code># required packages
+import shutil
+from pathlib import Path
+# find path to git
+st_cmd = &#39;git&#39;
+spn_path_to_git = shutil.which(st_cmd) 
+# find path to git-bash.exe
+spn_path_to_gitbash = &#39;&#39;
+for it_up_iter in [0,1]:
+    # up-tier folder
+    srt_path_git_up_folder = Path(spn_path_to_git).parents[it_up_iter]
+    # search
+    # get file names in folders (not recursively)
+    ls_spn_found_git_bash = [spn_file for spt_srh in [srt_path_git_up_folder]
+                             for spn_file in Path(spt_srh).glob(&#39;git-bash.exe&#39;)]
+    # if found, length of ls of founds files must be 1
+    if len(ls_spn_found_git_bash) == 1:
+        spn_path_to_gitbash = ls_spn_found_git_bash[0]
+        break
+        
+if spn_path_to_gitbash == &#39;&#39;:
+    raise NameError(f&#39;failed to find git-bash, {spn_path_to_git=}&#39;)
+else:
+    print(f&#39;Found git-bash: {spn_path_to_gitbash} by searching around {spn_path_to_git=}&#39;)</code></pre>
+<pre><code>## Found git-bash: G:\ProgramData\Git\git-bash.exe by searching around spn_path_to_git=&#39;G:\\ProgramData\\Git\\cmd\\git.EXE&#39;</code></pre>
+</div>
+<div id="generate-a-tex-file" class="section level2" number="1.2">
+<h2 number="1.2"><span class="header-section-number">1.2</span> Generate a tex file</h2>
 <p>Will a bare-bone tex file with some texts inside, save inside the *_file* subfolder.</p>
 <p>First, create the text text string, note the the linebreaks utomatically generate linebreaks, note that slash need double slash:</p>
 <pre class="python"><code># Create the Tex Text
@@ -1924,8 +1972,8 @@ fl_tex_contents.write(stf_tex_contents)
 <pre><code>## 617</code></pre>
 <pre class="python"><code>fl_tex_contents.close()</code></pre>
 </div>
-<div id="replace-strings-in-a-tex-file" class="section level2" number="1.2">
-<h2 number="1.2"><span class="header-section-number">1.2</span> Replace Strings in a tex file</h2>
+<div id="replace-strings-in-a-tex-file" class="section level2" number="1.3">
+<h2 number="1.3"><span class="header-section-number">1.3</span> Replace Strings in a tex file</h2>
 <p>Replace a set of strings in the file just generated by a set of alternative strings.</p>
 <pre class="python"><code># Open file Get text
 fl_tex_contents = open(srn_file_tex)
@@ -1961,14 +2009,14 @@ fl_tex_ed_contents.write(stf_tex_contents)</code></pre>
 <pre><code>## 617</code></pre>
 <pre class="python"><code>fl_tex_ed_contents.close()</code></pre>
 </div>
-<div id="convert-tex-file-to-pandoc-and-compile-latex" class="section level2" number="1.3">
-<h2 number="1.3"><span class="header-section-number">1.3</span> Convert Tex File to Pandoc and Compile Latex</h2>
+<div id="convert-tex-file-to-pandoc-and-compile-latex" class="section level2" number="1.4">
+<h2 number="1.4"><span class="header-section-number">1.4</span> Convert Tex File to Pandoc and Compile Latex</h2>
 <p>Compile tex file to pdf and clean up the extraneous pdf outputs. See <a href="https://pyfan.readthedocs.io/en/latest/autoapi/pyfan/util/pdf/pdfgen/index.html#pyfan.util.pdf.pdfgen.ff_pdf_gen_clean">ff_pdf_gen_clean</a>.</p>
 <pre class="python"><code>import subprocess
 import os
 
 # Change to local directory so path in tex respected.
-os.chdir(&quot;C:/Users/fan/py4econ/vig/support/inout&quot;)
+os.chdir(&quot;C:/Users/fan/py4econ/support/inout&quot;)
 
 # Convert tex to pdf
 subprocess.call([&#39;C:/texlive/2020/bin/win32/xelatex.exe&#39;, &#39;-output-directory&#39;,
@@ -2009,8 +2057,8 @@ print(fl_md_contents.read())</code></pre>
 ## 
 ## [^2]: Generally students went to schools.</code></pre>
 </div>
-<div id="search-for-files-with-suffix-in-several-folders" class="section level2" number="1.4">
-<h2 number="1.4"><span class="header-section-number">1.4</span> Search for Files with Suffix in Several Folders</h2>
+<div id="search-for-files-with-suffix-in-several-folders" class="section level2" number="1.5">
+<h2 number="1.5"><span class="header-section-number">1.5</span> Search for Files with Suffix in Several Folders</h2>
 <ul>
 <li>python search all files in folders with suffix</li>
 </ul>

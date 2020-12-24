@@ -1,0 +1,81 @@
+---
+title: "Pandas Dataframe Export as CSV with Automatic File Path and Name"
+titleshort: "Dataframe Export as CSV with Automatic File Path and Name"
+description: |
+  Export a pandas dataframe to csv, store automatically in user home download folder.
+  File name contains the variable name, use fstring to get variable name as file string.
+core:
+  - package: pandas
+    code: |
+      df2export.to_csv(spn_csv_path, sep=",")
+  - package: pathlib
+    code: |
+      home()
+      joinpath()
+      mkdir(parents=True, exist_ok=True)
+  - package : fstring
+    code: |
+      f'{mt_abc=}'.split('=')[0]
+  - package : time
+    code: |
+      strftime("%Y%m%d-%H%M%S")
+date: 2020-12-23
+date_start: 2020-12-23
+output:
+  pdf_document:
+    pandoc_args: '../../_output_kniti_pdf.yaml'
+    includes:
+      in_header: '../../preamble.tex'
+  html_document:
+    pandoc_args: '../../_output_kniti_html.yaml'
+    includes:
+      in_header: "../../hdga.html"
+always_allow_html: true
+urlcolor: blue
+---
+
+### Pandas Importing and Exporting
+
+```{r global_options, include = FALSE}
+try(source("../../.Rprofile"))
+```
+
+`r text_shared_preamble_one`
+`r text_shared_preamble_two`
+`r text_shared_preamble_thr`
+
+#### Export a Dataframe to CSV in User Download with Automatic File Name
+
+During debugging and testing, a large dataframe is generated, but certain operation produces error. To fully debug, drop into debugger on error in PyCharm, and use console to generate a dataframe of just the matrix at issue. Now export this dataframe to csv in the fastest way possible.
+
+1. Find user home path, generate a download subdirectory if it does not exist.
+2. Export the current dataframe to csv in that file, with auto row and column names.
+3. The dataframe will be named after the current variable array name, and will have a time suffix added.
+
+Replace the mt_abc line below, use a different name that should appear in the saved file name.
+
+```{python}
+# Import Pathlib and panddas
+import pandas as pd
+import numpy as np
+from pathlib import Path
+import time
+
+# replace mt_abc line by the matrix currently used
+mt_abc = np.column_stack(np.random.randint(10, size=(5, 3)))
+# Save results to C:\Users\fan\Downloads\PythonDebug, generate if does not exist.
+srt_pydebug = Path.joinpath(Path.home(), "Downloads", "PythonDebug")
+srt_pydebug.mkdir(parents=True, exist_ok=True)
+# Matrix to data frame with columns and row names
+df2export = pd.DataFrame(data=mt_abc,
+                         index=['r' + str(it_col) for it_col in np.array(range(1, mt_abc.shape[0] + 1))],
+                         columns=['c' + str(it_col) for it_col in np.array(range(1, mt_abc.shape[1] + 1))])
+# Export File Name
+spn_csv_path = Path.joinpath(srt_pydebug, f'{mt_abc=}'.split('=')[0] + '-' + time.strftime("%Y%m%d-%H%M%S") + '.csv')
+# export
+df2export.to_csv(spn_csv_path, sep=",")
+
+# print
+print(f'{srt_pydebug=}')
+print(f'{spn_csv_path=}')
+```

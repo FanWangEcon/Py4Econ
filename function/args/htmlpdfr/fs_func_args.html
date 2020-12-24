@@ -1878,8 +1878,37 @@ div.tocify {
 <p>Go to the <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/function/args//fs_func_args.Rmd"><strong>RMD</strong></a>, <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/function/args//htmlpdfr/fs_func_args.pdf"><strong>PDF</strong></a>, or <a href="https://fanwangecon.github.io//Py4Econ/function/args//htmlpdfr/fs_func_args.html"><strong>HTML</strong></a> version of this file. Go back to <a href="https://fanwangecon.github.io/Py4Econ/">Python Code Examples</a> Repository (<a href="https://fanwangecon.github.io/Py4Econ/bookdown">bookdown site</a>) or the <a href="https://pyfan.readthedocs.io/en/latest/">pyfan</a> Package (<a href="https://pyfan.readthedocs.io/en/latest/reference.html">API</a>).</p>
 </blockquote>
 <pre class="python"><code>import pprint</code></pre>
-<div id="python-dictionary-as-argument-via-kwargs" class="section level2" number="1.1">
-<h2 number="1.1"><span class="header-section-number">1.1</span> Python Dictionary As Argument via kwargs</h2>
+<div id="mutable-argument-default" class="section level2" number="1.1">
+<h2 number="1.1"><span class="header-section-number">1.1</span> Mutable Argument Default</h2>
+<p>If a parameter is a list, that is mutable, or a dict. Default values for the mutable parameter should be None, with the actual default value provided inside the function.</p>
+<pre class="python"><code># Mutable dict as parameters
+def ffi_tab_txt2tex(dc_fmd_sym_sig=None, dc_tex_sig_sym=None):
+    if dc_fmd_sym_sig is None:
+        # defaults
+        dc_fmd_sym_sig = {&#39;***&#39;: 1e-2, &#39;**&#39;: 5e-2, &#39;*&#39;: 1e-1}
+    if dc_tex_sig_sym is None:
+        # defaults
+        dc_tex_sig_sym = {&#39;1e-3&#39;: &#39;\\sym{***}&#39;,
+                          &#39;1e-2&#39;: &#39;\\sym{**}&#39;,
+                          &#39;5e-2&#39;: &#39;\\sym{*}&#39;,
+                          &#39;1e-1&#39;: &#39;\\dagger&#39;}
+
+    # print
+    print(f&#39;{dc_fmd_sym_sig=}&#39;)
+    print(f&#39;{dc_tex_sig_sym=}&#39;)
+    
+# Call function with default
+ffi_tab_txt2tex()
+# Call function update the first dict </code></pre>
+<pre><code>## dc_fmd_sym_sig={&#39;***&#39;: 0.01, &#39;**&#39;: 0.05, &#39;*&#39;: 0.1}
+## dc_tex_sig_sym={&#39;1e-3&#39;: &#39;\\sym{***}&#39;, &#39;1e-2&#39;: &#39;\\sym{**}&#39;, &#39;5e-2&#39;: &#39;\\sym{*}&#39;, &#39;1e-1&#39;: &#39;\\dagger&#39;}</code></pre>
+<pre class="python"><code>ffi_tab_txt2tex(dc_fmd_sym_sig = {&#39;***&#39;: 1e-3, &#39;**&#39;: 1e-2, &#39;*&#39;: 5e-2})</code></pre>
+<pre><code>## dc_fmd_sym_sig={&#39;***&#39;: 0.001, &#39;**&#39;: 0.01, &#39;*&#39;: 0.05}
+## dc_tex_sig_sym={&#39;1e-3&#39;: &#39;\\sym{***}&#39;, &#39;1e-2&#39;: &#39;\\sym{**}&#39;, &#39;5e-2&#39;: &#39;\\sym{*}&#39;, &#39;1e-1&#39;: &#39;\\dagger&#39;}</code></pre>
+<p>see <a href="https://stackoverflow.com/questions/1132941/least-astonishment-and-the-mutable-default-argument">“Least Astonishment” and the Mutable Default Argument</a>.</p>
+</div>
+<div id="python-dictionary-as-argument-via-kwargs" class="section level2" number="1.2">
+<h2 number="1.2"><span class="header-section-number">1.2</span> Python Dictionary As Argument via kwargs</h2>
 <p>There is a python function that outputs a dictionary with key and value pairs that specify key aspects of how a model should be solved. For example, one of the parameters could specify the <em>vcpu</em> requirement. This <em>vcpu</em> requirement might change, and so it should be easy to update this key with alternative values.</p>
 <p>These are accomplished in the following manner. Define the full key-value pair list, with default values for several dictionaries, with model simulation, support, and compute parameters for example. These lists could be updated with some default alternative combinations, or alternatively, it could be updated with externally provided dictionary with both updated values for existing keys, or even additional key value pairs.</p>
 <p>First, we create a function that processes and outputs default parameters, it has two inputs, <em>it_default_group</em> to specify pre-fixed adjustments from defaults, and <em>kwargs</em> that allows for arbitrarily modifications and additions to parameter dictionary.</p>
@@ -1958,8 +1987,8 @@ pprint.pprint(compesti_specs, width=1)</code></pre>
 ##                       &#39;20180805azzz&#39;],
 ##  &#39;workers&#39;: 1}</code></pre>
 </div>
-<div id="named-argument-list-and-dictionary" class="section level2" number="1.2">
-<h2 number="1.2"><span class="header-section-number">1.2</span> Named Argument List and Dictionary</h2>
+<div id="named-argument-list-and-dictionary" class="section level2" number="1.3">
+<h2 number="1.3"><span class="header-section-number">1.3</span> Named Argument List and Dictionary</h2>
 <p>Define a function with named and unnamed arguments:</p>
 <pre class="python"><code>def gen_compesti_spec_named(it_default_group, esti_method, memory=123, graph_frequncy=10):
     # A. Define the default parameter keys and values

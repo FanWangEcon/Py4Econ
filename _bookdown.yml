@@ -13,7 +13,6 @@ rmd_files:
   - amto/array/fs_tuple.Rmd
   - amto/array/fs_list.Rmd
   - amto/array/fs_ary_string.Rmd
-  - amto/array/fs_tuple.Rmd
   - amto/dict/main.Rmd
   - amto/dict/fs_dict.Rmd
   - amto/matrix/main.Rmd
@@ -24,6 +23,7 @@ rmd_files:
   - panda/basics/main.Rmd
   - panda/basics/fs_matrix2dataframe.Rmd
   - panda/basics/fs_select.Rmd
+  - panda/basics/fs_inout_files.Rmd
 
   - function/main.Rmd
   - function/args/main.Rmd

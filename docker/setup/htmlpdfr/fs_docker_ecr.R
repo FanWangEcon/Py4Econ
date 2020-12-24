@@ -1,4 +1,4 @@
-## ----global_options, include = FALSE------------------------------------------------------------------------------------
+## ----global_options, include = FALSE------------------------------------------------------------------------------------------------------------------------------
 try(source("../../.Rprofile"))
 
 
@@ -21,7 +21,7 @@ try(source("../../.Rprofile"))
 
 ## # on local machine:
 
-## ssh -i "C:/Users/fan/ThaiJMP/boto3aws/aws_ec2/pem/fan_wang-key-pair-us_east_nv.pem" ec2-user@54.161.29.209
+## ssh -i "C:/Users/fan/CondaPrj/boto3aws/aws_ec2/pem/fan_wang-key-pair-us_east_nv.pem" ec2-user@54.161.29.209
 
 ## 
 ## # if new instance, create a docker folder under main
@@ -42,7 +42,7 @@ try(source("../../.Rprofile"))
 
 ## # on local machine
 
-## scp -o StrictHostKeyChecking=accept-new -i C:/Users/fan/ThaiJMP/boto3aws/aws_ec2/pem/fan_wang-key-pair-us_east_nv.pem C:/Users/fan/ThaiJMP/boto3aws/aws_ecr/container/DockerfileInstall ec2-user@54.161.29.209:~/docker/Dockerfile
+## scp -o StrictHostKeyChecking=accept-new -i C:/Users/fan/CondaPrj/boto3aws/aws_ec2/pem/fan_wang-key-pair-us_east_nv.pem C:/Users/fan/CondaPrj/boto3aws/aws_ecr/container/DockerfileInstall ec2-user@54.161.29.209:~/docker/Dockerfile
 
 
 ## # start docker service on ec2
@@ -282,7 +282,7 @@ try(source("../../.Rprofile"))
 
 ##     " ---> 93bd8b521d61",
 
-##     "Step 16/16 : CMD [\"python\", \"/ThaiJMP/invoke/invoke.py\"]",
+##     "Step 16/16 : CMD [\"python\", \"/CondaPrj/invoke/invoke.py\"]",
 
 ##     " ---> Running in dd3ed44dcca7",
 
@@ -376,4 +376,36 @@ try(source("../../.Rprofile"))
 ## # After the build completes, tag your image so you can push the image to this repository:
 
 ## docker tag fanconda:latest XXXX7367XXXX.dkr.ecr.us-east-1.amazonaws.com/fanconda:latest
+
+
+## ssh -i "G:/repos/CondaPrj/boto3aws/aws_ec2/pem/fan_wang-key-pair-us_east_nv.pem" ec2-user@34.229.39.138
+
+## 
+## docker run -t -i fanconda /bin/bash
+
+## 
+## scp -o StrictHostKeyChecking=accept-new -i G:/repos/CondaPrj/boto3aws/aws_ec2/pem/fan_wang-key-pair-us_east_nv.pem G:/repos/CondaPrj/boto3aws/aws_ecr/container/DockerfileConda ec2-user@34.229.39.138:~/docker/Dockerfile
+
+## 
+## sudo service docker start
+
+## 
+## cd /home/ec2-user/docker
+
+## docker build -t fanconda --build-arg CACHE_DATE=2020-12-22-10-58-57 .
+
+## docker system prune --force
+
+## 
+## cd /home/ec2-user/docker
+
+## docker tag fanconda 710673677961.dkr.ecr.us-east-1.amazonaws.com/fanconda
+
+## 
+## aws ecr get-login --no-include-email
+
+## docker login -u AWS -p XXXXX= https://710673677961.dkr.ecr.us-east-1.amazonaws.com
+
+## 
+## docker push 710673677961.dkr.ecr.us-east-1.amazonaws.com/fanconda
 

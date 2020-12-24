@@ -1,8 +1,48 @@
-## ----global_options, include = FALSE------------------------------------------------------------------------------------
+## ----global_options, include = FALSE------------------------------------------------------------------------------------------------------------------------------
 try(source("../../.Rprofile"))
 
 
 ## import pprint
+
+
+## # Mutable dict as parameters
+
+## def ffi_tab_txt2tex(dc_fmd_sym_sig=None, dc_tex_sig_sym=None):
+
+##     if dc_fmd_sym_sig is None:
+
+##         # defaults
+
+##         dc_fmd_sym_sig = {'***': 1e-2, '**': 5e-2, '*': 1e-1}
+
+##     if dc_tex_sig_sym is None:
+
+##         # defaults
+
+##         dc_tex_sig_sym = {'1e-3': '\\sym{***}',
+
+##                           '1e-2': '\\sym{**}',
+
+##                           '5e-2': '\\sym{*}',
+
+##                           '1e-1': '\\dagger'}
+
+## 
+##     # print
+
+##     print(f'{dc_fmd_sym_sig=}')
+
+##     print(f'{dc_tex_sig_sym=}')
+
+## 
+
+## # Call function with default
+
+## ffi_tab_txt2tex()
+
+## # Call function update the first dict
+
+## ffi_tab_txt2tex(dc_fmd_sym_sig = {'***': 1e-3, '**': 1e-2, '*': 5e-2})
 
 
 ## def gen_compesti_spec(it_default_group=None, **kwargs):

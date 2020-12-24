@@ -1,5 +1,90 @@
-## ----global_options, include = FALSE------------------------------------------------------------------------------------
+## ----global_options, include = FALSE------------------------------------------------------------------------------------------------------------------------------
 try(source("../../.Rprofile"))
+
+
+## # Imports
+
+## import os
+
+## import shutil
+
+## # cmd
+
+## st_cmd = 'git'
+
+## # Using shutil.which() method to find local path to the *git* command
+
+## spn_path_to_git = shutil.which(st_cmd)
+
+## # Print result
+
+## print(f'{spn_path_to_git=}')
+
+
+## from pathlib import Path
+
+## # Get the parent folder 2 levels up
+
+## srt_path_git_parent_folder = Path(spn_path_to_git).parents[0]
+
+## srt_path_git_grandparent_folder = Path(spn_path_to_git).parents[1]
+
+## # Print
+
+## print(f'{srt_path_git_parent_folder=}')
+
+## print(f'{srt_path_git_grandparent_folder=}')
+
+## # Search for for the git-bash.exe file in parent and then in the grandparent folder.
+
+
+## # required packages
+
+## import shutil
+
+## from pathlib import Path
+
+## # find path to git
+
+## st_cmd = 'git'
+
+## spn_path_to_git = shutil.which(st_cmd)
+
+## # find path to git-bash.exe
+
+## spn_path_to_gitbash = ''
+
+## for it_up_iter in [0,1]:
+
+##     # up-tier folder
+
+##     srt_path_git_up_folder = Path(spn_path_to_git).parents[it_up_iter]
+
+##     # search
+
+##     # get file names in folders (not recursively)
+
+##     ls_spn_found_git_bash = [spn_file for spt_srh in [srt_path_git_up_folder]
+
+##                              for spn_file in Path(spt_srh).glob('git-bash.exe')]
+
+##     # if found, length of ls of founds files must be 1
+
+##     if len(ls_spn_found_git_bash) == 1:
+
+##         spn_path_to_gitbash = ls_spn_found_git_bash[0]
+
+##         break
+
+## 
+
+## if spn_path_to_gitbash == '':
+
+##     raise NameError(f'failed to find git-bash, {spn_path_to_git=}')
+
+## else:
+
+##     print(f'Found git-bash: {spn_path_to_gitbash} by searching around {spn_path_to_git=}')
 
 
 ## # Create the Tex Text
@@ -99,7 +184,7 @@ try(source("../../.Rprofile"))
 ## 
 ## # Change to local directory so path in tex respected.
 
-## os.chdir("C:/Users/fan/py4econ/vig/support/inout")
+## os.chdir("C:/Users/fan/py4econ/support/inout")
 
 ## 
 ## # Convert tex to pdf
