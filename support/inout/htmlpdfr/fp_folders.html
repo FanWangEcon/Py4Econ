@@ -1899,6 +1899,10 @@ print(f&#39;{srt_folder=}&#39;)</code></pre>
 <pre><code>## srt_path=&#39;\\users\\fan\\pyfan\\vig\\support\\inout\\_folder\\testfolder_mlt_region_ne\\subfolder&#39;</code></pre>
 <pre class="python"><code>print(f&#39;{spn_path=}&#39;)</code></pre>
 <pre><code>## spn_path=&#39;G:\\users\\fan\\pyfan\\vig\\support\\inout\\_folder\\testfolder_mlt_region_ne\\subfolder&#39;</code></pre>
+<p>Slash converion, convert the system slash to forward-slash all:</p>
+<pre class="python"><code>srt_folder_slashconverted = spn_path.replace(os.sep, &#39;/&#39;)
+print(f&#39;{srt_folder_slashconverted=}&#39;)</code></pre>
+<pre><code>## srt_folder_slashconverted=&#39;G:/users/fan/pyfan/vig/support/inout/_folder/testfolder_mlt_region_ne/subfolder&#39;</code></pre>
 <p>see: <a href="https://stackoverflow.com/a/28080468/8280804">constructing absolute path with os.path.join()</a>.</p>
 </div>
 <div id="get-the-last-directory-in-a-path-without-some-suffix" class="section level2" number="1.2">

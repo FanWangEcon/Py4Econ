@@ -3,6 +3,7 @@ title: "Python Directory and Folder Operations"
 titleshort: "Python Directory and Folder Operations"
 description: |
   Join folder names to form absolute path.
+  Folder path slash conversion from system os.sep to forward slash.
   Generate new folders and files, with existing folder substrings.
   Generate subfolder recursively.
   Copying and moving files across folders. 
@@ -20,6 +21,7 @@ core:
       os.path.abspath()
       os.path.abspath(os.path.join(os.sep, 'users', 'fan'))
       os.path.join('/', 'c:', 'fa', 'fb')
+      spn_path.replace(os.sep, '/')
   - package: pathlib
     code: |
       Path(srt).mkdir(parents=True, exist_ok=True)
@@ -80,6 +82,13 @@ print(f'{srt_path=}')
 print(f'{spn_path=}')
 ```
 
+Slash converion, convert the system slash to forward-slash all:
+
+```{python}
+srt_folder_slashconverted = spn_path.replace(os.sep, '/')
+print(f'{srt_folder_slashconverted=}')
+```
+
 see: [constructing absolute path with os.path.join()](https://stackoverflow.com/a/28080468/8280804).
 
 
@@ -105,7 +114,6 @@ print(f'{spn_path_no_suffix=}')
 print(f'{spt_root_main=}')
 print(f'{srt_new_subfolder=}')
 ```
-
 
 
 #### New Folder and Files

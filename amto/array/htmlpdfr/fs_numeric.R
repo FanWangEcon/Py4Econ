@@ -1,11 +1,11 @@
-## ----global_options, include = FALSE------------------------------------------------------------------------------------
+## ----global_options, include = FALSE------------------------------------------------------------------------------------------------------------------------------
 try(source("../../.Rprofile"))
 
 
 ## import numpy as np
 
 
-## ls_it_esti_optsalgo = [0, 1, 10, 15, 23, 89, 90, 99]
+## ls_it_esti_optsalgo = [0, 1, 10, 15, 23, 89, 90, 99, 900, 901, 999, 1000]
 
 ## for it_esti_optsalgo in ls_it_esti_optsalgo:
 

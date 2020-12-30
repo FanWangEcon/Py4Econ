@@ -16,7 +16,7 @@ rmd_files:
   - amto/dict/main.Rmd
   - amto/dict/fs_dict.Rmd
   - amto/matrix/main.Rmd
-  - amto/matrix/fs_numpy_basics.Rmd
+  # - amto/matrix/fs_numpy_basics.Rmd
   - amto/matrix/fs_array2mat.Rmd
 
   - panda/main.Rmd

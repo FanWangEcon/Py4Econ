@@ -1,4 +1,4 @@
-## ----global_options, include = FALSE------------------------------------------------------------------------------------
+## ----global_options, include = FALSE------------------------------------------------------------------------------------------------------------------------------
 try(source("../../.Rprofile"))
 
 
@@ -6,7 +6,7 @@ try(source("../../.Rprofile"))
 
 ## # define the function
 
-## def error_test(gn_speckey=None):
+## def ffi_error_test(gn_speckey=None):
 
 ##     if isinstance(gn_speckey, int):
 
@@ -24,11 +24,34 @@ try(source("../../.Rprofile"))
 
 ## try:
 
-##     error_test('abc')
+##     ffi_error_test('abc')
 
 ## except TypeError as error:
 
 ##     print('Caught this error: ' + repr(error))
+
+
+## import traceback
+
+## import numpy as np
+
+## 
+## ls_ob_inputs = [2, ['abc','efg'], 1, 123]
+
+## 
+## for ob_input in ls_ob_inputs:
+
+##     print(f'try input {ob_input=} with the error_test function:')
+
+##     try:
+
+##         ffi_error_test(ob_input)
+
+##     except TypeError as error:
+
+##         traceback.print_exc()
+
+##         print('Caught this error: ' + repr(error))
 
 
 ## # ls_st_spec_key_dict = ['NG_S_D', 'NG_S_D=KAP_M0_NLD_M_SIMU=2=3']

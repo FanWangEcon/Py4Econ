@@ -24,7 +24,7 @@
 <meta name="author" content="Fan Wang" />
 
 
-<meta name="date" content="2020-12-23" />
+<meta name="date" content="2020-12-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -338,7 +338,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="two-digit-numbers-coding-conditional-information" class="section level4" number="1.1.1.1">
 <h4><span class="header-section-number">1.1.1.1</span> Two Digit Numbers Coding Conditional Information</h4>
 <p>We have numbers between 0 and 99, these indicate different estimation specifications, where the digit number is the estimation tolerance level, and the tens number is the minimization algorithm.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="data-structures.html#cb2-1" aria-hidden="true" tabindex="-1"></a>ls_it_esti_optsalgo <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">23</span>, <span class="dv">89</span>, <span class="dv">90</span>, <span class="dv">99</span>]</span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="data-structures.html#cb2-1" aria-hidden="true" tabindex="-1"></a>ls_it_esti_optsalgo <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">23</span>, <span class="dv">89</span>, <span class="dv">90</span>, <span class="dv">99</span>, <span class="dv">900</span>, <span class="dv">901</span>, <span class="dv">999</span>, <span class="dv">1000</span>]</span>
 <span id="cb2-2"><a href="data-structures.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> it_esti_optsalgo <span class="kw">in</span> ls_it_esti_optsalgo:</span>
 <span id="cb2-3"><a href="data-structures.html#cb2-3" aria-hidden="true" tabindex="-1"></a>    it_esti_optsalgo_tens <span class="op">=</span> <span class="bu">int</span>(np.floor(it_esti_optsalgo<span class="op">/</span><span class="dv">10</span>))</span>
 <span id="cb2-4"><a href="data-structures.html#cb2-4" aria-hidden="true" tabindex="-1"></a>    it_esti_optsalgo_digits <span class="op">=</span> it_esti_optsalgo<span class="op">%</span><span class="dv">10</span></span>
@@ -350,7 +350,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## it_esti_optsalgo_tens=2, it_esti_optsalgo_digits=3
 ## it_esti_optsalgo_tens=8, it_esti_optsalgo_digits=9
 ## it_esti_optsalgo_tens=9, it_esti_optsalgo_digits=0
-## it_esti_optsalgo_tens=9, it_esti_optsalgo_digits=9</code></pre>
+## it_esti_optsalgo_tens=9, it_esti_optsalgo_digits=9
+## it_esti_optsalgo_tens=90, it_esti_optsalgo_digits=0
+## it_esti_optsalgo_tens=90, it_esti_optsalgo_digits=1
+## it_esti_optsalgo_tens=99, it_esti_optsalgo_digits=9
+## it_esti_optsalgo_tens=100, it_esti_optsalgo_digits=0</code></pre>
 
 </div>
 </div>
@@ -613,111 +617,123 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <div class="sourceCode" id="cb72"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb72-1"><a href="data-structures.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb72-2"><a href="data-structures.html#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> string <span class="im">as</span> string</span>
-<span id="cb72-3"><a href="data-structures.html#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="im">as</span> random</span></code></pre></div>
-<div id="get-substring" class="section level4" number="1.1.4.1">
-<h4><span class="header-section-number">1.1.4.1</span> Get Substring</h4>
+<span id="cb72-3"><a href="data-structures.html#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="im">as</span> random</span>
+<span id="cb72-4"><a href="data-structures.html#cb72-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pprint</span></code></pre></div>
+<div id="list-of-array-count-frequency" class="section level4" number="1.1.4.1">
+<h4><span class="header-section-number">1.1.4.1</span> List of Array Count Frequency</h4>
+<p>There is a list of strings, with repeating values, count the frequence of the each unique string.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb73-1"><a href="data-structures.html#cb73-1" aria-hidden="true" tabindex="-1"></a>ls_st_status <span class="op">=</span> [<span class="st">&quot;success&quot;</span>, <span class="st">&quot;running&quot;</span>, <span class="st">&quot;running&quot;</span>, <span class="st">&quot;running&quot;</span>, <span class="st">&quot;finished&quot;</span>, <span class="st">&quot;pending&quot;</span>, <span class="st">&quot;pending&quot;</span>]</span>
+<span id="cb73-2"><a href="data-structures.html#cb73-2" aria-hidden="true" tabindex="-1"></a>ls_freq <span class="op">=</span> [ [<span class="ss">f&#39;</span><span class="sc">{</span>ls_st_status<span class="sc">.</span>count(st_status)<span class="sc">}</span><span class="ss"> of </span><span class="sc">{</span><span class="bu">len</span>(ls_st_status)<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>st_status<span class="sc">}</span><span class="ss">&#39;</span>]  <span class="cf">for</span> st_status <span class="kw">in</span> <span class="bu">set</span>(ls_st_status)]</span>
+<span id="cb73-3"><a href="data-structures.html#cb73-3" aria-hidden="true" tabindex="-1"></a>pprint.pprint(ls_freq)</span></code></pre></div>
+<pre><code>## [[&#39;3 of 7 running&#39;],
+##  [&#39;2 of 7 pending&#39;],
+##  [&#39;1 of 7 success&#39;],
+##  [&#39;1 of 7 finished&#39;]]</code></pre>
+</div>
+<div id="get-substring" class="section level4" number="1.1.4.2">
+<h4><span class="header-section-number">1.1.4.2</span> Get Substring</h4>
 <p>Given string, get substring after a word.</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb73-1"><a href="data-structures.html#cb73-1" aria-hidden="true" tabindex="-1"></a>st_func_stack_code <span class="op">=</span> <span class="st">&#39;dc_ls_combo_type = pyfan_amto_lsdcconvert.ff_ls2dc(ls_combo_type,&#39;</span></span>
-<span id="cb73-2"><a href="data-structures.html#cb73-2" aria-hidden="true" tabindex="-1"></a>st_search_break <span class="op">=</span> <span class="st">&#39;ff_ls2dc(&#39;</span></span>
-<span id="cb73-3"><a href="data-structures.html#cb73-3" aria-hidden="true" tabindex="-1"></a>st_string_after <span class="op">=</span> st_func_stack_code.split(st_search_break)[<span class="dv">1</span>]</span>
-<span id="cb73-4"><a href="data-structures.html#cb73-4" aria-hidden="true" tabindex="-1"></a>st_search_break <span class="op">=</span> <span class="st">&#39;,&#39;</span></span>
-<span id="cb73-5"><a href="data-structures.html#cb73-5" aria-hidden="true" tabindex="-1"></a>st_string_after <span class="op">=</span> st_func_stack_code.split(st_search_break)[<span class="dv">1</span>]</span>
-<span id="cb73-6"><a href="data-structures.html#cb73-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span>st_string_after<span class="op">=</span><span class="sc">}</span><span class="ss">&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb75-1"><a href="data-structures.html#cb75-1" aria-hidden="true" tabindex="-1"></a>st_func_stack_code <span class="op">=</span> <span class="st">&#39;dc_ls_combo_type = pyfan_amto_lsdcconvert.ff_ls2dc(ls_combo_type,&#39;</span></span>
+<span id="cb75-2"><a href="data-structures.html#cb75-2" aria-hidden="true" tabindex="-1"></a>st_search_break <span class="op">=</span> <span class="st">&#39;ff_ls2dc(&#39;</span></span>
+<span id="cb75-3"><a href="data-structures.html#cb75-3" aria-hidden="true" tabindex="-1"></a>st_string_after <span class="op">=</span> st_func_stack_code.split(st_search_break)[<span class="dv">1</span>]</span>
+<span id="cb75-4"><a href="data-structures.html#cb75-4" aria-hidden="true" tabindex="-1"></a>st_search_break <span class="op">=</span> <span class="st">&#39;,&#39;</span></span>
+<span id="cb75-5"><a href="data-structures.html#cb75-5" aria-hidden="true" tabindex="-1"></a>st_string_after <span class="op">=</span> st_func_stack_code.split(st_search_break)[<span class="dv">1</span>]</span>
+<span id="cb75-6"><a href="data-structures.html#cb75-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span>st_string_after<span class="op">=</span><span class="sc">}</span><span class="ss">&#39;</span>)</span></code></pre></div>
 <pre><code>## st_string_after=&#39;&#39;</code></pre>
 </div>
-<div id="generate-random-strings" class="section level4" number="1.1.4.2">
-<h4><span class="header-section-number">1.1.4.2</span> Generate Random Strings</h4>
+<div id="generate-random-strings" class="section level4" number="1.1.4.3">
+<h4><span class="header-section-number">1.1.4.3</span> Generate Random Strings</h4>
 <p>Generate some random strings:</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb75-1"><a href="data-structures.html#cb75-1" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">123</span>)</span>
-<span id="cb75-2"><a href="data-structures.html#cb75-2" aria-hidden="true" tabindex="-1"></a>it_word_length <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb75-3"><a href="data-structures.html#cb75-3" aria-hidden="true" tabindex="-1"></a>st_rand_word <span class="op">=</span> <span class="st">&#39;&#39;</span>.join(random.choice(string.ascii_lowercase) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(it_word_length))</span>
-<span id="cb75-4"><a href="data-structures.html#cb75-4" aria-hidden="true" tabindex="-1"></a>st_rand_word <span class="op">=</span> st_rand_word.capitalize()</span>
-<span id="cb75-5"><a href="data-structures.html#cb75-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span>st_rand_word<span class="op">=</span><span class="sc">}</span><span class="ss">&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb77-1"><a href="data-structures.html#cb77-1" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">123</span>)</span>
+<span id="cb77-2"><a href="data-structures.html#cb77-2" aria-hidden="true" tabindex="-1"></a>it_word_length <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb77-3"><a href="data-structures.html#cb77-3" aria-hidden="true" tabindex="-1"></a>st_rand_word <span class="op">=</span> <span class="st">&#39;&#39;</span>.join(random.choice(string.ascii_lowercase) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(it_word_length))</span>
+<span id="cb77-4"><a href="data-structures.html#cb77-4" aria-hidden="true" tabindex="-1"></a>st_rand_word <span class="op">=</span> st_rand_word.capitalize()</span>
+<span id="cb77-5"><a href="data-structures.html#cb77-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span>st_rand_word<span class="op">=</span><span class="sc">}</span><span class="ss">&#39;</span>)</span></code></pre></div>
 <pre><code>## st_rand_word=&#39;Bicyn&#39;</code></pre>
 <p>Generate a block or random text and then convert it to a one list of strings:</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb77-1"><a href="data-structures.html#cb77-1" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">123</span>)</span>
-<span id="cb77-2"><a href="data-structures.html#cb77-2" aria-hidden="true" tabindex="-1"></a>it_words_count <span class="op">=</span> <span class="dv">15</span></span>
-<span id="cb77-3"><a href="data-structures.html#cb77-3" aria-hidden="true" tabindex="-1"></a>it_word_length <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb77-4"><a href="data-structures.html#cb77-4" aria-hidden="true" tabindex="-1"></a>st_rand_word_block <span class="op">=</span> <span class="st">&#39;&#39;</span>.join(random.choice(string.ascii_lowercase) <span class="cf">for</span> ctr <span class="kw">in</span> <span class="bu">range</span>(it_word_length<span class="op">*</span>it_words_count))</span>
-<span id="cb77-5"><a href="data-structures.html#cb77-5" aria-hidden="true" tabindex="-1"></a>ls_st_rand_word <span class="op">=</span> [st_rand_word_block[ctr: ctr <span class="op">+</span> it_word_length].capitalize() </span>
-<span id="cb77-6"><a href="data-structures.html#cb77-6" aria-hidden="true" tabindex="-1"></a>                   <span class="cf">for</span> ctr <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(st_rand_word_block), it_word_length)]</span>
-<span id="cb77-7"><a href="data-structures.html#cb77-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span>ls_st_rand_word<span class="op">=</span><span class="sc">}</span><span class="ss">&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb79-1"><a href="data-structures.html#cb79-1" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">123</span>)</span>
+<span id="cb79-2"><a href="data-structures.html#cb79-2" aria-hidden="true" tabindex="-1"></a>it_words_count <span class="op">=</span> <span class="dv">15</span></span>
+<span id="cb79-3"><a href="data-structures.html#cb79-3" aria-hidden="true" tabindex="-1"></a>it_word_length <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb79-4"><a href="data-structures.html#cb79-4" aria-hidden="true" tabindex="-1"></a>st_rand_word_block <span class="op">=</span> <span class="st">&#39;&#39;</span>.join(random.choice(string.ascii_lowercase) <span class="cf">for</span> ctr <span class="kw">in</span> <span class="bu">range</span>(it_word_length<span class="op">*</span>it_words_count))</span>
+<span id="cb79-5"><a href="data-structures.html#cb79-5" aria-hidden="true" tabindex="-1"></a>ls_st_rand_word <span class="op">=</span> [st_rand_word_block[ctr: ctr <span class="op">+</span> it_word_length].capitalize() </span>
+<span id="cb79-6"><a href="data-structures.html#cb79-6" aria-hidden="true" tabindex="-1"></a>                   <span class="cf">for</span> ctr <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(st_rand_word_block), it_word_length)]</span>
+<span id="cb79-7"><a href="data-structures.html#cb79-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span>ls_st_rand_word<span class="op">=</span><span class="sc">}</span><span class="ss">&#39;</span>)</span></code></pre></div>
 <pre><code>## ls_st_rand_word=[&#39;Bicyn&#39;, &#39;Idbmr&#39;, &#39;Rkkbf&#39;, &#39;Ekrkw&#39;, &#39;Hfany&#39;, &#39;Ctmca&#39;, &#39;Kxodb&#39;, &#39;Cveez&#39;, &#39;Ajnsp&#39;, &#39;Ipbyj&#39;, &#39;Kqzpg&#39;, &#39;Tuqsz&#39;, &#39;Kamyu&#39;, &#39;Qnvru&#39;, &#39;Zvtpq&#39;]</code></pre>
 <p>Reshape the array of words to a matrix:</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb79-1"><a href="data-structures.html#cb79-1" aria-hidden="true" tabindex="-1"></a>mt_st_rand_word <span class="op">=</span> np.reshape(ls_st_rand_word, [<span class="dv">3</span>,<span class="dv">5</span>])</span>
-<span id="cb79-2"><a href="data-structures.html#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span>mt_st_rand_word<span class="op">=</span><span class="sc">}</span><span class="ss">&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb81-1"><a href="data-structures.html#cb81-1" aria-hidden="true" tabindex="-1"></a>mt_st_rand_word <span class="op">=</span> np.reshape(ls_st_rand_word, [<span class="dv">3</span>,<span class="dv">5</span>])</span>
+<span id="cb81-2"><a href="data-structures.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span>mt_st_rand_word<span class="op">=</span><span class="sc">}</span><span class="ss">&#39;</span>)</span></code></pre></div>
 <pre><code>## mt_st_rand_word=array([[&#39;Bicyn&#39;, &#39;Idbmr&#39;, &#39;Rkkbf&#39;, &#39;Ekrkw&#39;, &#39;Hfany&#39;],
 ##        [&#39;Ctmca&#39;, &#39;Kxodb&#39;, &#39;Cveez&#39;, &#39;Ajnsp&#39;, &#39;Ipbyj&#39;],
 ##        [&#39;Kqzpg&#39;, &#39;Tuqsz&#39;, &#39;Kamyu&#39;, &#39;Qnvru&#39;, &#39;Zvtpq&#39;]], dtype=&#39;&lt;U5&#39;)</code></pre>
-<div class="sourceCode" id="cb81"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb81-1"><a href="data-structures.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span>mt_st_rand_word<span class="sc">.</span>shape<span class="op">=</span><span class="sc">}</span><span class="ss">&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb83-1"><a href="data-structures.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span>mt_st_rand_word<span class="sc">.</span>shape<span class="op">=</span><span class="sc">}</span><span class="ss">&#39;</span>)</span></code></pre></div>
 <pre><code>## mt_st_rand_word.shape=(3, 5)</code></pre>
-<div class="sourceCode" id="cb83"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb83-1"><a href="data-structures.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span><span class="bu">type</span>(mt_st_rand_word)<span class="op">=</span><span class="sc">}</span><span class="ss">&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb85-1"><a href="data-structures.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span><span class="bu">type</span>(mt_st_rand_word)<span class="op">=</span><span class="sc">}</span><span class="ss">&#39;</span>)</span></code></pre></div>
 <pre><code>## type(mt_st_rand_word)=&lt;class &#39;numpy.ndarray&#39;&gt;</code></pre>
 </div>
-<div id="add-string-suffix-to-numeric-array" class="section level4" number="1.1.4.3">
-<h4><span class="header-section-number">1.1.4.3</span> Add String Suffix to Numeric Array</h4>
+<div id="add-string-suffix-to-numeric-array" class="section level4" number="1.1.4.4">
+<h4><span class="header-section-number">1.1.4.4</span> Add String Suffix to Numeric Array</h4>
 <p>Given an numeric array, add string, for example to generate sequencial column names with suffix c:</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb85-1"><a href="data-structures.html#cb85-1" aria-hidden="true" tabindex="-1"></a>ar_st_colnames <span class="op">=</span> [ <span class="st">&#39;s&#39;</span> <span class="op">+</span> <span class="bu">str</span>(it_col) <span class="cf">for</span> it_col <span class="kw">in</span> np.array(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">3</span>))]</span>
-<span id="cb85-2"><a href="data-structures.html#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ar_st_colnames)</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb87-1"><a href="data-structures.html#cb87-1" aria-hidden="true" tabindex="-1"></a>ar_st_colnames <span class="op">=</span> [ <span class="st">&#39;s&#39;</span> <span class="op">+</span> <span class="bu">str</span>(it_col) <span class="cf">for</span> it_col <span class="kw">in</span> np.array(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">3</span>))]</span>
+<span id="cb87-2"><a href="data-structures.html#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ar_st_colnames)</span></code></pre></div>
 <pre><code>## [&#39;s1&#39;, &#39;s2&#39;]</code></pre>
 </div>
-<div id="search-if-names-include-strings" class="section level4" number="1.1.4.4">
-<h4><span class="header-section-number">1.1.4.4</span> Search if Names Include Strings</h4>
+<div id="search-if-names-include-strings" class="section level4" number="1.1.4.5">
+<h4><span class="header-section-number">1.1.4.5</span> Search if Names Include Strings</h4>
 <p>Given a list of strings, loop but skip if string contains elements string list.</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb87-1"><a href="data-structures.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define string</span></span>
-<span id="cb87-2"><a href="data-structures.html#cb87-2" aria-hidden="true" tabindex="-1"></a>ls_st_ignore <span class="op">=</span> [<span class="st">&#39;abc&#39;</span>, <span class="st">&#39;efg&#39;</span>, <span class="st">&#39;xyz&#39;</span>]</span>
-<span id="cb87-3"><a href="data-structures.html#cb87-3" aria-hidden="true" tabindex="-1"></a>ls_st_loop <span class="op">=</span> [<span class="st">&#39;ab cefg sdf&#39;</span>, <span class="st">&#39;12345&#39;</span>, <span class="st">&#39;xyz&#39;</span>, <span class="st">&#39;abc xyz&#39;</span>, <span class="st">&#39;good morning&#39;</span>]</span>
-<span id="cb87-4"><a href="data-structures.html#cb87-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb87-5"><a href="data-structures.html#cb87-5" aria-hidden="true" tabindex="-1"></a><span class="co"># zip and loop and replace</span></span>
-<span id="cb87-6"><a href="data-structures.html#cb87-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> st_loop <span class="kw">in</span> ls_st_loop:</span>
-<span id="cb87-7"><a href="data-structures.html#cb87-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="bu">sum</span>([st_ignore <span class="kw">in</span> st_loop <span class="cf">for</span> st_ignore <span class="kw">in</span> ls_st_ignore]):</span>
-<span id="cb87-8"><a href="data-structures.html#cb87-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&#39;skip:&#39;</span>, st_loop)</span>
-<span id="cb87-9"><a href="data-structures.html#cb87-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:</span>
-<span id="cb87-10"><a href="data-structures.html#cb87-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&#39;not skip:&#39;</span>, st_loop)</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb89-1"><a href="data-structures.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define string</span></span>
+<span id="cb89-2"><a href="data-structures.html#cb89-2" aria-hidden="true" tabindex="-1"></a>ls_st_ignore <span class="op">=</span> [<span class="st">&#39;abc&#39;</span>, <span class="st">&#39;efg&#39;</span>, <span class="st">&#39;xyz&#39;</span>]</span>
+<span id="cb89-3"><a href="data-structures.html#cb89-3" aria-hidden="true" tabindex="-1"></a>ls_st_loop <span class="op">=</span> [<span class="st">&#39;ab cefg sdf&#39;</span>, <span class="st">&#39;12345&#39;</span>, <span class="st">&#39;xyz&#39;</span>, <span class="st">&#39;abc xyz&#39;</span>, <span class="st">&#39;good morning&#39;</span>]</span>
+<span id="cb89-4"><a href="data-structures.html#cb89-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-5"><a href="data-structures.html#cb89-5" aria-hidden="true" tabindex="-1"></a><span class="co"># zip and loop and replace</span></span>
+<span id="cb89-6"><a href="data-structures.html#cb89-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> st_loop <span class="kw">in</span> ls_st_loop:</span>
+<span id="cb89-7"><a href="data-structures.html#cb89-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="bu">sum</span>([st_ignore <span class="kw">in</span> st_loop <span class="cf">for</span> st_ignore <span class="kw">in</span> ls_st_ignore]):</span>
+<span id="cb89-8"><a href="data-structures.html#cb89-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&#39;skip:&#39;</span>, st_loop)</span>
+<span id="cb89-9"><a href="data-structures.html#cb89-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:</span>
+<span id="cb89-10"><a href="data-structures.html#cb89-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&#39;not skip:&#39;</span>, st_loop)</span></code></pre></div>
 <pre><code>## skip: ab cefg sdf
 ## not skip: 12345
 ## skip: xyz
 ## skip: abc xyz
 ## not skip: good morning</code></pre>
 </div>
-<div id="replace-a-set-of-strings-in-string" class="section level4" number="1.1.4.5">
-<h4><span class="header-section-number">1.1.4.5</span> Replace a Set of Strings in String</h4>
+<div id="replace-a-set-of-strings-in-string" class="section level4" number="1.1.4.6">
+<h4><span class="header-section-number">1.1.4.6</span> Replace a Set of Strings in String</h4>
 <p>Replace terms in string</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb89-1"><a href="data-structures.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define string</span></span>
-<span id="cb89-2"><a href="data-structures.html#cb89-2" aria-hidden="true" tabindex="-1"></a>st_full <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb89-3"><a href="data-structures.html#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="st">abc is a great efg, probably xyz. Yes, xyz is great, like efg. </span></span>
-<span id="cb89-4"><a href="data-structures.html#cb89-4" aria-hidden="true" tabindex="-1"></a><span class="st">eft good, EFG capitalized, efg good again. </span></span>
-<span id="cb89-5"><a href="data-structures.html#cb89-5" aria-hidden="true" tabindex="-1"></a><span class="st">A B C or abc or ABC. Interesting xyz. </span></span>
-<span id="cb89-6"><a href="data-structures.html#cb89-6" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb89-7"><a href="data-structures.html#cb89-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-8"><a href="data-structures.html#cb89-8" aria-hidden="true" tabindex="-1"></a><span class="co"># define new and old</span></span>
-<span id="cb89-9"><a href="data-structures.html#cb89-9" aria-hidden="true" tabindex="-1"></a>ls_st_old <span class="op">=</span> [<span class="st">&#39;abc&#39;</span>, <span class="st">&#39;efg&#39;</span>, <span class="st">&#39;xyz&#39;</span>]</span>
-<span id="cb89-10"><a href="data-structures.html#cb89-10" aria-hidden="true" tabindex="-1"></a>ls_st_new <span class="op">=</span> [<span class="st">&#39;123&#39;</span>, <span class="st">&#39;456&#39;</span>, <span class="st">&#39;789&#39;</span>]</span>
-<span id="cb89-11"><a href="data-structures.html#cb89-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-12"><a href="data-structures.html#cb89-12" aria-hidden="true" tabindex="-1"></a><span class="co"># zip and loop and replace</span></span>
-<span id="cb89-13"><a href="data-structures.html#cb89-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> old, new <span class="kw">in</span> <span class="bu">zip</span>(ls_st_old, ls_st_new):</span>
-<span id="cb89-14"><a href="data-structures.html#cb89-14" aria-hidden="true" tabindex="-1"></a>  st_full <span class="op">=</span> st_full.replace(old, new)</span>
-<span id="cb89-15"><a href="data-structures.html#cb89-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-16"><a href="data-structures.html#cb89-16" aria-hidden="true" tabindex="-1"></a><span class="co"># print</span></span>
-<span id="cb89-17"><a href="data-structures.html#cb89-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(st_full)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb91-1"><a href="data-structures.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define string</span></span>
+<span id="cb91-2"><a href="data-structures.html#cb91-2" aria-hidden="true" tabindex="-1"></a>st_full <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb91-3"><a href="data-structures.html#cb91-3" aria-hidden="true" tabindex="-1"></a><span class="st">abc is a great efg, probably xyz. Yes, xyz is great, like efg. </span></span>
+<span id="cb91-4"><a href="data-structures.html#cb91-4" aria-hidden="true" tabindex="-1"></a><span class="st">eft good, EFG capitalized, efg good again. </span></span>
+<span id="cb91-5"><a href="data-structures.html#cb91-5" aria-hidden="true" tabindex="-1"></a><span class="st">A B C or abc or ABC. Interesting xyz. </span></span>
+<span id="cb91-6"><a href="data-structures.html#cb91-6" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb91-7"><a href="data-structures.html#cb91-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-8"><a href="data-structures.html#cb91-8" aria-hidden="true" tabindex="-1"></a><span class="co"># define new and old</span></span>
+<span id="cb91-9"><a href="data-structures.html#cb91-9" aria-hidden="true" tabindex="-1"></a>ls_st_old <span class="op">=</span> [<span class="st">&#39;abc&#39;</span>, <span class="st">&#39;efg&#39;</span>, <span class="st">&#39;xyz&#39;</span>]</span>
+<span id="cb91-10"><a href="data-structures.html#cb91-10" aria-hidden="true" tabindex="-1"></a>ls_st_new <span class="op">=</span> [<span class="st">&#39;123&#39;</span>, <span class="st">&#39;456&#39;</span>, <span class="st">&#39;789&#39;</span>]</span>
+<span id="cb91-11"><a href="data-structures.html#cb91-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-12"><a href="data-structures.html#cb91-12" aria-hidden="true" tabindex="-1"></a><span class="co"># zip and loop and replace</span></span>
+<span id="cb91-13"><a href="data-structures.html#cb91-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> old, new <span class="kw">in</span> <span class="bu">zip</span>(ls_st_old, ls_st_new):</span>
+<span id="cb91-14"><a href="data-structures.html#cb91-14" aria-hidden="true" tabindex="-1"></a>  st_full <span class="op">=</span> st_full.replace(old, new)</span>
+<span id="cb91-15"><a href="data-structures.html#cb91-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-16"><a href="data-structures.html#cb91-16" aria-hidden="true" tabindex="-1"></a><span class="co"># print</span></span>
+<span id="cb91-17"><a href="data-structures.html#cb91-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(st_full)</span></code></pre></div>
 <pre><code>## 
 ## 123 is a great 456, probably 789. Yes, 789 is great, like 456. 
 ## eft good, EFG capitalized, 456 good again. 
 ## A B C or 123 or ABC. Interesting 789.</code></pre>
 </div>
-<div id="wrap-string-with-fixed-width" class="section level4" number="1.1.4.6">
-<h4><span class="header-section-number">1.1.4.6</span> Wrap String with Fixed Width</h4>
+<div id="wrap-string-with-fixed-width" class="section level4" number="1.1.4.7">
+<h4><span class="header-section-number">1.1.4.7</span> Wrap String with Fixed Width</h4>
 <p>Given a long string, wrap it into multiple lines with fixed width.</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb91-1"><a href="data-structures.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> textwrap</span>
-<span id="cb91-2"><a href="data-structures.html#cb91-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb91-3"><a href="data-structures.html#cb91-3" aria-hidden="true" tabindex="-1"></a><span class="co"># A long Path</span></span>
-<span id="cb91-4"><a href="data-structures.html#cb91-4" aria-hidden="true" tabindex="-1"></a>st_path <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb91-5"><a href="data-structures.html#cb91-5" aria-hidden="true" tabindex="-1"></a><span class="st">C:/Users/fan/Documents/Dropbox (UH-ECON)/Project Emily Minority Survey/EthLang/reg_lang_abi_cls_mino/tab3_fm/attain_m_vs_f/tab3_mand_talk_m2c_hfracle02.tex</span></span>
-<span id="cb91-6"><a href="data-structures.html#cb91-6" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb91-7"><a href="data-structures.html#cb91-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb91-8"><a href="data-structures.html#cb91-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Wrap text with tight width</span></span>
-<span id="cb91-9"><a href="data-structures.html#cb91-9" aria-hidden="true" tabindex="-1"></a>st_wrapped <span class="op">=</span> textwrap.fill(st_path, width <span class="op">=</span> <span class="dv">20</span>)</span>
-<span id="cb91-10"><a href="data-structures.html#cb91-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(st_wrapped)</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb93-1"><a href="data-structures.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> textwrap</span>
+<span id="cb93-2"><a href="data-structures.html#cb93-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-3"><a href="data-structures.html#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="co"># A long Path</span></span>
+<span id="cb93-4"><a href="data-structures.html#cb93-4" aria-hidden="true" tabindex="-1"></a>st_path <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb93-5"><a href="data-structures.html#cb93-5" aria-hidden="true" tabindex="-1"></a><span class="st">C:/Users/fan/Documents/Dropbox (UH-ECON)/Project Emily Minority Survey/EthLang/reg_lang_abi_cls_mino/tab3_fm/attain_m_vs_f/tab3_mand_talk_m2c_hfracle02.tex</span></span>
+<span id="cb93-6"><a href="data-structures.html#cb93-6" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb93-7"><a href="data-structures.html#cb93-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-8"><a href="data-structures.html#cb93-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Wrap text with tight width</span></span>
+<span id="cb93-9"><a href="data-structures.html#cb93-9" aria-hidden="true" tabindex="-1"></a>st_wrapped <span class="op">=</span> textwrap.fill(st_path, width <span class="op">=</span> <span class="dv">20</span>)</span>
+<span id="cb93-10"><a href="data-structures.html#cb93-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(st_wrapped)</span></code></pre></div>
 <pre><code>##  C:/Users/fan/Docume
 ## nts/Dropbox (UH-
 ## ECON)/Project Emily
@@ -727,19 +743,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## _m_vs_f/tab3_mand_ta
 ## lk_m2c_hfracle02.tex</code></pre>
 <p>Combine Strings that are wrapped and not Wrapped</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb93-1"><a href="data-structures.html#cb93-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb93-2"><a href="data-structures.html#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Paths</span></span>
-<span id="cb93-3"><a href="data-structures.html#cb93-3" aria-hidden="true" tabindex="-1"></a>st_path_a <span class="op">=</span> <span class="st">&quot;C:/Users/fan/Documents/Dropbox (UH-ECON)/Project Emily Minority Survey/EthLang/reg_lang_abi_cls_mino/tab3_fm/attain_m_vs_f/tab3_mand_talk_m2c_hfracle02.tex&quot;</span></span>
-<span id="cb93-4"><a href="data-structures.html#cb93-4" aria-hidden="true" tabindex="-1"></a>st_path_b <span class="op">=</span> <span class="st">&#39;C:/Users/fan/R4Econ/support/development/fs_packaging.html&#39;</span></span>
-<span id="cb93-5"><a href="data-structures.html#cb93-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb93-6"><a href="data-structures.html#cb93-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine Strings and Wrap</span></span>
-<span id="cb93-7"><a href="data-structures.html#cb93-7" aria-hidden="true" tabindex="-1"></a>str_dc_records <span class="op">=</span> <span class="st">&#39;First Path:&#39;</span>.upper() <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span> <span class="op">+</span> <span class="op">\</span></span>
-<span id="cb93-8"><a href="data-structures.html#cb93-8" aria-hidden="true" tabindex="-1"></a>                 textwrap.fill(st_path_a, width<span class="op">=</span><span class="dv">25</span>) <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\n\n</span><span class="st">&#39;</span> <span class="op">+</span> <span class="op">\</span></span>
-<span id="cb93-9"><a href="data-structures.html#cb93-9" aria-hidden="true" tabindex="-1"></a>                 <span class="co">&#39;Second Path:&#39;</span>.upper() <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span> <span class="op">+</span> <span class="op">\</span></span>
-<span id="cb93-10"><a href="data-structures.html#cb93-10" aria-hidden="true" tabindex="-1"></a>                 textwrap.fill(st_path_b, width<span class="op">=</span><span class="dv">25</span>)</span>
-<span id="cb93-11"><a href="data-structures.html#cb93-11" aria-hidden="true" tabindex="-1"></a>              </span>
-<span id="cb93-12"><a href="data-structures.html#cb93-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Print</span></span>
-<span id="cb93-13"><a href="data-structures.html#cb93-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(str_dc_records)                 </span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb95-1"><a href="data-structures.html#cb95-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-2"><a href="data-structures.html#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Paths</span></span>
+<span id="cb95-3"><a href="data-structures.html#cb95-3" aria-hidden="true" tabindex="-1"></a>st_path_a <span class="op">=</span> <span class="st">&quot;C:/Users/fan/Documents/Dropbox (UH-ECON)/Project Emily Minority Survey/EthLang/reg_lang_abi_cls_mino/tab3_fm/attain_m_vs_f/tab3_mand_talk_m2c_hfracle02.tex&quot;</span></span>
+<span id="cb95-4"><a href="data-structures.html#cb95-4" aria-hidden="true" tabindex="-1"></a>st_path_b <span class="op">=</span> <span class="st">&#39;C:/Users/fan/R4Econ/support/development/fs_packaging.html&#39;</span></span>
+<span id="cb95-5"><a href="data-structures.html#cb95-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-6"><a href="data-structures.html#cb95-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine Strings and Wrap</span></span>
+<span id="cb95-7"><a href="data-structures.html#cb95-7" aria-hidden="true" tabindex="-1"></a>str_dc_records <span class="op">=</span> <span class="st">&#39;First Path:&#39;</span>.upper() <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb95-8"><a href="data-structures.html#cb95-8" aria-hidden="true" tabindex="-1"></a>                 textwrap.fill(st_path_a, width<span class="op">=</span><span class="dv">25</span>) <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\n\n</span><span class="st">&#39;</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb95-9"><a href="data-structures.html#cb95-9" aria-hidden="true" tabindex="-1"></a>                 <span class="co">&#39;Second Path:&#39;</span>.upper() <span class="op">+</span> <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb95-10"><a href="data-structures.html#cb95-10" aria-hidden="true" tabindex="-1"></a>                 textwrap.fill(st_path_b, width<span class="op">=</span><span class="dv">25</span>)</span>
+<span id="cb95-11"><a href="data-structures.html#cb95-11" aria-hidden="true" tabindex="-1"></a>              </span>
+<span id="cb95-12"><a href="data-structures.html#cb95-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Print</span></span>
+<span id="cb95-13"><a href="data-structures.html#cb95-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(str_dc_records)                 </span></code></pre></div>
 <pre><code>## FIRST PATH:
 ## C:/Users/fan/Documents/Dr
 ## opbox (UH-ECON)/Project
@@ -754,50 +770,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## rt/development/fs_packagi
 ## ng.html</code></pre>
 </div>
-<div id="change-round-for-lists-of-string-estimates" class="section level4" number="1.1.4.7">
-<h4><span class="header-section-number">1.1.4.7</span> Change Round for Lists of String Estimates</h4>
+<div id="change-round-for-lists-of-string-estimates" class="section level4" number="1.1.4.8">
+<h4><span class="header-section-number">1.1.4.8</span> Change Round for Lists of String Estimates</h4>
 <p>Here we have two strings in a list, with point estimates and corresponding standard errors. Estimates are separated by commas. We want to change the number of decimal points shown and set appropriate roundings. Several steps: (1) split string by comma (2) Loop over (3) extract numerical elements (4) recover</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb95-1"><a href="data-structures.html#cb95-1" aria-hidden="true" tabindex="-1"></a>it_round_decimal <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb95-2"><a href="data-structures.html#cb95-2" aria-hidden="true" tabindex="-1"></a>ls_st_all_estimates <span class="op">=</span> [<span class="st">&quot;84.506***, 91.758***, 107.950***, 115.879***, 133.560***</span><span class="ch">\n</span><span class="st">&quot;</span>,</span>
-<span id="cb95-3"><a href="data-structures.html#cb95-3" aria-hidden="true" tabindex="-1"></a>                       <span class="st">&quot;(7.796), (4.848), (4.111), (5.044), (6.961)</span><span class="ch">\n</span><span class="st">&quot;</span>,</span>
-<span id="cb95-4"><a href="data-structures.html#cb95-4" aria-hidden="true" tabindex="-1"></a>                       <span class="st">&quot;68.180***, 47.921***, 47.127***, 51.366***, 41.764***</span><span class="ch">\n</span><span class="st">&quot;</span>,</span>
-<span id="cb95-5"><a href="data-structures.html#cb95-5" aria-hidden="true" tabindex="-1"></a>                       <span class="st">&quot;(8.986), (5.368), (4.995), (5.099), (8.637)</span><span class="ch">\n</span><span class="st">&quot;</span>]</span>
-<span id="cb95-6"><a href="data-structures.html#cb95-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb95-7"><a href="data-structures.html#cb95-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> st_all_estimates <span class="kw">in</span> ls_st_all_estimates:</span>
-<span id="cb95-8"><a href="data-structures.html#cb95-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb95-9"><a href="data-structures.html#cb95-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># delete linebreak at end of line </span></span>
-<span id="cb95-10"><a href="data-structures.html#cb95-10" aria-hidden="true" tabindex="-1"></a>    st_all_estimates <span class="op">=</span> st_all_estimates.replace(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="st">&quot;&quot;</span>)</span>
-<span id="cb95-11"><a href="data-structures.html#cb95-11" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb95-12"><a href="data-structures.html#cb95-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># split</span></span>
-<span id="cb95-13"><a href="data-structures.html#cb95-13" aria-hidden="true" tabindex="-1"></a>    ls_st_estimates <span class="op">=</span> st_all_estimates.split(<span class="st">&quot;,&quot;</span>)</span>
-<span id="cb95-14"><a href="data-structures.html#cb95-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb95-15"><a href="data-structures.html#cb95-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Loop over each value separated by commas</span></span>
-<span id="cb95-16"><a href="data-structures.html#cb95-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> it_esti_ctr, st_esti <span class="kw">in</span> <span class="bu">enumerate</span>(ls_st_estimates):</span>
-<span id="cb95-17"><a href="data-structures.html#cb95-17" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb95-18"><a href="data-structures.html#cb95-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Default update is to keep current</span></span>
-<span id="cb95-19"><a href="data-structures.html#cb95-19" aria-hidden="true" tabindex="-1"></a>        st_esti_update <span class="op">=</span> st_esti</span>
-<span id="cb95-20"><a href="data-structures.html#cb95-20" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb95-21"><a href="data-structures.html#cb95-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># If estimates, might have stars</span></span>
-<span id="cb95-22"><a href="data-structures.html#cb95-22" aria-hidden="true" tabindex="-1"></a>        st_esti_numeric <span class="op">=</span> st_esti.strip()</span>
-<span id="cb95-23"><a href="data-structures.html#cb95-23" aria-hidden="true" tabindex="-1"></a>        st_esti_numeric <span class="op">=</span> st_esti_numeric.replace(<span class="st">&quot;*&quot;</span>, <span class="st">&quot;&quot;</span>)</span>
-<span id="cb95-24"><a href="data-structures.html#cb95-24" aria-hidden="true" tabindex="-1"></a>        st_esti_numeric <span class="op">=</span> st_esti_numeric.replace(<span class="st">&quot;(&quot;</span>, <span class="st">&quot;&quot;</span>)</span>
-<span id="cb95-25"><a href="data-structures.html#cb95-25" aria-hidden="true" tabindex="-1"></a>        st_esti_numeric <span class="op">=</span> st_esti_numeric.replace(<span class="st">&quot;)&quot;</span>, <span class="st">&quot;&quot;</span>)</span>
-<span id="cb95-26"><a href="data-structures.html#cb95-26" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb95-27"><a href="data-structures.html#cb95-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Decimal Rounding</span></span>
-<span id="cb95-28"><a href="data-structures.html#cb95-28" aria-hidden="true" tabindex="-1"></a>        fl_esti_rounded <span class="op">=</span> <span class="bu">round</span>(<span class="bu">float</span>(st_esti_numeric), it_round_decimal)</span>
-<span id="cb95-29"><a href="data-structures.html#cb95-29" aria-hidden="true" tabindex="-1"></a>        st_esti_rounded <span class="op">=</span> <span class="ss">f&#39;</span><span class="sc">{</span>fl_esti_rounded<span class="sc">:.</span>{it_round_decimal}<span class="sc">f}</span><span class="ss">&#39;</span></span>
-<span id="cb95-30"><a href="data-structures.html#cb95-30" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb95-31"><a href="data-structures.html#cb95-31" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Replace</span></span>
-<span id="cb95-32"><a href="data-structures.html#cb95-32" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span>st_esti<span class="op">=</span><span class="sc">}</span><span class="ss"> + </span><span class="sc">{</span>st_esti_numeric<span class="op">=</span><span class="sc">}</span><span class="ss"> + </span><span class="sc">{</span>st_esti_rounded<span class="op">=</span><span class="sc">}</span><span class="ss">&#39;</span>)</span>
-<span id="cb95-33"><a href="data-structures.html#cb95-33" aria-hidden="true" tabindex="-1"></a>        st_esti_rounded <span class="op">=</span> st_esti.replace(st_esti_numeric, st_esti_rounded)</span>
-<span id="cb95-34"><a href="data-structures.html#cb95-34" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb95-35"><a href="data-structures.html#cb95-35" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Update List</span></span>
-<span id="cb95-36"><a href="data-structures.html#cb95-36" aria-hidden="true" tabindex="-1"></a>        ls_st_estimates[it_esti_ctr] <span class="op">=</span> st_esti_rounded</span>
-<span id="cb95-37"><a href="data-structures.html#cb95-37" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb95-38"><a href="data-structures.html#cb95-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Flatten comman</span></span>
-<span id="cb95-39"><a href="data-structures.html#cb95-39" aria-hidden="true" tabindex="-1"></a>    st_text_out <span class="op">=</span> <span class="st">&#39;,&#39;</span>.join(ls_st_estimates)</span>
-<span id="cb95-40"><a href="data-structures.html#cb95-40" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&#39;</span><span class="ch">\n</span><span class="sc">{</span>st_text_out<span class="op">=</span><span class="sc">}</span><span class="ch">\n</span><span class="ss">&#39;</span>)</span>
-<span id="cb95-41"><a href="data-structures.html#cb95-41" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb97-1"><a href="data-structures.html#cb97-1" aria-hidden="true" tabindex="-1"></a>it_round_decimal <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb97-2"><a href="data-structures.html#cb97-2" aria-hidden="true" tabindex="-1"></a>ls_st_all_estimates <span class="op">=</span> [<span class="st">&quot;84.506***, 91.758***, 107.950***, 115.879***, 133.560***</span><span class="ch">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb97-3"><a href="data-structures.html#cb97-3" aria-hidden="true" tabindex="-1"></a>                       <span class="st">&quot;(7.796), (4.848), (4.111), (5.044), (6.961)</span><span class="ch">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb97-4"><a href="data-structures.html#cb97-4" aria-hidden="true" tabindex="-1"></a>                       <span class="st">&quot;68.180***, 47.921***, 47.127***, 51.366***, 41.764***</span><span class="ch">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb97-5"><a href="data-structures.html#cb97-5" aria-hidden="true" tabindex="-1"></a>                       <span class="st">&quot;(8.986), (5.368), (4.995), (5.099), (8.637)</span><span class="ch">\n</span><span class="st">&quot;</span>]</span>
+<span id="cb97-6"><a href="data-structures.html#cb97-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-7"><a href="data-structures.html#cb97-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> st_all_estimates <span class="kw">in</span> ls_st_all_estimates:</span>
+<span id="cb97-8"><a href="data-structures.html#cb97-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-9"><a href="data-structures.html#cb97-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># delete linebreak at end of line </span></span>
+<span id="cb97-10"><a href="data-structures.html#cb97-10" aria-hidden="true" tabindex="-1"></a>    st_all_estimates <span class="op">=</span> st_all_estimates.replace(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="st">&quot;&quot;</span>)</span>
+<span id="cb97-11"><a href="data-structures.html#cb97-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb97-12"><a href="data-structures.html#cb97-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># split</span></span>
+<span id="cb97-13"><a href="data-structures.html#cb97-13" aria-hidden="true" tabindex="-1"></a>    ls_st_estimates <span class="op">=</span> st_all_estimates.split(<span class="st">&quot;,&quot;</span>)</span>
+<span id="cb97-14"><a href="data-structures.html#cb97-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-15"><a href="data-structures.html#cb97-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Loop over each value separated by commas</span></span>
+<span id="cb97-16"><a href="data-structures.html#cb97-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> it_esti_ctr, st_esti <span class="kw">in</span> <span class="bu">enumerate</span>(ls_st_estimates):</span>
+<span id="cb97-17"><a href="data-structures.html#cb97-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb97-18"><a href="data-structures.html#cb97-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Default update is to keep current</span></span>
+<span id="cb97-19"><a href="data-structures.html#cb97-19" aria-hidden="true" tabindex="-1"></a>        st_esti_update <span class="op">=</span> st_esti</span>
+<span id="cb97-20"><a href="data-structures.html#cb97-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb97-21"><a href="data-structures.html#cb97-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># If estimates, might have stars</span></span>
+<span id="cb97-22"><a href="data-structures.html#cb97-22" aria-hidden="true" tabindex="-1"></a>        st_esti_numeric <span class="op">=</span> st_esti.strip()</span>
+<span id="cb97-23"><a href="data-structures.html#cb97-23" aria-hidden="true" tabindex="-1"></a>        st_esti_numeric <span class="op">=</span> st_esti_numeric.replace(<span class="st">&quot;*&quot;</span>, <span class="st">&quot;&quot;</span>)</span>
+<span id="cb97-24"><a href="data-structures.html#cb97-24" aria-hidden="true" tabindex="-1"></a>        st_esti_numeric <span class="op">=</span> st_esti_numeric.replace(<span class="st">&quot;(&quot;</span>, <span class="st">&quot;&quot;</span>)</span>
+<span id="cb97-25"><a href="data-structures.html#cb97-25" aria-hidden="true" tabindex="-1"></a>        st_esti_numeric <span class="op">=</span> st_esti_numeric.replace(<span class="st">&quot;)&quot;</span>, <span class="st">&quot;&quot;</span>)</span>
+<span id="cb97-26"><a href="data-structures.html#cb97-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb97-27"><a href="data-structures.html#cb97-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Decimal Rounding</span></span>
+<span id="cb97-28"><a href="data-structures.html#cb97-28" aria-hidden="true" tabindex="-1"></a>        fl_esti_rounded <span class="op">=</span> <span class="bu">round</span>(<span class="bu">float</span>(st_esti_numeric), it_round_decimal)</span>
+<span id="cb97-29"><a href="data-structures.html#cb97-29" aria-hidden="true" tabindex="-1"></a>        st_esti_rounded <span class="op">=</span> <span class="ss">f&#39;</span><span class="sc">{</span>fl_esti_rounded<span class="sc">:.</span>{it_round_decimal}<span class="sc">f}</span><span class="ss">&#39;</span></span>
+<span id="cb97-30"><a href="data-structures.html#cb97-30" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb97-31"><a href="data-structures.html#cb97-31" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Replace</span></span>
+<span id="cb97-32"><a href="data-structures.html#cb97-32" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span>st_esti<span class="op">=</span><span class="sc">}</span><span class="ss"> + </span><span class="sc">{</span>st_esti_numeric<span class="op">=</span><span class="sc">}</span><span class="ss"> + </span><span class="sc">{</span>st_esti_rounded<span class="op">=</span><span class="sc">}</span><span class="ss">&#39;</span>)</span>
+<span id="cb97-33"><a href="data-structures.html#cb97-33" aria-hidden="true" tabindex="-1"></a>        st_esti_rounded <span class="op">=</span> st_esti.replace(st_esti_numeric, st_esti_rounded)</span>
+<span id="cb97-34"><a href="data-structures.html#cb97-34" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb97-35"><a href="data-structures.html#cb97-35" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Update List</span></span>
+<span id="cb97-36"><a href="data-structures.html#cb97-36" aria-hidden="true" tabindex="-1"></a>        ls_st_estimates[it_esti_ctr] <span class="op">=</span> st_esti_rounded</span>
+<span id="cb97-37"><a href="data-structures.html#cb97-37" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb97-38"><a href="data-structures.html#cb97-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Flatten comman</span></span>
+<span id="cb97-39"><a href="data-structures.html#cb97-39" aria-hidden="true" tabindex="-1"></a>    st_text_out <span class="op">=</span> <span class="st">&#39;,&#39;</span>.join(ls_st_estimates)</span>
+<span id="cb97-40"><a href="data-structures.html#cb97-40" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&#39;</span><span class="ch">\n</span><span class="sc">{</span>st_text_out<span class="op">=</span><span class="sc">}</span><span class="ch">\n</span><span class="ss">&#39;</span>)</span>
+<span id="cb97-41"><a href="data-structures.html#cb97-41" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span></code></pre></div>
 <pre><code>## st_esti=&#39;84.506***&#39; + st_esti_numeric=&#39;84.506&#39; + st_esti_rounded=&#39;84.5&#39;
 ## st_esti=&#39; 91.758***&#39; + st_esti_numeric=&#39;91.758&#39; + st_esti_rounded=&#39;91.8&#39;
 ## st_esti=&#39; 107.950***&#39; + st_esti_numeric=&#39;107.950&#39; + st_esti_rounded=&#39;108.0&#39;
@@ -844,18 +860,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>Go back to <a href="http://fanwangecon.github.io/">fan</a>’s <a href="https://fanwangecon.github.io/Py4Econ/">Python Code Examples</a> Repository (<a href="https://fanwangecon.github.io/Py4Econ/bookdown">bookdown site</a>) or the <a href="https://pyfan.readthedocs.io/en/latest/">pyfan</a> Package (<a href="https://pyfan.readthedocs.io/en/latest/reference.html">API</a>).</p>
 </blockquote>
-<div class="sourceCode" id="cb97"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb97-1"><a href="data-structures.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pprint</span>
-<span id="cb97-2"><a href="data-structures.html#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> copy <span class="im">as</span> copy</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb99-1"><a href="data-structures.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pprint</span>
+<span id="cb99-2"><a href="data-structures.html#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> copy <span class="im">as</span> copy</span></code></pre></div>
 <div id="loop-through-a-dictionary" class="section level4" number="1.2.1.1">
 <h4><span class="header-section-number">1.2.1.1</span> Loop Through a Dictionary</h4>
 <p>Given a dictionary, loop through all of its elements</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb98-1"><a href="data-structures.html#cb98-1" aria-hidden="true" tabindex="-1"></a>dc_speckey_dict <span class="op">=</span> {<span class="dv">0</span>: <span class="st">&#39;mpoly_1&#39;</span>,</span>
-<span id="cb98-2"><a href="data-structures.html#cb98-2" aria-hidden="true" tabindex="-1"></a>                   <span class="dv">1</span>: <span class="st">&#39;ng_s_t&#39;</span>,</span>
-<span id="cb98-3"><a href="data-structures.html#cb98-3" aria-hidden="true" tabindex="-1"></a>                   <span class="dv">2</span>: <span class="st">&#39;ng_s_d&#39;</span>,</span>
-<span id="cb98-4"><a href="data-structures.html#cb98-4" aria-hidden="true" tabindex="-1"></a>                   <span class="dv">3</span>: <span class="st">&#39;ng_p_t&#39;</span>,</span>
-<span id="cb98-5"><a href="data-structures.html#cb98-5" aria-hidden="true" tabindex="-1"></a>                   <span class="dv">4</span>: <span class="st">&#39;ng_p_d&#39;</span>}</span>
-<span id="cb98-6"><a href="data-structures.html#cb98-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> speckey_key, speckey_val <span class="kw">in</span> dc_speckey_dict.items():</span>
-<span id="cb98-7"><a href="data-structures.html#cb98-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&#39;speckey_key:&#39;</span> <span class="op">+</span> <span class="bu">str</span>(speckey_key) <span class="op">+</span> <span class="st">&#39;, speckey_val:&#39;</span> <span class="op">+</span> speckey_val)</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb100-1"><a href="data-structures.html#cb100-1" aria-hidden="true" tabindex="-1"></a>dc_speckey_dict <span class="op">=</span> {<span class="dv">0</span>: <span class="st">&#39;mpoly_1&#39;</span>,</span>
+<span id="cb100-2"><a href="data-structures.html#cb100-2" aria-hidden="true" tabindex="-1"></a>                   <span class="dv">1</span>: <span class="st">&#39;ng_s_t&#39;</span>,</span>
+<span id="cb100-3"><a href="data-structures.html#cb100-3" aria-hidden="true" tabindex="-1"></a>                   <span class="dv">2</span>: <span class="st">&#39;ng_s_d&#39;</span>,</span>
+<span id="cb100-4"><a href="data-structures.html#cb100-4" aria-hidden="true" tabindex="-1"></a>                   <span class="dv">3</span>: <span class="st">&#39;ng_p_t&#39;</span>,</span>
+<span id="cb100-5"><a href="data-structures.html#cb100-5" aria-hidden="true" tabindex="-1"></a>                   <span class="dv">4</span>: <span class="st">&#39;ng_p_d&#39;</span>}</span>
+<span id="cb100-6"><a href="data-structures.html#cb100-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> speckey_key, speckey_val <span class="kw">in</span> dc_speckey_dict.items():</span>
+<span id="cb100-7"><a href="data-structures.html#cb100-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&#39;speckey_key:&#39;</span> <span class="op">+</span> <span class="bu">str</span>(speckey_key) <span class="op">+</span> <span class="st">&#39;, speckey_val:&#39;</span> <span class="op">+</span> speckey_val)</span></code></pre></div>
 <pre><code>## speckey_key:0, speckey_val:mpoly_1
 ## speckey_key:1, speckey_val:ng_s_t
 ## speckey_key:2, speckey_val:ng_s_d
@@ -865,15 +881,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="convert-a-list-to-a-dictionary" class="section level4" number="1.2.1.2">
 <h4><span class="header-section-number">1.2.1.2</span> Convert a List to a Dictionary</h4>
 <p>There is a list with different types of elements. Use the name of the list as the key, with value index added in as a part of the key, the value is the value of the dictionary.</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb100-1"><a href="data-structures.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List</span></span>
-<span id="cb100-2"><a href="data-structures.html#cb100-2" aria-hidden="true" tabindex="-1"></a>ls_combo_type <span class="op">=</span> [<span class="st">&quot;e&quot;</span>, <span class="st">&quot;20201025x_esr_list_tKap_mlt_ce1a2&quot;</span>, [<span class="st">&quot;esti_param.kappa_ce9901&quot;</span>, <span class="st">&quot;esti_param.kappa_ce0209&quot;</span>], <span class="dv">1</span>, <span class="st">&quot;C1E31M3S3=1&quot;</span>]</span>
-<span id="cb100-3"><a href="data-structures.html#cb100-3" aria-hidden="true" tabindex="-1"></a><span class="co"># List name as string variable</span></span>
-<span id="cb100-4"><a href="data-structures.html#cb100-4" aria-hidden="true" tabindex="-1"></a>st_ls_name <span class="op">=</span> <span class="ss">f&#39;</span><span class="sc">{</span>ls_combo_type<span class="op">=</span><span class="sc">}</span><span class="ss">&#39;</span>.split(<span class="st">&#39;=&#39;</span>)[<span class="dv">0</span>]</span>
-<span id="cb100-5"><a href="data-structures.html#cb100-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to dict</span></span>
-<span id="cb100-6"><a href="data-structures.html#cb100-6" aria-hidden="true" tabindex="-1"></a>dc_from_list <span class="op">=</span> {st_ls_name <span class="op">+</span> <span class="st">&#39;_i&#39;</span> <span class="op">+</span> <span class="bu">str</span>(it_idx) <span class="op">+</span> <span class="st">&#39;o&#39;</span> <span class="op">+</span> <span class="bu">str</span>(<span class="bu">len</span>(ls_combo_type)) : ob_val </span>
-<span id="cb100-7"><a href="data-structures.html#cb100-7" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> it_idx, ob_val <span class="kw">in</span> <span class="bu">enumerate</span>(ls_combo_type)}</span>
-<span id="cb100-8"><a href="data-structures.html#cb100-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Print</span></span>
-<span id="cb100-9"><a href="data-structures.html#cb100-9" aria-hidden="true" tabindex="-1"></a>pprint.pprint(dc_from_list, width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb102-1"><a href="data-structures.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List</span></span>
+<span id="cb102-2"><a href="data-structures.html#cb102-2" aria-hidden="true" tabindex="-1"></a>ls_combo_type <span class="op">=</span> [<span class="st">&quot;e&quot;</span>, <span class="st">&quot;20201025x_esr_list_tKap_mlt_ce1a2&quot;</span>, [<span class="st">&quot;esti_param.kappa_ce9901&quot;</span>, <span class="st">&quot;esti_param.kappa_ce0209&quot;</span>], <span class="dv">1</span>, <span class="st">&quot;C1E31M3S3=1&quot;</span>]</span>
+<span id="cb102-3"><a href="data-structures.html#cb102-3" aria-hidden="true" tabindex="-1"></a><span class="co"># List name as string variable</span></span>
+<span id="cb102-4"><a href="data-structures.html#cb102-4" aria-hidden="true" tabindex="-1"></a>st_ls_name <span class="op">=</span> <span class="ss">f&#39;</span><span class="sc">{</span>ls_combo_type<span class="op">=</span><span class="sc">}</span><span class="ss">&#39;</span>.split(<span class="st">&#39;=&#39;</span>)[<span class="dv">0</span>]</span>
+<span id="cb102-5"><a href="data-structures.html#cb102-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to dict</span></span>
+<span id="cb102-6"><a href="data-structures.html#cb102-6" aria-hidden="true" tabindex="-1"></a>dc_from_list <span class="op">=</span> {st_ls_name <span class="op">+</span> <span class="st">&#39;_i&#39;</span> <span class="op">+</span> <span class="bu">str</span>(it_idx) <span class="op">+</span> <span class="st">&#39;o&#39;</span> <span class="op">+</span> <span class="bu">str</span>(<span class="bu">len</span>(ls_combo_type)) : ob_val </span>
+<span id="cb102-7"><a href="data-structures.html#cb102-7" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> it_idx, ob_val <span class="kw">in</span> <span class="bu">enumerate</span>(ls_combo_type)}</span>
+<span id="cb102-8"><a href="data-structures.html#cb102-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Print</span></span>
+<span id="cb102-9"><a href="data-structures.html#cb102-9" aria-hidden="true" tabindex="-1"></a>pprint.pprint(dc_from_list, width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## {&#39;ls_combo_type_i0o5&#39;: &#39;e&#39;,
 ##  &#39;ls_combo_type_i1o5&#39;: &#39;20201025x_esr_list_tKap_mlt_ce1a2&#39;,
 ##  &#39;ls_combo_type_i2o5&#39;: [&#39;esti_param.kappa_ce9901&#39;,
@@ -884,61 +900,61 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="select-one-key-value-pair" class="section level4" number="1.2.1.3">
 <h4><span class="header-section-number">1.2.1.3</span> Select One Key-value Pair</h4>
 <p>Given a dictionary, select a single key-value pair, based on either the key or the value.</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb102-1"><a href="data-structures.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select by key</span></span>
-<span id="cb102-2"><a href="data-structures.html#cb102-2" aria-hidden="true" tabindex="-1"></a>ls_it_keys <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">4</span>]</span>
-<span id="cb102-3"><a href="data-structures.html#cb102-3" aria-hidden="true" tabindex="-1"></a>dc_speckey_dict_select_by_key <span class="op">=</span> {it_key: dc_speckey_dict[it_key] <span class="cf">for</span> it_key <span class="kw">in</span> ls_it_keys}</span>
-<span id="cb102-4"><a href="data-structures.html#cb102-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span>dc_speckey_dict_select_by_key<span class="op">=</span><span class="sc">}</span><span class="ss">&#39;</span>)</span>
-<span id="cb102-5"><a href="data-structures.html#cb102-5" aria-hidden="true" tabindex="-1"></a><span class="co"># select by value</span></span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb104-1"><a href="data-structures.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select by key</span></span>
+<span id="cb104-2"><a href="data-structures.html#cb104-2" aria-hidden="true" tabindex="-1"></a>ls_it_keys <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">4</span>]</span>
+<span id="cb104-3"><a href="data-structures.html#cb104-3" aria-hidden="true" tabindex="-1"></a>dc_speckey_dict_select_by_key <span class="op">=</span> {it_key: dc_speckey_dict[it_key] <span class="cf">for</span> it_key <span class="kw">in</span> ls_it_keys}</span>
+<span id="cb104-4"><a href="data-structures.html#cb104-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span>dc_speckey_dict_select_by_key<span class="op">=</span><span class="sc">}</span><span class="ss">&#39;</span>)</span>
+<span id="cb104-5"><a href="data-structures.html#cb104-5" aria-hidden="true" tabindex="-1"></a><span class="co"># select by value</span></span></code></pre></div>
 <pre><code>## dc_speckey_dict_select_by_key={0: &#39;mpoly_1&#39;, 4: &#39;ng_p_d&#39;}</code></pre>
-<div class="sourceCode" id="cb104"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb104-1"><a href="data-structures.html#cb104-1" aria-hidden="true" tabindex="-1"></a>ls_st_keys <span class="op">=</span> [<span class="st">&#39;ng_s_d&#39;</span>, <span class="st">&#39;ng_p_d&#39;</span>]</span>
-<span id="cb104-2"><a href="data-structures.html#cb104-2" aria-hidden="true" tabindex="-1"></a>dc_speckey_dict_select_by_val <span class="op">=</span> {it_key: st_val <span class="cf">for</span> it_key, st_val <span class="kw">in</span> dc_speckey_dict.items() </span>
-<span id="cb104-3"><a href="data-structures.html#cb104-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="cf">if</span> st_val <span class="kw">in</span> ls_st_keys}</span>
-<span id="cb104-4"><a href="data-structures.html#cb104-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span>dc_speckey_dict_select_by_val<span class="op">=</span><span class="sc">}</span><span class="ss">&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb106-1"><a href="data-structures.html#cb106-1" aria-hidden="true" tabindex="-1"></a>ls_st_keys <span class="op">=</span> [<span class="st">&#39;ng_s_d&#39;</span>, <span class="st">&#39;ng_p_d&#39;</span>]</span>
+<span id="cb106-2"><a href="data-structures.html#cb106-2" aria-hidden="true" tabindex="-1"></a>dc_speckey_dict_select_by_val <span class="op">=</span> {it_key: st_val <span class="cf">for</span> it_key, st_val <span class="kw">in</span> dc_speckey_dict.items() </span>
+<span id="cb106-3"><a href="data-structures.html#cb106-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="cf">if</span> st_val <span class="kw">in</span> ls_st_keys}</span>
+<span id="cb106-4"><a href="data-structures.html#cb106-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span>dc_speckey_dict_select_by_val<span class="op">=</span><span class="sc">}</span><span class="ss">&#39;</span>)</span></code></pre></div>
 <pre><code>## dc_speckey_dict_select_by_val={2: &#39;ng_s_d&#39;, 4: &#39;ng_p_d&#39;}</code></pre>
 <p>See <a href="https://stackoverflow.com/questions/8023306/get-key-by-value-in-dictionary">Get key by value in dictionary</a>.</p>
 </div>
 <div id="copying-dictionary-and-updating-copied-dictionary" class="section level4" number="1.2.1.4">
 <h4><span class="header-section-number">1.2.1.4</span> Copying Dictionary and Updating Copied Dictionary</h4>
 <p>First, below, it looks as if the default dictionary has been copied, and that the updates to the dictionary will only impact the <em>dc_invoke_main_args</em>, but that is not the case:</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb106-1"><a href="data-structures.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># list update</span></span>
-<span id="cb106-2"><a href="data-structures.html#cb106-2" aria-hidden="true" tabindex="-1"></a>dc_invoke_main_args_default <span class="op">=</span> {<span class="st">&#39;speckey&#39;</span>: <span class="st">&#39;ng_s_t&#39;</span>,</span>
-<span id="cb106-3"><a href="data-structures.html#cb106-3" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;ge&#39;</span>: <span class="va">False</span>,</span>
-<span id="cb106-4"><a href="data-structures.html#cb106-4" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;multiprocess&#39;</span>: <span class="va">False</span>,</span>
-<span id="cb106-5"><a href="data-structures.html#cb106-5" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;estimate&#39;</span>: <span class="va">False</span>,</span>
-<span id="cb106-6"><a href="data-structures.html#cb106-6" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;graph_panda_list_name&#39;</span>: <span class="st">&#39;min_graphs&#39;</span>,</span>
-<span id="cb106-7"><a href="data-structures.html#cb106-7" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;save_directory_main&#39;</span>: <span class="st">&#39;simu&#39;</span>,</span>
-<span id="cb106-8"><a href="data-structures.html#cb106-8" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;log_file&#39;</span>: <span class="va">False</span>,</span>
-<span id="cb106-9"><a href="data-structures.html#cb106-9" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;log_file_suffix&#39;</span>: <span class="st">&#39;&#39;</span>}</span>
-<span id="cb106-10"><a href="data-structures.html#cb106-10" aria-hidden="true" tabindex="-1"></a>dc_invoke_main_args <span class="op">=</span> dc_invoke_main_args_default</span>
-<span id="cb106-11"><a href="data-structures.html#cb106-11" aria-hidden="true" tabindex="-1"></a>dc_invoke_main_args[<span class="st">&#39;speckey&#39;</span>] <span class="op">=</span> <span class="st">&#39;b_ge_s_t_bis&#39;</span></span>
-<span id="cb106-12"><a href="data-structures.html#cb106-12" aria-hidden="true" tabindex="-1"></a>dc_invoke_main_args[<span class="st">&#39;ge&#39;</span>] <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb106-13"><a href="data-structures.html#cb106-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;speckey in dc_invoke_main_args is </span><span class="sc">{</span>dc_invoke_main_args[<span class="st">&quot;speckey&quot;</span>]<span class="sc">}</span><span class="ss">.&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb108-1"><a href="data-structures.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co"># list update</span></span>
+<span id="cb108-2"><a href="data-structures.html#cb108-2" aria-hidden="true" tabindex="-1"></a>dc_invoke_main_args_default <span class="op">=</span> {<span class="st">&#39;speckey&#39;</span>: <span class="st">&#39;ng_s_t&#39;</span>,</span>
+<span id="cb108-3"><a href="data-structures.html#cb108-3" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;ge&#39;</span>: <span class="va">False</span>,</span>
+<span id="cb108-4"><a href="data-structures.html#cb108-4" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;multiprocess&#39;</span>: <span class="va">False</span>,</span>
+<span id="cb108-5"><a href="data-structures.html#cb108-5" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;estimate&#39;</span>: <span class="va">False</span>,</span>
+<span id="cb108-6"><a href="data-structures.html#cb108-6" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;graph_panda_list_name&#39;</span>: <span class="st">&#39;min_graphs&#39;</span>,</span>
+<span id="cb108-7"><a href="data-structures.html#cb108-7" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;save_directory_main&#39;</span>: <span class="st">&#39;simu&#39;</span>,</span>
+<span id="cb108-8"><a href="data-structures.html#cb108-8" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;log_file&#39;</span>: <span class="va">False</span>,</span>
+<span id="cb108-9"><a href="data-structures.html#cb108-9" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;log_file_suffix&#39;</span>: <span class="st">&#39;&#39;</span>}</span>
+<span id="cb108-10"><a href="data-structures.html#cb108-10" aria-hidden="true" tabindex="-1"></a>dc_invoke_main_args <span class="op">=</span> dc_invoke_main_args_default</span>
+<span id="cb108-11"><a href="data-structures.html#cb108-11" aria-hidden="true" tabindex="-1"></a>dc_invoke_main_args[<span class="st">&#39;speckey&#39;</span>] <span class="op">=</span> <span class="st">&#39;b_ge_s_t_bis&#39;</span></span>
+<span id="cb108-12"><a href="data-structures.html#cb108-12" aria-hidden="true" tabindex="-1"></a>dc_invoke_main_args[<span class="st">&#39;ge&#39;</span>] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb108-13"><a href="data-structures.html#cb108-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;speckey in dc_invoke_main_args is </span><span class="sc">{</span>dc_invoke_main_args[<span class="st">&quot;speckey&quot;</span>]<span class="sc">}</span><span class="ss">.&#39;</span>)</span></code></pre></div>
 <pre><code>## speckey in dc_invoke_main_args is b_ge_s_t_bis.</code></pre>
-<div class="sourceCode" id="cb108"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb108-1"><a href="data-structures.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;speckey in dc_invoke_main_args_default is </span><span class="sc">{</span>dc_invoke_main_args_default[<span class="st">&quot;speckey&quot;</span>]<span class="sc">}</span><span class="ss">.&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb110-1"><a href="data-structures.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;speckey in dc_invoke_main_args_default is </span><span class="sc">{</span>dc_invoke_main_args_default[<span class="st">&quot;speckey&quot;</span>]<span class="sc">}</span><span class="ss">.&#39;</span>)</span></code></pre></div>
 <pre><code>## speckey in dc_invoke_main_args_default is b_ge_s_t_bis.</code></pre>
 <p>Now this has the intended result. After updating the deep-copied dictionary, the key-values in the original dictionary are preserved:</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb110-1"><a href="data-structures.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="co"># list update</span></span>
-<span id="cb110-2"><a href="data-structures.html#cb110-2" aria-hidden="true" tabindex="-1"></a>dc_invoke_main_args_default <span class="op">=</span> {<span class="st">&#39;speckey&#39;</span>: <span class="st">&#39;ng_s_t&#39;</span>,</span>
-<span id="cb110-3"><a href="data-structures.html#cb110-3" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;ge&#39;</span>: <span class="va">False</span>,</span>
-<span id="cb110-4"><a href="data-structures.html#cb110-4" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;multiprocess&#39;</span>: <span class="va">False</span>,</span>
-<span id="cb110-5"><a href="data-structures.html#cb110-5" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;estimate&#39;</span>: <span class="va">False</span>,</span>
-<span id="cb110-6"><a href="data-structures.html#cb110-6" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;graph_panda_list_name&#39;</span>: <span class="st">&#39;min_graphs&#39;</span>,</span>
-<span id="cb110-7"><a href="data-structures.html#cb110-7" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;save_directory_main&#39;</span>: <span class="st">&#39;simu&#39;</span>,</span>
-<span id="cb110-8"><a href="data-structures.html#cb110-8" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;log_file&#39;</span>: <span class="va">False</span>,</span>
-<span id="cb110-9"><a href="data-structures.html#cb110-9" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;log_file_suffix&#39;</span>: <span class="st">&#39;&#39;</span>}</span>
-<span id="cb110-10"><a href="data-structures.html#cb110-10" aria-hidden="true" tabindex="-1"></a><span class="co"># deep copy and update</span></span>
-<span id="cb110-11"><a href="data-structures.html#cb110-11" aria-hidden="true" tabindex="-1"></a>dc_invoke_main_args <span class="op">=</span> copy.deepcopy(dc_invoke_main_args_default)</span>
-<span id="cb110-12"><a href="data-structures.html#cb110-12" aria-hidden="true" tabindex="-1"></a>dc_invoke_main_args[<span class="st">&#39;speckey&#39;</span>] <span class="op">=</span> <span class="st">&#39;b_ge_s_t_bis&#39;</span></span>
-<span id="cb110-13"><a href="data-structures.html#cb110-13" aria-hidden="true" tabindex="-1"></a>dc_invoke_main_args[<span class="st">&#39;ge&#39;</span>] <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb110-14"><a href="data-structures.html#cb110-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;speckey in dc_invoke_main_args_default is </span><span class="sc">{</span>dc_invoke_main_args_default[<span class="st">&quot;speckey&quot;</span>]<span class="sc">}</span><span class="ss">.&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb112-1"><a href="data-structures.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co"># list update</span></span>
+<span id="cb112-2"><a href="data-structures.html#cb112-2" aria-hidden="true" tabindex="-1"></a>dc_invoke_main_args_default <span class="op">=</span> {<span class="st">&#39;speckey&#39;</span>: <span class="st">&#39;ng_s_t&#39;</span>,</span>
+<span id="cb112-3"><a href="data-structures.html#cb112-3" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;ge&#39;</span>: <span class="va">False</span>,</span>
+<span id="cb112-4"><a href="data-structures.html#cb112-4" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;multiprocess&#39;</span>: <span class="va">False</span>,</span>
+<span id="cb112-5"><a href="data-structures.html#cb112-5" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;estimate&#39;</span>: <span class="va">False</span>,</span>
+<span id="cb112-6"><a href="data-structures.html#cb112-6" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;graph_panda_list_name&#39;</span>: <span class="st">&#39;min_graphs&#39;</span>,</span>
+<span id="cb112-7"><a href="data-structures.html#cb112-7" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;save_directory_main&#39;</span>: <span class="st">&#39;simu&#39;</span>,</span>
+<span id="cb112-8"><a href="data-structures.html#cb112-8" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;log_file&#39;</span>: <span class="va">False</span>,</span>
+<span id="cb112-9"><a href="data-structures.html#cb112-9" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;log_file_suffix&#39;</span>: <span class="st">&#39;&#39;</span>}</span>
+<span id="cb112-10"><a href="data-structures.html#cb112-10" aria-hidden="true" tabindex="-1"></a><span class="co"># deep copy and update</span></span>
+<span id="cb112-11"><a href="data-structures.html#cb112-11" aria-hidden="true" tabindex="-1"></a>dc_invoke_main_args <span class="op">=</span> copy.deepcopy(dc_invoke_main_args_default)</span>
+<span id="cb112-12"><a href="data-structures.html#cb112-12" aria-hidden="true" tabindex="-1"></a>dc_invoke_main_args[<span class="st">&#39;speckey&#39;</span>] <span class="op">=</span> <span class="st">&#39;b_ge_s_t_bis&#39;</span></span>
+<span id="cb112-13"><a href="data-structures.html#cb112-13" aria-hidden="true" tabindex="-1"></a>dc_invoke_main_args[<span class="st">&#39;ge&#39;</span>] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb112-14"><a href="data-structures.html#cb112-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;speckey in dc_invoke_main_args_default is </span><span class="sc">{</span>dc_invoke_main_args_default[<span class="st">&quot;speckey&quot;</span>]<span class="sc">}</span><span class="ss">.&#39;</span>)</span></code></pre></div>
 <pre><code>## speckey in dc_invoke_main_args_default is ng_s_t.</code></pre>
-<div class="sourceCode" id="cb112"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb112-1"><a href="data-structures.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;speckey in dc_invoke_main_args is </span><span class="sc">{</span>dc_invoke_main_args[<span class="st">&quot;speckey&quot;</span>]<span class="sc">}</span><span class="ss">.&#39;</span>)</span>
-<span id="cb112-2"><a href="data-structures.html#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="co"># deep copy and update again</span></span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb114-1"><a href="data-structures.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;speckey in dc_invoke_main_args is </span><span class="sc">{</span>dc_invoke_main_args[<span class="st">&quot;speckey&quot;</span>]<span class="sc">}</span><span class="ss">.&#39;</span>)</span>
+<span id="cb114-2"><a href="data-structures.html#cb114-2" aria-hidden="true" tabindex="-1"></a><span class="co"># deep copy and update again</span></span></code></pre></div>
 <pre><code>## speckey in dc_invoke_main_args is b_ge_s_t_bis.</code></pre>
-<div class="sourceCode" id="cb114"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb114-1"><a href="data-structures.html#cb114-1" aria-hidden="true" tabindex="-1"></a>dc_invoke_main_args <span class="op">=</span> copy.deepcopy(dc_invoke_main_args_default)</span>
-<span id="cb114-2"><a href="data-structures.html#cb114-2" aria-hidden="true" tabindex="-1"></a>dc_invoke_main_args[<span class="st">&#39;speckey&#39;</span>] <span class="op">=</span> <span class="st">&#39;b_ge_s_t_bis_new&#39;</span></span>
-<span id="cb114-3"><a href="data-structures.html#cb114-3" aria-hidden="true" tabindex="-1"></a>dc_invoke_main_args[<span class="st">&#39;ge&#39;</span>] <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb114-4"><a href="data-structures.html#cb114-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;speckey in dc_invoke_main_args is </span><span class="sc">{</span>dc_invoke_main_args[<span class="st">&quot;speckey&quot;</span>]<span class="sc">}</span><span class="ss">.&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb116-1"><a href="data-structures.html#cb116-1" aria-hidden="true" tabindex="-1"></a>dc_invoke_main_args <span class="op">=</span> copy.deepcopy(dc_invoke_main_args_default)</span>
+<span id="cb116-2"><a href="data-structures.html#cb116-2" aria-hidden="true" tabindex="-1"></a>dc_invoke_main_args[<span class="st">&#39;speckey&#39;</span>] <span class="op">=</span> <span class="st">&#39;b_ge_s_t_bis_new&#39;</span></span>
+<span id="cb116-3"><a href="data-structures.html#cb116-3" aria-hidden="true" tabindex="-1"></a>dc_invoke_main_args[<span class="st">&#39;ge&#39;</span>] <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb116-4"><a href="data-structures.html#cb116-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;speckey in dc_invoke_main_args is </span><span class="sc">{</span>dc_invoke_main_args[<span class="st">&quot;speckey&quot;</span>]<span class="sc">}</span><span class="ss">.&#39;</span>)</span></code></pre></div>
 <pre><code>## speckey in dc_invoke_main_args is b_ge_s_t_bis_new.</code></pre>
 <ul>
 <li><a href="https://docs.python.org/2/library/copy.html">copy and deepcopy</a></li>
@@ -947,26 +963,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="create-a-list-of-dictionaries" class="section level4" number="1.2.1.5">
 <h4><span class="header-section-number">1.2.1.5</span> Create a List of Dictionaries</h4>
-<div class="sourceCode" id="cb116"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb116-1"><a href="data-structures.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime</span>
-<span id="cb116-2"><a href="data-structures.html#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pprint</span>
-<span id="cb116-3"><a href="data-structures.html#cb116-3" aria-hidden="true" tabindex="-1"></a>ls_dc_exa <span class="op">=</span>  [</span>
-<span id="cb116-4"><a href="data-structures.html#cb116-4" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&quot;file&quot;</span>: <span class="st">&quot;mat_matlab&quot;</span>,</span>
-<span id="cb116-5"><a href="data-structures.html#cb116-5" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;title&quot;</span>: <span class="st">&quot;One Variable Graphs and Tables&quot;</span>,</span>
-<span id="cb116-6"><a href="data-structures.html#cb116-6" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;description&quot;</span>: <span class="st">&quot;Frequency table, bar chart and histogram&quot;</span>,</span>
-<span id="cb116-7"><a href="data-structures.html#cb116-7" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;val&quot;</span>: <span class="dv">1</span>,</span>
-<span id="cb116-8"><a href="data-structures.html#cb116-8" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;date&quot;</span>: datetime.date(<span class="dv">2020</span>, <span class="dv">5</span>, <span class="dv">2</span>)},</span>
-<span id="cb116-9"><a href="data-structures.html#cb116-9" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&quot;file&quot;</span>: <span class="st">&quot;mat_two&quot;</span>,</span>
-<span id="cb116-10"><a href="data-structures.html#cb116-10" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;title&quot;</span>: <span class="st">&quot;Second file&quot;</span>,</span>
-<span id="cb116-11"><a href="data-structures.html#cb116-11" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;description&quot;</span>: <span class="st">&quot;Second file.&quot;</span>,</span>
-<span id="cb116-12"><a href="data-structures.html#cb116-12" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;val&quot;</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>],</span>
-<span id="cb116-13"><a href="data-structures.html#cb116-13" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;date&quot;</span>: datetime.date(<span class="dv">2020</span>, <span class="dv">5</span>, <span class="dv">2</span>)},</span>
-<span id="cb116-14"><a href="data-structures.html#cb116-14" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&quot;file&quot;</span>: <span class="st">&quot;mat_algebra_rules&quot;</span>,</span>
-<span id="cb116-15"><a href="data-structures.html#cb116-15" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;title&quot;</span>: <span class="st">&quot;Opening a Dataset&quot;</span>,</span>
-<span id="cb116-16"><a href="data-structures.html#cb116-16" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;description&quot;</span>: <span class="st">&quot;Opening a Dataset.&quot;</span>,</span>
-<span id="cb116-17"><a href="data-structures.html#cb116-17" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;val&quot;</span>: <span class="fl">1.1</span>,</span>
-<span id="cb116-18"><a href="data-structures.html#cb116-18" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;date&quot;</span>: datetime.date(<span class="dv">2018</span>, <span class="dv">12</span>, <span class="dv">1</span>)}</span>
-<span id="cb116-19"><a href="data-structures.html#cb116-19" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb116-20"><a href="data-structures.html#cb116-20" aria-hidden="true" tabindex="-1"></a>pprint.pprint(ls_dc_exa, width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb118-1"><a href="data-structures.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime</span>
+<span id="cb118-2"><a href="data-structures.html#cb118-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pprint</span>
+<span id="cb118-3"><a href="data-structures.html#cb118-3" aria-hidden="true" tabindex="-1"></a>ls_dc_exa <span class="op">=</span>  [</span>
+<span id="cb118-4"><a href="data-structures.html#cb118-4" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&quot;file&quot;</span>: <span class="st">&quot;mat_matlab&quot;</span>,</span>
+<span id="cb118-5"><a href="data-structures.html#cb118-5" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;title&quot;</span>: <span class="st">&quot;One Variable Graphs and Tables&quot;</span>,</span>
+<span id="cb118-6"><a href="data-structures.html#cb118-6" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;description&quot;</span>: <span class="st">&quot;Frequency table, bar chart and histogram&quot;</span>,</span>
+<span id="cb118-7"><a href="data-structures.html#cb118-7" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;val&quot;</span>: <span class="dv">1</span>,</span>
+<span id="cb118-8"><a href="data-structures.html#cb118-8" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;date&quot;</span>: datetime.date(<span class="dv">2020</span>, <span class="dv">5</span>, <span class="dv">2</span>)},</span>
+<span id="cb118-9"><a href="data-structures.html#cb118-9" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&quot;file&quot;</span>: <span class="st">&quot;mat_two&quot;</span>,</span>
+<span id="cb118-10"><a href="data-structures.html#cb118-10" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;title&quot;</span>: <span class="st">&quot;Second file&quot;</span>,</span>
+<span id="cb118-11"><a href="data-structures.html#cb118-11" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;description&quot;</span>: <span class="st">&quot;Second file.&quot;</span>,</span>
+<span id="cb118-12"><a href="data-structures.html#cb118-12" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;val&quot;</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>],</span>
+<span id="cb118-13"><a href="data-structures.html#cb118-13" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;date&quot;</span>: datetime.date(<span class="dv">2020</span>, <span class="dv">5</span>, <span class="dv">2</span>)},</span>
+<span id="cb118-14"><a href="data-structures.html#cb118-14" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&quot;file&quot;</span>: <span class="st">&quot;mat_algebra_rules&quot;</span>,</span>
+<span id="cb118-15"><a href="data-structures.html#cb118-15" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;title&quot;</span>: <span class="st">&quot;Opening a Dataset&quot;</span>,</span>
+<span id="cb118-16"><a href="data-structures.html#cb118-16" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;description&quot;</span>: <span class="st">&quot;Opening a Dataset.&quot;</span>,</span>
+<span id="cb118-17"><a href="data-structures.html#cb118-17" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;val&quot;</span>: <span class="fl">1.1</span>,</span>
+<span id="cb118-18"><a href="data-structures.html#cb118-18" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;date&quot;</span>: datetime.date(<span class="dv">2018</span>, <span class="dv">12</span>, <span class="dv">1</span>)}</span>
+<span id="cb118-19"><a href="data-structures.html#cb118-19" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb118-20"><a href="data-structures.html#cb118-20" aria-hidden="true" tabindex="-1"></a>pprint.pprint(ls_dc_exa, width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [{&#39;date&#39;: datetime.date(2020, 5, 2),
 ##   &#39;description&#39;: &#39;Frequency &#39;
 ##                  &#39;table, &#39;
@@ -1003,14 +1019,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="iteratively-add-to-a-dictionary" class="section level4" number="1.2.1.6">
 <h4><span class="header-section-number">1.2.1.6</span> Iteratively Add to A Dictionary</h4>
 <p>Iteratively add additional Key and Value pairs to a dictionary.</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb118-1"><a href="data-structures.html#cb118-1" aria-hidden="true" tabindex="-1"></a>ls_snm_tex <span class="op">=</span> [<span class="st">&quot;file1.tex&quot;</span>, <span class="st">&quot;file2.tex&quot;</span>, <span class="st">&quot;file3.tex&quot;</span>]</span>
-<span id="cb118-2"><a href="data-structures.html#cb118-2" aria-hidden="true" tabindex="-1"></a>ls_snm_pdf <span class="op">=</span> [<span class="st">&quot;file1.pdf&quot;</span>, <span class="st">&quot;file2.pdf&quot;</span>, <span class="st">&quot;file3.pdf&quot;</span>]</span>
-<span id="cb118-3"><a href="data-structures.html#cb118-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb118-4"><a href="data-structures.html#cb118-4" aria-hidden="true" tabindex="-1"></a>dc_tex_pdf <span class="op">=</span> {}</span>
-<span id="cb118-5"><a href="data-structures.html#cb118-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> tex, pdf <span class="kw">in</span> <span class="bu">zip</span>(ls_snm_tex, ls_snm_pdf):</span>
-<span id="cb118-6"><a href="data-structures.html#cb118-6" aria-hidden="true" tabindex="-1"></a>  dc_tex_pdf[tex] <span class="op">=</span> pdf</span>
-<span id="cb118-7"><a href="data-structures.html#cb118-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb118-8"><a href="data-structures.html#cb118-8" aria-hidden="true" tabindex="-1"></a>pprint.pprint(dc_tex_pdf, width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb120-1"><a href="data-structures.html#cb120-1" aria-hidden="true" tabindex="-1"></a>ls_snm_tex <span class="op">=</span> [<span class="st">&quot;file1.tex&quot;</span>, <span class="st">&quot;file2.tex&quot;</span>, <span class="st">&quot;file3.tex&quot;</span>]</span>
+<span id="cb120-2"><a href="data-structures.html#cb120-2" aria-hidden="true" tabindex="-1"></a>ls_snm_pdf <span class="op">=</span> [<span class="st">&quot;file1.pdf&quot;</span>, <span class="st">&quot;file2.pdf&quot;</span>, <span class="st">&quot;file3.pdf&quot;</span>]</span>
+<span id="cb120-3"><a href="data-structures.html#cb120-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-4"><a href="data-structures.html#cb120-4" aria-hidden="true" tabindex="-1"></a>dc_tex_pdf <span class="op">=</span> {}</span>
+<span id="cb120-5"><a href="data-structures.html#cb120-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> tex, pdf <span class="kw">in</span> <span class="bu">zip</span>(ls_snm_tex, ls_snm_pdf):</span>
+<span id="cb120-6"><a href="data-structures.html#cb120-6" aria-hidden="true" tabindex="-1"></a>  dc_tex_pdf[tex] <span class="op">=</span> pdf</span>
+<span id="cb120-7"><a href="data-structures.html#cb120-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-8"><a href="data-structures.html#cb120-8" aria-hidden="true" tabindex="-1"></a>pprint.pprint(dc_tex_pdf, width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## {&#39;file1.tex&#39;: &#39;file1.pdf&#39;,
 ##  &#39;file2.tex&#39;: &#39;file2.pdf&#39;,
 ##  &#39;file3.tex&#39;: &#39;file3.pdf&#39;}</code></pre>
@@ -1018,14 +1034,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="select-by-keys-dictionaries-from-list-of-dictionaries" class="section level4" number="1.2.1.7">
 <h4><span class="header-section-number">1.2.1.7</span> Select by Keys Dictionaries from list of Dictionaries</h4>
 <p>Given a list of dictionary, search if key name is in list:</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb120-1"><a href="data-structures.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co"># string to search through</span></span>
-<span id="cb120-2"><a href="data-structures.html#cb120-2" aria-hidden="true" tabindex="-1"></a>ls_str_file_ids <span class="op">=</span> [<span class="st">&#39;mat_matlab&#39;</span>, <span class="st">&#39;mat_algebra_rules&#39;</span>]</span>
-<span id="cb120-3"><a href="data-structures.html#cb120-3" aria-hidden="true" tabindex="-1"></a><span class="co"># select subset</span></span>
-<span id="cb120-4"><a href="data-structures.html#cb120-4" aria-hidden="true" tabindex="-1"></a>ls_dc_selected <span class="op">=</span> [dc_exa</span>
-<span id="cb120-5"><a href="data-structures.html#cb120-5" aria-hidden="true" tabindex="-1"></a>                  <span class="cf">for</span> dc_exa <span class="kw">in</span> ls_dc_exa</span>
-<span id="cb120-6"><a href="data-structures.html#cb120-6" aria-hidden="true" tabindex="-1"></a>                  <span class="cf">if</span> dc_exa[<span class="st">&#39;file&#39;</span>] <span class="kw">in</span> ls_str_file_ids]</span>
-<span id="cb120-7"><a href="data-structures.html#cb120-7" aria-hidden="true" tabindex="-1"></a><span class="co"># print</span></span>
-<span id="cb120-8"><a href="data-structures.html#cb120-8" aria-hidden="true" tabindex="-1"></a>pprint.pprint(ls_dc_selected, width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb122-1"><a href="data-structures.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="co"># string to search through</span></span>
+<span id="cb122-2"><a href="data-structures.html#cb122-2" aria-hidden="true" tabindex="-1"></a>ls_str_file_ids <span class="op">=</span> [<span class="st">&#39;mat_matlab&#39;</span>, <span class="st">&#39;mat_algebra_rules&#39;</span>]</span>
+<span id="cb122-3"><a href="data-structures.html#cb122-3" aria-hidden="true" tabindex="-1"></a><span class="co"># select subset</span></span>
+<span id="cb122-4"><a href="data-structures.html#cb122-4" aria-hidden="true" tabindex="-1"></a>ls_dc_selected <span class="op">=</span> [dc_exa</span>
+<span id="cb122-5"><a href="data-structures.html#cb122-5" aria-hidden="true" tabindex="-1"></a>                  <span class="cf">for</span> dc_exa <span class="kw">in</span> ls_dc_exa</span>
+<span id="cb122-6"><a href="data-structures.html#cb122-6" aria-hidden="true" tabindex="-1"></a>                  <span class="cf">if</span> dc_exa[<span class="st">&#39;file&#39;</span>] <span class="kw">in</span> ls_str_file_ids]</span>
+<span id="cb122-7"><a href="data-structures.html#cb122-7" aria-hidden="true" tabindex="-1"></a><span class="co"># print</span></span>
+<span id="cb122-8"><a href="data-structures.html#cb122-8" aria-hidden="true" tabindex="-1"></a>pprint.pprint(ls_dc_selected, width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [{&#39;date&#39;: datetime.date(2020, 5, 2),
 ##   &#39;description&#39;: &#39;Frequency &#39;
 ##                  &#39;table, &#39;
@@ -1050,16 +1066,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##            &#39;Dataset&#39;,
 ##   &#39;val&#39;: 1.1}]</code></pre>
 <p>Search and Select by Multiple Keys in Dictionary. Using two keys below:</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb122-1"><a href="data-structures.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="co"># string to search through</span></span>
-<span id="cb122-2"><a href="data-structures.html#cb122-2" aria-hidden="true" tabindex="-1"></a>ls_str_file_ids <span class="op">=</span> [<span class="st">&#39;mat_matlab&#39;</span>, <span class="st">&#39;mat_algebra_rules&#39;</span>]</span>
-<span id="cb122-3"><a href="data-structures.html#cb122-3" aria-hidden="true" tabindex="-1"></a><span class="co"># select subset</span></span>
-<span id="cb122-4"><a href="data-structures.html#cb122-4" aria-hidden="true" tabindex="-1"></a>ls_dc_selected <span class="op">=</span> [dc_exa</span>
-<span id="cb122-5"><a href="data-structures.html#cb122-5" aria-hidden="true" tabindex="-1"></a>                  <span class="cf">for</span> dc_exa <span class="kw">in</span> ls_dc_exa</span>
-<span id="cb122-6"><a href="data-structures.html#cb122-6" aria-hidden="true" tabindex="-1"></a>                  <span class="cf">if</span> ((dc_exa[<span class="st">&#39;file&#39;</span>] <span class="kw">in</span> ls_str_file_ids)</span>
-<span id="cb122-7"><a href="data-structures.html#cb122-7" aria-hidden="true" tabindex="-1"></a>                      <span class="kw">and</span></span>
-<span id="cb122-8"><a href="data-structures.html#cb122-8" aria-hidden="true" tabindex="-1"></a>                      (dc_exa[<span class="st">&#39;val&#39;</span>]<span class="op">==</span> <span class="dv">1</span>))]</span>
-<span id="cb122-9"><a href="data-structures.html#cb122-9" aria-hidden="true" tabindex="-1"></a><span class="co"># print</span></span>
-<span id="cb122-10"><a href="data-structures.html#cb122-10" aria-hidden="true" tabindex="-1"></a>pprint.pprint(ls_dc_selected, width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb124-1"><a href="data-structures.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co"># string to search through</span></span>
+<span id="cb124-2"><a href="data-structures.html#cb124-2" aria-hidden="true" tabindex="-1"></a>ls_str_file_ids <span class="op">=</span> [<span class="st">&#39;mat_matlab&#39;</span>, <span class="st">&#39;mat_algebra_rules&#39;</span>]</span>
+<span id="cb124-3"><a href="data-structures.html#cb124-3" aria-hidden="true" tabindex="-1"></a><span class="co"># select subset</span></span>
+<span id="cb124-4"><a href="data-structures.html#cb124-4" aria-hidden="true" tabindex="-1"></a>ls_dc_selected <span class="op">=</span> [dc_exa</span>
+<span id="cb124-5"><a href="data-structures.html#cb124-5" aria-hidden="true" tabindex="-1"></a>                  <span class="cf">for</span> dc_exa <span class="kw">in</span> ls_dc_exa</span>
+<span id="cb124-6"><a href="data-structures.html#cb124-6" aria-hidden="true" tabindex="-1"></a>                  <span class="cf">if</span> ((dc_exa[<span class="st">&#39;file&#39;</span>] <span class="kw">in</span> ls_str_file_ids)</span>
+<span id="cb124-7"><a href="data-structures.html#cb124-7" aria-hidden="true" tabindex="-1"></a>                      <span class="kw">and</span></span>
+<span id="cb124-8"><a href="data-structures.html#cb124-8" aria-hidden="true" tabindex="-1"></a>                      (dc_exa[<span class="st">&#39;val&#39;</span>]<span class="op">==</span> <span class="dv">1</span>))]</span>
+<span id="cb124-9"><a href="data-structures.html#cb124-9" aria-hidden="true" tabindex="-1"></a><span class="co"># print</span></span>
+<span id="cb124-10"><a href="data-structures.html#cb124-10" aria-hidden="true" tabindex="-1"></a>pprint.pprint(ls_dc_selected, width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [{&#39;date&#39;: datetime.date(2020, 5, 2),
 ##   &#39;description&#39;: &#39;Frequency &#39;
 ##                  &#39;table, &#39;
@@ -1078,23 +1094,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="drop-element-of-dictionary" class="section level4" number="1.2.1.8">
 <h4><span class="header-section-number">1.2.1.8</span> Drop Element of Dictionary</h4>
 <p>Drop element of a dictionary inside a list:</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb124-1"><a href="data-structures.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dictionary</span></span>
-<span id="cb124-2"><a href="data-structures.html#cb124-2" aria-hidden="true" tabindex="-1"></a>dc_test <span class="op">=</span> [{<span class="st">&quot;file&quot;</span>: <span class="st">&quot;mat_matlab_1&quot;</span>,</span>
-<span id="cb124-3"><a href="data-structures.html#cb124-3" aria-hidden="true" tabindex="-1"></a>           <span class="st">&quot;title&quot;</span>: <span class="st">&quot;One Variable Graphs and Tables&quot;</span>,</span>
-<span id="cb124-4"><a href="data-structures.html#cb124-4" aria-hidden="true" tabindex="-1"></a>           <span class="st">&quot;description&quot;</span>: <span class="st">&quot;Frequency table, bar chart and histogram&quot;</span>,</span>
-<span id="cb124-5"><a href="data-structures.html#cb124-5" aria-hidden="true" tabindex="-1"></a>           <span class="st">&quot;val&quot;</span>: <span class="dv">1</span>,</span>
-<span id="cb124-6"><a href="data-structures.html#cb124-6" aria-hidden="true" tabindex="-1"></a>           <span class="st">&quot;date&quot;</span>: datetime.date(<span class="dv">2020</span>, <span class="dv">5</span>, <span class="dv">2</span>)},</span>
-<span id="cb124-7"><a href="data-structures.html#cb124-7" aria-hidden="true" tabindex="-1"></a>           {<span class="st">&quot;file&quot;</span>: <span class="st">&quot;mat_matlab_2&quot;</span>, </span>
-<span id="cb124-8"><a href="data-structures.html#cb124-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;val&quot;</span>: <span class="st">&quot;mat_matlab_2&quot;</span>}]</span>
-<span id="cb124-9"><a href="data-structures.html#cb124-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb124-10"><a href="data-structures.html#cb124-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop           </span></span>
-<span id="cb124-11"><a href="data-structures.html#cb124-11" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> dc_test[<span class="dv">0</span>][<span class="st">&#39;val&#39;</span>]</span>
-<span id="cb124-12"><a href="data-structures.html#cb124-12" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> dc_test[<span class="dv">0</span>][<span class="st">&#39;file&#39;</span>]</span>
-<span id="cb124-13"><a href="data-structures.html#cb124-13" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> dc_test[<span class="dv">0</span>][<span class="st">&#39;description&#39;</span>]</span>
-<span id="cb124-14"><a href="data-structures.html#cb124-14" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> dc_test[<span class="dv">1</span>][<span class="st">&#39;val&#39;</span>]</span>
-<span id="cb124-15"><a href="data-structures.html#cb124-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb124-16"><a href="data-structures.html#cb124-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Print</span></span>
-<span id="cb124-17"><a href="data-structures.html#cb124-17" aria-hidden="true" tabindex="-1"></a>pprint.pprint(dc_test, width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb126-1"><a href="data-structures.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dictionary</span></span>
+<span id="cb126-2"><a href="data-structures.html#cb126-2" aria-hidden="true" tabindex="-1"></a>dc_test <span class="op">=</span> [{<span class="st">&quot;file&quot;</span>: <span class="st">&quot;mat_matlab_1&quot;</span>,</span>
+<span id="cb126-3"><a href="data-structures.html#cb126-3" aria-hidden="true" tabindex="-1"></a>           <span class="st">&quot;title&quot;</span>: <span class="st">&quot;One Variable Graphs and Tables&quot;</span>,</span>
+<span id="cb126-4"><a href="data-structures.html#cb126-4" aria-hidden="true" tabindex="-1"></a>           <span class="st">&quot;description&quot;</span>: <span class="st">&quot;Frequency table, bar chart and histogram&quot;</span>,</span>
+<span id="cb126-5"><a href="data-structures.html#cb126-5" aria-hidden="true" tabindex="-1"></a>           <span class="st">&quot;val&quot;</span>: <span class="dv">1</span>,</span>
+<span id="cb126-6"><a href="data-structures.html#cb126-6" aria-hidden="true" tabindex="-1"></a>           <span class="st">&quot;date&quot;</span>: datetime.date(<span class="dv">2020</span>, <span class="dv">5</span>, <span class="dv">2</span>)},</span>
+<span id="cb126-7"><a href="data-structures.html#cb126-7" aria-hidden="true" tabindex="-1"></a>           {<span class="st">&quot;file&quot;</span>: <span class="st">&quot;mat_matlab_2&quot;</span>, </span>
+<span id="cb126-8"><a href="data-structures.html#cb126-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;val&quot;</span>: <span class="st">&quot;mat_matlab_2&quot;</span>}]</span>
+<span id="cb126-9"><a href="data-structures.html#cb126-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb126-10"><a href="data-structures.html#cb126-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop           </span></span>
+<span id="cb126-11"><a href="data-structures.html#cb126-11" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> dc_test[<span class="dv">0</span>][<span class="st">&#39;val&#39;</span>]</span>
+<span id="cb126-12"><a href="data-structures.html#cb126-12" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> dc_test[<span class="dv">0</span>][<span class="st">&#39;file&#39;</span>]</span>
+<span id="cb126-13"><a href="data-structures.html#cb126-13" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> dc_test[<span class="dv">0</span>][<span class="st">&#39;description&#39;</span>]</span>
+<span id="cb126-14"><a href="data-structures.html#cb126-14" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> dc_test[<span class="dv">1</span>][<span class="st">&#39;val&#39;</span>]</span>
+<span id="cb126-15"><a href="data-structures.html#cb126-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb126-16"><a href="data-structures.html#cb126-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Print</span></span>
+<span id="cb126-17"><a href="data-structures.html#cb126-17" aria-hidden="true" tabindex="-1"></a>pprint.pprint(dc_test, width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [{&#39;date&#39;: datetime.date(2020, 5, 2),
 ##   &#39;title&#39;: &#39;One &#39;
 ##            &#39;Variable &#39;
@@ -1109,13 +1125,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="numpy-arrays" class="section level2" number="1.3">
 <h2><span class="header-section-number">1.3</span> Numpy Arrays</h2>
 
-
 <div id="generate-matrix-from-arrays" class="section level3" number="1.3.1">
 <h3><span class="header-section-number">1.3.1</span> Generate Matrix from Arrays</h3>
 <blockquote>
 <p>Go back to <a href="http://fanwangecon.github.io/">fan</a>’s <a href="https://fanwangecon.github.io/Py4Econ/">Python Code Examples</a> Repository (<a href="https://fanwangecon.github.io/Py4Econ/bookdown">bookdown site</a>) or the <a href="https://pyfan.readthedocs.io/en/latest/">pyfan</a> Package (<a href="https://pyfan.readthedocs.io/en/latest/reference.html">API</a>).</p>
 </blockquote>
-<div class="sourceCode" id="cb126"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb126-1"><a href="data-structures.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb128-1"><a href="data-structures.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
 <div id="generate-a-random-matrix" class="section level4" number="1.3.1.1">
 <h4><span class="header-section-number">1.3.1.1</span> Generate a Random Matrix</h4>
 <p>Generate a matrix with random numbers and arbitrary number of rows and columns. Several types of matrix below:</p>
@@ -1126,60 +1141,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>integer random redrawn (with replacements)</li>
 </ol>
 <p>Set size:</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb127-1"><a href="data-structures.html#cb127-1" aria-hidden="true" tabindex="-1"></a>it_rows <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
-<span id="cb127-2"><a href="data-structures.html#cb127-2" aria-hidden="true" tabindex="-1"></a>it_cols <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
-<span id="cb127-3"><a href="data-structures.html#cb127-3" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">123</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb129-1"><a href="data-structures.html#cb129-1" aria-hidden="true" tabindex="-1"></a>it_rows <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb129-2"><a href="data-structures.html#cb129-2" aria-hidden="true" tabindex="-1"></a>it_cols <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb129-3"><a href="data-structures.html#cb129-3" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">123</span>)</span></code></pre></div>
 <p>uniform random:</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb128-1"><a href="data-structures.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A random matrix of uniform draws</span></span>
-<span id="cb128-2"><a href="data-structures.html#cb128-2" aria-hidden="true" tabindex="-1"></a>mt_rand_unif <span class="op">=</span> np.random.rand(it_rows, it_cols)</span>
-<span id="cb128-3"><a href="data-structures.html#cb128-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mt_rand_unif)</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb130-1"><a href="data-structures.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A random matrix of uniform draws</span></span>
+<span id="cb130-2"><a href="data-structures.html#cb130-2" aria-hidden="true" tabindex="-1"></a>mt_rand_unif <span class="op">=</span> np.random.rand(it_rows, it_cols)</span>
+<span id="cb130-3"><a href="data-structures.html#cb130-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mt_rand_unif)</span></code></pre></div>
 <pre><code>## [[0.69646919 0.28613933 0.22685145]
 ##  [0.55131477 0.71946897 0.42310646]]</code></pre>
 <p>integer random:</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb130-1"><a href="data-structures.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A random matrix of integers</span></span>
-<span id="cb130-2"><a href="data-structures.html#cb130-2" aria-hidden="true" tabindex="-1"></a>it_max_int <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb130-3"><a href="data-structures.html#cb130-3" aria-hidden="true" tabindex="-1"></a>mt_rand_integer <span class="op">=</span> np.random.randint(it_max_int, size<span class="op">=</span>(it_rows, it_cols))</span>
-<span id="cb130-4"><a href="data-structures.html#cb130-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mt_rand_integer)</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb132-1"><a href="data-structures.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A random matrix of integers</span></span>
+<span id="cb132-2"><a href="data-structures.html#cb132-2" aria-hidden="true" tabindex="-1"></a>it_max_int <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb132-3"><a href="data-structures.html#cb132-3" aria-hidden="true" tabindex="-1"></a>mt_rand_integer <span class="op">=</span> np.random.randint(it_max_int, size<span class="op">=</span>(it_rows, it_cols))</span>
+<span id="cb132-4"><a href="data-structures.html#cb132-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mt_rand_integer)</span></code></pre></div>
 <pre><code>## [[6 1 0]
 ##  [1 9 0]]</code></pre>
 <p>integer random resorted (shuffled):</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb132-1"><a href="data-structures.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A sequence of numbers, 1 to matrix size, resorted, unique</span></span>
-<span id="cb132-2"><a href="data-structures.html#cb132-2" aria-hidden="true" tabindex="-1"></a>it_mat_size <span class="op">=</span> it_rows<span class="op">*</span>it_cols</span>
-<span id="cb132-3"><a href="data-structures.html#cb132-3" aria-hidden="true" tabindex="-1"></a>ar_seq <span class="op">=</span> np.arange(it_mat_size)</span>
-<span id="cb132-4"><a href="data-structures.html#cb132-4" aria-hidden="true" tabindex="-1"></a>ar_idx_resort <span class="op">=</span> np.random.choice(np.arange(it_mat_size), it_mat_size, replace <span class="op">=</span> <span class="va">False</span>)</span>
-<span id="cb132-5"><a href="data-structures.html#cb132-5" aria-hidden="true" tabindex="-1"></a>ar_seq_rand_sorted <span class="op">=</span> ar_seq[ar_idx_resort]</span>
-<span id="cb132-6"><a href="data-structures.html#cb132-6" aria-hidden="true" tabindex="-1"></a>mt_seq_rand_sorted <span class="op">=</span> ar_seq_rand_sorted.reshape((it_rows, it_cols))</span>
-<span id="cb132-7"><a href="data-structures.html#cb132-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mt_seq_rand_sorted)</span>
-<span id="cb132-8"><a href="data-structures.html#cb132-8" aria-hidden="true" tabindex="-1"></a><span class="co"># achieve the same objective with a shuffle</span></span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb134-1"><a href="data-structures.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A sequence of numbers, 1 to matrix size, resorted, unique</span></span>
+<span id="cb134-2"><a href="data-structures.html#cb134-2" aria-hidden="true" tabindex="-1"></a>it_mat_size <span class="op">=</span> it_rows<span class="op">*</span>it_cols</span>
+<span id="cb134-3"><a href="data-structures.html#cb134-3" aria-hidden="true" tabindex="-1"></a>ar_seq <span class="op">=</span> np.arange(it_mat_size)</span>
+<span id="cb134-4"><a href="data-structures.html#cb134-4" aria-hidden="true" tabindex="-1"></a>ar_idx_resort <span class="op">=</span> np.random.choice(np.arange(it_mat_size), it_mat_size, replace <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb134-5"><a href="data-structures.html#cb134-5" aria-hidden="true" tabindex="-1"></a>ar_seq_rand_sorted <span class="op">=</span> ar_seq[ar_idx_resort]</span>
+<span id="cb134-6"><a href="data-structures.html#cb134-6" aria-hidden="true" tabindex="-1"></a>mt_seq_rand_sorted <span class="op">=</span> ar_seq_rand_sorted.reshape((it_rows, it_cols))</span>
+<span id="cb134-7"><a href="data-structures.html#cb134-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mt_seq_rand_sorted)</span>
+<span id="cb134-8"><a href="data-structures.html#cb134-8" aria-hidden="true" tabindex="-1"></a><span class="co"># achieve the same objective with a shuffle</span></span></code></pre></div>
 <pre><code>## [[5 4 2]
 ##  [3 1 0]]</code></pre>
-<div class="sourceCode" id="cb134"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb134-1"><a href="data-structures.html#cb134-1" aria-hidden="true" tabindex="-1"></a>np.random.shuffle(ar_seq)</span>
-<span id="cb134-2"><a href="data-structures.html#cb134-2" aria-hidden="true" tabindex="-1"></a>mt_seq_rand_shuffle <span class="op">=</span> ar_seq.reshape((it_rows, it_cols))</span>
-<span id="cb134-3"><a href="data-structures.html#cb134-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mt_seq_rand_shuffle)</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb136-1"><a href="data-structures.html#cb136-1" aria-hidden="true" tabindex="-1"></a>np.random.shuffle(ar_seq)</span>
+<span id="cb136-2"><a href="data-structures.html#cb136-2" aria-hidden="true" tabindex="-1"></a>mt_seq_rand_shuffle <span class="op">=</span> ar_seq.reshape((it_rows, it_cols))</span>
+<span id="cb136-3"><a href="data-structures.html#cb136-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mt_seq_rand_shuffle)</span></code></pre></div>
 <pre><code>## [[2 1 3]
 ##  [5 0 4]]</code></pre>
 <p>integer random redrawn (with replacements):</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb136-1"><a href="data-structures.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A sequence of numbers, 1 to matrix size, resorted, nonunique, REPLACE = TRUE</span></span>
-<span id="cb136-2"><a href="data-structures.html#cb136-2" aria-hidden="true" tabindex="-1"></a>it_mat_size <span class="op">=</span> it_rows<span class="op">*</span>it_cols</span>
-<span id="cb136-3"><a href="data-structures.html#cb136-3" aria-hidden="true" tabindex="-1"></a>ar_seq <span class="op">=</span> np.arange(it_mat_size)</span>
-<span id="cb136-4"><a href="data-structures.html#cb136-4" aria-hidden="true" tabindex="-1"></a>ar_idx_resort_withreplacement <span class="op">=</span> np.random.choice(np.arange(it_mat_size), it_mat_size, replace <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb136-5"><a href="data-structures.html#cb136-5" aria-hidden="true" tabindex="-1"></a>ar_seq_rand_sorted_withreplacement <span class="op">=</span> ar_seq[ar_idx_resort_withreplacement]</span>
-<span id="cb136-6"><a href="data-structures.html#cb136-6" aria-hidden="true" tabindex="-1"></a>mt_seq_rand_sorted_withreplacement <span class="op">=</span> ar_seq_rand_sorted_withreplacement.reshape((it_rows, it_cols))</span>
-<span id="cb136-7"><a href="data-structures.html#cb136-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mt_seq_rand_sorted_withreplacement)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb138-1"><a href="data-structures.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A sequence of numbers, 1 to matrix size, resorted, nonunique, REPLACE = TRUE</span></span>
+<span id="cb138-2"><a href="data-structures.html#cb138-2" aria-hidden="true" tabindex="-1"></a>it_mat_size <span class="op">=</span> it_rows<span class="op">*</span>it_cols</span>
+<span id="cb138-3"><a href="data-structures.html#cb138-3" aria-hidden="true" tabindex="-1"></a>ar_seq <span class="op">=</span> np.arange(it_mat_size)</span>
+<span id="cb138-4"><a href="data-structures.html#cb138-4" aria-hidden="true" tabindex="-1"></a>ar_idx_resort_withreplacement <span class="op">=</span> np.random.choice(np.arange(it_mat_size), it_mat_size, replace <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb138-5"><a href="data-structures.html#cb138-5" aria-hidden="true" tabindex="-1"></a>ar_seq_rand_sorted_withreplacement <span class="op">=</span> ar_seq[ar_idx_resort_withreplacement]</span>
+<span id="cb138-6"><a href="data-structures.html#cb138-6" aria-hidden="true" tabindex="-1"></a>mt_seq_rand_sorted_withreplacement <span class="op">=</span> ar_seq_rand_sorted_withreplacement.reshape((it_rows, it_cols))</span>
+<span id="cb138-7"><a href="data-structures.html#cb138-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mt_seq_rand_sorted_withreplacement)</span></code></pre></div>
 <pre><code>## [[3 2 4]
 ##  [2 4 0]]</code></pre>
 </div>
 <div id="stack-arrays-to-matrix" class="section level4" number="1.3.1.2">
 <h4><span class="header-section-number">1.3.1.2</span> Stack Arrays to Matrix</h4>
 <p>Given various arrays, generate a matrix by stacking equi-length arrays as columns</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb138-1"><a href="data-structures.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="co"># three arrays</span></span>
-<span id="cb138-2"><a href="data-structures.html#cb138-2" aria-hidden="true" tabindex="-1"></a>ar_a <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]</span>
-<span id="cb138-3"><a href="data-structures.html#cb138-3" aria-hidden="true" tabindex="-1"></a>ar_b <span class="op">=</span> [<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>]</span>
-<span id="cb138-4"><a href="data-structures.html#cb138-4" aria-hidden="true" tabindex="-1"></a>ar_c <span class="op">=</span> [<span class="dv">11</span>,<span class="dv">4</span>,<span class="dv">1</span>]</span>
-<span id="cb138-5"><a href="data-structures.html#cb138-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-6"><a href="data-structures.html#cb138-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Concatenate to matrix</span></span>
-<span id="cb138-7"><a href="data-structures.html#cb138-7" aria-hidden="true" tabindex="-1"></a>mt_abc <span class="op">=</span> np.column_stack([ar_a, ar_b, ar_c])</span>
-<span id="cb138-8"><a href="data-structures.html#cb138-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mt_abc)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb140-1"><a href="data-structures.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="co"># three arrays</span></span>
+<span id="cb140-2"><a href="data-structures.html#cb140-2" aria-hidden="true" tabindex="-1"></a>ar_a <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]</span>
+<span id="cb140-3"><a href="data-structures.html#cb140-3" aria-hidden="true" tabindex="-1"></a>ar_b <span class="op">=</span> [<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>]</span>
+<span id="cb140-4"><a href="data-structures.html#cb140-4" aria-hidden="true" tabindex="-1"></a>ar_c <span class="op">=</span> [<span class="dv">11</span>,<span class="dv">4</span>,<span class="dv">1</span>]</span>
+<span id="cb140-5"><a href="data-structures.html#cb140-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-6"><a href="data-structures.html#cb140-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Concatenate to matrix</span></span>
+<span id="cb140-7"><a href="data-structures.html#cb140-7" aria-hidden="true" tabindex="-1"></a>mt_abc <span class="op">=</span> np.column_stack([ar_a, ar_b, ar_c])</span>
+<span id="cb140-8"><a href="data-structures.html#cb140-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mt_abc)</span></code></pre></div>
 <pre><code>## [[ 1  3 11]
 ##  [ 2  4  4]
 ##  [ 3  5  1]]</code></pre>

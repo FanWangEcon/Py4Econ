@@ -1944,21 +1944,21 @@ pprint.pprint(response, width=1)</code></pre>
 <pre><code>## {&#39;ResponseMetadata&#39;: {&#39;HTTPHeaders&#39;: {&#39;connection&#39;: &#39;keep-alive&#39;,
 ##                                       &#39;content-length&#39;: &#39;169&#39;,
 ##                                       &#39;content-type&#39;: &#39;application/json&#39;,
-##                                       &#39;date&#39;: &#39;Sun, &#39;
-##                                               &#39;20 &#39;
+##                                       &#39;date&#39;: &#39;Tue, &#39;
+##                                               &#39;29 &#39;
 ##                                               &#39;Dec &#39;
 ##                                               &#39;2020 &#39;
-##                                               &#39;15:46:44 &#39;
+##                                               &#39;04:01:12 &#39;
 ##                                               &#39;GMT&#39;,
-##                                       &#39;x-amz-apigw-id&#39;: &#39;X267rG5AoAMFuZQ=&#39;,
-##                                       &#39;x-amzn-requestid&#39;: &#39;f4a16155-5165-4f86-9713-50196aa338c8&#39;,
-##                                       &#39;x-amzn-trace-id&#39;: &#39;Root=1-5fdf71e4-0643ed800ffff3b966b94467;Sampled=0&#39;},
+##                                       &#39;x-amz-apigw-id&#39;: &#39;YS-BUGwxoAMFt-g=&#39;,
+##                                       &#39;x-amzn-requestid&#39;: &#39;b55872b5-e319-4e0c-b4f5-18476b12c9dd&#39;,
+##                                       &#39;x-amzn-trace-id&#39;: &#39;Root=1-5feaaa08-320fa4f971f7479276065154&#39;},
 ##                       &#39;HTTPStatusCode&#39;: 200,
-##                       &#39;RequestId&#39;: &#39;f4a16155-5165-4f86-9713-50196aa338c8&#39;,
+##                       &#39;RequestId&#39;: &#39;b55872b5-e319-4e0c-b4f5-18476b12c9dd&#39;,
 ##                       &#39;RetryAttempts&#39;: 0},
-##  &#39;jobDefinitionArn&#39;: &#39;arn:aws:batch:us-east-1:710673677961:job-definition/pyfan-scatterline3-test-rmd:70&#39;,
+##  &#39;jobDefinitionArn&#39;: &#39;arn:aws:batch:us-east-1:710673677961:job-definition/pyfan-scatterline3-test-rmd:89&#39;,
 ##  &#39;jobDefinitionName&#39;: &#39;pyfan-scatterline3-test-rmd&#39;,
-##  &#39;revision&#39;: 70}</code></pre>
+##  &#39;revision&#39;: 89}</code></pre>
 </div>
 <div id="submit-a-batch-array" class="section level2" number="1.3">
 <h2 number="1.3"><span class="header-section-number">1.3</span> Submit a Batch Array</h2>
@@ -2000,32 +2000,76 @@ aws_batch = boto3.client(&#39;batch&#39;,
                          region_name=aws_yml_dict_yml[&#39;region&#39;])
 
 # aws batch submit job
-response = aws_batch.submit_job(
+dc_json_batch_response = aws_batch.submit_job(
     jobName=st_jobName,
     jobQueue=st_jobQueue,
     arrayProperties={&#39;size&#39;: array_size},
     jobDefinition=jobDefinitionName)
 
 # Print response
-pprint.pprint(response, width=1)</code></pre>
+pprint.pprint(dc_json_batch_response, width=1)</code></pre>
 <pre><code>## {&#39;ResponseMetadata&#39;: {&#39;HTTPHeaders&#39;: {&#39;connection&#39;: &#39;keep-alive&#39;,
 ##                                       &#39;content-length&#39;: &#39;198&#39;,
 ##                                       &#39;content-type&#39;: &#39;application/json&#39;,
-##                                       &#39;date&#39;: &#39;Sun, &#39;
-##                                               &#39;20 &#39;
+##                                       &#39;date&#39;: &#39;Tue, &#39;
+##                                               &#39;29 &#39;
 ##                                               &#39;Dec &#39;
 ##                                               &#39;2020 &#39;
-##                                               &#39;15:46:44 &#39;
+##                                               &#39;04:01:12 &#39;
 ##                                               &#39;GMT&#39;,
-##                                       &#39;x-amz-apigw-id&#39;: &#39;X267xG75IAMF0mA=&#39;,
-##                                       &#39;x-amzn-requestid&#39;: &#39;f00d92a0-d1ad-4185-9b9f-63f4098997cd&#39;,
-##                                       &#39;x-amzn-trace-id&#39;: &#39;Root=1-5fdf71e4-59242f6f0469ffcd684676ed;Sampled=0&#39;},
+##                                       &#39;x-amz-apigw-id&#39;: &#39;YS-BYE51IAMFkqw=&#39;,
+##                                       &#39;x-amzn-requestid&#39;: &#39;3ca5be89-77fb-4493-a507-9fc9d47dd857&#39;,
+##                                       &#39;x-amzn-trace-id&#39;: &#39;Root=1-5feaaa08-4bab107349ab6fd74547b65e&#39;},
 ##                       &#39;HTTPStatusCode&#39;: 200,
-##                       &#39;RequestId&#39;: &#39;f00d92a0-d1ad-4185-9b9f-63f4098997cd&#39;,
+##                       &#39;RequestId&#39;: &#39;3ca5be89-77fb-4493-a507-9fc9d47dd857&#39;,
 ##                       &#39;RetryAttempts&#39;: 0},
-##  &#39;jobArn&#39;: &#39;arn:aws:batch:us-east-1:710673677961:job/11ca4397-5af7-44d3-aa16-6fe7f78f35a8&#39;,
-##  &#39;jobId&#39;: &#39;11ca4397-5af7-44d3-aa16-6fe7f78f35a8&#39;,
-##  &#39;jobName&#39;: &#39;pyfan-scatterline3-test-rmd_20201220094644398950&#39;}</code></pre>
+##  &#39;jobArn&#39;: &#39;arn:aws:batch:us-east-1:710673677961:job/51de2175-f0a8-41af-9ec4-05df0a5f5241&#39;,
+##  &#39;jobId&#39;: &#39;51de2175-f0a8-41af-9ec4-05df0a5f5241&#39;,
+##  &#39;jobName&#39;: &#39;pyfan-scatterline3-test-rmd_20201228220104722833&#39;}</code></pre>
+</div>
+<div id="track-the-status-of-a-submitted-batch-array-until-it-finished" class="section level2" number="1.4">
+<h2 number="1.4"><span class="header-section-number">1.4</span> Track the Status of a Submitted Batch Array Until it Finished</h2>
+<p>To automate certain processes, often need to check and wait for job to complete. Can do this on web interface. Easier to do this via boto3 operations: <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/batch.html#Batch.Client.describe_jobs">describe_job</a> and <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/batch.html#Batch.Client.list_jobs">list_jobs</a></p>
+<p>Given the batch array job we just generated above, first, parse out the job ID from the response from the batch array submission above. Then use list_jobs to check the length of JobSummaryList, and then use describe_jobs to check overall job completion status.</p>
+<pre class="python"><code>import time 
+# Get Job ID
+st_batch_jobID = dc_json_batch_response[&#39;jobId&#39;]
+# Print Job ID
+print(f&#39;{st_batch_jobID=}&#39;)
+# While loop to check status</code></pre>
+<pre><code>## st_batch_jobID=&#39;51de2175-f0a8-41af-9ec4-05df0a5f5241&#39;</code></pre>
+<pre class="python"><code>bl_job_in_progress = True
+it_wait_seconds = 0
+while bl_job_in_progress and it_wait_seconds &lt;= 600:
+    # describe job
+    dc_json_batch_describe_job_response = aws_batch.describe_jobs(jobs=[st_batch_jobID])
+    # pprint.pprint(dc_json_batch_describe_job_response, width=1)
+    it_array_size = dc_json_batch_describe_job_response[&#39;jobs&#39;][0][&#39;arrayProperties&#39;][&#39;size&#39;]
+    dc_status_summary = dc_json_batch_describe_job_response[&#39;jobs&#39;][0][&#39;arrayProperties&#39;][&#39;statusSummary&#39;]
+    if dc_status_summary:
+        # check status
+        it_completed = dc_status_summary[&#39;SUCCEEDED&#39;] + dc_status_summary[&#39;FAILED&#39;]
+        if it_completed &lt; it_array_size:
+            bl_job_in_progress = True
+            # sleep three seconds
+            time.sleep(10)
+            it_wait_seconds = it_wait_seconds + 10
+        else:
+            bl_job_in_progress = False
+            
+        print(f&#39;{it_wait_seconds=}, ArrayN={it_array_size},&#39; \
+              f&#39;SUCCEEDED={dc_status_summary[&quot;SUCCEEDED&quot;]}, FAILED={dc_status_summary[&quot;FAILED&quot;]}, &#39; \
+              f&#39;RUNNING={dc_status_summary[&quot;RUNNING&quot;]}, PENDING={dc_status_summary[&quot;PENDING&quot;]}, &#39; \
+              f&#39;RUNNABLE={dc_status_summary[&quot;RUNNABLE&quot;]}&#39;)
+    else:
+        #empty statussummary
+        bl_job_in_progress = True
+        time.sleep(10)
+        it_wait_seconds = it_wait_seconds + 10
+        print(f&#39;{it_wait_seconds=}, ArrayN={it_array_size}&#39;)</code></pre>
+<pre><code>## it_wait_seconds=10, ArrayN=3
+## it_wait_seconds=20, ArrayN=3,SUCCEEDED=0, FAILED=0, RUNNING=0, PENDING=0, RUNNABLE=3
+## it_wait_seconds=20, ArrayN=3,SUCCEEDED=3, FAILED=0, RUNNING=0, PENDING=0, RUNNABLE=0</code></pre>
 </div>
 </div>
 

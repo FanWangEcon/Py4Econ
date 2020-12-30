@@ -6,7 +6,11 @@ description: |
 core:
   - package: py
     code: |
-
+      int(np.floor(it_num/10))
+      it_num%10
+  - package: numpy
+    code: |
+      floor
 date: 2020-12-18
 date_start: 2020-12-18
 output:
@@ -41,7 +45,7 @@ import numpy as np
 We have numbers between 0 and 99, these indicate different estimation specifications, where the digit number is the estimation tolerance level, and the tens number is the minimization algorithm.
 
 ```{python}
-ls_it_esti_optsalgo = [0, 1, 10, 15, 23, 89, 90, 99]
+ls_it_esti_optsalgo = [0, 1, 10, 15, 23, 89, 90, 99, 900, 901, 999, 1000]
 for it_esti_optsalgo in ls_it_esti_optsalgo:
     it_esti_optsalgo_tens = int(np.floor(it_esti_optsalgo/10))
     it_esti_optsalgo_digits = it_esti_optsalgo%10

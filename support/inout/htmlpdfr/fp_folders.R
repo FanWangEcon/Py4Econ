@@ -1,4 +1,4 @@
-## ----global_options, include = FALSE------------------------------------------------------------------------------------
+## ----global_options, include = FALSE------------------------------------------------------------------------------------------------------------------------------
 try(source("../../.Rprofile"))
 
 
@@ -32,6 +32,11 @@ try(source("../../.Rprofile"))
 ## print(f'{srt_path=}')
 
 ## print(f'{spn_path=}')
+
+
+## srt_folder_slashconverted = spn_path.replace(os.sep, '/')
+
+## print(f'{srt_folder_slashconverted=}')
 
 
 ## # Absolute path just created:

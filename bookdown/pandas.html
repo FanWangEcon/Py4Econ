@@ -24,7 +24,7 @@
 <meta name="author" content="Fan Wang" />
 
 
-<meta name="date" content="2020-12-23" />
+<meta name="date" content="2020-12-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -334,22 +334,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>Go back to <a href="http://fanwangecon.github.io/">fan</a>’s <a href="https://fanwangecon.github.io/Py4Econ/">Python Code Examples</a> Repository (<a href="https://fanwangecon.github.io/Py4Econ/bookdown">bookdown site</a>) or the <a href="https://pyfan.readthedocs.io/en/latest/">pyfan</a> Package (<a href="https://pyfan.readthedocs.io/en/latest/reference.html">API</a>).</p>
 </blockquote>
-<div class="sourceCode" id="cb140"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb140-1"><a href="pandas.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb140-2"><a href="pandas.html#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb140-3"><a href="pandas.html#cb140-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="im">as</span> random</span>
-<span id="cb140-4"><a href="pandas.html#cb140-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> string <span class="im">as</span> string</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb142-1"><a href="pandas.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb142-2"><a href="pandas.html#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb142-3"><a href="pandas.html#cb142-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="im">as</span> random</span>
+<span id="cb142-4"><a href="pandas.html#cb142-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> string <span class="im">as</span> string</span></code></pre></div>
 <div id="single-arrays-to-matrix" class="section level4" number="2.1.1.1">
 <h4><span class="header-section-number">2.1.1.1</span> Single Arrays to Matrix</h4>
 <p>Given various arrays, generate a matrix</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb141-1"><a href="pandas.html#cb141-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">123</span>)</span>
-<span id="cb141-2"><a href="pandas.html#cb141-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Concatenate to matrix</span></span>
-<span id="cb141-3"><a href="pandas.html#cb141-3" aria-hidden="true" tabindex="-1"></a>mt_abc <span class="op">=</span> np.column_stack(np.random.randint(<span class="dv">10</span>, size<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">3</span>)))</span>
-<span id="cb141-4"><a href="pandas.html#cb141-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Matrix to data frame with columns and row names</span></span>
-<span id="cb141-5"><a href="pandas.html#cb141-5" aria-hidden="true" tabindex="-1"></a>df_abc <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>mt_abc,</span>
-<span id="cb141-6"><a href="pandas.html#cb141-6" aria-hidden="true" tabindex="-1"></a>            index<span class="op">=</span>[ <span class="st">&#39;r&#39;</span> <span class="op">+</span> <span class="bu">str</span>(it_col) <span class="cf">for</span> it_col <span class="kw">in</span> np.array(<span class="bu">range</span>(<span class="dv">1</span>, mt_abc.shape[<span class="dv">0</span>]<span class="op">+</span><span class="dv">1</span>))],</span>
-<span id="cb141-7"><a href="pandas.html#cb141-7" aria-hidden="true" tabindex="-1"></a>            columns<span class="op">=</span>[ <span class="st">&#39;c&#39;</span> <span class="op">+</span> <span class="bu">str</span>(it_col) <span class="cf">for</span> it_col <span class="kw">in</span> np.array(<span class="bu">range</span>(<span class="dv">1</span>, mt_abc.shape[<span class="dv">1</span>]<span class="op">+</span><span class="dv">1</span>))])</span>
-<span id="cb141-8"><a href="pandas.html#cb141-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Print</span></span>
-<span id="cb141-9"><a href="pandas.html#cb141-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_abc)</span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb143-1"><a href="pandas.html#cb143-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">123</span>)</span>
+<span id="cb143-2"><a href="pandas.html#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Concatenate to matrix</span></span>
+<span id="cb143-3"><a href="pandas.html#cb143-3" aria-hidden="true" tabindex="-1"></a>mt_abc <span class="op">=</span> np.column_stack(np.random.randint(<span class="dv">10</span>, size<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">3</span>)))</span>
+<span id="cb143-4"><a href="pandas.html#cb143-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Matrix to data frame with columns and row names</span></span>
+<span id="cb143-5"><a href="pandas.html#cb143-5" aria-hidden="true" tabindex="-1"></a>df_abc <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>mt_abc,</span>
+<span id="cb143-6"><a href="pandas.html#cb143-6" aria-hidden="true" tabindex="-1"></a>            index<span class="op">=</span>[ <span class="st">&#39;r&#39;</span> <span class="op">+</span> <span class="bu">str</span>(it_col) <span class="cf">for</span> it_col <span class="kw">in</span> np.array(<span class="bu">range</span>(<span class="dv">1</span>, mt_abc.shape[<span class="dv">0</span>]<span class="op">+</span><span class="dv">1</span>))],</span>
+<span id="cb143-7"><a href="pandas.html#cb143-7" aria-hidden="true" tabindex="-1"></a>            columns<span class="op">=</span>[ <span class="st">&#39;c&#39;</span> <span class="op">+</span> <span class="bu">str</span>(it_col) <span class="cf">for</span> it_col <span class="kw">in</span> np.array(<span class="bu">range</span>(<span class="dv">1</span>, mt_abc.shape[<span class="dv">1</span>]<span class="op">+</span><span class="dv">1</span>))])</span>
+<span id="cb143-8"><a href="pandas.html#cb143-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Print</span></span>
+<span id="cb143-9"><a href="pandas.html#cb143-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_abc)</span></code></pre></div>
 <pre><code>##     c1  c2  c3  c4  c5
 ## r1   2   1   6   1   0
 ## r2   2   3   1   9   9
@@ -358,28 +358,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="generate-a-testing-dataframe-with-string-and-numeric-values" class="section level4" number="2.1.1.2">
 <h4><span class="header-section-number">2.1.1.2</span> Generate a Testing Dataframe with String and Numeric Values</h4>
 <p>Generate a test dataframe with string and numeric variables. For testing purposes.</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb143-1"><a href="pandas.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Seed</span></span>
-<span id="cb143-2"><a href="pandas.html#cb143-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">456</span>)</span>
-<span id="cb143-3"><a href="pandas.html#cb143-3" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">456</span>)</span>
-<span id="cb143-4"><a href="pandas.html#cb143-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb143-5"><a href="pandas.html#cb143-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Numeric matrix 3 rows 4 columns</span></span>
-<span id="cb143-6"><a href="pandas.html#cb143-6" aria-hidden="true" tabindex="-1"></a>mt_numeric <span class="op">=</span> np.random.randint(<span class="dv">10</span>, size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">4</span>))</span>
-<span id="cb143-7"><a href="pandas.html#cb143-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb143-8"><a href="pandas.html#cb143-8" aria-hidden="true" tabindex="-1"></a><span class="co"># String block 5 letters per word, 3 rows and 3 columns of words</span></span>
-<span id="cb143-9"><a href="pandas.html#cb143-9" aria-hidden="true" tabindex="-1"></a>st_rand_word_block <span class="op">=</span> <span class="st">&#39;&#39;</span>.join(random.choice(string.ascii_lowercase) <span class="cf">for</span> ctr <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span><span class="op">*</span><span class="dv">3</span><span class="op">*</span><span class="dv">3</span>))</span>
-<span id="cb143-10"><a href="pandas.html#cb143-10" aria-hidden="true" tabindex="-1"></a>ls_st_rand_word <span class="op">=</span> [st_rand_word_block[ctr: ctr <span class="op">+</span> <span class="dv">5</span>].capitalize() <span class="cf">for</span> ctr <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(st_rand_word_block), <span class="dv">5</span>)]</span>
-<span id="cb143-11"><a href="pandas.html#cb143-11" aria-hidden="true" tabindex="-1"></a>mt_string <span class="op">=</span> np.reshape(ls_st_rand_word, [<span class="dv">3</span>,<span class="dv">3</span>])</span>
-<span id="cb143-12"><a href="pandas.html#cb143-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb143-13"><a href="pandas.html#cb143-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine string and numeric matrix</span></span>
-<span id="cb143-14"><a href="pandas.html#cb143-14" aria-hidden="true" tabindex="-1"></a>mt_data <span class="op">=</span> np.column_stack([mt_numeric, mt_string])</span>
-<span id="cb143-15"><a href="pandas.html#cb143-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb143-16"><a href="pandas.html#cb143-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Matrix to dataframe</span></span>
-<span id="cb143-17"><a href="pandas.html#cb143-17" aria-hidden="true" tabindex="-1"></a>df_data <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>mt_data,</span>
-<span id="cb143-18"><a href="pandas.html#cb143-18" aria-hidden="true" tabindex="-1"></a>                       index<span class="op">=</span>[ <span class="st">&#39;r&#39;</span> <span class="op">+</span> <span class="bu">str</span>(it_col) <span class="cf">for</span> it_col <span class="kw">in</span> np.array(<span class="bu">range</span>(<span class="dv">1</span>, mt_data.shape[<span class="dv">0</span>]<span class="op">+</span><span class="dv">1</span>))],</span>
-<span id="cb143-19"><a href="pandas.html#cb143-19" aria-hidden="true" tabindex="-1"></a>                       columns<span class="op">=</span>[ <span class="st">&#39;c&#39;</span> <span class="op">+</span> <span class="bu">str</span>(it_col) <span class="cf">for</span> it_col <span class="kw">in</span> np.array(<span class="bu">range</span>(<span class="dv">1</span>, mt_data.shape[<span class="dv">1</span>]<span class="op">+</span><span class="dv">1</span>))])</span>
-<span id="cb143-20"><a href="pandas.html#cb143-20" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb143-21"><a href="pandas.html#cb143-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Print table</span></span>
-<span id="cb143-22"><a href="pandas.html#cb143-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_data)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb145-1"><a href="pandas.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Seed</span></span>
+<span id="cb145-2"><a href="pandas.html#cb145-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">456</span>)</span>
+<span id="cb145-3"><a href="pandas.html#cb145-3" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">456</span>)</span>
+<span id="cb145-4"><a href="pandas.html#cb145-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb145-5"><a href="pandas.html#cb145-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Numeric matrix 3 rows 4 columns</span></span>
+<span id="cb145-6"><a href="pandas.html#cb145-6" aria-hidden="true" tabindex="-1"></a>mt_numeric <span class="op">=</span> np.random.randint(<span class="dv">10</span>, size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">4</span>))</span>
+<span id="cb145-7"><a href="pandas.html#cb145-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb145-8"><a href="pandas.html#cb145-8" aria-hidden="true" tabindex="-1"></a><span class="co"># String block 5 letters per word, 3 rows and 3 columns of words</span></span>
+<span id="cb145-9"><a href="pandas.html#cb145-9" aria-hidden="true" tabindex="-1"></a>st_rand_word_block <span class="op">=</span> <span class="st">&#39;&#39;</span>.join(random.choice(string.ascii_lowercase) <span class="cf">for</span> ctr <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span><span class="op">*</span><span class="dv">3</span><span class="op">*</span><span class="dv">3</span>))</span>
+<span id="cb145-10"><a href="pandas.html#cb145-10" aria-hidden="true" tabindex="-1"></a>ls_st_rand_word <span class="op">=</span> [st_rand_word_block[ctr: ctr <span class="op">+</span> <span class="dv">5</span>].capitalize() <span class="cf">for</span> ctr <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(st_rand_word_block), <span class="dv">5</span>)]</span>
+<span id="cb145-11"><a href="pandas.html#cb145-11" aria-hidden="true" tabindex="-1"></a>mt_string <span class="op">=</span> np.reshape(ls_st_rand_word, [<span class="dv">3</span>,<span class="dv">3</span>])</span>
+<span id="cb145-12"><a href="pandas.html#cb145-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb145-13"><a href="pandas.html#cb145-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine string and numeric matrix</span></span>
+<span id="cb145-14"><a href="pandas.html#cb145-14" aria-hidden="true" tabindex="-1"></a>mt_data <span class="op">=</span> np.column_stack([mt_numeric, mt_string])</span>
+<span id="cb145-15"><a href="pandas.html#cb145-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb145-16"><a href="pandas.html#cb145-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Matrix to dataframe</span></span>
+<span id="cb145-17"><a href="pandas.html#cb145-17" aria-hidden="true" tabindex="-1"></a>df_data <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>mt_data,</span>
+<span id="cb145-18"><a href="pandas.html#cb145-18" aria-hidden="true" tabindex="-1"></a>                       index<span class="op">=</span>[ <span class="st">&#39;r&#39;</span> <span class="op">+</span> <span class="bu">str</span>(it_col) <span class="cf">for</span> it_col <span class="kw">in</span> np.array(<span class="bu">range</span>(<span class="dv">1</span>, mt_data.shape[<span class="dv">0</span>]<span class="op">+</span><span class="dv">1</span>))],</span>
+<span id="cb145-19"><a href="pandas.html#cb145-19" aria-hidden="true" tabindex="-1"></a>                       columns<span class="op">=</span>[ <span class="st">&#39;c&#39;</span> <span class="op">+</span> <span class="bu">str</span>(it_col) <span class="cf">for</span> it_col <span class="kw">in</span> np.array(<span class="bu">range</span>(<span class="dv">1</span>, mt_data.shape[<span class="dv">1</span>]<span class="op">+</span><span class="dv">1</span>))])</span>
+<span id="cb145-20"><a href="pandas.html#cb145-20" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb145-21"><a href="pandas.html#cb145-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Print table</span></span>
+<span id="cb145-22"><a href="pandas.html#cb145-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_data)</span></code></pre></div>
 <pre><code>##    c1 c2 c3 c4     c5     c6     c7
 ## r1  5  9  4  5  Xoonm  Zubtx  Zqdkp
 ## r2  7  1  8  3  Ydcpw  Obiee  Gfxmq
@@ -392,32 +392,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>Go back to <a href="http://fanwangecon.github.io/">fan</a>’s <a href="https://fanwangecon.github.io/Py4Econ/">Python Code Examples</a> Repository (<a href="https://fanwangecon.github.io/Py4Econ/bookdown">bookdown site</a>) or the <a href="https://pyfan.readthedocs.io/en/latest/">pyfan</a> Package (<a href="https://pyfan.readthedocs.io/en/latest/reference.html">API</a>).</p>
 </blockquote>
-<div class="sourceCode" id="cb145"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb145-1"><a href="pandas.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb145-2"><a href="pandas.html#cb145-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb145-3"><a href="pandas.html#cb145-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="im">as</span> random</span>
-<span id="cb145-4"><a href="pandas.html#cb145-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> string <span class="im">as</span> string</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb147-1"><a href="pandas.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb147-2"><a href="pandas.html#cb147-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb147-3"><a href="pandas.html#cb147-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="im">as</span> random</span>
+<span id="cb147-4"><a href="pandas.html#cb147-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> string <span class="im">as</span> string</span></code></pre></div>
 <div id="generate-a-testing-dataframe" class="section level4" number="2.1.2.1">
 <h4><span class="header-section-number">2.1.2.1</span> Generate a Testing Dataframe</h4>
 <p>Generate a testing dataframe for selection and other tests.</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb146-1"><a href="pandas.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Seed</span></span>
-<span id="cb146-2"><a href="pandas.html#cb146-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">999</span>)</span>
-<span id="cb146-3"><a href="pandas.html#cb146-3" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">999</span>)</span>
-<span id="cb146-4"><a href="pandas.html#cb146-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Numeric matrix 3 rows 4 columns</span></span>
-<span id="cb146-5"><a href="pandas.html#cb146-5" aria-hidden="true" tabindex="-1"></a>mt_numeric <span class="op">=</span> np.random.randint(<span class="dv">10</span>, size<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">4</span>))</span>
-<span id="cb146-6"><a href="pandas.html#cb146-6" aria-hidden="true" tabindex="-1"></a>st_rand_word_block <span class="op">=</span> <span class="st">&#39;&#39;</span>.join(random.choice(string.ascii_lowercase) <span class="cf">for</span> ctr <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span><span class="op">*</span><span class="dv">5</span><span class="op">*</span><span class="dv">3</span>))</span>
-<span id="cb146-7"><a href="pandas.html#cb146-7" aria-hidden="true" tabindex="-1"></a>mt_string <span class="op">=</span> np.reshape([st_rand_word_block[ctr: ctr <span class="op">+</span> <span class="dv">5</span>].capitalize() <span class="cf">for</span> ctr <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(st_rand_word_block), <span class="dv">5</span>)], [<span class="dv">5</span>,<span class="dv">3</span>])</span>
-<span id="cb146-8"><a href="pandas.html#cb146-8" aria-hidden="true" tabindex="-1"></a>mt_data <span class="op">=</span> np.column_stack([mt_numeric, mt_string])</span>
-<span id="cb146-9"><a href="pandas.html#cb146-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb146-10"><a href="pandas.html#cb146-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Matrix to dataframe</span></span>
-<span id="cb146-11"><a href="pandas.html#cb146-11" aria-hidden="true" tabindex="-1"></a>df_data <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>mt_data,</span>
-<span id="cb146-12"><a href="pandas.html#cb146-12" aria-hidden="true" tabindex="-1"></a>                       index<span class="op">=</span>[ <span class="st">&#39;r&#39;</span> <span class="op">+</span> <span class="bu">str</span>(it_col) <span class="cf">for</span> it_col <span class="kw">in</span> np.array(<span class="bu">range</span>(<span class="dv">1</span>, mt_data.shape[<span class="dv">0</span>]<span class="op">+</span><span class="dv">1</span>))],</span>
-<span id="cb146-13"><a href="pandas.html#cb146-13" aria-hidden="true" tabindex="-1"></a>                       columns<span class="op">=</span>[ <span class="st">&#39;c&#39;</span> <span class="op">+</span> <span class="bu">str</span>(it_col) <span class="cf">for</span> it_col <span class="kw">in</span> np.array(<span class="bu">range</span>(<span class="dv">1</span>, mt_data.shape[<span class="dv">1</span>]<span class="op">+</span><span class="dv">1</span>))])</span>
-<span id="cb146-14"><a href="pandas.html#cb146-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb146-15"><a href="pandas.html#cb146-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace values</span></span>
-<span id="cb146-16"><a href="pandas.html#cb146-16" aria-hidden="true" tabindex="-1"></a>df_data <span class="op">=</span> df_data.replace([<span class="st">&#39;Zvcss&#39;</span>, <span class="st">&#39;Dugei&#39;</span>, <span class="st">&#39;Ciagu&#39;</span>], <span class="st">&#39;Zqovt&#39;</span>)</span>
-<span id="cb146-17"><a href="pandas.html#cb146-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb146-18"><a href="pandas.html#cb146-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Print table</span></span>
-<span id="cb146-19"><a href="pandas.html#cb146-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_data)</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb148-1"><a href="pandas.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Seed</span></span>
+<span id="cb148-2"><a href="pandas.html#cb148-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">999</span>)</span>
+<span id="cb148-3"><a href="pandas.html#cb148-3" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">999</span>)</span>
+<span id="cb148-4"><a href="pandas.html#cb148-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Numeric matrix 3 rows 4 columns</span></span>
+<span id="cb148-5"><a href="pandas.html#cb148-5" aria-hidden="true" tabindex="-1"></a>mt_numeric <span class="op">=</span> np.random.randint(<span class="dv">10</span>, size<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">4</span>))</span>
+<span id="cb148-6"><a href="pandas.html#cb148-6" aria-hidden="true" tabindex="-1"></a>st_rand_word_block <span class="op">=</span> <span class="st">&#39;&#39;</span>.join(random.choice(string.ascii_lowercase) <span class="cf">for</span> ctr <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span><span class="op">*</span><span class="dv">5</span><span class="op">*</span><span class="dv">3</span>))</span>
+<span id="cb148-7"><a href="pandas.html#cb148-7" aria-hidden="true" tabindex="-1"></a>mt_string <span class="op">=</span> np.reshape([st_rand_word_block[ctr: ctr <span class="op">+</span> <span class="dv">5</span>].capitalize() <span class="cf">for</span> ctr <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(st_rand_word_block), <span class="dv">5</span>)], [<span class="dv">5</span>,<span class="dv">3</span>])</span>
+<span id="cb148-8"><a href="pandas.html#cb148-8" aria-hidden="true" tabindex="-1"></a>mt_data <span class="op">=</span> np.column_stack([mt_numeric, mt_string])</span>
+<span id="cb148-9"><a href="pandas.html#cb148-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb148-10"><a href="pandas.html#cb148-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Matrix to dataframe</span></span>
+<span id="cb148-11"><a href="pandas.html#cb148-11" aria-hidden="true" tabindex="-1"></a>df_data <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>mt_data,</span>
+<span id="cb148-12"><a href="pandas.html#cb148-12" aria-hidden="true" tabindex="-1"></a>                       index<span class="op">=</span>[ <span class="st">&#39;r&#39;</span> <span class="op">+</span> <span class="bu">str</span>(it_col) <span class="cf">for</span> it_col <span class="kw">in</span> np.array(<span class="bu">range</span>(<span class="dv">1</span>, mt_data.shape[<span class="dv">0</span>]<span class="op">+</span><span class="dv">1</span>))],</span>
+<span id="cb148-13"><a href="pandas.html#cb148-13" aria-hidden="true" tabindex="-1"></a>                       columns<span class="op">=</span>[ <span class="st">&#39;c&#39;</span> <span class="op">+</span> <span class="bu">str</span>(it_col) <span class="cf">for</span> it_col <span class="kw">in</span> np.array(<span class="bu">range</span>(<span class="dv">1</span>, mt_data.shape[<span class="dv">1</span>]<span class="op">+</span><span class="dv">1</span>))])</span>
+<span id="cb148-14"><a href="pandas.html#cb148-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb148-15"><a href="pandas.html#cb148-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace values</span></span>
+<span id="cb148-16"><a href="pandas.html#cb148-16" aria-hidden="true" tabindex="-1"></a>df_data <span class="op">=</span> df_data.replace([<span class="st">&#39;Zvcss&#39;</span>, <span class="st">&#39;Dugei&#39;</span>, <span class="st">&#39;Ciagu&#39;</span>], <span class="st">&#39;Zqovt&#39;</span>)</span>
+<span id="cb148-17"><a href="pandas.html#cb148-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb148-18"><a href="pandas.html#cb148-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Print table</span></span>
+<span id="cb148-19"><a href="pandas.html#cb148-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_data)</span></code></pre></div>
 <pre><code>##    c1 c2 c3 c4     c5     c6     c7
 ## r1  0  5  1  8  Zqovt  Rppez  Ukuzu
 ## r2  1  9  3  0  Zqovt  Sbwyi  Mzhum
@@ -428,10 +428,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="select-rows-based-on-columnvariable-values" class="section level4" number="2.1.2.2">
 <h4><span class="header-section-number">2.1.2.2</span> Select Rows Based on Column/Variable Values</h4>
 <p>There is a dataframe with many rows, select a subset of rows where a particular column/variable’s value is equal to some value.</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb148-1"><a href="pandas.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Concatenate to matrix</span></span>
-<span id="cb148-2"><a href="pandas.html#cb148-2" aria-hidden="true" tabindex="-1"></a>df_data_subset <span class="op">=</span> df_data.loc[df_data[<span class="st">&#39;c5&#39;</span>] <span class="op">==</span> <span class="st">&#39;Zqovt&#39;</span>]</span>
-<span id="cb148-3"><a href="pandas.html#cb148-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Print</span></span>
-<span id="cb148-4"><a href="pandas.html#cb148-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_data_subset)</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb150-1"><a href="pandas.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Concatenate to matrix</span></span>
+<span id="cb150-2"><a href="pandas.html#cb150-2" aria-hidden="true" tabindex="-1"></a>df_data_subset <span class="op">=</span> df_data.loc[df_data[<span class="st">&#39;c5&#39;</span>] <span class="op">==</span> <span class="st">&#39;Zqovt&#39;</span>]</span>
+<span id="cb150-3"><a href="pandas.html#cb150-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Print</span></span>
+<span id="cb150-4"><a href="pandas.html#cb150-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_data_subset)</span></code></pre></div>
 <pre><code>##    c1 c2 c3 c4     c5     c6     c7
 ## r1  0  5  1  8  Zqovt  Rppez  Ukuzu
 ## r2  1  9  3  0  Zqovt  Sbwyi  Mzhum
@@ -454,31 +454,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The dataframe will be named after the current variable array name, and will have a time suffix added.</li>
 </ol>
 <p>Replace the mt_abc line below, use a different name that should appear in the saved file name.</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb150-1"><a href="pandas.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import Pathlib and panddas</span></span>
-<span id="cb150-2"><a href="pandas.html#cb150-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb150-3"><a href="pandas.html#cb150-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb150-4"><a href="pandas.html#cb150-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
-<span id="cb150-5"><a href="pandas.html#cb150-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb150-6"><a href="pandas.html#cb150-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb150-7"><a href="pandas.html#cb150-7" aria-hidden="true" tabindex="-1"></a><span class="co"># replace mt_abc line by the matrix currently used</span></span>
-<span id="cb150-8"><a href="pandas.html#cb150-8" aria-hidden="true" tabindex="-1"></a>mt_abc <span class="op">=</span> np.column_stack(np.random.randint(<span class="dv">10</span>, size<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">3</span>)))</span>
-<span id="cb150-9"><a href="pandas.html#cb150-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Save results to C:\Users\fan\Downloads\PythonDebug, generate if does not exist.</span></span>
-<span id="cb150-10"><a href="pandas.html#cb150-10" aria-hidden="true" tabindex="-1"></a>srt_pydebug <span class="op">=</span> Path.joinpath(Path.home(), <span class="st">&quot;Downloads&quot;</span>, <span class="st">&quot;PythonDebug&quot;</span>)</span>
-<span id="cb150-11"><a href="pandas.html#cb150-11" aria-hidden="true" tabindex="-1"></a>srt_pydebug.mkdir(parents<span class="op">=</span><span class="va">True</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb150-12"><a href="pandas.html#cb150-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Matrix to data frame with columns and row names</span></span>
-<span id="cb150-13"><a href="pandas.html#cb150-13" aria-hidden="true" tabindex="-1"></a>df2export <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>mt_abc,</span>
-<span id="cb150-14"><a href="pandas.html#cb150-14" aria-hidden="true" tabindex="-1"></a>                         index<span class="op">=</span>[<span class="st">&#39;r&#39;</span> <span class="op">+</span> <span class="bu">str</span>(it_col) <span class="cf">for</span> it_col <span class="kw">in</span> np.array(<span class="bu">range</span>(<span class="dv">1</span>, mt_abc.shape[<span class="dv">0</span>] <span class="op">+</span> <span class="dv">1</span>))],</span>
-<span id="cb150-15"><a href="pandas.html#cb150-15" aria-hidden="true" tabindex="-1"></a>                         columns<span class="op">=</span>[<span class="st">&#39;c&#39;</span> <span class="op">+</span> <span class="bu">str</span>(it_col) <span class="cf">for</span> it_col <span class="kw">in</span> np.array(<span class="bu">range</span>(<span class="dv">1</span>, mt_abc.shape[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">1</span>))])</span>
-<span id="cb150-16"><a href="pandas.html#cb150-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Export File Name</span></span>
-<span id="cb150-17"><a href="pandas.html#cb150-17" aria-hidden="true" tabindex="-1"></a>spn_csv_path <span class="op">=</span> Path.joinpath(srt_pydebug, <span class="ss">f&#39;</span><span class="sc">{</span>mt_abc<span class="op">=</span><span class="sc">}</span><span class="ss">&#39;</span>.split(<span class="st">&#39;=&#39;</span>)[<span class="dv">0</span>] <span class="op">+</span> <span class="st">&#39;-&#39;</span> <span class="op">+</span> time.strftime(<span class="st">&quot;%Y%m</span><span class="sc">%d</span><span class="st">-%H%M%S&quot;</span>) <span class="op">+</span> <span class="st">&#39;.csv&#39;</span>)</span>
-<span id="cb150-18"><a href="pandas.html#cb150-18" aria-hidden="true" tabindex="-1"></a><span class="co"># export</span></span>
-<span id="cb150-19"><a href="pandas.html#cb150-19" aria-hidden="true" tabindex="-1"></a>df2export.to_csv(spn_csv_path, sep<span class="op">=</span><span class="st">&quot;,&quot;</span>)</span>
-<span id="cb150-20"><a href="pandas.html#cb150-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb150-21"><a href="pandas.html#cb150-21" aria-hidden="true" tabindex="-1"></a><span class="co"># print</span></span>
-<span id="cb150-22"><a href="pandas.html#cb150-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span>srt_pydebug<span class="op">=</span><span class="sc">}</span><span class="ss">&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb152-1"><a href="pandas.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import Pathlib and panddas</span></span>
+<span id="cb152-2"><a href="pandas.html#cb152-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb152-3"><a href="pandas.html#cb152-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb152-4"><a href="pandas.html#cb152-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb152-5"><a href="pandas.html#cb152-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb152-6"><a href="pandas.html#cb152-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-7"><a href="pandas.html#cb152-7" aria-hidden="true" tabindex="-1"></a><span class="co"># replace mt_abc line by the matrix currently used</span></span>
+<span id="cb152-8"><a href="pandas.html#cb152-8" aria-hidden="true" tabindex="-1"></a>mt_abc <span class="op">=</span> np.column_stack(np.random.randint(<span class="dv">10</span>, size<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">3</span>)))</span>
+<span id="cb152-9"><a href="pandas.html#cb152-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Save results to C:\Users\fan\Downloads\PythonDebug, generate if does not exist.</span></span>
+<span id="cb152-10"><a href="pandas.html#cb152-10" aria-hidden="true" tabindex="-1"></a>srt_pydebug <span class="op">=</span> Path.joinpath(Path.home(), <span class="st">&quot;Downloads&quot;</span>, <span class="st">&quot;PythonDebug&quot;</span>)</span>
+<span id="cb152-11"><a href="pandas.html#cb152-11" aria-hidden="true" tabindex="-1"></a>srt_pydebug.mkdir(parents<span class="op">=</span><span class="va">True</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb152-12"><a href="pandas.html#cb152-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Matrix to data frame with columns and row names</span></span>
+<span id="cb152-13"><a href="pandas.html#cb152-13" aria-hidden="true" tabindex="-1"></a>df2export <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>mt_abc,</span>
+<span id="cb152-14"><a href="pandas.html#cb152-14" aria-hidden="true" tabindex="-1"></a>                         index<span class="op">=</span>[<span class="st">&#39;r&#39;</span> <span class="op">+</span> <span class="bu">str</span>(it_col) <span class="cf">for</span> it_col <span class="kw">in</span> np.array(<span class="bu">range</span>(<span class="dv">1</span>, mt_abc.shape[<span class="dv">0</span>] <span class="op">+</span> <span class="dv">1</span>))],</span>
+<span id="cb152-15"><a href="pandas.html#cb152-15" aria-hidden="true" tabindex="-1"></a>                         columns<span class="op">=</span>[<span class="st">&#39;c&#39;</span> <span class="op">+</span> <span class="bu">str</span>(it_col) <span class="cf">for</span> it_col <span class="kw">in</span> np.array(<span class="bu">range</span>(<span class="dv">1</span>, mt_abc.shape[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">1</span>))])</span>
+<span id="cb152-16"><a href="pandas.html#cb152-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Export File Name</span></span>
+<span id="cb152-17"><a href="pandas.html#cb152-17" aria-hidden="true" tabindex="-1"></a>spn_csv_path <span class="op">=</span> Path.joinpath(srt_pydebug, <span class="ss">f&#39;</span><span class="sc">{</span>mt_abc<span class="op">=</span><span class="sc">}</span><span class="ss">&#39;</span>.split(<span class="st">&#39;=&#39;</span>)[<span class="dv">0</span>] <span class="op">+</span> <span class="st">&#39;-&#39;</span> <span class="op">+</span> time.strftime(<span class="st">&quot;%Y%m</span><span class="sc">%d</span><span class="st">-%H%M%S&quot;</span>) <span class="op">+</span> <span class="st">&#39;.csv&#39;</span>)</span>
+<span id="cb152-18"><a href="pandas.html#cb152-18" aria-hidden="true" tabindex="-1"></a><span class="co"># export</span></span>
+<span id="cb152-19"><a href="pandas.html#cb152-19" aria-hidden="true" tabindex="-1"></a>df2export.to_csv(spn_csv_path, sep<span class="op">=</span><span class="st">&quot;,&quot;</span>)</span>
+<span id="cb152-20"><a href="pandas.html#cb152-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-21"><a href="pandas.html#cb152-21" aria-hidden="true" tabindex="-1"></a><span class="co"># print</span></span>
+<span id="cb152-22"><a href="pandas.html#cb152-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span>srt_pydebug<span class="op">=</span><span class="sc">}</span><span class="ss">&#39;</span>)</span></code></pre></div>
 <pre><code>## srt_pydebug=WindowsPath(&#39;C:/Users/fan/Downloads/PythonDebug&#39;)</code></pre>
-<div class="sourceCode" id="cb152"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb152-1"><a href="pandas.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span>spn_csv_path<span class="op">=</span><span class="sc">}</span><span class="ss">&#39;</span>)</span></code></pre></div>
-<pre><code>## spn_csv_path=WindowsPath(&#39;C:/Users/fan/Downloads/PythonDebug/mt_abc-20201223-221255.csv&#39;)</code></pre>
+<div class="sourceCode" id="cb154"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb154-1"><a href="pandas.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span>spn_csv_path<span class="op">=</span><span class="sc">}</span><span class="ss">&#39;</span>)</span></code></pre></div>
+<pre><code>## spn_csv_path=WindowsPath(&#39;C:/Users/fan/Downloads/PythonDebug/mt_abc-20201228-220153.csv&#39;)</code></pre>
 
 </div>
 </div>

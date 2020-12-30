@@ -1881,7 +1881,7 @@ div.tocify {
 <div id="two-digit-numbers-coding-conditional-information" class="section level2" number="1.1">
 <h2 number="1.1"><span class="header-section-number">1.1</span> Two Digit Numbers Coding Conditional Information</h2>
 <p>We have numbers between 0 and 99, these indicate different estimation specifications, where the digit number is the estimation tolerance level, and the tens number is the minimization algorithm.</p>
-<pre class="python"><code>ls_it_esti_optsalgo = [0, 1, 10, 15, 23, 89, 90, 99]
+<pre class="python"><code>ls_it_esti_optsalgo = [0, 1, 10, 15, 23, 89, 90, 99, 900, 901, 999, 1000]
 for it_esti_optsalgo in ls_it_esti_optsalgo:
     it_esti_optsalgo_tens = int(np.floor(it_esti_optsalgo/10))
     it_esti_optsalgo_digits = it_esti_optsalgo%10
@@ -1893,7 +1893,11 @@ for it_esti_optsalgo in ls_it_esti_optsalgo:
 ## it_esti_optsalgo_tens=2, it_esti_optsalgo_digits=3
 ## it_esti_optsalgo_tens=8, it_esti_optsalgo_digits=9
 ## it_esti_optsalgo_tens=9, it_esti_optsalgo_digits=0
-## it_esti_optsalgo_tens=9, it_esti_optsalgo_digits=9</code></pre>
+## it_esti_optsalgo_tens=9, it_esti_optsalgo_digits=9
+## it_esti_optsalgo_tens=90, it_esti_optsalgo_digits=0
+## it_esti_optsalgo_tens=90, it_esti_optsalgo_digits=1
+## it_esti_optsalgo_tens=99, it_esti_optsalgo_digits=9
+## it_esti_optsalgo_tens=100, it_esti_optsalgo_digits=0</code></pre>
 </div>
 </div>
 

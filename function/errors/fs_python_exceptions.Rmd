@@ -3,15 +3,19 @@ title: "Python Raise, Try and Catch Exceptions"
 titleshort: "Python Raise, Try and Catch Exceptions"
 description: |
   Raise an Exception in a python function, try and catch and print to string.
+  Trace full exception stack.
 core:
   - package: python
     code: |
       raise
       try except
       ValueError
-      TypeError      
+      TypeError
+  - package: traceback
+    code: |
+      print_exc()
 date: 2020-11-04
-date_start: 2020-11-23
+date_start: 2020-12-28
 output:
   pdf_document:
     pandoc_args: '../../_output_kniti_pdf.yaml'
@@ -40,11 +44,11 @@ try(source("../../.Rprofile"))
 
 #### A function That Raises an Error with Try Statement Catching it
 
-Below, we have a function that will raise a *TypeError* unless we provide an integer input. The function is called with integer input and then called with a string input. The string input is wrapped in a try and except call, where the exception catches the TypeError and prints it. 
+Below, we have a function that will raise a *TypeError* unless we provide an integer input. The function is called with integer input and then called with a string input. The string input is wrapped in a try and except call, where the exception catches the TypeError and prints it.
 
 ```{python}
 # define the function
-def error_test(gn_speckey=None):
+def ffi_error_test(gn_speckey=None):
     if isinstance(gn_speckey, int):
         print(f'{gn_speckey=} is an integer')
     else:
@@ -53,10 +57,32 @@ def error_test(gn_speckey=None):
 error_test(1)
 # Call function with string
 try:
-    error_test('abc')
+    ffi_error_test('abc')
 except TypeError as error:
     print('Caught this error: ' + repr(error))
 ```
+
+#### Catch an Exception Noisily
+
+Rather than only catching the last element of the exception, show the full trace. Notice in the example below, the second element of the loop does not work as function input. With exception catching, the loop continued despite the second element not working. The traceback shows more details at the end with full trace of the exception from the second element of the list as input for ffi_error_test().
+
+```{python}
+import traceback
+import numpy as np
+
+ls_ob_inputs = [2, ['abc','efg'], 1, 123]
+
+for ob_input in ls_ob_inputs:
+    print(f'try input {ob_input=} with the error_test function:')
+    try:
+        ffi_error_test(ob_input)
+    except TypeError as error:
+        traceback.print_exc()
+        print('Caught this error: ' + repr(error))
+```
+
+see [How to print the stack trace of an exception object in Python?](https://stackoverflow.com/q/52742612/8280804)
+
 
 #### Handle Parameters When Conditions Not Satisfied
 

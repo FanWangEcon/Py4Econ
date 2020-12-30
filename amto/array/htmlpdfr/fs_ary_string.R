@@ -1,4 +1,4 @@
-## ----global_options, include = FALSE------------------------------------------------------------------------------------
+## ----global_options, include = FALSE------------------------------------------------------------------------------------------------------------------------------
 try(source("../../.Rprofile"))
 
 
@@ -7,6 +7,15 @@ try(source("../../.Rprofile"))
 ## import string as string
 
 ## import random as random
+
+## import pprint
+
+
+## ls_st_status = ["success", "running", "running", "running", "finished", "pending", "pending"]
+
+## ls_freq = [ [f'{ls_st_status.count(st_status)} of {len(ls_st_status)} {st_status}']  for st_status in set(ls_st_status)]
+
+## pprint.pprint(ls_freq)
 
 
 ## st_func_stack_code = 'dc_ls_combo_type = pyfan_amto_lsdcconvert.ff_ls2dc(ls_combo_type,'

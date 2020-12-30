@@ -1,4 +1,4 @@
-## ----global_options, include = FALSE------------------------------------------------------------------------------------
+## ----global_options, include = FALSE------------------------------------------------------------------------------------------------------------------------------
 try(source("../../.Rprofile"))
 
 
@@ -147,7 +147,7 @@ try(source("../../.Rprofile"))
 ## 
 ## # aws batch submit job
 
-## response = aws_batch.submit_job(
+## dc_json_batch_response = aws_batch.submit_job(
 
 ##     jobName=st_jobName,
 
@@ -160,5 +160,76 @@ try(source("../../.Rprofile"))
 ## 
 ## # Print response
 
-## pprint.pprint(response, width=1)
+## pprint.pprint(dc_json_batch_response, width=1)
+
+
+## import time
+
+## # Get Job ID
+
+## st_batch_jobID = dc_json_batch_response['jobId']
+
+## # Print Job ID
+
+## print(f'{st_batch_jobID=}')
+
+## # While loop to check status
+
+## bl_job_in_progress = True
+
+## it_wait_seconds = 0
+
+## while bl_job_in_progress and it_wait_seconds <= 600:
+
+##     # describe job
+
+##     dc_json_batch_describe_job_response = aws_batch.describe_jobs(jobs=[st_batch_jobID])
+
+##     # pprint.pprint(dc_json_batch_describe_job_response, width=1)
+
+##     it_array_size = dc_json_batch_describe_job_response['jobs'][0]['arrayProperties']['size']
+
+##     dc_status_summary = dc_json_batch_describe_job_response['jobs'][0]['arrayProperties']['statusSummary']
+
+##     if dc_status_summary:
+
+##         # check status
+
+##         it_completed = dc_status_summary['SUCCEEDED'] + dc_status_summary['FAILED']
+
+##         if it_completed < it_array_size:
+
+##             bl_job_in_progress = True
+
+##             # sleep three seconds
+
+##             time.sleep(10)
+
+##             it_wait_seconds = it_wait_seconds + 10
+
+##         else:
+
+##             bl_job_in_progress = False
+
+## 
+
+##         print(f'{it_wait_seconds=}, ArrayN={it_array_size},' \
+
+##               f'SUCCEEDED={dc_status_summary["SUCCEEDED"]}, FAILED={dc_status_summary["FAILED"]}, ' \
+
+##               f'RUNNING={dc_status_summary["RUNNING"]}, PENDING={dc_status_summary["PENDING"]}, ' \
+
+##               f'RUNNABLE={dc_status_summary["RUNNABLE"]}')
+
+##     else:
+
+##         #empty statussummary
+
+##         bl_job_in_progress = True
+
+##         time.sleep(10)
+
+##         it_wait_seconds = it_wait_seconds + 10
+
+##         print(f'{it_wait_seconds=}, ArrayN={it_array_size}')
 

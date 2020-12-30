@@ -8,7 +8,8 @@
 
 1. [Basic Number Numeric Manipulations](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_numeric.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array//fs_numeric.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_numeric.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_numeric.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_numeric.html)
 	+ Loop over a list of numbers where the first and second digits have different interpretations.
-	+ **py**: **
+	+ **py**: *int(np.floor(it_num/10)) + it_num%10*
+	+ **numpy**: *floor*
 2. [Define and Unpack Tuple](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_tuple.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array//fs_tuple.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_tuple.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_tuple.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_tuple.html)
 	+ Define/deal multiple variables on the same line
 	+ Define tuple in python with and without parenthesis, unpack tuple, get subset of elements.
@@ -19,10 +20,11 @@
 	+ Provide default for element of a list when list does not have that element.
 	+ **py**: *lambda + join + append() + if len(X) >= 3 and X[2] is not None + if elif else*
 4. [Python String Manipulation Examples](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_ary_string.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array//fs_ary_string.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_ary_string.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_ary_string.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_ary_string.html)
+	+ Count unique elements of a string array, generate frequency list.
 	+ Search for substring, replace string, wrap string.
 	+ Display and format numeric string with fstring. 
 	+ Change the decimal rounding given a list of estimates and standard error string arrays.
-	+ **py**: *zip + upper + join + round + float + split + replace + ascii_lowercase*
+	+ **py**: *zip() + upper() + join() + round() + float() + split() + replace() + ascii_lowercase() + set()*
 	+ **textwrap**: *fill(st, width = 20)*
 	+ **fstring**: *f + f'{fl_esti_rounded:.{it_round_decimal}f}'*
 	+ **random**: *choice*
@@ -37,8 +39,7 @@
 
 ### [Section 1.3 Numpy Arrays][Numpy Arrays] links
 
-1. [fs_numpy_basics](https://fanwangecon.github.io/Py4Econ/amto/matrix/htmlpdfr/fs_numpy_basics.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix//fs_numpy_basics.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix/htmlpdfr/fs_numpy_basics.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix/htmlpdfr/fs_numpy_basics.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/amto/matrix/htmlpdfr/fs_numpy_basics.html)
-2. [Numpy Combine Arrays to Matrix](https://fanwangecon.github.io/Py4Econ/amto/matrix/htmlpdfr/fs_array2mat.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix//fs_array2mat.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix/htmlpdfr/fs_array2mat.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix/htmlpdfr/fs_array2mat.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/amto/matrix/htmlpdfr/fs_array2mat.html)
+1. [Numpy Combine Arrays to Matrix](https://fanwangecon.github.io/Py4Econ/amto/matrix/htmlpdfr/fs_array2mat.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix//fs_array2mat.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix/htmlpdfr/fs_array2mat.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix/htmlpdfr/fs_array2mat.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/amto/matrix/htmlpdfr/fs_array2mat.html)
 	+ Arrays to matrix.
 	+ **numpy**: *column_stack() + random.choice() + reshape()*
 
@@ -88,7 +89,9 @@
 
 1. [Python Raise, Try and Catch Exceptions](https://fanwangecon.github.io/Py4Econ/function/errors/htmlpdfr/fs_python_exceptions.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/errors//fs_python_exceptions.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/errors/htmlpdfr/fs_python_exceptions.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/function/errors/htmlpdfr/fs_python_exceptions.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/function/errors/htmlpdfr/fs_python_exceptions.html)
 	+ Raise an Exception in a python function, try and catch and print to string.
-	+ **python**: *raise + try except + ValueError + TypeError      *
+	+ Trace full exception stack.
+	+ **python**: *raise + try except + ValueError + TypeError*
+	+ **traceback**: *print_exc()*
 
 ## Statistics links
 
@@ -141,8 +144,9 @@
 1. [AWS Batch, Batch Array](https://fanwangecon.github.io/Py4Econ/aws/batch/htmlpdfr/fs_aws_batch.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/aws/batch//fs_aws_batch.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/aws/batch/htmlpdfr/fs_aws_batch.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/aws/batch/htmlpdfr/fs_aws_batch.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/aws/batch/htmlpdfr/fs_aws_batch.html)
 	+ Set up python function that uses AWS_BATCH_JOB_ARRAY_INDEX.
 	+ Register batch task and submit batch array tasks using ECR image, and save results to S3.
+	+ Batch Array status check until success.
 	+ **yaml**: *load()*
-	+ **boto3**: *client() + register_job_definition(jobDefinitionName, type, containerProperties, retryStrategy) + aws_batch.submit_job(jobName, jobQueue, arrayProperties={'size':10}, jobDefinition)*
+	+ **boto3**: *client() + register_job_definition(jobDefinitionName, type, containerProperties, retryStrategy) + aws_batch.submit_job(jobName, jobQueue, arrayProperties={'size':10}, jobDefinition) + aws_batch.describe_jobs()*
 
 ## Docker Container links
 
@@ -196,11 +200,11 @@
 	+ **shutil**: *which()*
 2. [Python Directory and Folder Operations](https://fanwangecon.github.io/Py4Econ/support/inout/htmlpdfr/fp_folders.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/support/inout//fp_folders.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/support/inout/htmlpdfr/fp_folders.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/support/inout/htmlpdfr/fp_folders.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/support/inout/htmlpdfr/fp_folders.html)
 	+ Join folder names to form absolute path.
+	+ Folder path slash conversion from system os.sep to forward slash.
 	+ Generate new folders and files, with existing folder substrings.
 	+ Generate subfolder recursively.
-	+ Copying and moving files across folders. 
 	+ **py**: *open(srt, 'w') + write() + close()*
-	+ **os**: *os.sep + os.listdir() + os.path.abspath() + os.path.abspath(os.path.join(os.sep, 'users', 'fan')) + os.path.join('/', 'c:', 'fa', 'fb')*
+	+ **os**: *os.sep + os.listdir() + os.path.abspath() + os.path.abspath(os.path.join(os.sep, 'users', 'fan')) + os.path.join('/', 'c:', 'fa', 'fb') + spn_path.replace(os.sep, '/')*
 	+ **pathlib**: *Path(srt).mkdir(parents=True, exist_ok=True) + [Path(spn).stem for spn in Path(srt).rglob(st)]*
 	+ **shutil**: *shutil.copyfile('/fa/fl.txt', '/fb/fl.txt') + shutil.copy2('/fa/fl.txt', '/fb') + shutil.rmtree('/fb')*
 	+ **distutils**: *dir_util.copy_tree('/fa', '/fb')*

@@ -1881,7 +1881,7 @@ div.tocify {
 <h2 number="1.1"><span class="header-section-number">1.1</span> A function That Raises an Error with Try Statement Catching it</h2>
 <p>Below, we have a function that will raise a <em>TypeError</em> unless we provide an integer input. The function is called with integer input and then called with a string input. The string input is wrapped in a try and except call, where the exception catches the TypeError and prints it.</p>
 <pre class="python"><code># define the function
-def error_test(gn_speckey=None):
+def ffi_error_test(gn_speckey=None):
     if isinstance(gn_speckey, int):
         print(f&#39;{gn_speckey=} is an integer&#39;)
     else:
@@ -1891,13 +1891,43 @@ error_test(1)
 # Call function with string</code></pre>
 <pre><code>## gn_speckey=1 is an integer</code></pre>
 <pre class="python"><code>try:
-    error_test(&#39;abc&#39;)
+    ffi_error_test(&#39;abc&#39;)
 except TypeError as error:
     print(&#39;Caught this error: &#39; + repr(error))</code></pre>
 <pre><code>## Caught this error: TypeError(&quot;gn_speckey=&#39;abc&#39; is not an integer&quot;)</code></pre>
 </div>
-<div id="handle-parameters-when-conditions-not-satisfied" class="section level2" number="1.2">
-<h2 number="1.2"><span class="header-section-number">1.2</span> Handle Parameters When Conditions Not Satisfied</h2>
+<div id="catch-an-exception-noisily" class="section level2" number="1.2">
+<h2 number="1.2"><span class="header-section-number">1.2</span> Catch an Exception Noisily</h2>
+<p>Rather than only catching the last element of the exception, show the full trace. Notice in the example below, the second element of the loop does not work as function input. With exception catching, the loop continued despite the second element not working. The traceback shows more details at the end with full trace of the exception from the second element of the list as input for ffi_error_test().</p>
+<pre class="python"><code>import traceback
+import numpy as np
+
+ls_ob_inputs = [2, [&#39;abc&#39;,&#39;efg&#39;], 1, 123]
+
+for ob_input in ls_ob_inputs:
+    print(f&#39;try input {ob_input=} with the error_test function:&#39;)
+    try:
+        ffi_error_test(ob_input)
+    except TypeError as error:
+        traceback.print_exc()
+        print(&#39;Caught this error: &#39; + repr(error))</code></pre>
+<pre><code>## try input ob_input=2 with the error_test function:
+## gn_speckey=2 is an integer
+## try input ob_input=[&#39;abc&#39;, &#39;efg&#39;] with the error_test function:
+## Caught this error: TypeError(&quot;gn_speckey=[&#39;abc&#39;, &#39;efg&#39;] is not an integer&quot;)
+## try input ob_input=1 with the error_test function:
+## gn_speckey=1 is an integer
+## try input ob_input=123 with the error_test function:
+## gn_speckey=123 is an integer
+## 
+## Traceback (most recent call last):
+##   File &quot;&lt;string&gt;&quot;, line 4, in &lt;module&gt;
+##   File &quot;&lt;string&gt;&quot;, line 5, in ffi_error_test
+## TypeError: gn_speckey=[&#39;abc&#39;, &#39;efg&#39;] is not an integer</code></pre>
+<p>see <a href="https://stackoverflow.com/q/52742612/8280804">How to print the stack trace of an exception object in Python?</a></p>
+</div>
+<div id="handle-parameters-when-conditions-not-satisfied" class="section level2" number="1.3">
+<h2 number="1.3"><span class="header-section-number">1.3</span> Handle Parameters When Conditions Not Satisfied</h2>
 <p>There is a function, that can estimate or simulate, under both functionalities, there is a common string parameter, that requires specifying estimation or simulation conditions. The common string parameter should be a simple string without special separators in the case of simulation, and should be four strings concatenated together with equal sign for estimation. Generate an exception if the function is called for estimation but the string parameter does not have the required structure.</p>
 <ul>
 <li><a href="https://docs.python.org/3/library/exceptions.html#TypeError">Python 3 TypeError</a></li>
@@ -1920,8 +1950,8 @@ else:
     st_error = &#39;speckey=&#39; + speckey + &#39; and estimate=&#39; + str(estimate)
     raise ValueError(st_error)</code></pre>
 </div>
-<div id="proceed-despite-error" class="section level2" number="1.3">
-<h2 number="1.3"><span class="header-section-number">1.3</span> Proceed Despite Error</h2>
+<div id="proceed-despite-error" class="section level2" number="1.4">
+<h2 number="1.4"><span class="header-section-number">1.4</span> Proceed Despite Error</h2>
 <p>Sometimes, code should proceed despite error, to finish a loop for example:</p>
 <pre class="python"><code># estimate at each initial random points
 for it_esti_ctr in range(esti_param_vec_count):

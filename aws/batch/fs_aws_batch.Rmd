@@ -4,6 +4,7 @@ titleshort: "AWS Batch, Batch Array"
 description: |
   Set up python function that uses AWS_BATCH_JOB_ARRAY_INDEX.
   Register batch task and submit batch array tasks using ECR image, and save results to S3.
+  Batch Array status check until success.
 core:
   - package: yaml
     code: |
@@ -13,8 +14,9 @@ core:
       client()
       register_job_definition(jobDefinitionName, type, containerProperties, retryStrategy)
       aws_batch.submit_job(jobName, jobQueue, arrayProperties={'size':10}, jobDefinition)
+      aws_batch.describe_jobs()
 date: 2020-10-17
-date_start: 2020-10-17
+date_start: 2020-12-28
 output:
   pdf_document:
     pandoc_args: '../../_output_kniti_pdf.yaml'
@@ -158,12 +160,56 @@ aws_batch = boto3.client('batch',
                          region_name=aws_yml_dict_yml['region'])
 
 # aws batch submit job
-response = aws_batch.submit_job(
+dc_json_batch_response = aws_batch.submit_job(
     jobName=st_jobName,
     jobQueue=st_jobQueue,
     arrayProperties={'size': array_size},
     jobDefinition=jobDefinitionName)
 
 # Print response
-pprint.pprint(response, width=1)
+pprint.pprint(dc_json_batch_response, width=1)
+```
+
+#### Track the Status of a Submitted Batch Array Until it Finished
+
+To automate certain processes, often need to check and wait for job to complete. Can do this on web interface. Easier to do this via boto3 operations: [describe_job](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/batch.html#Batch.Client.describe_jobs) and [list_jobs](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/batch.html#Batch.Client.list_jobs)
+
+Given the batch array job we just generated above, first, parse out the job ID from the response from the batch array submission above. Then use list_jobs to check the length of JobSummaryList, and then use describe_jobs to check overall job completion status. 
+
+```{python}
+import time 
+# Get Job ID
+st_batch_jobID = dc_json_batch_response['jobId']
+# Print Job ID
+print(f'{st_batch_jobID=}')
+# While loop to check status
+bl_job_in_progress = True
+it_wait_seconds = 0
+while bl_job_in_progress and it_wait_seconds <= 600:
+    # describe job
+    dc_json_batch_describe_job_response = aws_batch.describe_jobs(jobs=[st_batch_jobID])
+    # pprint.pprint(dc_json_batch_describe_job_response, width=1)
+    it_array_size = dc_json_batch_describe_job_response['jobs'][0]['arrayProperties']['size']
+    dc_status_summary = dc_json_batch_describe_job_response['jobs'][0]['arrayProperties']['statusSummary']
+    if dc_status_summary:
+        # check status
+        it_completed = dc_status_summary['SUCCEEDED'] + dc_status_summary['FAILED']
+        if it_completed < it_array_size:
+            bl_job_in_progress = True
+            # sleep three seconds
+            time.sleep(10)
+            it_wait_seconds = it_wait_seconds + 10
+        else:
+            bl_job_in_progress = False
+            
+        print(f'{it_wait_seconds=}, ArrayN={it_array_size},' \
+              f'SUCCEEDED={dc_status_summary["SUCCEEDED"]}, FAILED={dc_status_summary["FAILED"]}, ' \
+              f'RUNNING={dc_status_summary["RUNNING"]}, PENDING={dc_status_summary["PENDING"]}, ' \
+              f'RUNNABLE={dc_status_summary["RUNNABLE"]}')
+    else:
+        #empty statussummary
+        bl_job_in_progress = True
+        time.sleep(10)
+        it_wait_seconds = it_wait_seconds + 10
+        print(f'{it_wait_seconds=}, ArrayN={it_array_size}')
 ```

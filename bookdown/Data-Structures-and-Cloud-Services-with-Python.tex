@@ -147,7 +147,7 @@
 
 \title{Data Structures and Cloud Services with Python}
 \author{Fan Wang}
-\date{2020-12-23}
+\date{2020-12-28}
 
 \begin{document}
 \maketitle
@@ -201,7 +201,7 @@ We have numbers between 0 and 99, these indicate different estimation specificat
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{ls\_it\_esti\_optsalgo }\OperatorTok{=}\NormalTok{ [}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{89}\NormalTok{, }\DecValTok{90}\NormalTok{, }\DecValTok{99}\NormalTok{]}
+\NormalTok{ls\_it\_esti\_optsalgo }\OperatorTok{=}\NormalTok{ [}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{89}\NormalTok{, }\DecValTok{90}\NormalTok{, }\DecValTok{99}\NormalTok{, }\DecValTok{900}\NormalTok{, }\DecValTok{901}\NormalTok{, }\DecValTok{999}\NormalTok{, }\DecValTok{1000}\NormalTok{]}
 \ControlFlowTok{for}\NormalTok{ it\_esti\_optsalgo }\KeywordTok{in}\NormalTok{ ls\_it\_esti\_optsalgo:}
 \NormalTok{    it\_esti\_optsalgo\_tens }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(np.floor(it\_esti\_optsalgo}\OperatorTok{/}\DecValTok{10}\NormalTok{))}
 \NormalTok{    it\_esti\_optsalgo\_digits }\OperatorTok{=}\NormalTok{ it\_esti\_optsalgo}\OperatorTok{\%}\DecValTok{10}
@@ -218,6 +218,10 @@ We have numbers between 0 and 99, these indicate different estimation specificat
 ## it_esti_optsalgo_tens=8, it_esti_optsalgo_digits=9
 ## it_esti_optsalgo_tens=9, it_esti_optsalgo_digits=0
 ## it_esti_optsalgo_tens=9, it_esti_optsalgo_digits=9
+## it_esti_optsalgo_tens=90, it_esti_optsalgo_digits=0
+## it_esti_optsalgo_tens=90, it_esti_optsalgo_digits=1
+## it_esti_optsalgo_tens=99, it_esti_optsalgo_digits=9
+## it_esti_optsalgo_tens=100, it_esti_optsalgo_digits=0
 \end{verbatim}
 
 \hypertarget{tuple}{%
@@ -780,8 +784,29 @@ Go back to \href{http://fanwangecon.github.io/}{fan}'s \href{https://fanwangecon
 \ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
 \ImportTok{import}\NormalTok{ string }\ImportTok{as}\NormalTok{ string}
 \ImportTok{import}\NormalTok{ random }\ImportTok{as}\NormalTok{ random}
+\ImportTok{import}\NormalTok{ pprint}
 \end{Highlighting}
 \end{Shaded}
+
+\hypertarget{list-of-array-count-frequency}{%
+\subsubsection{List of Array Count Frequency}\label{list-of-array-count-frequency}}
+
+There is a list of strings, with repeating values, count the frequence of the each unique string.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ls\_st\_status }\OperatorTok{=}\NormalTok{ [}\StringTok{"success"}\NormalTok{, }\StringTok{"running"}\NormalTok{, }\StringTok{"running"}\NormalTok{, }\StringTok{"running"}\NormalTok{, }\StringTok{"finished"}\NormalTok{, }\StringTok{"pending"}\NormalTok{, }\StringTok{"pending"}\NormalTok{]}
+\NormalTok{ls\_freq }\OperatorTok{=}\NormalTok{ [ [}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{ls\_st\_status}\SpecialCharTok{.}\NormalTok{count(st\_status)}\SpecialCharTok{\}}\SpecialStringTok{ of }\SpecialCharTok{\{}\BuiltInTok{len}\NormalTok{(ls\_st\_status)}\SpecialCharTok{\}}\SpecialStringTok{ }\SpecialCharTok{\{}\NormalTok{st\_status}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{]  }\ControlFlowTok{for}\NormalTok{ st\_status }\KeywordTok{in} \BuiltInTok{set}\NormalTok{(ls\_st\_status)]}
+\NormalTok{pprint.pprint(ls\_freq)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [['3 of 7 running'],
+##  ['2 of 7 pending'],
+##  ['1 of 7 success'],
+##  ['1 of 7 finished']]
+\end{verbatim}
 
 \hypertarget{get-substring}{%
 \subsubsection{Get Substring}\label{get-substring}}
@@ -1886,7 +1911,7 @@ Replace the mt\_abc line below, use a different name that should appear in the s
 \end{Shaded}
 
 \begin{verbatim}
-## spn_csv_path=WindowsPath('C:/Users/fan/Downloads/PythonDebug/mt_abc-20201223-221408.csv')
+## spn_csv_path=WindowsPath('C:/Users/fan/Downloads/PythonDebug/mt_abc-20201228-220300.csv')
 \end{verbatim}
 
 \hypertarget{functions}{%
@@ -2781,7 +2806,7 @@ Below, we have a function that will raise a \emph{TypeError} unless we provide a
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# define the function}
-\KeywordTok{def}\NormalTok{ error\_test(gn\_speckey}\OperatorTok{=}\VariableTok{None}\NormalTok{):}
+\KeywordTok{def}\NormalTok{ ffi\_error\_test(gn\_speckey}\OperatorTok{=}\VariableTok{None}\NormalTok{):}
     \ControlFlowTok{if} \BuiltInTok{isinstance}\NormalTok{(gn\_speckey, }\BuiltInTok{int}\NormalTok{):}
         \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{gn\_speckey}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{ is an integer\textquotesingle{}}\NormalTok{)}
     \ControlFlowTok{else}\NormalTok{:}
@@ -2799,7 +2824,7 @@ Below, we have a function that will raise a \emph{TypeError} unless we provide a
 \begin{Shaded}
 \begin{Highlighting}[]
 \ControlFlowTok{try}\NormalTok{:}
-\NormalTok{    error\_test(}\StringTok{\textquotesingle{}abc\textquotesingle{}}\NormalTok{)}
+\NormalTok{    ffi\_error\_test(}\StringTok{\textquotesingle{}abc\textquotesingle{}}\NormalTok{)}
 \ControlFlowTok{except} \PreprocessorTok{TypeError} \ImportTok{as}\NormalTok{ error:}
     \BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}Caught this error: \textquotesingle{}} \OperatorTok{+} \BuiltInTok{repr}\NormalTok{(error))}
 \end{Highlighting}
@@ -2808,6 +2833,46 @@ Below, we have a function that will raise a \emph{TypeError} unless we provide a
 \begin{verbatim}
 ## Caught this error: TypeError("gn_speckey='abc' is not an integer")
 \end{verbatim}
+
+\hypertarget{catch-an-exception-noisily}{%
+\subsubsection{Catch an Exception Noisily}\label{catch-an-exception-noisily}}
+
+Rather than only catching the last element of the exception, show the full trace. Notice in the example below, the second element of the loop does not work as function input. With exception catching, the loop continued despite the second element not working. The traceback shows more details at the end with full trace of the exception from the second element of the list as input for ffi\_error\_test().
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ traceback}
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+
+\NormalTok{ls\_ob\_inputs }\OperatorTok{=}\NormalTok{ [}\DecValTok{2}\NormalTok{, [}\StringTok{\textquotesingle{}abc\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}efg\textquotesingle{}}\NormalTok{], }\DecValTok{1}\NormalTok{, }\DecValTok{123}\NormalTok{]}
+
+\ControlFlowTok{for}\NormalTok{ ob\_input }\KeywordTok{in}\NormalTok{ ls\_ob\_inputs:}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}try input }\SpecialCharTok{\{}\NormalTok{ob\_input}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{ with the error\_test function:\textquotesingle{}}\NormalTok{)}
+    \ControlFlowTok{try}\NormalTok{:}
+\NormalTok{        ffi\_error\_test(ob\_input)}
+    \ControlFlowTok{except} \PreprocessorTok{TypeError} \ImportTok{as}\NormalTok{ error:}
+\NormalTok{        traceback.print\_exc()}
+        \BuiltInTok{print}\NormalTok{(}\StringTok{\textquotesingle{}Caught this error: \textquotesingle{}} \OperatorTok{+} \BuiltInTok{repr}\NormalTok{(error))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## try input ob_input=2 with the error_test function:
+## gn_speckey=2 is an integer
+## try input ob_input=['abc', 'efg'] with the error_test function:
+## Caught this error: TypeError("gn_speckey=['abc', 'efg'] is not an integer")
+## try input ob_input=1 with the error_test function:
+## gn_speckey=1 is an integer
+## try input ob_input=123 with the error_test function:
+## gn_speckey=123 is an integer
+## 
+## Traceback (most recent call last):
+##   File "<string>", line 4, in <module>
+##   File "<string>", line 5, in ffi_error_test
+## TypeError: gn_speckey=['abc', 'efg'] is not an integer
+\end{verbatim}
+
+see \href{https://stackoverflow.com/q/52742612/8280804}{How to print the stack trace of an exception object in Python?}
 
 \hypertarget{handle-parameters-when-conditions-not-satisfied}{%
 \subsubsection{Handle Parameters When Conditions Not Satisfied}\label{handle-parameters-when-conditions-not-satisfied}}
@@ -3309,7 +3374,7 @@ Given x and y coordinates, plot out two lines. see \href{https://matplotlib.org/
 \end{Shaded}
 
 \begin{verbatim}
-## [<matplotlib.lines.Line2D object at 0x000002D3FD5E3580>]
+## [<matplotlib.lines.Line2D object at 0x0000017170C90C40>]
 \end{verbatim}
 
 \begin{Shaded}
@@ -3323,7 +3388,7 @@ Given x and y coordinates, plot out two lines. see \href{https://matplotlib.org/
 \end{Shaded}
 
 \begin{verbatim}
-## [<matplotlib.lines.Line2D object at 0x000002D3FD5E3A00>]
+## [<matplotlib.lines.Line2D object at 0x000001716DB51190>]
 \end{verbatim}
 
 \begin{Shaded}
@@ -3333,7 +3398,7 @@ Given x and y coordinates, plot out two lines. see \href{https://matplotlib.org/
 \end{Shaded}
 
 \begin{verbatim}
-## <matplotlib.legend.Legend object at 0x000002D3FD788E80>
+## <matplotlib.legend.Legend object at 0x0000017170F39640>
 \end{verbatim}
 
 \begin{Shaded}
@@ -3373,7 +3438,7 @@ Given x and y coordinates, plot out two lines. see \href{https://matplotlib.org/
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{Data-Structures-and-Cloud-Services-with-Python_files/figure-latex/unnamed-chunk-106-1} \end{center}
+\begin{center}\includegraphics{Data-Structures-and-Cloud-Services-with-Python_files/figure-latex/unnamed-chunk-108-1} \end{center}
 
 \hypertarget{text-plot}{%
 \subsection{Text Plot}\label{text-plot}}
@@ -3428,7 +3493,7 @@ Plot Text as Image. \href{https://matplotlib.org/3.1.1/gallery/pyplots/text_layo
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{Data-Structures-and-Cloud-Services-with-Python_files/figure-latex/unnamed-chunk-108-1} \end{center}
+\begin{center}\includegraphics{Data-Structures-and-Cloud-Services-with-Python_files/figure-latex/unnamed-chunk-110-1} \end{center}
 
 \hypertarget{amazon-web-services}{%
 \chapter{Amazon Web Services}\label{amazon-web-services}}
@@ -3835,7 +3900,7 @@ We load AWS access key and secret acess key etc in from a \href{https://fanwange
 ## {'ResponseMetadata': '',
 ##  'computeEnvironments': [{'computeEnvironmentArn': 'arn:aws:batch:us-east-1:710673677961:compute-environment/SpotEnv2560',
 ##                           'computeEnvironmentName': 'SpotEnv2560',
-##                           'computeResources': {'desiredvCpus': 16,
+##                           'computeResources': {'desiredvCpus': 4,
 ##                                                'ec2KeyPair': 'fan_wang-key-pair-us_east_nv',
 ##                                                'instanceRole': '',
 ##                                                'instanceTypes': ['optimal'],
@@ -4155,21 +4220,21 @@ Everytime, when the code below is re-run, a new batch revision number is generat
 ## {'ResponseMetadata': {'HTTPHeaders': {'connection': 'keep-alive',
 ##                                       'content-length': '169',
 ##                                       'content-type': 'application/json',
-##                                       'date': 'Thu, '
-##                                               '24 '
+##                                       'date': 'Tue, '
+##                                               '29 '
 ##                                               'Dec '
 ##                                               '2020 '
-##                                               '04:14:19 '
+##                                               '04:03:12 '
 ##                                               'GMT',
-##                                       'x-amz-apigw-id': 'YChQVHpToAMFlvw=',
-##                                       'x-amzn-requestid': '5aa27236-f210-441b-953b-1e5e5f174790',
-##                                       'x-amzn-trace-id': 'Root=1-5fe4159b-6ab04cc4565da45d0c6fcdc7'},
+##                                       'x-amz-apigw-id': 'YS-UEF8xoAMFWVg=',
+##                                       'x-amzn-requestid': '74ce59aa-3b09-4bee-a32c-a2b993935f40',
+##                                       'x-amzn-trace-id': 'Root=1-5feaaa80-76c54f544651d37c14c0cbd2'},
 ##                       'HTTPStatusCode': 200,
-##                       'RequestId': '5aa27236-f210-441b-953b-1e5e5f174790',
+##                       'RequestId': '74ce59aa-3b09-4bee-a32c-a2b993935f40',
 ##                       'RetryAttempts': 0},
-##  'jobDefinitionArn': 'arn:aws:batch:us-east-1:710673677961:job-definition/pyfan-scatterline3-test-rmd:72',
+##  'jobDefinitionArn': 'arn:aws:batch:us-east-1:710673677961:job-definition/pyfan-scatterline3-test-rmd:91',
 ##  'jobDefinitionName': 'pyfan-scatterline3-test-rmd',
-##  'revision': 72}
+##  'revision': 91}
 \end{verbatim}
 
 \hypertarget{submit-a-batch-array}{%
@@ -4219,14 +4284,14 @@ Outputs from the \href{https://github.com/FanWangEcon/pyfan/blob/master/pyfan/gr
 \NormalTok{                         region\_name}\OperatorTok{=}\NormalTok{aws\_yml\_dict\_yml[}\StringTok{\textquotesingle{}region\textquotesingle{}}\NormalTok{])}
 
 \CommentTok{\# aws batch submit job}
-\NormalTok{response }\OperatorTok{=}\NormalTok{ aws\_batch.submit\_job(}
+\NormalTok{dc\_json\_batch\_response }\OperatorTok{=}\NormalTok{ aws\_batch.submit\_job(}
 \NormalTok{    jobName}\OperatorTok{=}\NormalTok{st\_jobName,}
 \NormalTok{    jobQueue}\OperatorTok{=}\NormalTok{st\_jobQueue,}
 \NormalTok{    arrayProperties}\OperatorTok{=}\NormalTok{\{}\StringTok{\textquotesingle{}size\textquotesingle{}}\NormalTok{: array\_size\},}
 \NormalTok{    jobDefinition}\OperatorTok{=}\NormalTok{jobDefinitionName)}
 
 \CommentTok{\# Print response}
-\NormalTok{pprint.pprint(response, width}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
+\NormalTok{pprint.pprint(dc\_json\_batch\_response, width}\OperatorTok{=}\DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4234,21 +4299,86 @@ Outputs from the \href{https://github.com/FanWangEcon/pyfan/blob/master/pyfan/gr
 ## {'ResponseMetadata': {'HTTPHeaders': {'connection': 'keep-alive',
 ##                                       'content-length': '198',
 ##                                       'content-type': 'application/json',
-##                                       'date': 'Thu, '
-##                                               '24 '
+##                                       'date': 'Tue, '
+##                                               '29 '
 ##                                               'Dec '
 ##                                               '2020 '
-##                                               '04:14:20 '
+##                                               '04:03:12 '
 ##                                               'GMT',
-##                                       'x-amz-apigw-id': 'YChQZEr4oAMFT0w=',
-##                                       'x-amzn-requestid': 'f26268a1-3736-4fe9-9db8-f82dcbb6f33d',
-##                                       'x-amzn-trace-id': 'Root=1-5fe4159c-3605981b58819e8b434eab57'},
+##                                       'x-amz-apigw-id': 'YS-UJH3ooAMFdmw=',
+##                                       'x-amzn-requestid': 'd94f67cf-43f7-4ef0-af38-256c49f5868e',
+##                                       'x-amzn-trace-id': 'Root=1-5feaaa80-11335e5955fc16131efefaa5'},
 ##                       'HTTPStatusCode': 200,
-##                       'RequestId': 'f26268a1-3736-4fe9-9db8-f82dcbb6f33d',
+##                       'RequestId': 'd94f67cf-43f7-4ef0-af38-256c49f5868e',
 ##                       'RetryAttempts': 0},
-##  'jobArn': 'arn:aws:batch:us-east-1:710673677961:job/3500f28f-2dee-493e-aab2-83fd7a562527',
-##  'jobId': '3500f28f-2dee-493e-aab2-83fd7a562527',
-##  'jobName': 'pyfan-scatterline3-test-rmd_20201223221411943541'}
+##  'jobArn': 'arn:aws:batch:us-east-1:710673677961:job/69181af6-e4f5-483a-84e8-784c1f2edc64',
+##  'jobId': '69181af6-e4f5-483a-84e8-784c1f2edc64',
+##  'jobName': 'pyfan-scatterline3-test-rmd_20201228220304759041'}
+\end{verbatim}
+
+\hypertarget{track-the-status-of-a-submitted-batch-array-until-it-finished}{%
+\subsubsection{Track the Status of a Submitted Batch Array Until it Finished}\label{track-the-status-of-a-submitted-batch-array-until-it-finished}}
+
+To automate certain processes, often need to check and wait for job to complete. Can do this on web interface. Easier to do this via boto3 operations: \href{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/batch.html\#Batch.Client.describe_jobs}{describe\_job} and \href{https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/batch.html\#Batch.Client.list_jobs}{list\_jobs}
+
+Given the batch array job we just generated above, first, parse out the job ID from the response from the batch array submission above. Then use list\_jobs to check the length of JobSummaryList, and then use describe\_jobs to check overall job completion status.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ time }
+\CommentTok{\# Get Job ID}
+\NormalTok{st\_batch\_jobID }\OperatorTok{=}\NormalTok{ dc\_json\_batch\_response[}\StringTok{\textquotesingle{}jobId\textquotesingle{}}\NormalTok{]}
+\CommentTok{\# Print Job ID}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{st\_batch\_jobID}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\CommentTok{\# While loop to check status}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## st_batch_jobID='69181af6-e4f5-483a-84e8-784c1f2edc64'
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bl\_job\_in\_progress }\OperatorTok{=} \VariableTok{True}
+\NormalTok{it\_wait\_seconds }\OperatorTok{=} \DecValTok{0}
+\ControlFlowTok{while}\NormalTok{ bl\_job\_in\_progress }\KeywordTok{and}\NormalTok{ it\_wait\_seconds }\OperatorTok{\textless{}=} \DecValTok{600}\NormalTok{:}
+    \CommentTok{\# describe job}
+\NormalTok{    dc\_json\_batch\_describe\_job\_response }\OperatorTok{=}\NormalTok{ aws\_batch.describe\_jobs(jobs}\OperatorTok{=}\NormalTok{[st\_batch\_jobID])}
+    \CommentTok{\# pprint.pprint(dc\_json\_batch\_describe\_job\_response, width=1)}
+\NormalTok{    it\_array\_size }\OperatorTok{=}\NormalTok{ dc\_json\_batch\_describe\_job\_response[}\StringTok{\textquotesingle{}jobs\textquotesingle{}}\NormalTok{][}\DecValTok{0}\NormalTok{][}\StringTok{\textquotesingle{}arrayProperties\textquotesingle{}}\NormalTok{][}\StringTok{\textquotesingle{}size\textquotesingle{}}\NormalTok{]}
+\NormalTok{    dc\_status\_summary }\OperatorTok{=}\NormalTok{ dc\_json\_batch\_describe\_job\_response[}\StringTok{\textquotesingle{}jobs\textquotesingle{}}\NormalTok{][}\DecValTok{0}\NormalTok{][}\StringTok{\textquotesingle{}arrayProperties\textquotesingle{}}\NormalTok{][}\StringTok{\textquotesingle{}statusSummary\textquotesingle{}}\NormalTok{]}
+    \ControlFlowTok{if}\NormalTok{ dc\_status\_summary:}
+        \CommentTok{\# check status}
+\NormalTok{        it\_completed }\OperatorTok{=}\NormalTok{ dc\_status\_summary[}\StringTok{\textquotesingle{}SUCCEEDED\textquotesingle{}}\NormalTok{] }\OperatorTok{+}\NormalTok{ dc\_status\_summary[}\StringTok{\textquotesingle{}FAILED\textquotesingle{}}\NormalTok{]}
+        \ControlFlowTok{if}\NormalTok{ it\_completed }\OperatorTok{\textless{}}\NormalTok{ it\_array\_size:}
+\NormalTok{            bl\_job\_in\_progress }\OperatorTok{=} \VariableTok{True}
+            \CommentTok{\# sleep three seconds}
+\NormalTok{            time.sleep(}\DecValTok{10}\NormalTok{)}
+\NormalTok{            it\_wait\_seconds }\OperatorTok{=}\NormalTok{ it\_wait\_seconds }\OperatorTok{+} \DecValTok{10}
+        \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{            bl\_job\_in\_progress }\OperatorTok{=} \VariableTok{False}
+            
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{it\_wait\_seconds}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{, ArrayN=}\SpecialCharTok{\{}\NormalTok{it\_array\_size}\SpecialCharTok{\}}\SpecialStringTok{,\textquotesingle{}}\NormalTok{ \textbackslash{}}
+              \SpecialStringTok{f\textquotesingle{}SUCCEEDED=}\SpecialCharTok{\{}\NormalTok{dc\_status\_summary[}\StringTok{"SUCCEEDED"}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{, FAILED=}\SpecialCharTok{\{}\NormalTok{dc\_status\_summary[}\StringTok{"FAILED"}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{, \textquotesingle{}}\NormalTok{ \textbackslash{}}
+              \SpecialStringTok{f\textquotesingle{}RUNNING=}\SpecialCharTok{\{}\NormalTok{dc\_status\_summary[}\StringTok{"RUNNING"}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{, PENDING=}\SpecialCharTok{\{}\NormalTok{dc\_status\_summary[}\StringTok{"PENDING"}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{, \textquotesingle{}}\NormalTok{ \textbackslash{}}
+              \SpecialStringTok{f\textquotesingle{}RUNNABLE=}\SpecialCharTok{\{}\NormalTok{dc\_status\_summary[}\StringTok{"RUNNABLE"}\NormalTok{]}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+    \ControlFlowTok{else}\NormalTok{:}
+        \CommentTok{\#empty statussummary}
+\NormalTok{        bl\_job\_in\_progress }\OperatorTok{=} \VariableTok{True}
+\NormalTok{        time.sleep(}\DecValTok{10}\NormalTok{)}
+\NormalTok{        it\_wait\_seconds }\OperatorTok{=}\NormalTok{ it\_wait\_seconds }\OperatorTok{+} \DecValTok{10}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{it\_wait\_seconds}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{, ArrayN=}\SpecialCharTok{\{}\NormalTok{it\_array\_size}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## it_wait_seconds=10, ArrayN=3
+## it_wait_seconds=20, ArrayN=3,SUCCEEDED=0, FAILED=0, RUNNING=0, PENDING=0, RUNNABLE=3
+## it_wait_seconds=30, ArrayN=3,SUCCEEDED=0, FAILED=0, RUNNING=0, PENDING=0, RUNNABLE=3
+## it_wait_seconds=40, ArrayN=3,SUCCEEDED=0, FAILED=0, RUNNING=0, PENDING=0, RUNNABLE=3
+## it_wait_seconds=50, ArrayN=3,SUCCEEDED=2, FAILED=0, RUNNING=0, PENDING=0, RUNNABLE=1
+## it_wait_seconds=50, ArrayN=3,SUCCEEDED=3, FAILED=0, RUNNING=0, PENDING=0, RUNNABLE=0
 \end{verbatim}
 
 \hypertarget{docker-container}{%
@@ -5191,7 +5321,7 @@ Show CSV results:
 
 \begin{table}[!h]
 
-\caption{\label{tab:unnamed-chunk-162}Chinese Long and Lat, Temperature Pressure, 2008 Jan 1st at 12 noon?}
+\caption{\label{tab:unnamed-chunk-165}Chinese Long and Lat, Temperature Pressure, 2008 Jan 1st at 12 noon?}
 \centering
 \begin{tabular}[t]{l|r|r|r|r|r|r|r|r}
 \hline
@@ -6269,6 +6399,19 @@ Create a platform free full absolute path to a particular folder
 
 \begin{verbatim}
 ## spn_path='G:\\users\\fan\\pyfan\\vig\\support\\inout\\_folder\\testfolder_mlt_region_ne\\subfolder'
+\end{verbatim}
+
+Slash converion, convert the system slash to forward-slash all:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{srt\_folder\_slashconverted }\OperatorTok{=}\NormalTok{ spn\_path.replace(os.sep, }\StringTok{\textquotesingle{}/\textquotesingle{}}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f\textquotesingle{}}\SpecialCharTok{\{}\NormalTok{srt\_folder\_slashconverted}\OperatorTok{=}\SpecialCharTok{\}}\SpecialStringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## srt_folder_slashconverted='G:/users/fan/pyfan/vig/support/inout/_folder/testfolder_mlt_region_ne/subfolder'
 \end{verbatim}
 
 see: \href{https://stackoverflow.com/a/28080468/8280804}{constructing absolute path with os.path.join()}.
@@ -7410,7 +7553,9 @@ String outputs.
   \item
     Loop over a list of numbers where the first and second digits have different interpretations.
   \item
-    \textbf{py}: **
+    \textbf{py}: \emph{int(np.floor(it\_num/10)) + it\_num\%10}
+  \item
+    \textbf{numpy}: \emph{floor}
   \end{itemize}
 \item
   \href{https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_tuple.html}{Define and Unpack Tuple}: \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array//fs_tuple.Rmd}{\textbf{rmd}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_tuple.R}{\textbf{r}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/array/htmlpdfr/fs_tuple.pdf}{\textbf{pdf}} \textbar{} \href{https://fanwangecon.github.io/Py4Econ/amto/array/htmlpdfr/fs_tuple.html}{\textbf{html}}
@@ -7444,13 +7589,15 @@ String outputs.
   \begin{itemize}
   \tightlist
   \item
+    Count unique elements of a string array, generate frequency list.
+  \item
     Search for substring, replace string, wrap string.
   \item
     Display and format numeric string with fstring.
   \item
     Change the decimal rounding given a list of estimates and standard error string arrays.
   \item
-    \textbf{py}: \emph{zip + upper + join + round + float + split + replace + ascii\_lowercase}
+    \textbf{py}: \emph{zip() + upper() + join() + round() + float() + split() + replace() + ascii\_lowercase() + set()}
   \item
     \textbf{textwrap}: \emph{fill(st, width = 20)}
   \item
@@ -7488,8 +7635,6 @@ String outputs.
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
-\item
-  \href{https://fanwangecon.github.io/Py4Econ/amto/matrix/htmlpdfr/fs_numpy_basics.html}{fs\_numpy\_basics}: \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix//fs_numpy_basics.Rmd}{\textbf{rmd}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix/htmlpdfr/fs_numpy_basics.R}{\textbf{r}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix/htmlpdfr/fs_numpy_basics.pdf}{\textbf{pdf}} \textbar{} \href{https://fanwangecon.github.io/Py4Econ/amto/matrix/htmlpdfr/fs_numpy_basics.html}{\textbf{html}}
 \item
   \href{https://fanwangecon.github.io/Py4Econ/amto/matrix/htmlpdfr/fs_array2mat.html}{Numpy Combine Arrays to Matrix}: \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix//fs_array2mat.Rmd}{\textbf{rmd}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix/htmlpdfr/fs_array2mat.R}{\textbf{r}} \textbar{} \href{https://github.com/FanWangEcon/Py4Econ/blob/master/amto/matrix/htmlpdfr/fs_array2mat.pdf}{\textbf{pdf}} \textbar{} \href{https://fanwangecon.github.io/Py4Econ/amto/matrix/htmlpdfr/fs_array2mat.html}{\textbf{html}}
 
@@ -7630,7 +7775,11 @@ String outputs.
   \item
     Raise an Exception in a python function, try and catch and print to string.
   \item
-    \textbf{python}: \emph{raise + try except + ValueError + TypeError }
+    Trace full exception stack.
+  \item
+    \textbf{python}: \emph{raise + try except + ValueError + TypeError}
+  \item
+    \textbf{traceback}: \emph{print\_exc()}
   \end{itemize}
 \end{enumerate}
 
@@ -7771,9 +7920,11 @@ String outputs.
   \item
     Register batch task and submit batch array tasks using ECR image, and save results to S3.
   \item
+    Batch Array status check until success.
+  \item
     \textbf{yaml}: \emph{load()}
   \item
-    \textbf{boto3}: \emph{client() + register\_job\_definition(jobDefinitionName, type, containerProperties, retryStrategy) + aws\_batch.submit\_job(jobName, jobQueue, arrayProperties=\{`size':10\}, jobDefinition)}
+    \textbf{boto3}: \emph{client() + register\_job\_definition(jobDefinitionName, type, containerProperties, retryStrategy) + aws\_batch.submit\_job(jobName, jobQueue, arrayProperties=\{`size':10\}, jobDefinition) + aws\_batch.describe\_jobs()}
   \end{itemize}
 \end{enumerate}
 
@@ -7914,15 +8065,15 @@ String outputs.
   \item
     Join folder names to form absolute path.
   \item
+    Folder path slash conversion from system os.sep to forward slash.
+  \item
     Generate new folders and files, with existing folder substrings.
   \item
     Generate subfolder recursively.
   \item
-    Copying and moving files across folders.
-  \item
     \textbf{py}: \emph{open(srt, `w') + write() + close()}
   \item
-    \textbf{os}: \emph{os.sep + os.listdir() + os.path.abspath() + os.path.abspath(os.path.join(os.sep, `users', `fan')) + os.path.join(`/', `c:', `fa', `fb')}
+    \textbf{os}: \emph{os.sep + os.listdir() + os.path.abspath() + os.path.abspath(os.path.join(os.sep, `users', `fan')) + os.path.join(`/', `c:', `fa', `fb') + spn\_path.replace(os.sep, `/')}
   \item
     \textbf{pathlib}: \emph{Path(srt).mkdir(parents=True, exist\_ok=True) + {[}Path(spn).stem for spn in Path(srt).rglob(st){]}}
   \item
