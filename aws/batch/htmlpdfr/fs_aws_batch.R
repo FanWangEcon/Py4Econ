@@ -212,14 +212,15 @@ try(source("../../.Rprofile"))
 ##             bl_job_in_progress = False
 
 ## 
+##         print(f'{it_wait_seconds=}, ArrayN={it_array_size},'
 
-##         print(f'{it_wait_seconds=}, ArrayN={it_array_size},' \
+##               f'SUBMITTED={dc_status_summary["SUBMITTED"]}, PENDING={dc_status_summary["PENDING"]}, '
 
-##               f'SUCCEEDED={dc_status_summary["SUCCEEDED"]}, FAILED={dc_status_summary["FAILED"]}, ' \
+##               f'RUNNABLE={dc_status_summary["RUNNABLE"]}, STARTING={dc_status_summary["STARTING"]}, '
 
-##               f'RUNNING={dc_status_summary["RUNNING"]}, PENDING={dc_status_summary["PENDING"]}, ' \
+##               f'RUNNING={dc_status_summary["RUNNING"]}, '
 
-##               f'RUNNABLE={dc_status_summary["RUNNABLE"]}')
+##               f'SUCCEEDED={dc_status_summary["SUCCEEDED"]}, FAILED={dc_status_summary["FAILED"]}')
 
 ##     else:
 

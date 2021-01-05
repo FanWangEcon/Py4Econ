@@ -6,6 +6,7 @@ description: |
   Search for substring, replace string, wrap string.
   Display and format numeric string with fstring. 
   Change the decimal rounding given a list of estimates and standard error string arrays.
+  Paste string together with connector.
 core:
   - package: py
     code: |
@@ -115,6 +116,21 @@ mt_st_rand_word = np.reshape(ls_st_rand_word, [3,5])
 print(f'{mt_st_rand_word=}')
 print(f'{mt_st_rand_word.shape=}')
 print(f'{type(mt_st_rand_word)=}')
+```
+
+#### Paste String with Connector
+
+Similar to the paste function in R, given a list of strings, paste them together with a connector.
+```{python}
+st_separator = "_"
+st_pasted = st_separator.join(filter(None, ['abc', 'efg']))
+print(f'{st_pasted=}')
+# empty if the strings are empty
+st_pasted = st_separator.join(filter(None, ['', '', '']))
+print(f'{st_pasted=}')
+# If only one not empy output the same
+st_pasted = st_separator.join(filter(None, ['abc', '']))
+print(f'{st_pasted=}')
 ```
 
 #### Add String Suffix to Numeric Array 

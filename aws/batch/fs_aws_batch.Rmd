@@ -172,12 +172,12 @@ pprint.pprint(dc_json_batch_response, width=1)
 
 #### Track the Status of a Submitted Batch Array Until it Finished
 
-To automate certain processes, often need to check and wait for job to complete. Can do this on web interface. Easier to do this via boto3 operations: [describe_job](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/batch.html#Batch.Client.describe_jobs) and [list_jobs](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/batch.html#Batch.Client.list_jobs)
+To automate certain processes, often need to check and wait for job to complete. Can do this on web interface. Easier to do this via boto3 operations: [describe_job](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/batch.html#Batch.Client.describe_jobs) and [list_jobs](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/batch.html#Batch.Client.list_jobs). See [job states](https://docs.aws.amazon.com/batch/latest/userguide/job_states.html).
 
-Given the batch array job we just generated above, first, parse out the job ID from the response from the batch array submission above. Then use list_jobs to check the length of JobSummaryList, and then use describe_jobs to check overall job completion status. 
+Given the batch array job we just generated above, first, parse out the job ID from the response from the batch array submission above. Then use list_jobs to check the length of JobSummaryList, and then use describe_jobs to check overall job completion status.
 
 ```{python}
-import time 
+import time
 # Get Job ID
 st_batch_jobID = dc_json_batch_response['jobId']
 # Print Job ID
@@ -201,11 +201,12 @@ while bl_job_in_progress and it_wait_seconds <= 600:
             it_wait_seconds = it_wait_seconds + 10
         else:
             bl_job_in_progress = False
-            
-        print(f'{it_wait_seconds=}, ArrayN={it_array_size},' \
-              f'SUCCEEDED={dc_status_summary["SUCCEEDED"]}, FAILED={dc_status_summary["FAILED"]}, ' \
-              f'RUNNING={dc_status_summary["RUNNING"]}, PENDING={dc_status_summary["PENDING"]}, ' \
-              f'RUNNABLE={dc_status_summary["RUNNABLE"]}')
+
+        print(f'{it_wait_seconds=}, ArrayN={it_array_size},'
+              f'SUBMITTED={dc_status_summary["SUBMITTED"]}, PENDING={dc_status_summary["PENDING"]}, '
+              f'RUNNABLE={dc_status_summary["RUNNABLE"]}, STARTING={dc_status_summary["STARTING"]}, '
+              f'RUNNING={dc_status_summary["RUNNING"]}, '
+              f'SUCCEEDED={dc_status_summary["SUCCEEDED"]}, FAILED={dc_status_summary["FAILED"]}')
     else:
         #empty statussummary
         bl_job_in_progress = True

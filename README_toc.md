@@ -30,7 +30,7 @@
 1. [Python Dictionary Examples and Usages](https://fanwangecon.github.io/Py4Econ/amto/dict/htmlpdfr/fs_dict.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/dict//fs_dict.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/dict/htmlpdfr/fs_dict.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/amto/dict/htmlpdfr/fs_dict.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/amto/dict/htmlpdfr/fs_dict.html)
 	+ Generate a dictionary, loop through a dictionary. 
 	+ List comprehension with dictionary. 
-	+ **py**: *dc = {'key': "name", 'val': 1}*
+	+ **py**: *dc = {'key': "name", 'val': 1} + update() + dc.items() + zip()*
 	+ **copy**: *deepcopy*
 
 ## 1.3  Numpy Arrays
@@ -91,7 +91,14 @@
 
 # 4  Statistics
 
-## 4.1  Markov Process
+## 4.1  Linear Regression
+
+1. [Regression in Python with Statsmodels](https://fanwangecon.github.io/Py4Econ/stats/linreg/htmlpdfr/fs_linreg.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/stats/linreg//fs_linreg.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/stats/linreg/htmlpdfr/fs_linreg.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/stats/linreg/htmlpdfr/fs_linreg.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/stats/linreg/htmlpdfr/fs_linreg.html)
+	+ Linear regression in Python with Statsmodels.
+	+ Not full ranked regression, more coefficients than observations. 
+	+ **statsmodels**: *OLS() + add_constant()*
+
+## 4.2  Markov Process
 
 1. [Markov Transition Conditional Probability Check Sum to 1](https://fanwangecon.github.io/Py4Econ/stats/markov/htmlpdfr/fs_trans_mat_prob_check.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/stats/markov//fs_trans_mat_prob_check.Rmd) \| [**r**](https://github.com/FanWangEcon/Py4Econ/blob/master/stats/markov/htmlpdfr/fs_trans_mat_prob_check.R) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/stats/markov/htmlpdfr/fs_trans_mat_prob_check.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/stats/markov/htmlpdfr/fs_trans_mat_prob_check.html)
 	+ Generate a sample 50 by 50 markov transition matrix.

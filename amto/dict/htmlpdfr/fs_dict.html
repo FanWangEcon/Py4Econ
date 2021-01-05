@@ -2136,6 +2136,40 @@ pprint.pprint(dc_test, width=1)</code></pre>
 ##            &#39;Tables&#39;},
 ##  {&#39;file&#39;: &#39;mat_matlab_2&#39;}]</code></pre>
 </div>
+<div id="select-element-of-list-from-dictionary-of-list-with-dictionary-of-index" class="section level2" number="1.9">
+<h2 number="1.9"><span class="header-section-number">1.9</span> Select Element of List from Dictionary of List with Dictionary of Index</h2>
+<p>There are several key parameters of a model. There is a set of allowed, possible values for each parameter. Store these in a dictionary, using list to store all allowed values. When the function is called, a dictionary with the same keys, representing parameter names, will be the input to the function, the values of this dictionary are index corresponding to elements of the allowed list for each key.</p>
+<p>Possibility one, where we select only the subset of values specified in the dictionary of index:</p>
+<pre class="python"><code># Dict of List of Allowed values
+dc_ls_execute_type = {&#39;model_assumption&#39;: [&#39;&#39;, &#39;ITG&#39;, &#39;GE&#39;, &#39;ITG_GE&#39;],
+                      &#39;compute_size&#39;: [&#39;&#39;, &#39;x&#39;, &#39;d&#39;],
+                      &#39;esti_size&#39;: [&#39;tinytst&#39;, &#39;medtst&#39;, &#39;bigtst&#39;],
+                      &#39;esti_param&#39;: [&#39;esti_tst_tKap&#39;, &#39;esti_tst_tvars&#39;],
+                      &#39;call_type&#39;: [&#39;aws&#39;, &#39;vig&#39;, &#39;cmd&#39;],
+                      &#39;param_date&#39;: [&#39;20201025&#39;]}
+# Dict of index selection from allowed values
+dc_it_execute_type = {&#39;model_assumption&#39;: 0, &#39;compute_size&#39;: 0, &#39;esti_size&#39;: 1, &#39;esti_param&#39;: 0}
+# Select values from list
+dc_selected_vals = {param_key:dc_ls_execute_type[param_key][val_idx] 
+                    for param_key, val_idx in dc_it_execute_type.items()}
+pprint.pprint(dc_selected_vals, width=1)</code></pre>
+<pre><code>## {&#39;compute_size&#39;: &#39;&#39;,
+##  &#39;esti_param&#39;: &#39;esti_tst_tKap&#39;,
+##  &#39;esti_size&#39;: &#39;medtst&#39;,
+##  &#39;model_assumption&#39;: &#39;&#39;}</code></pre>
+<p>If the input list does not specify one of the parameters, use the default value (update the dict):</p>
+<pre class="python"><code># Default index, assume first element is default
+dc_execute_default = {param_key:val_list[0] for param_key, val_list in dc_ls_execute_type.items()}
+# Overrid default with externally specified values
+dc_execute_default.update(dc_selected_vals)
+pprint.pprint(dc_execute_default, width=1)</code></pre>
+<pre><code>## {&#39;call_type&#39;: &#39;aws&#39;,
+##  &#39;compute_size&#39;: &#39;&#39;,
+##  &#39;esti_param&#39;: &#39;esti_tst_tKap&#39;,
+##  &#39;esti_size&#39;: &#39;medtst&#39;,
+##  &#39;model_assumption&#39;: &#39;&#39;,
+##  &#39;param_date&#39;: &#39;20201025&#39;}</code></pre>
+</div>
 </div>
 
 

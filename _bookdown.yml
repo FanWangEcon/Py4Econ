@@ -35,6 +35,8 @@ rmd_files:
   - function/errors/fs_python_exceptions.Rmd
 
   - stats/main.Rmd
+  - stats/linreg/main.Rmd
+  - stats/linreg/fs_linreg.Rmd
   - stats/markov/main.Rmd
   - stats/markov/fs_trans_mat_prob_check.Rmd
 

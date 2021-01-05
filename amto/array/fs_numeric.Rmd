@@ -51,3 +51,9 @@ for it_esti_optsalgo in ls_it_esti_optsalgo:
     it_esti_optsalgo_digits = it_esti_optsalgo%10
     print(f'{it_esti_optsalgo_tens=}, {it_esti_optsalgo_digits=}')
 ```
+
+#### Number Parse of Parameter Specifications
+
+```{python}
+
+```

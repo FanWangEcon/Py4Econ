@@ -11,9 +11,9 @@
 
 <meta name="author" content="Fan Wang" />
 
-<meta name="date" content="2020-12-18" />
+<meta name="date" content="2021-01-05" />
 
-<title>Python Basic Number Numeric Manipulations</title>
+<title>Regression in Python with Statsmodels</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1865,42 +1865,173 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Python Basic Number Numeric Manipulations</h1>
+<h1 class="title toc-ignore">Regression in Python with Statsmodels</h1>
 <h4 class="author"><a href="https://fanwangecon.github.io/">Fan Wang</a></h4>
-<h4 class="date">2020-12-18</h4>
+<h4 class="date">2021-01-05</h4>
 
 </div>
 
 
-<div id="numeric-basics" class="section level1" number="1">
-<h1 number="1"><span class="header-section-number">1</span> Numeric Basics</h1>
+<div id="regressions-with-statsmodel" class="section level1" number="1">
+<h1 number="1"><span class="header-section-number">1</span> Regressions with Statsmodel</h1>
 <blockquote>
-<p>Go to the <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/amto/array//fs_numeric.Rmd"><strong>RMD</strong></a>, <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/amto/array//htmlpdfr/fs_numeric.pdf"><strong>PDF</strong></a>, or <a href="https://fanwangecon.github.io//Py4Econ/amto/array//htmlpdfr/fs_numeric.html"><strong>HTML</strong></a> version of this file. Go back to <a href="https://fanwangecon.github.io/Py4Econ/">Python Code Examples</a> Repository (<a href="https://fanwangecon.github.io/Py4Econ/bookdown">bookdown site</a>) or the <a href="https://pyfan.readthedocs.io/en/latest/">pyfan</a> Package (<a href="https://pyfan.readthedocs.io/en/latest/reference.html">API</a>).</p>
+<p>Go to the <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/stats/linreg//fs_linreg.Rmd"><strong>RMD</strong></a>, <a href="https://github.com/FanWangEcon//Py4Econ/blob/master/stats/linreg//htmlpdfr/fs_linreg.pdf"><strong>PDF</strong></a>, or <a href="https://fanwangecon.github.io//Py4Econ/stats/linreg//htmlpdfr/fs_linreg.html"><strong>HTML</strong></a> version of this file. Go back to <a href="https://fanwangecon.github.io/Py4Econ/">Python Code Examples</a> Repository (<a href="https://fanwangecon.github.io/Py4Econ/bookdown">bookdown site</a>) or the <a href="https://pyfan.readthedocs.io/en/latest/">pyfan</a> Package (<a href="https://pyfan.readthedocs.io/en/latest/reference.html">API</a>).</p>
 </blockquote>
-<pre class="python"><code>import numpy as np</code></pre>
-<div id="two-digit-numbers-coding-conditional-information" class="section level2" number="1.1">
-<h2 number="1.1"><span class="header-section-number">1.1</span> Two Digit Numbers Coding Conditional Information</h2>
-<p>We have numbers between 0 and 99, these indicate different estimation specifications, where the digit number is the estimation tolerance level, and the tens number is the minimization algorithm.</p>
-<pre class="python"><code>ls_it_esti_optsalgo = [0, 1, 10, 15, 23, 89, 90, 99, 900, 901, 999, 1000]
-for it_esti_optsalgo in ls_it_esti_optsalgo:
-    it_esti_optsalgo_tens = int(np.floor(it_esti_optsalgo/10))
-    it_esti_optsalgo_digits = it_esti_optsalgo%10
-    print(f&#39;{it_esti_optsalgo_tens=}, {it_esti_optsalgo_digits=}&#39;)</code></pre>
-<pre><code>## it_esti_optsalgo_tens=0, it_esti_optsalgo_digits=0
-## it_esti_optsalgo_tens=0, it_esti_optsalgo_digits=1
-## it_esti_optsalgo_tens=1, it_esti_optsalgo_digits=0
-## it_esti_optsalgo_tens=1, it_esti_optsalgo_digits=5
-## it_esti_optsalgo_tens=2, it_esti_optsalgo_digits=3
-## it_esti_optsalgo_tens=8, it_esti_optsalgo_digits=9
-## it_esti_optsalgo_tens=9, it_esti_optsalgo_digits=0
-## it_esti_optsalgo_tens=9, it_esti_optsalgo_digits=9
-## it_esti_optsalgo_tens=90, it_esti_optsalgo_digits=0
-## it_esti_optsalgo_tens=90, it_esti_optsalgo_digits=1
-## it_esti_optsalgo_tens=99, it_esti_optsalgo_digits=9
-## it_esti_optsalgo_tens=100, it_esti_optsalgo_digits=0</code></pre>
+<pre class="python"><code>import numpy as np
+import statsmodels.api as sm</code></pre>
+<div id="test-regression-with-statsmodel" class="section level2" number="1.1">
+<h2 number="1.1"><span class="header-section-number">1.1</span> Test Regression with Statsmodel</h2>
+<p>Testing default example from <a href="https://www.statsmodels.org/stable/regression.html">statsmodel</a>.</p>
+<pre class="python"><code>import numpy as np
+import statsmodels.api as sm
+spector_data = sm.datasets.spector.load(as_pandas=False)
+spector_data.exog = sm.add_constant(spector_data.exog, prepend=False)
+mod = sm.OLS(spector_data.endog, spector_data.exog)
+res = mod.fit()
+print(res.summary())</code></pre>
+<pre><code>##                             OLS Regression Results                            
+## ==============================================================================
+## Dep. Variable:                      y   R-squared:                       0.416
+## Model:                            OLS   Adj. R-squared:                  0.353
+## Method:                 Least Squares   F-statistic:                     6.646
+## Date:                Tue, 05 Jan 2021   Prob (F-statistic):            0.00157
+## Time:                        16:36:00   Log-Likelihood:                -12.978
+## No. Observations:                  32   AIC:                             33.96
+## Df Residuals:                      28   BIC:                             39.82
+## Df Model:                           3                                         
+## Covariance Type:            nonrobust                                         
+## ==============================================================================
+##                  coef    std err          t      P&gt;|t|      [0.025      0.975]
+## ------------------------------------------------------------------------------
+## x1             0.4639      0.162      2.864      0.008       0.132       0.796
+## x2             0.0105      0.019      0.539      0.594      -0.029       0.050
+## x3             0.3786      0.139      2.720      0.011       0.093       0.664
+## const         -1.4980      0.524     -2.859      0.008      -2.571      -0.425
+## ==============================================================================
+## Omnibus:                        0.176   Durbin-Watson:                   2.346
+## Prob(Omnibus):                  0.916   Jarque-Bera (JB):                0.167
+## Skew:                           0.141   Prob(JB):                        0.920
+## Kurtosis:                       2.786   Cond. No.                         176.
+## ==============================================================================
+## 
+## Warnings:
+## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
 </div>
-<div id="number-parse-of-parameter-specifications" class="section level2" number="1.2">
-<h2 number="1.2"><span class="header-section-number">1.2</span> Number Parse of Parameter Specifications</h2>
+<div id="estimation-with-more-coefficients-than-observations" class="section level2" number="1.2">
+<h2 number="1.2"><span class="header-section-number">1.2</span> Estimation with More Coefficients than Observations</h2>
+<p>Testing the <em>sm_OLS</em> function where there are more observations and coefficients, as well as when there are less. Tests similar to the test on <a href="https://www.statsmodels.org/dev/examples/notebooks/generated/ols.html">this page</a>.</p>
+<p>First, more observations than coefficients:</p>
+<pre class="python"><code># Number of observations
+it_sample = 1000000
+# Vaues of the x variable
+ar_x = np.linspace(0, 10, it_sample)
+# generate matrix of inputs with polynomial expansion
+mt_x = np.column_stack((ar_x, ar_x**2, ar_x**3, ar_x**4, ar_x**5, ar_x**6, ar_x**7, ar_x**8))
+# model coefficients
+ar_beta = np.array([100, 10, 1, 1e-1, 1e-2, 1e-3, 1e-4, 1e-5, 1e-6])
+# Generate the error term
+ar_e = np.random.normal(size=it_sample)
+# add constant
+mt_x = sm.add_constant(mt_x)
+# generate the outocome variable
+ar_y = np.dot(mt_x, ar_beta) + ar_e
+# regression result
+ob_model = sm.OLS(ar_y, mt_x)
+# Show results
+ob_results = ob_model.fit()
+print(ob_results.summary())</code></pre>
+<pre><code>##                             OLS Regression Results                            
+## ==============================================================================
+## Dep. Variable:                      y   R-squared:                       1.000
+## Model:                            OLS   Adj. R-squared:                  1.000
+## Method:                 Least Squares   F-statistic:                 4.991e+09
+## Date:                Tue, 05 Jan 2021   Prob (F-statistic):               0.00
+## Time:                        16:36:01   Log-Likelihood:            -1.4183e+06
+## No. Observations:             1000000   AIC:                         2.837e+06
+## Df Residuals:                  999991   BIC:                         2.837e+06
+## Df Model:                           8                                         
+## Covariance Type:            nonrobust                                         
+## ==============================================================================
+##                  coef    std err          t      P&gt;|t|      [0.025      0.975]
+## ------------------------------------------------------------------------------
+## const         99.9866      0.009   1.11e+04      0.000      99.969     100.004
+## x1            10.0545      0.042    242.037      0.000       9.973      10.136
+## x2             0.9236      0.062     14.911      0.000       0.802       1.045
+## x3             0.1481      0.042      3.536      0.000       0.066       0.230
+## x4            -0.0059      0.015     -0.394      0.693      -0.035       0.023
+## x5             0.0040      0.003      1.308      0.191      -0.002       0.010
+## x6            -0.0002      0.000     -0.621      0.535      -0.001       0.000
+## x7          2.797e-05   2.13e-05      1.316      0.188   -1.37e-05    6.96e-05
+## x8          5.787e-07    5.3e-07      1.091      0.275   -4.61e-07    1.62e-06
+## ==============================================================================
+## Omnibus:                        1.572   Durbin-Watson:                   2.002
+## Prob(Omnibus):                  0.456   Jarque-Bera (JB):                1.568
+## Skew:                           0.002   Prob(JB):                        0.456
+## Kurtosis:                       3.004   Cond. No.                     2.10e+09
+## ==============================================================================
+## 
+## Warnings:
+## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+## [2] The condition number is large, 2.1e+09. This might indicate that there are
+## strong multicollinearity or other numerical problems.</code></pre>
+<p>second, less observations than coefficients. Note that there are nine coefficients to estimates, so if we have only 5 observations, that is less than coefficients. Unlike Stata and many other packages, estimates are provided even when full rank is not possible. See <a href="https://stackoverflow.com/a/63658348/8280804">here</a> for more information. This is actually very useful for testing purposes. For models in very large parameter space, can test solution and estimation structure even when the number of observations are limited. See also <a href="https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse">Moore–Penrose inverse</a>.</p>
+<pre class="python"><code># Number of observations
+it_sample = 5
+# Vaues of the x variable
+ar_x = np.linspace(0, 10, it_sample)
+# generate matrix of inputs with polynomial expansion
+mt_x = np.column_stack((ar_x, ar_x**2, ar_x**3, ar_x**4, ar_x**5, ar_x**6, ar_x**7, ar_x**8))
+# model coefficients
+ar_beta = np.array([100, 10, 1, 1e-1, 1e-2, 1e-3, 1e-4, 1e-5, 1e-6])
+# Generate the error term
+ar_e = np.random.normal(size=it_sample)
+# add constant
+mt_x = sm.add_constant(mt_x)
+# generate the outocome variable
+ar_y = np.dot(mt_x, ar_beta) + ar_e
+# regression result
+ob_model = sm.OLS(ar_y, mt_x)
+# Show results
+ob_results = ob_model.fit()
+print(ob_results.summary())</code></pre>
+<pre><code>##                             OLS Regression Results                            
+## ==============================================================================
+## Dep. Variable:                      y   R-squared:                       1.000
+## Model:                            OLS   Adj. R-squared:                    nan
+## Method:                 Least Squares   F-statistic:                       nan
+## Date:                Tue, 05 Jan 2021   Prob (F-statistic):                nan
+## Time:                        16:36:01   Log-Likelihood:                 95.245
+## No. Observations:                   5   AIC:                            -180.5
+## Df Residuals:                       0   BIC:                            -182.4
+## Df Model:                           4                                         
+## Covariance Type:            nonrobust                                         
+## ==============================================================================
+##                  coef    std err          t      P&gt;|t|      [0.025      0.975]
+## ------------------------------------------------------------------------------
+## const        100.7089        inf          0        nan         nan         nan
+## x1             0.0648        inf          0        nan         nan         nan
+## x2             0.1482        inf          0        nan         nan         nan
+## x3             0.3106        inf          0        nan         nan         nan
+## x4             0.5401        inf          0        nan         nan         nan
+## x5             0.5638        inf          0        nan         nan         nan
+## x6            -0.2963        inf         -0        nan         nan         nan
+## x7             0.0427        inf          0        nan         nan         nan
+## x8            -0.0019        inf         -0        nan         nan         nan
+## ==============================================================================
+## Omnibus:                          nan   Durbin-Watson:                   1.088
+## Prob(Omnibus):                    nan   Jarque-Bera (JB):                1.682
+## Skew:                           1.419   Prob(JB):                        0.431
+## Kurtosis:                       3.143   Cond. No.                     1.01e+08
+## ==============================================================================
+## 
+## Warnings:
+## [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+## [2] The input rank is higher than the number of observations.
+## [3] The condition number is large, 1.01e+08. This might indicate that there are
+## strong multicollinearity or other numerical problems.
+## 
+## C:\Users\fan\AppData\Roaming\Python\Python38\site-packages\statsmodels\stats\stattools.py:70: ValueWarning: omni_normtest is not valid with less than 8 observations; 5 samples were given.
+##   warn(&quot;omni_normtest is not valid with less than 8 observations; %i &quot;</code></pre>
 </div>
 </div>
 

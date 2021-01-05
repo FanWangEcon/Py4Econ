@@ -1888,9 +1888,9 @@ import pprint</code></pre>
 ls_freq = [ [f&#39;{ls_st_status.count(st_status)} of {len(ls_st_status)} {st_status}&#39;]  for st_status in set(ls_st_status)]
 pprint.pprint(ls_freq)</code></pre>
 <pre><code>## [[&#39;3 of 7 running&#39;],
-##  [&#39;2 of 7 pending&#39;],
+##  [&#39;1 of 7 finished&#39;],
 ##  [&#39;1 of 7 success&#39;],
-##  [&#39;1 of 7 finished&#39;]]</code></pre>
+##  [&#39;2 of 7 pending&#39;]]</code></pre>
 </div>
 <div id="get-substring" class="section level2" number="1.2">
 <h2 number="1.2"><span class="header-section-number">1.2</span> Get Substring</h2>
@@ -1932,15 +1932,31 @@ print(f&#39;{mt_st_rand_word=}&#39;)</code></pre>
 <pre class="python"><code>print(f&#39;{type(mt_st_rand_word)=}&#39;)</code></pre>
 <pre><code>## type(mt_st_rand_word)=&lt;class &#39;numpy.ndarray&#39;&gt;</code></pre>
 </div>
-<div id="add-string-suffix-to-numeric-array" class="section level2" number="1.4">
-<h2 number="1.4"><span class="header-section-number">1.4</span> Add String Suffix to Numeric Array</h2>
+<div id="paste-string-with-connector" class="section level2" number="1.4">
+<h2 number="1.4"><span class="header-section-number">1.4</span> Paste String with Connector</h2>
+<p>Similar to the paste function in R, given a list of strings, paste them together with a connector.</p>
+<pre class="python"><code>st_separator = &quot;_&quot;
+st_pasted = st_separator.join(filter(None, [&#39;abc&#39;, &#39;efg&#39;]))
+print(f&#39;{st_pasted=}&#39;)
+# empty if the strings are empty</code></pre>
+<pre><code>## st_pasted=&#39;abc_efg&#39;</code></pre>
+<pre class="python"><code>st_pasted = st_separator.join(filter(None, [&#39;&#39;, &#39;&#39;, &#39;&#39;]))
+print(f&#39;{st_pasted=}&#39;)
+# If only one not empy output the same</code></pre>
+<pre><code>## st_pasted=&#39;&#39;</code></pre>
+<pre class="python"><code>st_pasted = st_separator.join(filter(None, [&#39;abc&#39;, &#39;&#39;]))
+print(f&#39;{st_pasted=}&#39;)</code></pre>
+<pre><code>## st_pasted=&#39;abc&#39;</code></pre>
+</div>
+<div id="add-string-suffix-to-numeric-array" class="section level2" number="1.5">
+<h2 number="1.5"><span class="header-section-number">1.5</span> Add String Suffix to Numeric Array</h2>
 <p>Given an numeric array, add string, for example to generate sequencial column names with suffix c:</p>
 <pre class="python"><code>ar_st_colnames = [ &#39;s&#39; + str(it_col) for it_col in np.array(range(1, 3))]
 print(ar_st_colnames)</code></pre>
 <pre><code>## [&#39;s1&#39;, &#39;s2&#39;]</code></pre>
 </div>
-<div id="search-if-names-include-strings" class="section level2" number="1.5">
-<h2 number="1.5"><span class="header-section-number">1.5</span> Search if Names Include Strings</h2>
+<div id="search-if-names-include-strings" class="section level2" number="1.6">
+<h2 number="1.6"><span class="header-section-number">1.6</span> Search if Names Include Strings</h2>
 <p>Given a list of strings, loop but skip if string contains elements string list.</p>
 <pre class="python"><code># define string
 ls_st_ignore = [&#39;abc&#39;, &#39;efg&#39;, &#39;xyz&#39;]
@@ -1958,8 +1974,8 @@ for st_loop in ls_st_loop:
 ## skip: abc xyz
 ## not skip: good morning</code></pre>
 </div>
-<div id="replace-a-set-of-strings-in-string" class="section level2" number="1.6">
-<h2 number="1.6"><span class="header-section-number">1.6</span> Replace a Set of Strings in String</h2>
+<div id="replace-a-set-of-strings-in-string" class="section level2" number="1.7">
+<h2 number="1.7"><span class="header-section-number">1.7</span> Replace a Set of Strings in String</h2>
 <p>Replace terms in string</p>
 <pre class="python"><code># define string
 st_full = &quot;&quot;&quot;
@@ -1983,8 +1999,8 @@ print(st_full)</code></pre>
 ## eft good, EFG capitalized, 456 good again. 
 ## A B C or 123 or ABC. Interesting 789.</code></pre>
 </div>
-<div id="wrap-string-with-fixed-width" class="section level2" number="1.7">
-<h2 number="1.7"><span class="header-section-number">1.7</span> Wrap String with Fixed Width</h2>
+<div id="wrap-string-with-fixed-width" class="section level2" number="1.8">
+<h2 number="1.8"><span class="header-section-number">1.8</span> Wrap String with Fixed Width</h2>
 <p>Given a long string, wrap it into multiple lines with fixed width.</p>
 <pre class="python"><code>import textwrap
 
@@ -2032,8 +2048,8 @@ print(str_dc_records)                 </code></pre>
 ## rt/development/fs_packagi
 ## ng.html</code></pre>
 </div>
-<div id="change-round-for-lists-of-string-estimates" class="section level2" number="1.8">
-<h2 number="1.8"><span class="header-section-number">1.8</span> Change Round for Lists of String Estimates</h2>
+<div id="change-round-for-lists-of-string-estimates" class="section level2" number="1.9">
+<h2 number="1.9"><span class="header-section-number">1.9</span> Change Round for Lists of String Estimates</h2>
 <p>Here we have two strings in a list, with point estimates and corresponding standard errors. Estimates are separated by commas. We want to change the number of decimal points shown and set appropriate roundings. Several steps: (1) split string by comma (2) Loop over (3) extract numerical elements (4) recover</p>
 <pre class="python"><code>it_round_decimal = 1
 ls_st_all_estimates = [&quot;84.506***, 91.758***, 107.950***, 115.879***, 133.560***\n&quot;,

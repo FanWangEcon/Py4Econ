@@ -1,0 +1,107 @@
+---
+title: "Regression in Python with Statsmodels"
+titleshort: "Regression in Python with Statsmodels"
+description: |
+  Linear regression in Python with Statsmodels.
+  Not full ranked regression, more coefficients than observations. 
+core:
+  - package: statsmodels
+    code: |
+      OLS()
+      add_constant()
+date: 2021-01-05
+date_start: 2020-01-05
+output:
+  pdf_document:
+    pandoc_args: '../../_output_kniti_pdf.yaml'
+    includes:
+      in_header: '../../preamble.tex'
+  html_document:
+    pandoc_args: '../../_output_kniti_html.yaml'
+    includes:
+      in_header: "../../hdga.html"
+always_allow_html: true
+urlcolor: blue
+---
+
+### Regressions with Statsmodel
+
+```{r global_options, include = FALSE}
+try(source("../../.Rprofile"))
+```
+
+`r text_shared_preamble_one`
+`r text_shared_preamble_two`
+`r text_shared_preamble_thr`
+
+```{python}
+import numpy as np
+import statsmodels.api as sm
+```
+
+#### Test Regression with Statsmodel
+
+Testing default example from [statsmodel](https://www.statsmodels.org/stable/regression.html).
+
+```{python}
+import numpy as np
+import statsmodels.api as sm
+spector_data = sm.datasets.spector.load(as_pandas=False)
+spector_data.exog = sm.add_constant(spector_data.exog, prepend=False)
+mod = sm.OLS(spector_data.endog, spector_data.exog)
+res = mod.fit()
+print(res.summary())
+```
+
+#### Estimation with More Coefficients than Observations
+
+Testing the *sm_OLS* function where there are more observations and coefficients, as well as when there are less. Tests similar to the test on [this page](https://www.statsmodels.org/dev/examples/notebooks/generated/ols.html).
+
+First, more observations than coefficients:
+
+```{python}
+# Number of observations
+it_sample = 1000000
+# Vaues of the x variable
+ar_x = np.linspace(0, 10, it_sample)
+# generate matrix of inputs with polynomial expansion
+mt_x = np.column_stack((ar_x, ar_x**2, ar_x**3, ar_x**4, ar_x**5, ar_x**6, ar_x**7, ar_x**8))
+# model coefficients
+ar_beta = np.array([100, 10, 1, 1e-1, 1e-2, 1e-3, 1e-4, 1e-5, 1e-6])
+# Generate the error term
+ar_e = np.random.normal(size=it_sample)
+# add constant
+mt_x = sm.add_constant(mt_x)
+# generate the outocome variable
+ar_y = np.dot(mt_x, ar_beta) + ar_e
+# regression result
+ob_model = sm.OLS(ar_y, mt_x)
+# Show results
+ob_results = ob_model.fit()
+print(ob_results.summary())
+```
+
+second, less observations than coefficients. Note that there are nine coefficients to estimates, so if we have only 5 observations, that is less than coefficients. Unlike Stata and many other packages, estimates are provided even when full rank is not possible. See [here](https://stackoverflow.com/a/63658348/8280804) for more information. This is actually very useful for testing purposes. For models in very large parameter space, can test solution and estimation structure even when the number of observations are limited. See also [Moore–Penrose inverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse).
+
+```{python}
+# Number of observations
+it_sample = 5
+# Vaues of the x variable
+ar_x = np.linspace(0, 10, it_sample)
+# generate matrix of inputs with polynomial expansion
+mt_x = np.column_stack((ar_x, ar_x**2, ar_x**3, ar_x**4, ar_x**5, ar_x**6, ar_x**7, ar_x**8))
+# model coefficients
+ar_beta = np.array([100, 10, 1, 1e-1, 1e-2, 1e-3, 1e-4, 1e-5, 1e-6])
+# Generate the error term
+ar_e = np.random.normal(size=it_sample)
+# add constant
+mt_x = sm.add_constant(mt_x)
+# generate the outocome variable
+ar_y = np.dot(mt_x, ar_beta) + ar_e
+# regression result
+ob_model = sm.OLS(ar_y, mt_x)
+# Show results
+ob_results = ob_model.fit()
+print(ob_results.summary())
+```
+

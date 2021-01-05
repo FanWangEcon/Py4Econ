@@ -66,6 +66,25 @@ try(source("../../.Rprofile"))
 ## print(f'{type(mt_st_rand_word)=}')
 
 
+## st_separator = "_"
+
+## st_pasted = st_separator.join(filter(None, ['abc', 'efg']))
+
+## print(f'{st_pasted=}')
+
+## # empty if the strings are empty
+
+## st_pasted = st_separator.join(filter(None, ['', '', '']))
+
+## print(f'{st_pasted=}')
+
+## # If only one not empy output the same
+
+## st_pasted = st_separator.join(filter(None, ['abc', '']))
+
+## print(f'{st_pasted=}')
+
+
 ## ar_st_colnames = [ 's' + str(it_col) for it_col in np.array(range(1, 3))]
 
 ## print(ar_st_colnames)

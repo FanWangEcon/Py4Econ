@@ -1,4 +1,4 @@
-## ----global_options, include = FALSE------------------------------------------------------------------------------------
+## ----global_options, include = FALSE------------------------------------------------------------------------------------------------------------------------------
 try(source("../../.Rprofile"))
 
 
@@ -255,4 +255,42 @@ try(source("../../.Rprofile"))
 ## # Print
 
 ## pprint.pprint(dc_test, width=1)
+
+
+## # Dict of List of Allowed values
+
+## dc_ls_execute_type = {'model_assumption': ['', 'ITG', 'GE', 'ITG_GE'],
+
+##                       'compute_size': ['', 'x', 'd'],
+
+##                       'esti_size': ['tinytst', 'medtst', 'bigtst'],
+
+##                       'esti_param': ['esti_tst_tKap', 'esti_tst_tvars'],
+
+##                       'call_type': ['aws', 'vig', 'cmd'],
+
+##                       'param_date': ['20201025']}
+
+## # Dict of index selection from allowed values
+
+## dc_it_execute_type = {'model_assumption': 0, 'compute_size': 0, 'esti_size': 1, 'esti_param': 0}
+
+## # Select values from list
+
+## dc_selected_vals = {param_key:dc_ls_execute_type[param_key][val_idx]
+
+##                     for param_key, val_idx in dc_it_execute_type.items()}
+
+## pprint.pprint(dc_selected_vals, width=1)
+
+
+## # Default index, assume first element is default
+
+## dc_execute_default = {param_key:val_list[0] for param_key, val_list in dc_ls_execute_type.items()}
+
+## # Overrid default with externally specified values
+
+## dc_execute_default.update(dc_selected_vals)
+
+## pprint.pprint(dc_execute_default, width=1)
 
