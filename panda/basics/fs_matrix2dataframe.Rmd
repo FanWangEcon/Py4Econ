@@ -1,20 +1,17 @@
 ---
-title: "Python Pandas Generate Dataframes with Random Numeric and String Data"
-titleshort: "Pandas Generate Dataframes with Random Numeric and String Data"
+title: "Nested CES"
+titleshort: "Nested CES"
 description: |
-  Generate a dataframe from arrays.
-  Generate a dataframe with random integers as well as random string variables.
+  Nested CES
+  Nested CES
 core:
   - package: np
     code: |
       random.randint()
       reshape()
       column_stack()
-  - package: pandas
-    code: |
-      DataFrame()
-date: 2020-10-18
-date_start: 2020-11-18
+date: 2021-02-04
+date_start: 2021-02-04
 output:
   pdf_document:
     pandoc_args: '../../_output_kniti_pdf.yaml'
@@ -28,7 +25,7 @@ always_allow_html: true
 urlcolor: blue
 ---
 
-### Generate Matrix from Arrays
+### CES Problem
 
 ```{r global_options, include = FALSE}
 try(source("../../.Rprofile"))
@@ -45,48 +42,13 @@ import random as random
 import string as string
 ```
 
-#### Single Arrays to Matrix
+#### Nested CES problem and Parameters
 
-Given various arrays, generate a matrix
-
-```{python}
-np.random.seed(123)
-# Concatenate to matrix
-mt_abc = np.column_stack(np.random.randint(10, size=(5, 3)))
-# Matrix to data frame with columns and row names
-df_abc = pd.DataFrame(data=mt_abc,
-            index=[ 'r' + str(it_col) for it_col in np.array(range(1, mt_abc.shape[0]+1))],
-            columns=[ 'c' + str(it_col) for it_col in np.array(range(1, mt_abc.shape[1]+1))])
-# Print
-print(df_abc)
-```
+CES problem, can be restated. 
 
 
-#### Generate a Testing Dataframe with String and Numeric Values
 
-Generate a test dataframe with string and numeric variables. For testing purposes.
 
-```{python}
-# Seed
-np.random.seed(456)
-random.seed(456)
 
-# Numeric matrix 3 rows 4 columns
-mt_numeric = np.random.randint(10, size=(3, 4))
 
-# String block 5 letters per word, 3 rows and 3 columns of words
-st_rand_word_block = ''.join(random.choice(string.ascii_lowercase) for ctr in range(5*3*3))
-ls_st_rand_word = [st_rand_word_block[ctr: ctr + 5].capitalize() for ctr in range(0, len(st_rand_word_block), 5)]
-mt_string = np.reshape(ls_st_rand_word, [3,3])
 
-# Combine string and numeric matrix
-mt_data = np.column_stack([mt_numeric, mt_string])
-
-# Matrix to dataframe
-df_data = pd.DataFrame(data=mt_data,
-                       index=[ 'r' + str(it_col) for it_col in np.array(range(1, mt_data.shape[0]+1))],
-                       columns=[ 'c' + str(it_col) for it_col in np.array(range(1, mt_data.shape[1]+1))])
-            
-# Print table
-print(df_data)
-```

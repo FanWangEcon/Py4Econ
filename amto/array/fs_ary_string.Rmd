@@ -4,21 +4,24 @@ titleshort: "Python String Manipulation Examples"
 description: |
   Count unique elements of a string array, generate frequency list.
   Search for substring, replace string, wrap string.
-  Display and format numeric string with fstring. 
+  Display and format numeric string with fstring.
   Change the decimal rounding given a list of estimates and standard error string arrays.
   Paste string together with connector.
+  Check if string is a integer.
 core:
   - package: py
     code: |
       zip()
       upper()
-      join()
       round()
       float()
       split()
       replace()
       ascii_lowercase()
       set()
+      join()
+      join(filter(None, ls_st))
+      all([st_i in '1234567890' for st_i in st])
   - package: textwrap
     code: |
       fill(st, width = 20)
@@ -63,7 +66,7 @@ import pprint
 
 #### List of Array Count Frequency
 
-There is a list of strings, with repeating values, count the frequence of the each unique string. 
+There is a list of strings, with repeating values, count the frequence of the each unique string.
 
 ```{python}
 ls_st_status = ["success", "running", "running", "running", "finished", "pending", "pending"]
@@ -71,7 +74,7 @@ ls_freq = [ [f'{ls_st_status.count(st_status)} of {len(ls_st_status)} {st_status
 pprint.pprint(ls_freq)
 ```
 
-#### Get Substring 
+#### Get Substring
 
 Given string, get substring after a word.
 
@@ -104,7 +107,7 @@ random.seed(123)
 it_words_count = 15
 it_word_length = 5
 st_rand_word_block = ''.join(random.choice(string.ascii_lowercase) for ctr in range(it_word_length*it_words_count))
-ls_st_rand_word = [st_rand_word_block[ctr: ctr + it_word_length].capitalize() 
+ls_st_rand_word = [st_rand_word_block[ctr: ctr + it_word_length].capitalize()
                    for ctr in range(0, len(st_rand_word_block), it_word_length)]
 print(f'{ls_st_rand_word=}')
 ```
@@ -133,7 +136,7 @@ st_pasted = st_separator.join(filter(None, ['abc', '']))
 print(f'{st_pasted=}')
 ```
 
-#### Add String Suffix to Numeric Array 
+#### Add String Suffix to Numeric Array
 
 Given an numeric array, add string, for example to generate sequencial column names with suffix c:
 
@@ -144,7 +147,7 @@ print(ar_st_colnames)
 
 #### Search if Names Include Strings
 
-Given a list of strings, loop but skip if string contains elements string list. 
+Given a list of strings, loop but skip if string contains elements string list.
 
 ```{python}
 # define string
@@ -168,9 +171,9 @@ Replace terms in string
 ```{python}
 # define string
 st_full = """
-abc is a great efg, probably xyz. Yes, xyz is great, like efg. 
-eft good, EFG capitalized, efg good again. 
-A B C or abc or ABC. Interesting xyz. 
+abc is a great efg, probably xyz. Yes, xyz is great, like efg.
+eft good, EFG capitalized, efg good again.
+A B C or abc or ABC. Interesting xyz.
 """
 
 # define new and old
@@ -188,7 +191,7 @@ print(st_full)
 
 #### Wrap String with Fixed Width
 
-Given a long string, wrap it into multiple lines with fixed width. 
+Given a long string, wrap it into multiple lines with fixed width.
 
 ```{python}
 import textwrap
@@ -217,9 +220,9 @@ str_dc_records = 'First Path:'.upper() + '\n' + \
                  textwrap.fill(st_path_a, width=25) + '\n\n' + \
                  'Second Path:'.upper() + '\n' + \
                  textwrap.fill(st_path_b, width=25)
-              
+
 # Print
-print(str_dc_records)                 
+print(str_dc_records)
 ```
 
 
@@ -236,37 +239,79 @@ ls_st_all_estimates = ["84.506***, 91.758***, 107.950***, 115.879***, 133.560***
 
 for st_all_estimates in ls_st_all_estimates:
 
-    # delete linebreak at end of line 
+    # delete linebreak at end of line
     st_all_estimates = st_all_estimates.replace("\n", "")
-    
+
     # split
     ls_st_estimates = st_all_estimates.split(",")
 
     # Loop over each value separated by commas
     for it_esti_ctr, st_esti in enumerate(ls_st_estimates):
-    
+
         # Default update is to keep current
         st_esti_update = st_esti
-    
+
         # If estimates, might have stars
         st_esti_numeric = st_esti.strip()
         st_esti_numeric = st_esti_numeric.replace("*", "")
         st_esti_numeric = st_esti_numeric.replace("(", "")
         st_esti_numeric = st_esti_numeric.replace(")", "")
-    
+
         # Decimal Rounding
         fl_esti_rounded = round(float(st_esti_numeric), it_round_decimal)
         st_esti_rounded = f'{fl_esti_rounded:.{it_round_decimal}f}'
-        
+
         # Replace
         print(f'{st_esti=} + {st_esti_numeric=} + {st_esti_rounded=}')
         st_esti_rounded = st_esti.replace(st_esti_numeric, st_esti_rounded)
-        
+
         # Update List
         ls_st_estimates[it_esti_ctr] = st_esti_rounded
-    
+
     # Flatten comman
     st_text_out = ','.join(ls_st_estimates)
     print(f'\n{st_text_out=}\n')
     print()
+```
+
+#### Check String Composition
+
+There are some special string structures, if a string is of this special structure, do something, if it is not, do something else. In the following example, one string structure is a string with a equality sign and than an integer after. Is a string of this nature?
+
+The integer check uses [this](https://stackoverflow.com/a/58784962/8280804):
+
+> all([st_ele in '1234567890' for st_ele in esti_top_which])
+
+In the example below, the first and last elements are valid.
+
+```{python}
+# examples strings to check
+ls_st_exas = ["C1E126M4S3=2", 
+              "simu_tst/M4S3_top_json.json", 
+              "M4S3_top_json.json", 
+              "simu_tst/M4S3=_top_json.json",
+              "=====",
+              "==$$%%==123123",
+              "$$%%=123123"]
+# check
+for combo_type_e in ls_st_exas:
+    # split
+    st_connector = "="
+    ls_combo_type_e_split = combo_type_e.split(st_connector)
+    # first check length
+    bl_esr_json = True
+    if len(ls_combo_type_e_split) == 2:
+        [compesti_short_name, esti_top_which] = ls_combo_type_e_split
+        # check type 
+        bl_first_is_str = isinstance(compesti_short_name, str) 
+        bl_second_is_int = all([st_ele in '1234567890' for st_ele in esti_top_which])
+        if bl_first_is_str + bl_second_is_int < 2:
+            bl_esr_json = False
+            print(f'{bl_esr_json=}, {bl_first_is_str=}, {bl_second_is_int=}, {combo_type_e=}')
+        else:
+            # Print
+            print(f'{bl_esr_json=}, {bl_first_is_str=}, {bl_second_is_int=}')
+    else:
+        bl_esr_json = False
+        print(f'{bl_esr_json=}, {combo_type_e=}')
 ```

@@ -111,6 +111,20 @@ ls_st_spec_key = ['list_comprehension' + str(spec_key) for spec_key in ls_spec_k
 print(ls_st_spec_key)
 ```
 
+#### Concatenate a List of Strings with Join
+
+Concatenate a list of strings together, with possible empty values. Note the *filter(None, ls)* structure below.
+
+```{python}
+ls_model_assumption = ['', 'ITG', 'GE', 'ITG_GE']
+ls_graph_panda_list_name = ['min_graphs', 'main_aA_graphs', 'all_graphs_tables']
+for model_assumption in ls_model_assumption:
+    for graph_panda_list_name in ls_graph_panda_list_name:
+        # Join strings together
+        st_curdatestr = "_".join(filter(None, [model_assumption, graph_panda_list_name]))
+        print(f'{st_curdatestr=}')
+```
+
 #### Concatenate a List to a String with Separator
 
 Given a list of strings and numeric data types, concatenate list to a string with some separator. Also in reverse, generate a list by breaking a string joined by some separator. 

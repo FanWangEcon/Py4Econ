@@ -1,4 +1,4 @@
-## ----global_options, include = FALSE------------------------------------------------------------------------------------------------------------------------------
+## ----global_options, include = FALSE-------------------------------------------------------------------
 try(source("../../.Rprofile"))
 
 
@@ -181,7 +181,6 @@ try(source("../../.Rprofile"))
 ##                  textwrap.fill(st_path_b, width=25)
 
 ## 
-
 ## # Print
 
 ## print(str_dc_records)
@@ -206,7 +205,6 @@ try(source("../../.Rprofile"))
 ##     st_all_estimates = st_all_estimates.replace("\n", "")
 
 ## 
-
 ##     # split
 
 ##     ls_st_estimates = st_all_estimates.split(",")
@@ -217,13 +215,11 @@ try(source("../../.Rprofile"))
 ##     for it_esti_ctr, st_esti in enumerate(ls_st_estimates):
 
 ## 
-
 ##         # Default update is to keep current
 
 ##         st_esti_update = st_esti
 
 ## 
-
 ##         # If estimates, might have stars
 
 ##         st_esti_numeric = st_esti.strip()
@@ -235,7 +231,6 @@ try(source("../../.Rprofile"))
 ##         st_esti_numeric = st_esti_numeric.replace(")", "")
 
 ## 
-
 ##         # Decimal Rounding
 
 ##         fl_esti_rounded = round(float(st_esti_numeric), it_round_decimal)
@@ -243,7 +238,6 @@ try(source("../../.Rprofile"))
 ##         st_esti_rounded = f'{fl_esti_rounded:.{it_round_decimal}f}'
 
 ## 
-
 ##         # Replace
 
 ##         print(f'{st_esti=} + {st_esti_numeric=} + {st_esti_rounded=}')
@@ -251,13 +245,11 @@ try(source("../../.Rprofile"))
 ##         st_esti_rounded = st_esti.replace(st_esti_numeric, st_esti_rounded)
 
 ## 
-
 ##         # Update List
 
 ##         ls_st_estimates[it_esti_ctr] = st_esti_rounded
 
 ## 
-
 ##     # Flatten comman
 
 ##     st_text_out = ','.join(ls_st_estimates)
@@ -265,4 +257,63 @@ try(source("../../.Rprofile"))
 ##     print(f'\n{st_text_out=}\n')
 
 ##     print()
+
+
+## # examples strings to check
+
+## ls_st_exas = ["C1E126M4S3=2",
+
+##               "simu_tst/M4S3_top_json.json",
+
+##               "M4S3_top_json.json",
+
+##               "simu_tst/M4S3=_top_json.json",
+
+##               "=====",
+
+##               "==$$%%==123123",
+
+##               "$$%%=123123"]
+
+## # check
+
+## for combo_type_e in ls_st_exas:
+
+##     # split
+
+##     st_connector = "="
+
+##     ls_combo_type_e_split = combo_type_e.split(st_connector)
+
+##     # first check length
+
+##     bl_esr_json = True
+
+##     if len(ls_combo_type_e_split) == 2:
+
+##         [compesti_short_name, esti_top_which] = ls_combo_type_e_split
+
+##         # check type
+
+##         bl_first_is_str = isinstance(compesti_short_name, str)
+
+##         bl_second_is_int = all([st_ele in '1234567890' for st_ele in esti_top_which])
+
+##         if bl_first_is_str + bl_second_is_int < 2:
+
+##             bl_esr_json = False
+
+##             print(f'{bl_esr_json=}, {bl_first_is_str=}, {bl_second_is_int=}, {combo_type_e=}')
+
+##         else:
+
+##             # Print
+
+##             print(f'{bl_esr_json=}, {bl_first_is_str=}, {bl_second_is_int=}')
+
+##     else:
+
+##         bl_esr_json = False
+
+##         print(f'{bl_esr_json=}, {combo_type_e=}')
 

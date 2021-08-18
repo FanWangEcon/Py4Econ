@@ -214,3 +214,62 @@ while bl_job_in_progress and it_wait_seconds <= 600:
         it_wait_seconds = it_wait_seconds + 10
         print(f'{it_wait_seconds=}, ArrayN={it_array_size}')
 ```
+
+#### Submit A Job with Timeout 
+
+It is important for estimation tasks to specify the [attemptDurationSeconds](https://docs.aws.amazon.com/batch/latest/userguide/job_timeouts.html) parameter. Without this, an estimation task in one of the job of the batch array could be taking a long period of time. Multiple machines could be turned on because several jobs, scattered through several machines, take long periods of time to finish. 
+
+Set the *attemptDurationSeconds* timeout parameter to be something greater than 60 seconds, 60 seconds is the minimum. 
+
+```{python}
+# identical as above
+jobDefinitionName = 'pyfan-scatterline3-test-rmd'
+st_jobName = jobDefinitionName + '_' + "{:%Y%m%d%H%M%S%f}".format(datetime.datetime.now())
+# Credentials
+fl_yaml = open("C:/Users/fan/fanwangecon.github.io/_data/aws.yml")
+ls_dict_yml = yaml.load(fl_yaml, Loader=yaml.BaseLoader)
+aws_yml_dict_yml = ls_dict_yml[0]
+aws_batch = boto3.client('batch',
+                         aws_access_key_id=aws_yml_dict_yml['aws_access_key_id'],
+                         aws_secret_access_key=aws_yml_dict_yml['aws_secret_access_key'],
+                         region_name=aws_yml_dict_yml['region'])
+# aws batch submit job
+dc_json_batch_response = aws_batch.submit_job(
+    jobName=st_jobName, jobQueue='Spot',arrayProperties={'size': 3}, 
+    jobDefinition=jobDefinitionName,
+    timeout={
+        'attemptDurationSeconds': 60
+    })
+```
+
+Track progress status with the time-out, some tasks might fail now due to taking more time than allowed (60 seconds).
+
+```{python}
+st_batch_jobID = dc_json_batch_response['jobId']
+# While loop to check status
+bl_job_in_progress = True
+it_wait_seconds = 0
+while bl_job_in_progress and it_wait_seconds <= 600:
+    dc_json_batch_describe_job_response = aws_batch.describe_jobs(jobs=[st_batch_jobID])
+    it_array_size = dc_json_batch_describe_job_response['jobs'][0]['arrayProperties']['size']
+    dc_status_summary = dc_json_batch_describe_job_response['jobs'][0]['arrayProperties']['statusSummary']
+    if dc_status_summary:
+        it_completed = dc_status_summary['SUCCEEDED'] + dc_status_summary['FAILED']
+        if it_completed < it_array_size:
+            bl_job_in_progress = True
+            time.sleep(5)
+            it_wait_seconds = it_wait_seconds + 5
+        else:
+            bl_job_in_progress = False
+
+        print(f'{it_wait_seconds=}, ArrayN={it_array_size},'
+              f'SUBMITTED={dc_status_summary["SUBMITTED"]}, PENDING={dc_status_summary["PENDING"]}, '
+              f'RUNNABLE={dc_status_summary["RUNNABLE"]}, STARTING={dc_status_summary["STARTING"]}, '
+              f'RUNNING={dc_status_summary["RUNNING"]}, '
+              f'SUCCEEDED={dc_status_summary["SUCCEEDED"]}, FAILED={dc_status_summary["FAILED"]}')
+    else:
+        bl_job_in_progress = True
+        time.sleep(5)
+        it_wait_seconds = it_wait_seconds + 5
+        print(f'{it_wait_seconds=}, ArrayN={it_array_size}')
+```

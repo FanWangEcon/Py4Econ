@@ -11,6 +11,7 @@ core:
   - package: numpy
     code: |
       floor
+      arange
 date: 2020-12-18
 date_start: 2020-12-18
 output:
@@ -40,6 +41,25 @@ try(source("../../.Rprofile"))
 import numpy as np
 ```
 
+#### Simple Integer Loop 
+
+Loop over integers up to a maximum number. Take certain actions at the beginning and at the end of the loop. Note that in python, indexing starts at 0, and ends 1 less than the length. So below, *np.arange(4)* generates a list that starts at 0 and goes to 3 of length 4. The last element is not 4. Ending index is 4-1, dont forget the -1. 
+
+```{python}
+# Maximum number
+it_bisection_iter = 4
+# np arange
+ls_it_loop = np.arange(it_bisection_iter)
+print(f'{ls_it_loop=}')
+# Iteration
+for it_bisection_ctr in ls_it_loop:
+    if it_bisection_ctr == 0:
+        print('starting index')
+    elif it_bisection_ctr == it_bisection_iter-1:
+        print('ending index')
+    print(f'{it_bisection_ctr=}')
+```
+
 #### Two Digit Numbers Coding Conditional Information
 
 We have numbers between 0 and 99, these indicate different estimation specifications, where the digit number is the estimation tolerance level, and the tens number is the minimization algorithm.
@@ -52,8 +72,3 @@ for it_esti_optsalgo in ls_it_esti_optsalgo:
     print(f'{it_esti_optsalgo_tens=}, {it_esti_optsalgo_digits=}')
 ```
 
-#### Number Parse of Parameter Specifications
-
-```{python}
-
-```

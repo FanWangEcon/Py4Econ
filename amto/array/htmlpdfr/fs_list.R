@@ -1,4 +1,4 @@
-## ----global_options, include = FALSE------------------------------------------------------------------------------------
+## ----global_options, include = FALSE-------------------------------------------------------------------
 try(source("../../.Rprofile"))
 
 
@@ -67,6 +67,21 @@ try(source("../../.Rprofile"))
 ## ls_st_spec_key = ['list_comprehension' + str(spec_key) for spec_key in ls_spec_key]
 
 ## print(ls_st_spec_key)
+
+
+## ls_model_assumption = ['', 'ITG', 'GE', 'ITG_GE']
+
+## ls_graph_panda_list_name = ['min_graphs', 'main_aA_graphs', 'all_graphs_tables']
+
+## for model_assumption in ls_model_assumption:
+
+##     for graph_panda_list_name in ls_graph_panda_list_name:
+
+##         # Join strings together
+
+##         st_curdatestr = "_".join(filter(None, [model_assumption, graph_panda_list_name]))
+
+##         print(f'{st_curdatestr=}')
 
 
 ## ls_spec_key = ['ng_s_d', 'esti_test_11_simu', 2, 3]

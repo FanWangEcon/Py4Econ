@@ -1,0 +1,49 @@
+---
+title: "Python Operators"
+titleshort: "Python Operators"
+description: |
+  Python single line conditional tenary opoerators.
+core:
+  - package: python
+    code: |
+      st_a if st_z in st_x else st_b
+date: 2021-01-07
+date_start: 2021-01-07
+output:
+  pdf_document:
+    pandoc_args: '../../_output_kniti_pdf.yaml'
+    includes:
+      in_header: '../../preamble.tex'
+  html_document:
+    pandoc_args: '../../_output_kniti_html.yaml'
+    includes:
+      in_header: "../../hdga.html"
+always_allow_html: true
+urlcolor: blue
+---
+
+### Python Operators
+
+```{r global_options, include = FALSE}
+try(source("../../.Rprofile"))
+```
+
+`r text_shared_preamble_one`
+`r text_shared_preamble_two`
+`r text_shared_preamble_thr`
+
+```{python}
+```
+
+#### Single Line If Else Statement Tenary Operator
+
+There is a dictionary of parameter values, decide on the values for several keys based on a parameter using single line simple operations.
+
+```{python}
+ls_model_assumption = ['', 'ITG', 'GE', 'ITG_GE']
+for model_assumption in ls_model_assumption:
+    dc_invoke_main_args_default = \
+        {'speckey': 'b_ge_s_t_bis' if 'GE' in model_assumption else 'ng_s_t',
+         'ge': ('GE' in model_assumption)}
+    print(f'{dc_invoke_main_args_default=}')
+```

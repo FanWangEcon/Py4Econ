@@ -31,6 +31,8 @@ rmd_files:
   - function/args/fs_func_args.Rmd
   - function/args/fs_func_args_cmd.Rmd
   - function/args/fs_func_returns.Rmd
+  - function/operators/main.Rmd
+  - function/operators/fs_python_operators.Rmd
   - function/errors/main.Rmd
   - function/errors/fs_python_exceptions.Rmd
 
