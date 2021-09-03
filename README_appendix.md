@@ -114,9 +114,21 @@
 	+ Check row sums for approximate equality to 1.
 	+ **numpy**: *allclose + reshape + sum*
 
+## Mathematics links
+
+### [Section 5.1 Differentiate][Differentiate] links
+
+1. [Derivatives Involving Normal CDF and PDF Analytically and with Sympy](https://fanwangecon.github.io/Py4Econ/math/derivative/htmlpdfr/fs_diff_normcdf.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/math/derivative//fs_diff_normcdf.Rmd) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/math/derivative/htmlpdfr/fs_diff_normcdf.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/math/derivative/htmlpdfr/fs_diff_normcdf.html)
+	+ Sympy derivative examples, the chain rule. Analytically and numerically check against sympy results.
+	+ Derivatives of standard normal CDF and normal PDF.
+	+ **py**: *lambda*
+	+ **numpy**: *sqrt + exp       + column_stack(()).astype(float) + array + empty + linspace*
+	+ **scipy.stats**: *norm.pdf + norm.cdf*
+	+ **sym**: *diff + subs + simplify*
+
 ## Tables and Graphs links
 
-### [Section 5.1 Matplotlib Base Plots][Matplotlib Base Plots] links
+### [Section 6.1 Matplotlib Base Plots][Matplotlib Base Plots] links
 
 1. [Mabplotlib Scatter and Line Plots](https://fanwangecon.github.io/Py4Econ/tabgraph/baseplot/htmlpdfr/fp_plot_base.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/tabgraph/baseplot//fp_plot_base.Rmd) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/tabgraph/baseplot/htmlpdfr/fp_plot_base.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/tabgraph/baseplot/htmlpdfr/fp_plot_base.html)
 	+ Plot several arrays of data, grid, figure title, and line and point patterns and colors.
@@ -131,7 +143,7 @@
 
 ## Amazon Web Services links
 
-### [Section 6.1 AWS Setup][AWS Setup] links
+### [Section 7.1 AWS Setup][AWS Setup] links
 
 1. [AWS Account Set-up and Start Instance](https://fanwangecon.github.io/Py4Econ/aws/setup/htmlpdfr/fs_aws_setup.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/aws/setup//fs_aws_setup.Rmd) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/aws/setup/htmlpdfr/fs_aws_setup.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/aws/setup/htmlpdfr/fs_aws_setup.html)
 	+ Generate keypair on AWS, launch instance, launch security, ssh access, and AWSCLI.
@@ -141,7 +153,7 @@
 	+ Start AWS services, send requests etc via boto3. 
 	+ **boto3**: *boto3.client(service, aws_access_key_id, aws_secret_access_key, region_name)*
 
-### [Section 6.2 S3][S3] links
+### [Section 7.2 S3][S3] links
 
 1. [AWS S3 Uploading, Downloading and Syncing, Locally, EC2 and in Docker Container](https://fanwangecon.github.io/Py4Econ/aws/s3/htmlpdfr/fs_aws_s3.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/aws/s3//fs_aws_s3.Rmd) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/aws/s3/htmlpdfr/fs_aws_s3.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/aws/s3/htmlpdfr/fs_aws_s3.html)
 	+ From EC2 or local computer upload files to S3 folders.
@@ -151,7 +163,7 @@
 	+ **boto3**: *boto3.client('s3') + s3.upload_file() + s3.download_file()*
 	+ **os**: *sep*
 
-### [Section 6.3 Batch][Batch] links
+### [Section 7.3 Batch][Batch] links
 
 1. [AWS Batch, Batch Array](https://fanwangecon.github.io/Py4Econ/aws/batch/htmlpdfr/fs_aws_batch.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/aws/batch//fs_aws_batch.Rmd) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/aws/batch/htmlpdfr/fs_aws_batch.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/aws/batch/htmlpdfr/fs_aws_batch.html)
 	+ Set up python function that uses AWS_BATCH_JOB_ARRAY_INDEX.
@@ -162,7 +174,7 @@
 
 ## Docker Container links
 
-### [Section 7.1 Docker Setup][Docker Setup] links
+### [Section 8.1 Docker Setup][Docker Setup] links
 
 1. [Docker Container Set-Up and Run on AWS](https://fanwangecon.github.io/Py4Econ/docker/setup/htmlpdfr/fs_docker_setup.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/docker/setup//fs_docker_setup.Rmd) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/docker/setup/htmlpdfr/fs_docker_setup.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/docker/setup/htmlpdfr/fs_docker_setup.html)
 	+ Install Docker on AWS and build Docker image.
@@ -178,7 +190,7 @@
 
 ## Get Data links
 
-### [Section 8.1 Environmental Data][Environmental Data] links
+### [Section 9.1 Environmental Data][Environmental Data] links
 
 1. [CDS ECMWF Global Enviornmental Data Download](https://fanwangecon.github.io/Py4Econ/getdata/envir/htmlpdfr/fs_ecmwf.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/getdata/envir//fs_ecmwf.Rmd) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/getdata/envir/htmlpdfr/fs_ecmwf.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/getdata/envir/htmlpdfr/fs_ecmwf.html)
 	+ Using Python API get get ECMWF ERA5 data.
@@ -188,7 +200,7 @@
 
 ## System and Support links
 
-### [Section 9.1 Command Line][Command Line] links
+### [Section 10.1 Command Line][Command Line] links
 
 1. [Execute Python from Command Line and Run Command Line in Python](https://fanwangecon.github.io/Py4Econ/support/system/htmlpdfr/fp_command.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/support/system//fp_command.Rmd) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/support/system/htmlpdfr/fp_command.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/support/system/htmlpdfr/fp_command.html)
 	+ Run python functions from command line.
@@ -198,7 +210,7 @@
 	+ **decode**: *decode('utf-8')*
 	+ **os**: *chdir() + getcdw()*
 
-### [Section 9.2 File In and Out][File In and Out] links
+### [Section 10.2 File In and Out][File In and Out] links
 
 1. [Searching for Programs, Reading and Writing to File Examples](https://fanwangecon.github.io/Py4Econ/support/inout/htmlpdfr/fp_files.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/support/inout//fp_files.Rmd) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/support/inout/htmlpdfr/fp_files.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/support/inout/htmlpdfr/fp_files.html)
 	+ Check the path to a particular installed program.
@@ -225,13 +237,13 @@
 	+ **yaml**: *load(fl_yaml, Loader=yaml.BaseLoader)       + dump()*
 	+ **pprint**: *pprint.pprint(ls_dict_yml, width=1)*
 
-### [Section 9.3 Install Python][Install Python] links
+### [Section 10.3 Install Python][Install Python] links
 
 1. [Basic Conda Setup Instructions](https://fanwangecon.github.io/Py4Econ/support/install/htmlpdfr/fs_install_basics.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/support/install//fs_install_basics.Rmd) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/support/install/htmlpdfr/fs_install_basics.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/support/install/htmlpdfr/fs_install_basics.html)
 	+ Conda and git installations
 	+ **bash**: *where*
 
-### [Section 9.4 Documentation][Documentation] links
+### [Section 10.4 Documentation][Documentation] links
 
 1. [Python Documentation Numpy Doc](https://fanwangecon.github.io/Py4Econ/support/documentation/htmlpdfr/fs_numpy_doc.html): [**rmd**](https://github.com/FanWangEcon/Py4Econ/blob/master/support/documentation//fs_numpy_doc.Rmd) \| [**pdf**](https://github.com/FanWangEcon/Py4Econ/blob/master/support/documentation/htmlpdfr/fs_numpy_doc.pdf) \| [**html**](https://fanwangecon.github.io/Py4Econ/support/documentation/htmlpdfr/fs_numpy_doc.html)
 	+ Numpy documentation examples.

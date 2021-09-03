@@ -42,6 +42,10 @@ rmd_files:
   - stats/markov/main.Rmd
   - stats/markov/fs_trans_mat_prob_check.Rmd
 
+  - math/main.Rmd
+  - math/derivative/main.Rmd
+  - math/derivative/fs_diff_normcdf.Rmd
+
   - tabgraph/main.Rmd
   - tabgraph/baseplot/main.Rmd
   - tabgraph/baseplot/fp_plot_base.Rmd
