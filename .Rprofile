@@ -10,17 +10,34 @@ library(REconTools)
 # formatR needed for tidy.opts below
 library(formatR)
 
+# Path for wk_pyfan env
+spt_wkpyfan_computer_a <- 'G:/ProgramData/Anaconda3/'
+spt_wkpyfan_computer_b <- 'C:/ProgramData/Anaconda3/'
+if (dir.exists(spt_wkpyfan_computer_a)) {
+  print(paste(spt_wkpyfan_computer_a, 'exists'))
+  spt_wkpyfan_root <- spt_wkpyfan_computer_a
+} else if (dir.exists(spt_wkpyfan_computer_b)) {
+  print(paste(spt_wkpyfan_computer_b, 'exists', spt_wkpyfan_computer_a, 'does not exist'))
+  spt_wkpyfan_root <- spt_wkpyfan_computer_b
+} else {
+  msg_error <- paste(spt_wkpyfan_computer_b, spt_wkpyfan_computer_a, 'both do does not exist')
+  stop(msg_error)
+}
+
 # jointly use R and Python Together
+st_wk_pyfan_path <- paste0(spt_wkpyfan_root, "envs/wk_pyfan/python.exe")
+Sys.setenv(RETICULATE_PYTHON = st_wk_pyfan_path)
+library(reticulate)
 
 # RMD Options
 options(knitr.duplicate.label = "allow")
 options(bookdown.render.file_scope = FALSE)
 
-
 knitr::opts_chunk$set(fig.width=7, fig.height=4, fig.align="center")
 # knitr::opts_chunk$set(tidy.opts=list(width.cutoff=60), tidy=TRUE)
 knitr::opts_chunk$set(warning=FALSE, message=FALSE, cache=FALSE)
-opts_chunk$set(engine.path = "G:/ProgramData/Anaconda3/envs/wk_pyfan/python.exe")
+# opts_chunk$set(engine.path = "G:/ProgramData/Anaconda3/envs/wk_pyfan/python.exe")
+knitr::opts_chunk$set(engine.path = st_wk_pyfan_path)
 
 # Output HTML or Latex
 if (knitr::is_latex_output()) {
@@ -84,7 +101,19 @@ if(!is.null(spt_file_current)) {
   sph_r='/htmlpdfr'
 
   # spt_root <- 'C:/Users/fan/Py4Econ/'
-  spt_root <- 'G:/repos/Py4Econ/'
+  spt_root_computer_a <- 'G:/repos/Py4Econ/'
+  spt_root_computer_b <- 'C:/Users/fan/Py4Econ/'
+  if (dir.exists(spt_root_computer_a)) {
+    print(paste(spt_root_computer_a, 'exists'))
+    spt_root <- spt_root_computer_a
+  } else if (dir.exists(spt_root_computer_b)) {
+    print(paste(spt_root_computer_b, 'exists', spt_root_computer_a, 'does not exist'))
+    spt_root <- spt_root_computer_b
+  } else {
+    msg_error <- paste(spt_root_computer_b, spt_root_computer_a, 'both do does not exist')
+    stop(msg_error)
+  }
+
   spn_prj_rmd <- gsub(spt_root, "", spt_file_current)
   spt_rmd_path <- paste0('/',dirname(spn_prj_rmd))
 
@@ -132,6 +161,6 @@ if (knitr::is_latex_output()) {
     text_top_count <- ""
     text_end_count <- ""
 } else {
-    text_top_count <- "[![ViewCount](https://views.whatilearened.today/views/github/FanWangEcon/Py4Econ.svg)](https://github.com/FanWangEcon/Py4Econ) [![Star](https://img.shields.io/github/stars/fanwangecon/Py4Econ?style=social)](https://github.com/FanWangEcon/Py4Econ/stargazers) [![Fork](https://img.shields.io/github/forks/fanwangecon/Py4Econ?style=social)](https://github.com/FanWangEcon/Py4Econ/network/members) [![Star](https://img.shields.io/github/watchers/fanwangecon/Py4Econ?style=social)](https://github.com/FanWangEcon/Py4Econ/watchers) [![DOI](https://zenodo.org/badge/320403946.svg)](https://zenodo.org/badge/latestdoi/320403946)"
+    text_top_count <- "[![Star](https://img.shields.io/github/stars/fanwangecon/Py4Econ?style=social)](https://github.com/FanWangEcon/Py4Econ/stargazers) [![Fork](https://img.shields.io/github/forks/fanwangecon/Py4Econ?style=social)](https://github.com/FanWangEcon/Py4Econ/network/members) [![Star](https://img.shields.io/github/watchers/fanwangecon/Py4Econ?style=social)](https://github.com/FanWangEcon/Py4Econ/watchers) [![DOI](https://zenodo.org/badge/320403946.svg)](https://zenodo.org/badge/latestdoi/320403946)"
     text_end_count <- "[![](https://img.shields.io/github/last-commit/fanwangecon/Py4Econ)](https://github.com/FanWangEcon/Py4Econ/commits/master) [![](https://img.shields.io/github/commit-activity/m/fanwangecon/Py4Econ)](https://github.com/FanWangEcon/Py4Econ/graphs/commit-activity) [![](https://img.shields.io/github/issues/fanwangecon/Py4Econ)](https://github.com/FanWangEcon/Py4Econ/issues) [![](https://img.shields.io/github/issues-pr/fanwangecon/Py4Econ)](https://github.com/FanWangEcon/Py4Econ/pulls)"
 }

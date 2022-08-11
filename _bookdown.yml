@@ -46,6 +46,10 @@ rmd_files:
   - math/derivative/main.Rmd
   - math/derivative/fs_diff_normcdf.Rmd
 
+  - prod/main.Rmd
+  - prod/ces/main.Rmd
+  - prod/ces/fs_ces_multi_input.Rmd
+
   - tabgraph/main.Rmd
   - tabgraph/baseplot/main.Rmd
   - tabgraph/baseplot/fp_plot_base.Rmd
