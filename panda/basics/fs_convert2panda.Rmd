@@ -1,0 +1,88 @@
+---
+title: "Convert Data Structures to Pandas Dataframes"
+titleshort: "Convert Data Structures to Pandas Dataframes"
+description: |
+  Converted nested dictionary to pandas dataframe.
+  Convert from pandas dataframe to a nested dictionary.
+core:
+  - package: pandas
+    code: |
+      DataFrame.from_dict()
+      reset_index()
+      set_index()
+      to_dict()
+date: 2023-02-16
+date_start: 2023-02-16
+output:
+  pdf_document:
+    pandoc_args: '../../_output_kniti_pdf.yaml'
+    includes:
+      in_header: '../../preamble.tex'
+  html_document:
+    pandoc_args: '../../_output_kniti_html.yaml'
+    includes:
+      in_header: "../../hdga.html"
+always_allow_html: true
+urlcolor: blue
+---
+
+### Convert Data Structures to Panda Tables
+
+```{r global_options, include = FALSE}
+try(source("../../.Rprofile"))
+```
+
+`r text_shared_preamble_one`
+`r text_shared_preamble_two`
+`r text_shared_preamble_thr`
+
+```{python}
+import pprint
+import pandas as pd
+```
+
+#### Convert between a Nested Dictionary and a Pandas Dataframe
+
+We have a doubly nested dictionary. The top layer has integer keys, and the values are dictionaries. The second layer has string keys, and the values are numeric.
+
+First, we construct the nested-dictionary that we are interested in converting. 
+
+```{python}
+# The nested dictionary
+dc_nested = {
+  11: {
+    'wkr': 1,
+    'occ': 2,
+    'wge': 1.2
+  } ,
+  202: {
+    'wkr': 2,
+    'occ': 2,
+    'wge': None
+  } 
+}
+```
+
+Second, we convert the nested dictionary, so that the number of observations is the number of key/values in the top nest layer, and the number of variables is the number of keys in the second layer of dictionary along with the key from the top layer. We will use [pandas.DataFrame.from_dict](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.from_dict.html) to accomplish this.
+
+```{python}
+st_key_var_name = "key_node"
+# 1. convert to dataframe
+df_from_nested = pd.DataFrame.from_dict(dc_nested, orient='index')
+# 2. keys from top nest as variable and rename as key_node
+df_from_nested = df_from_nested.reset_index()
+df_from_nested.rename(columns={'index':st_key_var_name}, inplace=True)
+# Print
+print(df_from_nested)
+```
+
+Third, now we convert the pandas dataframe we just created back to a nested dictionary. We will use the "index" option for the orient parameter for the **to_dict** function. We need to first convert the **key_node** variable created above to the index. 
+
+```{python}
+# 1. convert column to index
+df_from_nested = df_from_nested.set_index(st_key_var_name)
+# 2. Convert to dictionary
+dc_from_df = df_from_nested.to_dict(orient="index")
+# print
+pprint.pprint(dc_from_df)
+```

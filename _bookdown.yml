@@ -21,8 +21,8 @@ rmd_files:
 
   - panda/main.Rmd
   - panda/basics/main.Rmd
-  - panda/basics/fs_matrix2dataframe.Rmd
   - panda/basics/fs_select.Rmd
+  - panda/basics/fs_convert2panda.Rmd
   - panda/basics/fs_inout_files.Rmd
 
   - function/main.Rmd
